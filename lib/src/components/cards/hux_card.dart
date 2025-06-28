@@ -1,8 +1,34 @@
 import 'package:flutter/material.dart';
 import '../../theme/hux_colors.dart';
 
-/// HuxCard is a customizable card component
+/// HuxCard is a customizable card component that provides a consistent
+/// container with optional header, title, subtitle, and actions.
+/// 
+/// The card automatically adapts to light and dark themes and provides
+/// a clean, modern appearance with subtle borders and optional shadows.
+/// 
+/// Example:
+/// ```dart
+/// HuxCard(
+///   title: 'User Profile',
+///   subtitle: 'Manage your account settings',
+///   action: IconButton(
+///     icon: Icon(Icons.more_vert),
+///     onPressed: () {},
+///   ),
+///   child: Column(
+///     children: [
+///       Text('Card content goes here'),
+///       // ... more content
+///     ],
+///   ),
+///   onTap: () => print('Card tapped'),
+/// )
+/// ```
 class HuxCard extends StatelessWidget {
+  /// Creates a HuxCard widget.
+  /// 
+  /// The [child] parameter is required and contains the main content of the card.
   const HuxCard({
     super.key,
     required this.child,
@@ -16,14 +42,31 @@ class HuxCard extends StatelessWidget {
     this.onTap,
   });
 
+  /// The main content widget to display inside the card
   final Widget child;
+  
+  /// Optional title text displayed in the card header
   final String? title;
+  
+  /// Optional subtitle text displayed below the title
   final String? subtitle;
+  
+  /// Optional action widget displayed in the top-right corner of the header
   final Widget? action;
+  
+  /// Padding around the main content. Defaults to 16px on all sides
   final EdgeInsetsGeometry padding;
+  
+  /// Margin around the entire card. Defaults to zero
   final EdgeInsetsGeometry margin;
+  
+  /// Elevation of the card shadow. Defaults to 0 for a flat appearance
   final double elevation;
+  
+  /// Border radius of the card corners. Defaults to 12px
   final double borderRadius;
+  
+  /// Callback triggered when the card is tapped. If null, the card is not interactive
   final VoidCallback? onTap;
 
   @override
@@ -39,7 +82,7 @@ class HuxCard extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(borderRadius),
-          child: Container(
+          child: DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(borderRadius),
               border: Border.all(

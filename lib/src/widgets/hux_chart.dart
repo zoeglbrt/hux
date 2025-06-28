@@ -4,19 +4,45 @@ import '../theme/hux_colors.dart';
 
 /// Chart types supported by HuxChart
 enum HuxChartType {
+  /// Line chart with connected data points
   line,
+  
+  /// Bar chart with rectangular bars
   bar,
 }
 
 /// Chart size variants
 enum HuxChartSize {
+  /// Small chart (200px height)
   small,
+  
+  /// Medium chart (300px height)
   medium,
+  
+  /// Large chart (400px height)
   large,
 }
 
 /// A customizable chart widget that wraps cristalyse with Hux UI styling
 class HuxChart extends StatelessWidget {
+  /// Creates a HuxChart widget.
+  /// 
+  /// The [data], [type], [xField], and [yField] parameters are required.
+  const HuxChart({
+    super.key,
+    required this.data,
+    required this.type,
+    required this.xField,
+    required this.yField,
+    this.size = HuxChartSize.medium,
+    this.colorField,
+    this.title,
+    this.subtitle,
+    Color? primaryColor,
+    this.animated = true,
+    this.animationDuration = const Duration(milliseconds: 800),
+  }) : primaryColor = primaryColor ?? const Color(0xFF3B82F6);
+
   /// The data to display in the chart
   final List<Map<String, dynamic>> data;
   
@@ -49,21 +75,6 @@ class HuxChart extends StatelessWidget {
   
   /// Animation duration
   final Duration animationDuration;
-
-  const HuxChart({
-    super.key,
-    required this.data,
-    required this.type,
-    required this.xField,
-    required this.yField,
-    this.size = HuxChartSize.medium,
-    this.colorField,
-    this.title,
-    this.subtitle,
-    Color? primaryColor,
-    this.animated = true,
-    this.animationDuration = const Duration(milliseconds: 800),
-  }) : primaryColor = primaryColor ?? const Color(0xFF3B82F6);
 
   @override
   Widget build(BuildContext context) {

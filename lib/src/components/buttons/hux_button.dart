@@ -19,6 +19,9 @@ import '../../theme/hux_colors.dart';
 /// HuxButton(primaryColor: Colors.deepOrange, ...)
 /// ```
 class HuxButton extends StatelessWidget {
+  /// Creates a HuxButton widget.
+  /// 
+  /// The [onPressed] and [child] parameters are required.
   const HuxButton({
     super.key,
     required this.onPressed,
@@ -31,13 +34,28 @@ class HuxButton extends StatelessWidget {
     this.primaryColor = HuxColors.primary,
   });
 
+  /// Callback triggered when the button is pressed
   final VoidCallback? onPressed;
+  
+  /// The child widget to display inside the button
   final Widget child;
+  
+  /// Visual variant of the button
   final HuxButtonVariant variant;
+  
+  /// Size variant of the button
   final HuxButtonSize size;
+  
+  /// Whether to show a loading indicator instead of the child
   final bool isLoading;
+  
+  /// Whether the button is disabled
   final bool isDisabled;
+  
+  /// Optional icon to display before the text
   final IconData? icon;
+  
+  /// Primary color used for styling the button
   final Color primaryColor;
 
   @override
@@ -203,6 +221,29 @@ class HuxButton extends StatelessWidget {
   }
 }
 
-enum HuxButtonVariant { primary, secondary, outline, ghost }
+/// Visual variants for HuxButton
+enum HuxButtonVariant { 
+  /// Solid button with primary color background
+  primary, 
+  
+  /// Solid button with secondary styling
+  secondary, 
+  
+  /// Button with transparent background and border
+  outline, 
+  
+  /// Button with transparent background and no border
+  ghost 
+}
 
-enum HuxButtonSize { small, medium, large } 
+/// Size variants for HuxButton
+enum HuxButtonSize { 
+  /// Small button with compact padding
+  small, 
+  
+  /// Medium button with standard padding
+  medium, 
+  
+  /// Large button with generous padding
+  large 
+} 

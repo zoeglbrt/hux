@@ -1,8 +1,30 @@
 import 'package:flutter/material.dart';
 import '../../theme/hux_colors.dart';
 
-/// HuxTextField is a customizable text input component
+/// HuxTextField is a customizable text input component with consistent styling
+/// and extensive customization options.
+/// 
+/// Provides a clean, modern text input with support for labels, hints, 
+/// validation, icons, and different sizes. Automatically adapts to light 
+/// and dark themes.
+/// 
+/// Example:
+/// ```dart
+/// HuxTextField(
+///   label: 'Email Address',
+///   hint: 'Enter your email',
+///   prefixIcon: Icon(Icons.email),
+///   keyboardType: TextInputType.emailAddress,
+///   validator: (value) {
+///     if (value?.isEmpty ?? true) return 'Email is required';
+///     if (!value!.contains('@')) return 'Invalid email';
+///     return null;
+///   },
+///   onChanged: (value) => print('Email: $value'),
+/// )
+/// ```
 class HuxTextField extends StatelessWidget {
+  /// Creates a HuxTextField widget.
   const HuxTextField({
     super.key,
     this.controller,
@@ -24,22 +46,55 @@ class HuxTextField extends StatelessWidget {
     this.iconSize,
   });
 
+  /// Controller for the text field
   final TextEditingController? controller;
+  
+  /// Label text displayed above the text field
   final String? label;
+  
+  /// Hint text displayed inside the text field when empty
   final String? hint;
+  
+  /// Helper text displayed below the text field
   final String? helperText;
+  
+  /// Error text displayed below the text field, overrides helperText
   final String? errorText;
+  
+  /// Widget displayed at the beginning of the text field
   final Widget? prefixIcon;
+  
+  /// Widget displayed at the end of the text field
   final Widget? suffixIcon;
+  
+  /// Whether to obscure the text (for passwords)
   final bool obscureText;
+  
+  /// Whether the text field is enabled for input
   final bool enabled;
+  
+  /// Maximum number of lines for the text field
   final int maxLines;
+  
+  /// The type of keyboard to use for editing the text
   final TextInputType? keyboardType;
+  
+  /// The type of action button to use for the keyboard
   final TextInputAction? textInputAction;
+  
+  /// Called when the text field value changes
   final ValueChanged<String>? onChanged;
+  
+  /// Called when the user submits the text field
   final ValueChanged<String>? onSubmitted;
+  
+  /// Validator function for form validation
   final String? Function(String?)? validator;
+  
+  /// Size variant of the text field
   final HuxTextFieldSize size;
+  
+  /// Custom size for the prefix and suffix icons
   final double? iconSize;
 
   @override
@@ -142,7 +197,7 @@ class HuxTextField extends StatelessWidget {
   Widget _buildIcon(Widget icon, {required bool isPrefix}) {
     final effectiveIconSize = iconSize ?? _getDefaultIconSize();
     final outerPadding = _getIconHorizontalPadding();
-    final innerPadding = 4.0; // Small gap between icon and text
+    const innerPadding = 4.0; // Small gap between icon and text
     
     return Padding(
       padding: EdgeInsets.only(
@@ -168,7 +223,7 @@ class HuxTextField extends StatelessWidget {
   double _getIconConstraintWidth() {
     final effectiveIconSize = iconSize ?? _getDefaultIconSize();
     final outerPadding = _getIconHorizontalPadding();
-    final innerPadding = 5.0;
+    const innerPadding = 5.0;
     return effectiveIconSize + outerPadding + innerPadding;
   }
 
@@ -228,4 +283,14 @@ class HuxTextField extends StatelessWidget {
   }
 }
 
-enum HuxTextFieldSize { small, medium, large } 
+/// Size variants for HuxTextField
+enum HuxTextFieldSize { 
+  /// Small text field with compact padding
+  small, 
+  
+  /// Medium text field with standard padding
+  medium, 
+  
+  /// Large text field with generous padding
+  large 
+} 
