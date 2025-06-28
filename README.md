@@ -2,6 +2,13 @@
 
 A modern Flutter UI package with beautiful, customizable components designed for clean and consistent user interfaces.
 
+[![pub package](https://img.shields.io/pub/v/hux.svg)](https://pub.dev/packages/hux)
+[![pub points](https://img.shields.io/pub/points/hux)](https://pub.dev/packages/hux/score)
+[![likes](https://img.shields.io/pub/likes/hux)](https://pub.dev/packages/hux/score)
+[![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios%20%7C%20web%20%7C%20windows%20%7C%20macos%20%7C%20linux-blue)](https://flutter.dev/)
+[![Flutter support](https://img.shields.io/badge/Flutter-1.17%2B-blue)](https://flutter.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Features
 
 - 🎨 **Modern Design** - Clean, minimal design language
@@ -18,20 +25,31 @@ A modern Flutter UI package with beautiful, customizable components designed for
 - Multiple sizes (small, medium, large)
 - Loading states and icon support
 
+![HuxButton Variants](screenshots/hux-buttons.png)
+
 ### Cards
 - `HuxCard` - Flexible card component with optional header, title, and actions
 - Customizable padding, margin, and border radius
 - Tap handling support
+
+![HuxCard Examples](screenshots/hux-cards.png)
 
 ### Inputs
 - `HuxTextField` - Enhanced text input with consistent styling
 - Label, helper text, and error state support
 - Multiple sizes and validation
 
+![HuxTextField Component](screenshots/hux-text-field.png)
+
 ### Widgets
 - `HuxLoading` - Customizable loading indicators
 - `HuxLoadingOverlay` - Full-screen loading overlay
+
+![HuxLoading Indicators](screenshots/hux-loading.png)
+
 - `HuxChart` - Beautiful data visualization with line and bar charts
+
+![HuxChart Visualization](screenshots/hux-charts.png)
 
 ### Theme
 - `HuxTheme` - Pre-configured light and dark themes

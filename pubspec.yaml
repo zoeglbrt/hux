@@ -1,8 +1,39 @@
 name: hux
-description: A modern Flutter UI package with beautiful, customizable components
+description: an open-source state of the art UI library for Flutter 💙
 version: 0.1.2
 homepage: https://github.com/zoeglbrt/hux
 repository: https://github.com/zoeglbrt/hux
+issue_tracker: https://github.com/zoeglbrt/hux/issues
+documentation: https://github.com/zoeglbrt/hux#readme
+
+# Topics help users find your package
+topics:
+  - ui
+  - widgets
+  - components
+  - theme
+  - design-system
+  - material-design
+  - buttons
+  - cards
+  - charts
+  - loading
+  - text-field
+  - dark-mode
+  - responsive
+
+# Screenshots displayed on pub.dev
+screenshots:
+  - description: 'HuxButton component variants'
+    path: screenshots/hux-buttons.png
+  - description: 'HuxCard with different configurations'
+    path: screenshots/hux-cards.png
+  - description: 'HuxTextField input component'
+    path: screenshots/hux-text-field.png
+  - description: 'HuxLoading indicators'
+    path: screenshots/hux-loading.png
+  - description: 'HuxChart data visualization'
+    path: screenshots/hux-charts.png
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

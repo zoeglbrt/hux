@@ -368,7 +368,7 @@ class _MyHomePageState extends State<MyHomePage> {
               message: 'Processing...',
               child: SingleChildScrollView(
                 controller: _scrollController,
-                padding: const EdgeInsets.all(32),
+                padding: const EdgeInsets.all(64),
                 child: Form(
                   key: _formKey,
                   child: Column(
