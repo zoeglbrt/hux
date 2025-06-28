@@ -6,6 +6,7 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 - 🎨 **Modern Design** - Clean, minimal design language
 - 🌙 **Dark Mode Support** - Built-in light and dark theme support
+- 📊 **Data Visualization** - Beautiful animated charts for data presentation
 - 📱 **Responsive** - Components adapt to different screen sizes
 - 🎯 **Customizable** - Extensive customization options
 - 🚀 **Easy to Use** - Simple, intuitive API
@@ -30,6 +31,7 @@ A modern Flutter UI package with beautiful, customizable components designed for
 ### Widgets
 - `HuxLoading` - Customizable loading indicators
 - `HuxLoadingOverlay` - Full-screen loading overlay
+- `HuxChart` - Beautiful data visualization with line and bar charts
 
 ### Theme
 - `HuxTheme` - Pre-configured light and dark themes
@@ -37,18 +39,10 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 ## Installation
 
-Add this package to your `pubspec.yaml` file:
-
-```yaml
-dependencies:
-  hux_ui: ^0.1.0
-```
-
-Then run:
-
 ```bash
-flutter pub get
+flutter pub add hux
 ```
+
 
 ## Usage
 
@@ -134,6 +128,36 @@ HuxLoadingOverlay(
   isLoading: true,
   message: 'Loading...',
   child: YourContent(),
+)
+```
+
+#### Charts
+
+```dart
+// Line chart
+HuxChart.line(
+  data: [
+    {'x': 1, 'y': 10},
+    {'x': 2, 'y': 20},
+    {'x': 3, 'y': 15},
+  ],
+  xField: 'x',
+  yField: 'y',
+  title: 'Sales Over Time',
+  subtitle: 'Monthly data',
+  primaryColor: Colors.blue,
+)
+
+// Bar chart
+HuxChart.bar(
+  data: [
+    {'category': 'A', 'value': 30},
+    {'category': 'B', 'value': 45},
+    {'category': 'C', 'value': 25},
+  ],
+  xField: 'category',
+  yField: 'value',
+  title: 'Category Analysis',
 )
 ```
 

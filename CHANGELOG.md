@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `HuxTextField` component with validation and sizing options
 - `HuxLoading` component with size variants
 - `HuxLoadingOverlay` for full-screen loading states
+- `HuxChart` component for data visualization with line and bar chart support
 - `HuxTheme` with light and dark theme configurations
 - `HuxColors` comprehensive color palette
 - Support for Material 3 design system
@@ -23,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Features
 - Modern, clean design language
 - Consistent component API
+- Beautiful data visualization with animated charts
 - Customizable styling options
 - Responsive design support
 - Accessibility considerations 
