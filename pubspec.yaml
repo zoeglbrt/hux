@@ -11,16 +11,8 @@ topics:
   - ui
   - widgets
   - components
-  - theme
   - design-system
-  - material-design
   - buttons
-  - cards
-  - charts
-  - loading
-  - text-field
-  - dark-mode
-  - responsive
 
 # Screenshots displayed on pub.dev
 screenshots:
