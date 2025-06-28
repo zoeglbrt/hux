@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.3] - 2025-01-07
+
+### Added
+- **Component Screenshots**: Added beautiful visual documentation for all UI components
+  - HuxButton variants showcase
+  - HuxCard configuration examples
+  - HuxTextField input demonstrations
+  - HuxLoading indicator samples
+  - HuxChart data visualization examples
+- **Enhanced Package Metadata**: Comprehensive topics for better pub.dev discoverability
+- **Documentation Links**: Added issue tracker and documentation URLs for better user support
+
+### Changed
+- **Package Description**: Updated to "an open-source state of the art UI library for Flutter 💙"
+- **README Enhancement**: Integrated component screenshots for visual documentation
+- **Pub.dev Presentation**: Improved package discovery with targeted topics and metadata
+
+### Developer Experience
+- Better package discoverability on pub.dev through comprehensive topics
+- Visual documentation helps developers understand components at a glance
+- Enhanced metadata provides clear paths for support and documentation
+
 ## [0.1.2] - 2025-01-07
 
 ### Fixed
