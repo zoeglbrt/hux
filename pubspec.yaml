@@ -1,0 +1,23 @@
+name: hux
+description: A modern Flutter UI package with beautiful, customizable components
+version: 0.1.0
+homepage: https://github.com/zoeglbrt/hux
+repository: https://github.com/zoeglbrt/hux
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.1.0
+  flutter_feather_icons: ^2.0.0+1
+  cristalyse: ^0.6.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter: 
