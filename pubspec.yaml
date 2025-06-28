@@ -6,12 +6,12 @@ repository: https://github.com/zoeglbrt/hux
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
-  flutter: ">=3.10.0"
+  flutter: ">=3.16.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^6.1.0
+  google_fonts: ^6.2.1
   flutter_feather_icons: ^2.0.0+1
   cristalyse: ^0.6.1
 
@@ -27,10 +27,6 @@ platforms:
   linux:
   macos:
   web:
-    # Declare support for both JS and WASM compilation targets
-    compiler:
-      - dart2js
-      - dart2wasm
   windows:
 
 flutter: 
