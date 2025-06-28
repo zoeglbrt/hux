@@ -90,7 +90,8 @@ void main() {
       expect(find.byType(HuxChart), findsOneWidget);
     });
 
-    testWidgets('HuxChart renders with different chart types', (WidgetTester tester) async {
+    testWidgets('HuxChart renders with different chart types',
+        (WidgetTester tester) async {
       final testData = [
         {'x': 1, 'y': 10},
         {'x': 2, 'y': 20},
@@ -134,4 +135,4 @@ void main() {
       expect(find.byType(HuxChart), findsOneWidget);
     });
   });
-} 
+}

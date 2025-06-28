@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import '../../theme/hux_colors.dart';
 
 /// HuxButton is a customizable button component
-/// 
+///
 /// The primary button uses HuxColors.primary by default (white), but can be customized
 /// using the primaryColor parameter with preset colors or any custom Color.
-/// 
+///
 /// Examples:
 /// ```dart
 /// // Default white primary button
 /// HuxButton(onPressed: () {}, child: Text('Default'))
-/// 
+///
 /// // Using preset colors
 /// HuxButton(primaryColor: HuxColors.getPresetColor('purple'), ...)
 /// HuxButton(primaryColor: HuxColors.presetColors['blue']!, ...)
-/// 
+///
 /// // Using custom colors
 /// HuxButton(primaryColor: Colors.deepOrange, ...)
 /// ```
 class HuxButton extends StatelessWidget {
   /// Creates a HuxButton widget.
-  /// 
+  ///
   /// The [onPressed] and [child] parameters are required.
   const HuxButton({
     super.key,
@@ -36,25 +36,25 @@ class HuxButton extends StatelessWidget {
 
   /// Callback triggered when the button is pressed
   final VoidCallback? onPressed;
-  
+
   /// The child widget to display inside the button
   final Widget child;
-  
+
   /// Visual variant of the button
   final HuxButtonVariant variant;
-  
+
   /// Size variant of the button
   final HuxButtonSize size;
-  
+
   /// Whether to show a loading indicator instead of the child
   final bool isLoading;
-  
+
   /// Whether the button is disabled
   final bool isDisabled;
-  
+
   /// Optional icon to display before the text
   final IconData? icon;
-  
+
   /// Primary color used for styling the button
   final Color primaryColor;
 
@@ -76,7 +76,7 @@ class HuxButton extends StatelessWidget {
   ButtonStyle _getButtonStyle() {
     Color backgroundColor;
     Color foregroundColor;
-    
+
     switch (variant) {
       case HuxButtonVariant.primary:
         backgroundColor = primaryColor;
@@ -222,28 +222,28 @@ class HuxButton extends StatelessWidget {
 }
 
 /// Visual variants for HuxButton
-enum HuxButtonVariant { 
+enum HuxButtonVariant {
   /// Solid button with primary color background
-  primary, 
-  
+  primary,
+
   /// Solid button with secondary styling
-  secondary, 
-  
+  secondary,
+
   /// Button with transparent background and border
-  outline, 
-  
+  outline,
+
   /// Button with transparent background and no border
-  ghost 
+  ghost
 }
 
 /// Size variants for HuxButton
-enum HuxButtonSize { 
+enum HuxButtonSize {
   /// Small button with compact padding
-  small, 
-  
+  small,
+
   /// Medium button with standard padding
-  medium, 
-  
+  medium,
+
   /// Large button with generous padding
-  large 
-} 
+  large
+}

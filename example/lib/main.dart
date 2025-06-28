@@ -33,14 +33,14 @@ class _MyHomePageState extends State<MyHomePage> {
   final _passwordController = TextEditingController();
   final _scrollController = ScrollController();
   bool _isLoading = false;
-  
+
   // Theme state
   String _selectedTheme = 'white';
   Color get _currentPrimaryColor => HuxColors.getPresetColor(_selectedTheme);
-  
+
   // Button size state
   HuxButtonSize _selectedButtonSize = HuxButtonSize.medium;
-  
+
   // Global keys for each section
   final _buttonsKey = GlobalKey();
   final _textFieldsKey = GlobalKey();
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _isLoading = !_isLoading;
     });
-    
+
     if (_isLoading) {
       Future.delayed(const Duration(seconds: 2), () {
         if (mounted) {
@@ -127,13 +127,13 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             width: 250,
             decoration: BoxDecoration(
-              color: Theme.of(context).brightness == Brightness.dark 
-                  ? HuxColors.black90 
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? HuxColors.black90
                   : HuxColors.white,
               border: Border(
                 right: BorderSide(
-                  color: Theme.of(context).brightness == Brightness.dark 
-                      ? HuxColors.white20 
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? HuxColors.white20
                       : HuxColors.black20,
                 ),
               ),
@@ -146,8 +146,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
-                        color: Theme.of(context).brightness == Brightness.dark 
-                            ? HuxColors.white20 
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? HuxColors.white20
                             : HuxColors.black20,
                       ),
                     ),
@@ -157,146 +157,170 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       Text(
                         'Hux UI',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).brightness == Brightness.dark 
-                              ? HuxColors.white 
-                              : HuxColors.black,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? HuxColors.white
+                                      : HuxColors.black,
+                                ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         'Component Library',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Theme.of(context).brightness == Brightness.dark 
-                              ? HuxColors.white60 
-                              : HuxColors.black60,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? HuxColors.white60
+                                  : HuxColors.black60,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Theme Selector
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? HuxColors.white20
+                            : HuxColors.black20,
+                      ),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Button Theme',
+                        style:
+                            Theme.of(context).textTheme.labelMedium?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? HuxColors.white80
+                                      : HuxColors.black80,
+                                ),
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? HuxColors.black70
+                              : HuxColors.white5,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? HuxColors.white20
+                                    : HuxColors.black20,
+                          ),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: _selectedTheme,
+                            isExpanded: true,
+                            dropdownColor:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? HuxColors.black80
+                                    : HuxColors.white,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? HuxColors.white80
+                                      : HuxColors.black80,
+                                ),
+                            icon: Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? HuxColors.white60
+                                  : HuxColors.black60,
+                            ),
+                            onChanged: (String? newValue) {
+                              if (newValue != null) {
+                                setState(() {
+                                  _selectedTheme = newValue;
+                                });
+                              }
+                            },
+                            items: HuxColors.availablePresetColors
+                                .map<DropdownMenuItem<String>>(
+                                    (String colorName) {
+                              final color = HuxColors.getPresetColor(colorName);
+                              return DropdownMenuItem<String>(
+                                value: colorName,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 16,
+                                      height: 16,
+                                      decoration: BoxDecoration(
+                                        color: color,
+                                        borderRadius: BorderRadius.circular(4),
+                                        border: Border.all(
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? HuxColors.white30
+                                              : HuxColors.black30,
+                                          width: 0.5,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      colorName[0].toUpperCase() +
+                                          colorName.substring(1),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? HuxColors.white80
+                                                    : HuxColors.black80,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }).toList(),
+                          ),
                         ),
                       ),
                     ],
                   ),
-                                 ),
-                 
-                 // Theme Selector
-                 Container(
-                   padding: const EdgeInsets.all(16),
-                   decoration: BoxDecoration(
-                     border: Border(
-                       bottom: BorderSide(
-                         color: Theme.of(context).brightness == Brightness.dark 
-                             ? HuxColors.white20 
-                             : HuxColors.black20,
-                       ),
-                     ),
-                   ),
-                   child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                     children: [
-                       Text(
-                         'Button Theme',
-                         style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                           fontWeight: FontWeight.w600,
-                           color: Theme.of(context).brightness == Brightness.dark 
-                               ? HuxColors.white80 
-                               : HuxColors.black80,
-                         ),
-                       ),
-                       const SizedBox(height: 8),
-                       Container(
-                         width: double.infinity,
-                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                         decoration: BoxDecoration(
-                           color: Theme.of(context).brightness == Brightness.dark 
-                               ? HuxColors.black70 
-                               : HuxColors.white5,
-                           borderRadius: BorderRadius.circular(8),
-                           border: Border.all(
-                             color: Theme.of(context).brightness == Brightness.dark 
-                                 ? HuxColors.white20 
-                                 : HuxColors.black20,
-                           ),
-                         ),
-                         child: DropdownButtonHideUnderline(
-                           child: DropdownButton<String>(
-                             value: _selectedTheme,
-                             isExpanded: true,
-                             dropdownColor: Theme.of(context).brightness == Brightness.dark 
-                                 ? HuxColors.black80 
-                                 : HuxColors.white,
-                             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                               color: Theme.of(context).brightness == Brightness.dark 
-                                   ? HuxColors.white80 
-                                   : HuxColors.black80,
-                             ),
-                             icon: Icon(
-                               Icons.keyboard_arrow_down,
-                               color: Theme.of(context).brightness == Brightness.dark 
-                                   ? HuxColors.white60 
-                                   : HuxColors.black60,
-                             ),
-                             onChanged: (String? newValue) {
-                               if (newValue != null) {
-                                 setState(() {
-                                   _selectedTheme = newValue;
-                                 });
-                               }
-                             },
-                             items: HuxColors.availablePresetColors.map<DropdownMenuItem<String>>((String colorName) {
-                               final color = HuxColors.getPresetColor(colorName);
-                               return DropdownMenuItem<String>(
-                                 value: colorName,
-                                 child: Row(
-                                   children: [
-                                     Container(
-                                       width: 16,
-                                       height: 16,
-                                       decoration: BoxDecoration(
-                                         color: color,
-                                         borderRadius: BorderRadius.circular(4),
-                                         border: Border.all(
-                                           color: Theme.of(context).brightness == Brightness.dark 
-                                               ? HuxColors.white30 
-                                               : HuxColors.black30,
-                                           width: 0.5,
-                                         ),
-                                       ),
-                                     ),
-                                     const SizedBox(width: 8),
-                                     Text(
-                                       colorName[0].toUpperCase() + colorName.substring(1),
-                                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                         color: Theme.of(context).brightness == Brightness.dark 
-                                             ? HuxColors.white80 
-                                             : HuxColors.black80,
-                                       ),
-                                     ),
-                                   ],
-                                 ),
-                               );
-                             }).toList(),
-                           ),
-                         ),
-                       ),
-                     ],
-                   ),
-                 ),
-                 
-                 // Navigation Items
-                 Expanded(
+                ),
+
+                // Navigation Items
+                Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     itemCount: _navigationItems.length,
                     itemBuilder: (context, index) {
                       final item = _navigationItems[index];
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 4),
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
                             borderRadius: BorderRadius.circular(8),
                             onTap: () => _scrollToSection(item.key),
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 12),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -305,19 +329,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Icon(
                                     item.icon,
                                     size: 20,
-                                    color: Theme.of(context).brightness == Brightness.dark 
-                                        ? HuxColors.white70 
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? HuxColors.white70
                                         : HuxColors.black70,
                                   ),
                                   const SizedBox(width: 12),
                                   Text(
                                     item.title,
-                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                      fontWeight: FontWeight.w500,
-                                      color: Theme.of(context).brightness == Brightness.dark 
-                                          ? HuxColors.white70 
-                                          : HuxColors.black70,
-                                    ),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w500,
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? HuxColors.white70
+                                              : HuxColors.black70,
+                                        ),
                                   ),
                                 ],
                               ),
@@ -331,7 +360,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          
+
           // Main Content Area
           Expanded(
             child: HuxLoadingOverlay(
@@ -348,104 +377,115 @@ class _MyHomePageState extends State<MyHomePage> {
                       // Buttons Section
                       Container(
                         key: _buttonsKey,
-                                                 child: HuxCard(
-                           title: 'Buttons',
-                           subtitle: 'Different button variants and sizes',
-                           child: Column(
-                             children: [
-                               const SizedBox(height: 16),
-                               
-                               // Size Selector Tabs
-                               Container(
-                                 decoration: BoxDecoration(
-                                   color: Theme.of(context).brightness == Brightness.dark 
-                                       ? HuxColors.black70 
-                                       : HuxColors.white5,
-                                   borderRadius: BorderRadius.circular(8),
-                                   border: Border.all(
-                                     color: Theme.of(context).brightness == Brightness.dark 
-                                         ? HuxColors.white20 
-                                         : HuxColors.black20,
-                                   ),
-                                 ),
-                                 child: Row(
-                                   children: [
-                                     Expanded(
-                                       child: _buildSizeTab('Small', HuxButtonSize.small),
-                                     ),
-                                     Expanded(
-                                       child: _buildSizeTab('Medium', HuxButtonSize.medium),
-                                     ),
-                                     Expanded(
-                                       child: _buildSizeTab('Large', HuxButtonSize.large),
-                                     ),
-                                   ],
-                                 ),
-                               ),
-                               
-                               const SizedBox(height: 20),
-                               
-                               // Button Variants - Fixed Height Container
-                               SizedBox(
-                                 height: 48, // Fixed height to prevent layout shifts
-                                 child: Center(
-                                   child: Wrap(
-                                     spacing: 12,
-                                     runSpacing: 12,
-                                     children: [
-                                       HuxButton(
-                                         onPressed: () => _showSnackBar('Primary pressed'),
-                                         primaryColor: _currentPrimaryColor,
-                                         size: _selectedButtonSize,
-                                         child: const Text('Primary'),
-                                       ),
-                                       HuxButton(
-                                         onPressed: () => _showSnackBar('Secondary pressed'),
-                                         variant: HuxButtonVariant.secondary,
-                                         size: _selectedButtonSize,
-                                         child: const Text('Secondary'),
-                                       ),
-                                       HuxButton(
-                                         onPressed: () => _showSnackBar('Outline pressed'),
-                                         variant: HuxButtonVariant.outline,
-                                         size: _selectedButtonSize,
-                                         child: const Text('Outline'),
-                                       ),
-                                       HuxButton(
-                                         onPressed: () => _showSnackBar('Ghost pressed'),
-                                         variant: HuxButtonVariant.ghost,
-                                         size: _selectedButtonSize,
-                                         child: const Text('Ghost'),
-                                       ),
-                                     ],
-                                   ),
-                                 ),
-                               ),
-                               
-                               const SizedBox(height: 16),
-                               const Divider(),
-                               const SizedBox(height: 16),
-                               
-                               // With Icon Example - Fixed Height Container
-                               SizedBox(
-                                 height: 48, // Fixed height to prevent layout shifts
-                                 child: Center(
-                                   child: HuxButton(
-                                     onPressed: _toggleLoading,
-                                     primaryColor: _currentPrimaryColor,
-                                     size: _selectedButtonSize,
-                                     icon: FeatherIcons.upload,
-                                     child: const Text('With Icon'),
-                                   ),
-                                 ),
-                               ),
-                             ],
-                           ),
-                         ),
+                        child: HuxCard(
+                          title: 'Buttons',
+                          subtitle: 'Different button variants and sizes',
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 16),
+
+                              // Size Selector Tabs
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? HuxColors.black70
+                                      : HuxColors.white5,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? HuxColors.white20
+                                        : HuxColors.black20,
+                                  ),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: _buildSizeTab(
+                                          'Small', HuxButtonSize.small),
+                                    ),
+                                    Expanded(
+                                      child: _buildSizeTab(
+                                          'Medium', HuxButtonSize.medium),
+                                    ),
+                                    Expanded(
+                                      child: _buildSizeTab(
+                                          'Large', HuxButtonSize.large),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              const SizedBox(height: 20),
+
+                              // Button Variants - Fixed Height Container
+                              SizedBox(
+                                height:
+                                    48, // Fixed height to prevent layout shifts
+                                child: Center(
+                                  child: Wrap(
+                                    spacing: 12,
+                                    runSpacing: 12,
+                                    children: [
+                                      HuxButton(
+                                        onPressed: () =>
+                                            _showSnackBar('Primary pressed'),
+                                        primaryColor: _currentPrimaryColor,
+                                        size: _selectedButtonSize,
+                                        child: const Text('Primary'),
+                                      ),
+                                      HuxButton(
+                                        onPressed: () =>
+                                            _showSnackBar('Secondary pressed'),
+                                        variant: HuxButtonVariant.secondary,
+                                        size: _selectedButtonSize,
+                                        child: const Text('Secondary'),
+                                      ),
+                                      HuxButton(
+                                        onPressed: () =>
+                                            _showSnackBar('Outline pressed'),
+                                        variant: HuxButtonVariant.outline,
+                                        size: _selectedButtonSize,
+                                        child: const Text('Outline'),
+                                      ),
+                                      HuxButton(
+                                        onPressed: () =>
+                                            _showSnackBar('Ghost pressed'),
+                                        variant: HuxButtonVariant.ghost,
+                                        size: _selectedButtonSize,
+                                        child: const Text('Ghost'),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              const SizedBox(height: 16),
+                              const Divider(),
+                              const SizedBox(height: 16),
+
+                              // With Icon Example - Fixed Height Container
+                              SizedBox(
+                                height:
+                                    48, // Fixed height to prevent layout shifts
+                                child: Center(
+                                  child: HuxButton(
+                                    onPressed: _toggleLoading,
+                                    primaryColor: _currentPrimaryColor,
+                                    size: _selectedButtonSize,
+                                    icon: FeatherIcons.upload,
+                                    child: const Text('With Icon'),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                      
+
                       const SizedBox(height: 32),
-                      
+
                       // Text Fields Section
                       Container(
                         key: _textFieldsKey,
@@ -513,15 +553,16 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
-                      
+
                       const SizedBox(height: 32),
-                      
-                      // Cards Section  
+
+                      // Cards Section
                       Container(
                         key: _cardsKey,
                         child: const HuxCard(
                           title: 'Cards',
-                          subtitle: 'Container components for content organization',
+                          subtitle:
+                              'Container components for content organization',
                           child: Column(
                             children: [
                               SizedBox(height: 16),
@@ -530,15 +571,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Expanded(
                                     child: HuxCard(
                                       title: 'Simple Card',
-                                      child: Text('This is a simple card with just a title and content.'),
+                                      child: Text(
+                                          'This is a simple card with just a title and content.'),
                                     ),
                                   ),
                                   SizedBox(width: 16),
                                   Expanded(
                                     child: HuxCard(
                                       title: 'Card with Subtitle',
-                                      subtitle: 'This card has both title and subtitle',
-                                      child: Text('Cards can have optional subtitles for additional context.'),
+                                      subtitle:
+                                          'This card has both title and subtitle',
+                                      child: Text(
+                                          'Cards can have optional subtitles for additional context.'),
                                     ),
                                   ),
                                 ],
@@ -547,9 +591,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
-                      
+
                       const SizedBox(height: 32),
-                      
+
                       // Charts Section
                       Container(
                         key: _chartsKey,
@@ -559,7 +603,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Column(
                             children: [
                               const SizedBox(height: 16),
-                              
+
                               // Sample chart data
                               Row(
                                 children: [
@@ -590,15 +634,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ],
                               ),
-                              
-
                             ],
                           ),
                         ),
                       ),
-                      
+
                       const SizedBox(height: 32),
-                      
+
                       // Loading Section
                       Container(
                         key: _loadingKey,
@@ -609,7 +651,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: [
                               const SizedBox(height: 16),
                               const Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Column(
                                     children: [
@@ -634,7 +677,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                   Column(
                                     children: [
-                                      HuxLoading(size: HuxLoadingSize.extraLarge),
+                                      HuxLoading(
+                                          size: HuxLoadingSize.extraLarge),
                                       SizedBox(height: 8),
                                       Text('XL'),
                                     ],
@@ -645,13 +689,14 @@ class _MyHomePageState extends State<MyHomePage> {
                               HuxButton(
                                 onPressed: _toggleLoading,
                                 variant: HuxButtonVariant.outline,
-                                child: Text(_isLoading ? 'Stop Loading' : 'Show Loading Overlay'),
+                                child: Text(_isLoading
+                                    ? 'Stop Loading'
+                                    : 'Show Loading Overlay'),
                               ),
                             ],
                           ),
                         ),
                       ),
-                      
                     ],
                   ),
                 ),
@@ -693,8 +738,6 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   }
 
-
-
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -706,7 +749,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildSizeTab(String label, HuxButtonSize size) {
     final isSelected = _selectedButtonSize == size;
-    
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -716,9 +759,9 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
         decoration: BoxDecoration(
-          color: isSelected 
-              ? (Theme.of(context).brightness == Brightness.dark 
-                  ? HuxColors.white20 
+          color: isSelected
+              ? (Theme.of(context).brightness == Brightness.dark
+                  ? HuxColors.white20
                   : HuxColors.black10)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(4),
@@ -727,15 +770,15 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Text(
             label,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-              color: isSelected 
-                  ? (Theme.of(context).brightness == Brightness.dark 
-                      ? HuxColors.white 
-                      : HuxColors.black)
-                  : (Theme.of(context).brightness == Brightness.dark 
-                      ? HuxColors.white60 
-                      : HuxColors.black60),
-            ),
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  color: isSelected
+                      ? (Theme.of(context).brightness == Brightness.dark
+                          ? HuxColors.white
+                          : HuxColors.black)
+                      : (Theme.of(context).brightness == Brightness.dark
+                          ? HuxColors.white60
+                          : HuxColors.black60),
+                ),
           ),
         ),
       ),
@@ -753,4 +796,4 @@ class NavigationItem {
     required this.icon,
     required this.key,
   });
-} 
+}

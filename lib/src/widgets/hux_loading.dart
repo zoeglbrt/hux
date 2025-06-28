@@ -3,16 +3,16 @@ import '../theme/hux_colors.dart';
 
 /// HuxLoading is a customizable circular loading indicator that provides
 /// consistent loading states across the application.
-/// 
+///
 /// Supports different sizes and colors, and automatically adapts to the
 /// current theme. Perfect for indicating loading states in buttons, cards,
 /// or standalone usage.
-/// 
+///
 /// Example:
 /// ```dart
 /// // Basic loading indicator
 /// HuxLoading()
-/// 
+///
 /// // Large loading indicator with custom color
 /// HuxLoading(
 ///   size: HuxLoadingSize.large,
@@ -30,17 +30,17 @@ class HuxLoading extends StatelessWidget {
 
   /// Size of the loading indicator
   final HuxLoadingSize size;
-  
+
   /// Color of the loading indicator. Defaults to primary theme color
   final Color? color;
-  
+
   /// Width of the loading indicator stroke. Auto-calculated based on size if null
   final double? strokeWidth;
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return SizedBox(
       width: _getSize(),
       height: _getSize(),
@@ -82,11 +82,11 @@ class HuxLoading extends StatelessWidget {
 
 /// HuxLoadingOverlay provides a full-screen loading overlay that can be
 /// placed on top of any widget to indicate loading states.
-/// 
+///
 /// When [isLoading] is true, displays a semi-transparent overlay with a
 /// centered loading indicator and optional message. The underlying content
 /// is still visible but dimmed and not interactive.
-/// 
+///
 /// Example:
 /// ```dart
 /// HuxLoadingOverlay(
@@ -111,13 +111,13 @@ class HuxLoadingOverlay extends StatelessWidget {
 
   /// Whether to show the loading overlay
   final bool isLoading;
-  
+
   /// The child widget to display underneath the overlay
   final Widget child;
-  
+
   /// Optional message to display below the loading indicator
   final String? message;
-  
+
   /// Background color of the overlay. Defaults to semi-transparent black
   final Color? backgroundColor;
 
@@ -139,8 +139,8 @@ class HuxLoadingOverlay extends StatelessWidget {
                     Text(
                       message!,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: HuxColors.white,
-                      ),
+                            color: HuxColors.white,
+                          ),
                     ),
                   ],
                 ],
@@ -153,16 +153,16 @@ class HuxLoadingOverlay extends StatelessWidget {
 }
 
 /// Size variants for HuxLoading indicators
-enum HuxLoadingSize { 
+enum HuxLoadingSize {
   /// Small loading indicator (16px)
-  small, 
-  
-  /// Medium loading indicator (24px) 
-  medium, 
-  
+  small,
+
+  /// Medium loading indicator (24px)
+  medium,
+
   /// Large loading indicator (32px)
-  large, 
-  
+  large,
+
   /// Extra large loading indicator (48px)
-  extraLarge 
-} 
+  extraLarge
+}

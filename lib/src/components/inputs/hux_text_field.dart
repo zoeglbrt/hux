@@ -3,11 +3,11 @@ import '../../theme/hux_colors.dart';
 
 /// HuxTextField is a customizable text input component with consistent styling
 /// and extensive customization options.
-/// 
-/// Provides a clean, modern text input with support for labels, hints, 
-/// validation, icons, and different sizes. Automatically adapts to light 
+///
+/// Provides a clean, modern text input with support for labels, hints,
+/// validation, icons, and different sizes. Automatically adapts to light
 /// and dark themes.
-/// 
+///
 /// Example:
 /// ```dart
 /// HuxTextField(
@@ -48,59 +48,59 @@ class HuxTextField extends StatelessWidget {
 
   /// Controller for the text field
   final TextEditingController? controller;
-  
+
   /// Label text displayed above the text field
   final String? label;
-  
+
   /// Hint text displayed inside the text field when empty
   final String? hint;
-  
+
   /// Helper text displayed below the text field
   final String? helperText;
-  
+
   /// Error text displayed below the text field, overrides helperText
   final String? errorText;
-  
+
   /// Widget displayed at the beginning of the text field
   final Widget? prefixIcon;
-  
+
   /// Widget displayed at the end of the text field
   final Widget? suffixIcon;
-  
+
   /// Whether to obscure the text (for passwords)
   final bool obscureText;
-  
+
   /// Whether the text field is enabled for input
   final bool enabled;
-  
+
   /// Maximum number of lines for the text field
   final int maxLines;
-  
+
   /// The type of keyboard to use for editing the text
   final TextInputType? keyboardType;
-  
+
   /// The type of action button to use for the keyboard
   final TextInputAction? textInputAction;
-  
+
   /// Called when the text field value changes
   final ValueChanged<String>? onChanged;
-  
+
   /// Called when the user submits the text field
   final ValueChanged<String>? onSubmitted;
-  
+
   /// Validator function for form validation
   final String? Function(String?)? validator;
-  
+
   /// Size variant of the text field
   final HuxTextFieldSize size;
-  
+
   /// Custom size for the prefix and suffix icons
   final double? iconSize;
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -108,9 +108,9 @@ class HuxTextField extends StatelessWidget {
           Text(
             label!,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
-              fontWeight: FontWeight.w500,
-              color: isDark ? HuxColors.white60 : HuxColors.black80,
-            ),
+                  fontWeight: FontWeight.w500,
+                  color: isDark ? HuxColors.white60 : HuxColors.black80,
+                ),
           ),
           const SizedBox(height: 6),
         ],
@@ -128,24 +128,32 @@ class HuxTextField extends StatelessWidget {
             fontSize: _getFontSize(),
             height: 1.4,
           ),
-                      decoration: InputDecoration(
-              hintText: hint,
-              prefixIcon: prefixIcon != null ? _buildIcon(prefixIcon!, isPrefix: true) : null,
-              suffixIcon: suffixIcon != null ? _buildIcon(suffixIcon!, isPrefix: false) : null,
-              prefixIconConstraints: prefixIcon != null ? BoxConstraints(
-                minWidth: _getIconConstraintWidth(),
-                maxWidth: _getIconConstraintWidth(),
-              ) : null,
-              suffixIconConstraints: suffixIcon != null ? BoxConstraints(
-                minWidth: _getIconConstraintWidth(),
-                maxWidth: _getIconConstraintWidth(),
-              ) : null,
-              errorText: errorText,
-              helperText: helperText,
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: _getHorizontalPadding(),
-                vertical: _getVerticalPadding(),
-              ),
+          decoration: InputDecoration(
+            hintText: hint,
+            prefixIcon: prefixIcon != null
+                ? _buildIcon(prefixIcon!, isPrefix: true)
+                : null,
+            suffixIcon: suffixIcon != null
+                ? _buildIcon(suffixIcon!, isPrefix: false)
+                : null,
+            prefixIconConstraints: prefixIcon != null
+                ? BoxConstraints(
+                    minWidth: _getIconConstraintWidth(),
+                    maxWidth: _getIconConstraintWidth(),
+                  )
+                : null,
+            suffixIconConstraints: suffixIcon != null
+                ? BoxConstraints(
+                    minWidth: _getIconConstraintWidth(),
+                    maxWidth: _getIconConstraintWidth(),
+                  )
+                : null,
+            errorText: errorText,
+            helperText: helperText,
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: _getHorizontalPadding(),
+              vertical: _getVerticalPadding(),
+            ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
@@ -198,7 +206,7 @@ class HuxTextField extends StatelessWidget {
     final effectiveIconSize = iconSize ?? _getDefaultIconSize();
     final outerPadding = _getIconHorizontalPadding();
     const innerPadding = 4.0; // Small gap between icon and text
-    
+
     return Padding(
       padding: EdgeInsets.only(
         left: isPrefix ? outerPadding : innerPadding,
@@ -284,13 +292,13 @@ class HuxTextField extends StatelessWidget {
 }
 
 /// Size variants for HuxTextField
-enum HuxTextFieldSize { 
+enum HuxTextFieldSize {
   /// Small text field with compact padding
-  small, 
-  
+  small,
+
   /// Medium text field with standard padding
-  medium, 
-  
+  medium,
+
   /// Large text field with generous padding
-  large 
-} 
+  large
+}
