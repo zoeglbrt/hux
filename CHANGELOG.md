@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4] - 2025-06-30
+
+### Added
+- **Context Menu System**: Complete right-click context menu implementation
+  - `HuxContextMenu` - Main wrapper widget with smart positioning and cross-platform support
+  - `HuxContextMenuItem` - Individual menu items with icons, disabled states, and destructive actions
+  - `HuxContextMenuDivider` - Visual separators for organizing menu groups
+- **Web Platform Optimization**: Proper browser context menu prevention using `universal_html`
+- **Cross-Platform Support**: Seamless context menu experience across desktop, mobile, and web
+- **Smart Positioning**: Automatic menu positioning to prevent screen overflow
+- **Consistent Design**: Context menus follow the established Hux UI design system
+
+### Changed
+- **Enhanced Example App**: Added comprehensive context menu demonstrations
+- **Updated Documentation**: Added context menu usage examples and API documentation
+- **Navigation Enhancement**: Added context menu section to the example app sidebar
+
+### Dependencies
+- Added `universal_html: ^2.2.4` for web-specific context menu handling
+
+### Developer Experience
+- Right-click interactions now work seamlessly across all platforms
+- Browser's default context menu is properly disabled on web
+- Easy-to-use API following established Hux UI patterns
+- Comprehensive examples showing various context menu configurations
+
 ## [0.1.3] - 2025-01-07
 
 ### Added

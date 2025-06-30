@@ -49,6 +49,9 @@ export 'src/theme/hux_theme.dart';
 export 'src/theme/hux_colors.dart';
 export 'src/widgets/hux_loading.dart';
 export 'src/widgets/hux_chart.dart';
+export 'src/widgets/hux_context_menu/hux_context_menu.dart';
+export 'src/widgets/hux_context_menu/hux_context_menu_item.dart';
+export 'src/widgets/hux_context_menu/hux_context_menu_divider.dart';
 
 // Export external dependencies
 /// FeatherIcons - Beautiful icon set for Flutter applications

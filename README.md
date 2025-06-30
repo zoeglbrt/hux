@@ -51,6 +51,10 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 ![HuxChart Visualization](screenshots/hux-charts.png)
 
+- `HuxContextMenu` - Right-click context menus with smart positioning
+- `HuxContextMenuItem` - Individual menu items with icons and states
+- `HuxContextMenuDivider` - Visual separators for menu groups
+
 ### Theme
 - `HuxTheme` - Pre-configured light and dark themes
 - `HuxColors` - Comprehensive color palette
@@ -176,6 +180,37 @@ HuxChart.bar(
   xField: 'category',
   yField: 'value',
   title: 'Category Analysis',
+)
+```
+
+#### Context Menu
+
+```dart
+HuxContextMenu(
+  menuItems: [
+    HuxContextMenuItem(
+      text: 'Copy',
+      icon: Icons.copy,
+      onTap: () => print('Copy action'),
+    ),
+    HuxContextMenuItem(
+      text: 'Paste',
+      icon: Icons.paste,
+      onTap: () => print('Paste action'),
+      isDisabled: true,
+    ),
+    HuxContextMenuDivider(),
+    HuxContextMenuItem(
+      text: 'Delete',
+      icon: Icons.delete,
+      onTap: () => print('Delete action'),
+      isDestructive: true,
+    ),
+  ],
+  child: Container(
+    padding: EdgeInsets.all(20),
+    child: Text('Right-click me!'),
+  ),
 )
 ```
 

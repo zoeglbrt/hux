@@ -1,5 +1,7 @@
 name: example
 description: Example app demonstrating Hux UI components
+publish_to: 'none'
+
 version: 1.0.0+1
 
 environment:
