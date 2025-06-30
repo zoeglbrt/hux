@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       darkTheme: HuxTheme.darkTheme,
       themeMode: ThemeMode.system,
       home: const MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -47,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _cardsKey = GlobalKey();
   final _chartsKey = GlobalKey();
   final _loadingKey = GlobalKey();
+  final _contextMenuKey = GlobalKey();
 
   // Navigation items
   late final List<NavigationItem> _navigationItems;
@@ -74,6 +76,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: 'Charts',
         icon: Icons.analytics,
         key: _chartsKey,
+      ),
+      NavigationItem(
+        title: 'Context Menu',
+        icon: Icons.menu,
+        key: _contextMenuKey,
       ),
       NavigationItem(
         title: 'Loading',
@@ -633,6 +640,145 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                   ),
                                 ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 32),
+
+                      // Context Menu Section
+                      Container(
+                        key: _contextMenuKey,
+                        child: HuxCard(
+                          title: 'Context Menu',
+                          subtitle: 'Right-click interactive context menus',
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 16),
+                              Text(
+                                'Right-click on any of the items below to see the context menu:',
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: Theme.of(context).brightness == Brightness.dark
+                                      ? HuxColors.white70
+                                      : HuxColors.black70,
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              
+                              // Context Menu Examples
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: HuxContextMenu(
+                                      menuItems: [
+                                        HuxContextMenuItem(
+                                          text: 'Copy',
+                                          icon: FeatherIcons.copy,
+                                          onTap: () => _showSnackBar('Copy action triggered'),
+                                        ),
+                                        HuxContextMenuItem(
+                                          text: 'Paste',
+                                          icon: FeatherIcons.clipboard,
+                                          onTap: () => _showSnackBar('Paste action triggered'),
+                                          isDisabled: true,
+                                        ),
+                                        const HuxContextMenuDivider(),
+                                        HuxContextMenuItem(
+                                          text: 'Share',
+                                          icon: FeatherIcons.share2,
+                                          onTap: () => _showSnackBar('Share action triggered'),
+                                        ),
+                                      ],
+                                      child: HuxCard(
+                                        title: 'Document',
+                                        subtitle: 'Right-click for options',
+                                        child: Container(
+                                          height: 60,
+                                          alignment: Alignment.center,
+                                          child: Icon(
+                                            FeatherIcons.fileText,
+                                            size: 32,
+                                            color: Theme.of(context).brightness == Brightness.dark
+                                                ? HuxColors.white50
+                                                : HuxColors.black50,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Expanded(
+                                    child: HuxContextMenu(
+                                      menuItems: [
+                                        HuxContextMenuItem(
+                                          text: 'Edit',
+                                          icon: FeatherIcons.edit2,
+                                          onTap: () => _showSnackBar('Edit action triggered'),
+                                        ),
+                                        HuxContextMenuItem(
+                                          text: 'Duplicate',
+                                          icon: FeatherIcons.copy,
+                                          onTap: () => _showSnackBar('Duplicate action triggered'),
+                                        ),
+                                        const HuxContextMenuDivider(),
+                                        HuxContextMenuItem(
+                                          text: 'Delete',
+                                          icon: FeatherIcons.trash2,
+                                          onTap: () => _showSnackBar('Delete action triggered'),
+                                          isDestructive: true,
+                                        ),
+                                      ],
+                                      child: HuxCard(
+                                        title: 'Project',
+                                        subtitle: 'Right-click for actions',
+                                        child: Container(
+                                          height: 60,
+                                          alignment: Alignment.center,
+                                          child: Icon(
+                                            FeatherIcons.folder,
+                                            size: 32,
+                                            color: Theme.of(context).brightness == Brightness.dark
+                                                ? HuxColors.white50
+                                                : HuxColors.black50,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              
+                              const SizedBox(height: 20),
+                              
+                              // Button with Context Menu
+                              HuxContextMenu(
+                                menuItems: [
+                                  HuxContextMenuItem(
+                                    text: 'Save',
+                                    icon: FeatherIcons.save,
+                                    onTap: () => _showSnackBar('Save action triggered'),
+                                  ),
+                                  HuxContextMenuItem(
+                                    text: 'Export',
+                                    icon: FeatherIcons.download,
+                                    onTap: () => _showSnackBar('Export action triggered'),
+                                  ),
+                                  const HuxContextMenuDivider(),
+                                  HuxContextMenuItem(
+                                    text: 'Reset',
+                                    icon: FeatherIcons.refreshCw,
+                                    onTap: () => _showSnackBar('Reset action triggered'),
+                                    isDestructive: true,
+                                  ),
+                                ],
+                                child: HuxButton(
+                                  onPressed: () => _showSnackBar('Button clicked normally'),
+                                  primaryColor: _currentPrimaryColor,
+                                  icon: FeatherIcons.settings,
+                                  child: const Text('Right-click for More Options'),
+                                ),
                               ),
                             ],
                           ),
