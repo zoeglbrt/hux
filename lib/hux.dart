@@ -3,13 +3,15 @@
 /// Hux provides a comprehensive set of UI components designed for clean and
 /// consistent user interfaces. Features include:
 ///
-/// - Modern button components with multiple variants
-/// - Flexible card components
-/// - Enhanced text input fields
-/// - Customizable loading indicators
-/// - Beautiful data visualization charts
+/// - Modern button components with multiple variants and WCAG AA contrast
+/// - Flexible card components with semantic tokens
+/// - Enhanced text input fields with validation support
+/// - Customizable loading indicators with theme awareness
+/// - Beautiful data visualization charts with cristalyse integration
+/// - Right-click context menus with smart positioning
 /// - Pre-configured light and dark themes
-/// - Comprehensive color palette
+/// - Design token system for consistent theming
+/// - Optimized web experience with clean context menus
 ///
 /// ## Usage
 ///
@@ -47,6 +49,7 @@ export 'src/components/cards/hux_card.dart';
 export 'src/components/inputs/hux_text_field.dart';
 export 'src/theme/hux_theme.dart';
 export 'src/theme/hux_colors.dart';
+export 'src/theme/hux_tokens.dart';
 export 'src/widgets/hux_loading.dart';
 export 'src/widgets/hux_chart.dart';
 export 'src/widgets/hux_context_menu/hux_context_menu.dart';

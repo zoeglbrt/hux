@@ -5,8 +5,22 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  ThemeMode _themeMode = ThemeMode.system;
+
+  void _toggleTheme() {
+    setState(() {
+      _themeMode =
+          _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +28,25 @@ class MyApp extends StatelessWidget {
       title: 'Hux UI Demo',
       theme: HuxTheme.lightTheme,
       darkTheme: HuxTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      home: const MyHomePage(),
+      themeMode: _themeMode,
+      home: MyHomePage(
+        themeMode: _themeMode,
+        onThemeToggle: _toggleTheme,
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  final ThemeMode themeMode;
+  final VoidCallback onThemeToggle;
+
+  const MyHomePage({
+    super.key,
+    required this.themeMode,
+    required this.onThemeToggle,
+  });
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -36,8 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _isLoading = false;
 
   // Theme state
-  String _selectedTheme = 'white';
-  Color get _currentPrimaryColor => HuxColors.getPresetColor(_selectedTheme);
+  String _selectedTheme = 'default';
+  Color _currentPrimaryColor(BuildContext context) =>
+      _selectedTheme == 'default'
+          ? HuxTokens.primary(context)
+          : HuxColors.getPresetColor(_selectedTheme);
 
   // Button size state
   HuxButtonSize _selectedButtonSize = HuxButtonSize.medium;
@@ -162,26 +189,73 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Hux UI',
-                        style:
-                            Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                  fontWeight: FontWeight.bold,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Hux UI',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineSmall
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? HuxColors.white
+                                            : HuxColors.black,
+                                      ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'Component Library',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? HuxColors.white60
+                                            : HuxColors.black60,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Theme Toggle Button
+                          Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(8),
+                              onTap: widget.onThemeToggle,
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? HuxColors.white20
+                                        : HuxColors.black20,
+                                  ),
+                                ),
+                                child: Icon(
+                                  widget.themeMode == ThemeMode.light
+                                      ? Icons.dark_mode_outlined
+                                      : Icons.light_mode_outlined,
+                                  size: 20,
                                   color: Theme.of(context).brightness ==
                                           Brightness.dark
-                                      ? HuxColors.white
-                                      : HuxColors.black,
+                                      ? HuxColors.white70
+                                      : HuxColors.black70,
                                 ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Component Library',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Theme.of(context).brightness ==
-                                      Brightness.dark
-                                  ? HuxColors.white60
-                                  : HuxColors.black60,
+                              ),
                             ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -221,7 +295,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         decoration: BoxDecoration(
                           color: Theme.of(context).brightness == Brightness.dark
                               ? HuxColors.black70
-                              : HuxColors.white5,
+                              : HuxColors.white10,
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
                             color:
@@ -264,7 +338,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             items: HuxColors.availablePresetColors
                                 .map<DropdownMenuItem<String>>(
                                     (String colorName) {
-                              final color = HuxColors.getPresetColor(colorName);
+                              final color = colorName == 'default'
+                                  ? HuxTokens.primary(context)
+                                  : HuxColors.getPresetColor(colorName);
                               return DropdownMenuItem<String>(
                                 value: colorName,
                                 child: Row(
@@ -336,10 +412,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Icon(
                                     item.icon,
                                     size: 20,
-                                    color: Theme.of(context).brightness ==
-                                            Brightness.dark
-                                        ? HuxColors.white70
-                                        : HuxColors.black70,
+                                    color: HuxTokens.iconPrimary(context),
                                   ),
                                   const SizedBox(width: 12),
                                   Text(
@@ -397,7 +470,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   color: Theme.of(context).brightness ==
                                           Brightness.dark
                                       ? HuxColors.black70
-                                      : HuxColors.white5,
+                                      : HuxColors.white10,
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
                                     color: Theme.of(context).brightness ==
@@ -438,7 +511,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       HuxButton(
                                         onPressed: () =>
                                             _showSnackBar('Primary pressed'),
-                                        primaryColor: _currentPrimaryColor,
+                                        primaryColor:
+                                            _currentPrimaryColor(context),
                                         size: _selectedButtonSize,
                                         child: const Text('Primary'),
                                       ),
@@ -479,7 +553,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: Center(
                                   child: HuxButton(
                                     onPressed: _toggleLoading,
-                                    primaryColor: _currentPrimaryColor,
+                                    primaryColor: _currentPrimaryColor(context),
                                     size: _selectedButtonSize,
                                     icon: FeatherIcons.upload,
                                     child: const Text('With Icon'),
@@ -623,7 +697,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       title: 'Daily Calories',
                                       subtitle: 'Calorie tracking over time',
                                       size: HuxChartSize.small,
-                                      primaryColor: _currentPrimaryColor,
+                                      primaryColor:
+                                          _currentPrimaryColor(context),
                                     ),
                                   ),
                                   const SizedBox(width: 16),
@@ -636,7 +711,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       title: 'Product Revenue',
                                       subtitle: 'Revenue by product',
                                       size: HuxChartSize.small,
-                                      primaryColor: _currentPrimaryColor,
+                                      primaryColor:
+                                          _currentPrimaryColor(context),
                                     ),
                                   ),
                                 ],
@@ -659,14 +735,18 @@ class _MyHomePageState extends State<MyHomePage> {
                               const SizedBox(height: 16),
                               Text(
                                 'Right-click on any of the items below to see the context menu:',
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: Theme.of(context).brightness == Brightness.dark
-                                      ? HuxColors.white70
-                                      : HuxColors.black70,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? HuxColors.white70
+                                          : HuxColors.black70,
+                                    ),
                               ),
                               const SizedBox(height: 20),
-                              
+
                               // Context Menu Examples
                               Row(
                                 children: [
@@ -676,19 +756,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                         HuxContextMenuItem(
                                           text: 'Copy',
                                           icon: FeatherIcons.copy,
-                                          onTap: () => _showSnackBar('Copy action triggered'),
+                                          onTap: () => _showSnackBar(
+                                              'Copy action triggered'),
                                         ),
                                         HuxContextMenuItem(
                                           text: 'Paste',
                                           icon: FeatherIcons.clipboard,
-                                          onTap: () => _showSnackBar('Paste action triggered'),
+                                          onTap: () => _showSnackBar(
+                                              'Paste action triggered'),
                                           isDisabled: true,
                                         ),
                                         const HuxContextMenuDivider(),
                                         HuxContextMenuItem(
                                           text: 'Share',
                                           icon: FeatherIcons.share2,
-                                          onTap: () => _showSnackBar('Share action triggered'),
+                                          onTap: () => _showSnackBar(
+                                              'Share action triggered'),
                                         ),
                                       ],
                                       child: HuxCard(
@@ -700,9 +783,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                           child: Icon(
                                             FeatherIcons.fileText,
                                             size: 32,
-                                            color: Theme.of(context).brightness == Brightness.dark
-                                                ? HuxColors.white50
-                                                : HuxColors.black50,
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? HuxColors.white50
+                                                    : HuxColors.black50,
                                           ),
                                         ),
                                       ),
@@ -715,18 +800,21 @@ class _MyHomePageState extends State<MyHomePage> {
                                         HuxContextMenuItem(
                                           text: 'Edit',
                                           icon: FeatherIcons.edit2,
-                                          onTap: () => _showSnackBar('Edit action triggered'),
+                                          onTap: () => _showSnackBar(
+                                              'Edit action triggered'),
                                         ),
                                         HuxContextMenuItem(
                                           text: 'Duplicate',
                                           icon: FeatherIcons.copy,
-                                          onTap: () => _showSnackBar('Duplicate action triggered'),
+                                          onTap: () => _showSnackBar(
+                                              'Duplicate action triggered'),
                                         ),
                                         const HuxContextMenuDivider(),
                                         HuxContextMenuItem(
                                           text: 'Delete',
                                           icon: FeatherIcons.trash2,
-                                          onTap: () => _showSnackBar('Delete action triggered'),
+                                          onTap: () => _showSnackBar(
+                                              'Delete action triggered'),
                                           isDestructive: true,
                                         ),
                                       ],
@@ -739,9 +827,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                           child: Icon(
                                             FeatherIcons.folder,
                                             size: 32,
-                                            color: Theme.of(context).brightness == Brightness.dark
-                                                ? HuxColors.white50
-                                                : HuxColors.black50,
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? HuxColors.white50
+                                                    : HuxColors.black50,
                                           ),
                                         ),
                                       ),
@@ -749,35 +839,40 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ],
                               ),
-                              
+
                               const SizedBox(height: 20),
-                              
+
                               // Button with Context Menu
                               HuxContextMenu(
                                 menuItems: [
                                   HuxContextMenuItem(
                                     text: 'Save',
                                     icon: FeatherIcons.save,
-                                    onTap: () => _showSnackBar('Save action triggered'),
+                                    onTap: () =>
+                                        _showSnackBar('Save action triggered'),
                                   ),
                                   HuxContextMenuItem(
                                     text: 'Export',
                                     icon: FeatherIcons.download,
-                                    onTap: () => _showSnackBar('Export action triggered'),
+                                    onTap: () => _showSnackBar(
+                                        'Export action triggered'),
                                   ),
                                   const HuxContextMenuDivider(),
                                   HuxContextMenuItem(
                                     text: 'Reset',
                                     icon: FeatherIcons.refreshCw,
-                                    onTap: () => _showSnackBar('Reset action triggered'),
+                                    onTap: () =>
+                                        _showSnackBar('Reset action triggered'),
                                     isDestructive: true,
                                   ),
                                 ],
                                 child: HuxButton(
-                                  onPressed: () => _showSnackBar('Button clicked normally'),
-                                  primaryColor: _currentPrimaryColor,
+                                  onPressed: () =>
+                                      _showSnackBar('Button clicked normally'),
+                                  primaryColor: _currentPrimaryColor(context),
                                   icon: FeatherIcons.settings,
-                                  child: const Text('Right-click for More Options'),
+                                  child: const Text(
+                                      'Right-click for More Options'),
                                 ),
                               ),
                             ],

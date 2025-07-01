@@ -53,10 +53,10 @@ packages:
     dependency: "direct main"
     description:
       name: cristalyse
-      sha256: "37e9a7d22bbe497232f4218bac22d6dea86247e238e238ab09e3b056eaf92dcc"
+      sha256: c6b186bb3a3f9edb51f17e0c64c61862c3bb40888ffff1a029bdbd160e42b0be
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.1"
+    version: "0.6.2"
   crypto:
     dependency: transitive
     description:

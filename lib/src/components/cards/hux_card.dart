@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/hux_colors.dart';
+import '../../theme/hux_tokens.dart';
 
 /// HuxCard is a customizable card component that provides a consistent
 /// container with optional header, title, subtitle, and actions.
@@ -71,14 +71,12 @@ class HuxCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Container(
       margin: margin,
       child: Material(
         elevation: elevation,
         borderRadius: BorderRadius.circular(borderRadius),
-        color: isDark ? HuxColors.black70 : HuxColors.white,
+        color: HuxTokens.surfaceElevated(context),
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(borderRadius),
@@ -86,7 +84,7 @@ class HuxCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(borderRadius),
               border: Border.all(
-                color: isDark ? HuxColors.white20 : HuxColors.black20,
+                color: HuxTokens.borderPrimary(context),
                 width: 1,
               ),
             ),
@@ -95,7 +93,7 @@ class HuxCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 if (title != null || subtitle != null || action != null)
-                  _buildHeader(context, isDark),
+                  _buildHeader(context),
                 Padding(
                   padding: padding,
                   child: child,
@@ -108,7 +106,7 @@ class HuxCard extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       child: Row(
@@ -122,6 +120,7 @@ class HuxCard extends StatelessWidget {
                     title!,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w600,
+                          color: HuxTokens.textPrimary(context),
                         ),
                   ),
                 if (subtitle != null) ...[
@@ -129,7 +128,7 @@ class HuxCard extends StatelessWidget {
                   Text(
                     subtitle!,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isDark ? HuxColors.white50 : HuxColors.black50,
+                          color: HuxTokens.textTertiary(context),
                         ),
                   ),
                 ],

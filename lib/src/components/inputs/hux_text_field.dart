@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/hux_colors.dart';
+import '../../theme/hux_tokens.dart';
 
 /// HuxTextField is a customizable text input component with consistent styling
 /// and extensive customization options.
@@ -99,8 +99,6 @@ class HuxTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -109,7 +107,7 @@ class HuxTextField extends StatelessWidget {
             label!,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   fontWeight: FontWeight.w500,
-                  color: isDark ? HuxColors.white60 : HuxColors.black80,
+                  color: HuxTokens.textSecondary(context),
                 ),
           ),
           const SizedBox(height: 6),
@@ -131,10 +129,10 @@ class HuxTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hint,
             prefixIcon: prefixIcon != null
-                ? _buildIcon(prefixIcon!, isPrefix: true)
+                ? _buildIcon(prefixIcon!, isPrefix: true, context: context)
                 : null,
             suffixIcon: suffixIcon != null
-                ? _buildIcon(suffixIcon!, isPrefix: false)
+                ? _buildIcon(suffixIcon!, isPrefix: false, context: context)
                 : null,
             prefixIconConstraints: prefixIcon != null
                 ? BoxConstraints(
@@ -157,52 +155,53 @@ class HuxTextField extends StatelessWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
-                color: isDark ? HuxColors.white20 : HuxColors.black60,
+                color: HuxTokens.borderPrimary(context),
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
-                color: isDark ? HuxColors.white20 : HuxColors.black60,
+                color: HuxTokens.borderPrimary(context),
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(
-                color: HuxColors.white40,
-                width: 2,
+              borderSide: BorderSide(
+                color: HuxTokens.primary(context).withValues(alpha: 0.5),
+                width: 1,
               ),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(
-                color: HuxColors.error,
+              borderSide: BorderSide(
+                color: HuxTokens.alert(context),
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(
-                color: HuxColors.error,
+              borderSide: BorderSide(
+                color: HuxTokens.alert(context),
                 width: 2,
               ),
             ),
             disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
-                color: isDark ? HuxColors.white50 : HuxColors.black20,
+                color: HuxTokens.borderSecondary(context),
               ),
             ),
             filled: true,
             fillColor: enabled
-                ? (isDark ? HuxColors.black90 : HuxColors.white)
-                : (isDark ? HuxColors.black70 : HuxColors.white5),
+                ? HuxTokens.surfacePrimary(context)
+                : HuxTokens.surfaceSecondary(context),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildIcon(Widget icon, {required bool isPrefix}) {
+  Widget _buildIcon(Widget icon,
+      {required bool isPrefix, required BuildContext context}) {
     final effectiveIconSize = iconSize ?? _getDefaultIconSize();
     final outerPadding = _getIconHorizontalPadding();
     const innerPadding = 4.0; // Small gap between icon and text
@@ -219,7 +218,7 @@ class HuxTextField extends StatelessWidget {
           child: IconTheme(
             data: IconThemeData(
               size: effectiveIconSize,
-              color: HuxColors.white,
+              color: HuxTokens.iconSecondary(context),
             ),
             child: icon,
           ),

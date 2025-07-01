@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cristalyse/cristalyse.dart';
-import '../theme/hux_colors.dart';
+import '../theme/hux_tokens.dart';
 
 /// Chart types supported by HuxChart
 enum HuxChartType {
@@ -41,7 +41,9 @@ class HuxChart extends StatelessWidget {
     Color? primaryColor,
     this.animated = true,
     this.animationDuration = const Duration(milliseconds: 800),
-  }) : primaryColor = primaryColor ?? const Color(0xFF3B82F6);
+  }) : primaryColor = primaryColor ??
+            const Color(
+                0xFF3B82F6); // Will be overridden to use theme-aware color
 
   /// The data to display in the chart
   final List<Map<String, dynamic>> data;
@@ -78,8 +80,6 @@ class HuxChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Container(
       height: _getChartHeight(),
       padding: const EdgeInsets.all(16),
@@ -87,7 +87,7 @@ class HuxChart extends StatelessWidget {
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDark ? HuxColors.white20 : HuxColors.black20,
+          color: HuxTokens.borderPrimary(context),
         ),
       ),
       child: Column(
@@ -106,8 +106,6 @@ class HuxChart extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -116,7 +114,7 @@ class HuxChart extends StatelessWidget {
             title!,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: isDark ? HuxColors.white : HuxColors.black,
+                  color: HuxTokens.textPrimary(context),
                 ),
           ),
         if (subtitle != null) ...[
@@ -124,7 +122,7 @@ class HuxChart extends StatelessWidget {
           Text(
             subtitle!,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark ? HuxColors.white70 : HuxColors.black70,
+                  color: HuxTokens.textSecondary(context),
                 ),
           ),
         ],
@@ -133,20 +131,27 @@ class HuxChart extends StatelessWidget {
   }
 
   Widget _buildChart(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     try {
-      // Create custom theme based on current theme
+      // Use theme-aware primary color for charts
+      final effectiveChartColor = primaryColor == const Color(0xFF3B82F6)
+          ? HuxTokens.primary(context)
+          : primaryColor;
+
+      // Create theme using theme-aware tokens
       final customTheme = ChartTheme(
-        backgroundColor: isDark ? HuxColors.black90 : HuxColors.white,
-        primaryColor: isDark ? HuxColors.white : primaryColor,
-        colorPalette: isDark
-            ? [HuxColors.white, HuxColors.white70, HuxColors.white60]
-            : [primaryColor],
-        plotBackgroundColor: isDark ? HuxColors.black90 : HuxColors.white,
+        backgroundColor: Colors.transparent, // No background color
+        primaryColor: HuxTokens.primary(
+            context), // This ensures primary color is theme-aware
+        colorPalette: [
+          HuxTokens.primary(
+              context), // Main chart color - black in light, white in dark
+          effectiveChartColor, // Custom or fallback color
+          effectiveChartColor.withValues(alpha: 0.8),
+        ],
+        plotBackgroundColor: Colors.transparent, // No plot background color
         borderColor: Colors.transparent,
-        gridColor: isDark ? HuxColors.white20 : HuxColors.black20,
-        axisColor: isDark ? HuxColors.white30 : HuxColors.black30,
+        gridColor: HuxTokens.chartGrid(context),
+        axisColor: HuxTokens.chartAxis(context),
         gridWidth: 0.5,
         axisWidth: 1.0,
         pointSizeDefault: 4.0,
@@ -154,9 +159,10 @@ class HuxChart extends StatelessWidget {
         pointSizeMax: 8.0,
         axisTextStyle: TextStyle(
           fontSize: 12,
-          color: isDark ? HuxColors.white70 : HuxColors.black70,
+          color: HuxTokens.chartAxisText(context),
+          fontWeight: FontWeight.w500,
         ),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(40, 16, 16, 32),
       );
 
       // Build the base chart with custom theme
@@ -211,17 +217,13 @@ class HuxChart extends StatelessWidget {
             Icon(
               Icons.bar_chart,
               size: 48,
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? HuxColors.white40
-                  : HuxColors.black40,
+              color: HuxTokens.iconSecondary(context),
             ),
             const SizedBox(height: 16),
             Text(
               'Chart Preview',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).brightness == Brightness.dark
-                        ? HuxColors.white60
-                        : HuxColors.black60,
+                    color: HuxTokens.textTertiary(context),
                   ),
             ),
           ],

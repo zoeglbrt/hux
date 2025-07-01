@@ -19,19 +19,23 @@ class HuxColors {
   static const Color black = Color(0xFF000000);
 
   /// Error color for validation and error states
-  static const Color error = Color(0xFFEF4444);
+  static const Color red = Color(0xFFEF4444);
 
   // Essential preset colors for primary customization
   /// Preset colors available for theming
   static const Map<String, Color> presetColors = {
-    'white': Color(0xFFFFFFFF),
-    'indigo': Color(0xFF6366F1),
-    'green': Color(0xFF10B981),
-    'red': Color(0xFFEF4444),
+    'default': Color(
+        0xFFFFFFFF), // Placeholder - actual color determined by theme context
+    'indigo': Color(0xFF665CFF),
+    'green': Color(0xFF2E7252),
+    'pink': Color.fromARGB(255, 223, 29, 84),
   };
 
   // Essential transparency levels (only the ones actually used)
   // Light theme overlays (black on white)
+  /// Black with 5% opacity for very subtle light theme overlays
+  static const Color black5 = Color(0x0D000000); // 5% black
+
   /// Black with 10% opacity for light theme overlays
   static const Color black10 = Color(0x1A000000); // 10% black
 
@@ -61,7 +65,7 @@ class HuxColors {
 
   // Dark theme overlays (white on black)
   /// White with 5% opacity for dark theme overlays
-  static const Color white5 = Color(0x0DFFFFFF); // 5% white
+  static const Color white10 = Color(0x1AFFFFFF); // 5% white
 
   /// White with 20% opacity for dark theme overlays
   static const Color white20 = Color(0x33FFFFFF); // 20% white
@@ -85,6 +89,7 @@ class HuxColors {
   static const Color white80 = Color(0xCCFFFFFF); // 80% white
 
   /// Get a preset color by name, returns white if not found
+  /// Note: For 'default' theme, use HuxTokens.primary(context) instead for theme-aware colors
   static Color getPresetColor(String colorName) {
     return presetColors[colorName.toLowerCase()] ?? white;
   }

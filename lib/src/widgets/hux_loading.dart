@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/hux_colors.dart';
+import '../theme/hux_tokens.dart';
 
 /// HuxLoading is a customizable circular loading indicator that provides
 /// consistent loading states across the application.
@@ -39,15 +40,13 @@ class HuxLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return SizedBox(
       width: _getSize(),
       height: _getSize(),
       child: CircularProgressIndicator(
         strokeWidth: strokeWidth ?? _getStrokeWidth(),
         valueColor: AlwaysStoppedAnimation<Color>(
-          color ?? (isDark ? HuxColors.primary : HuxColors.primary),
+          color ?? HuxTokens.primary(context),
         ),
       ),
     );
@@ -128,18 +127,22 @@ class HuxLoadingOverlay extends StatelessWidget {
         child,
         if (isLoading)
           ColoredBox(
-            color: backgroundColor ?? Colors.black.withValues(alpha: 0.5),
+            color: backgroundColor ?? HuxTokens.overlay(context),
             child: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const HuxLoading(size: HuxLoadingSize.large),
+                  const HuxLoading(
+                    size: HuxLoadingSize.large,
+                    color: HuxColors.white, // Always white on dark overlay
+                  ),
                   if (message != null) ...[
                     const SizedBox(height: 16),
                     Text(
                       message!,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: HuxColors.white,
+                            color:
+                                HuxColors.white, // Always white on dark overlay
                           ),
                     ),
                   ],

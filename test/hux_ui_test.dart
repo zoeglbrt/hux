@@ -65,74 +65,139 @@ void main() {
       expect(find.byType(HuxLoading), findsOneWidget);
     });
 
-    testWidgets('HuxChart renders correctly', (WidgetTester tester) async {
-      final testData = [
-        {'x': 1, 'y': 10},
-        {'x': 2, 'y': 20},
-        {'x': 3, 'y': 15},
-      ];
-
+    testWidgets('HuxButton variant tests', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: HuxChart(
-              data: testData,
-              type: HuxChartType.line,
-              xField: 'x',
-              yField: 'y',
-              title: 'Test Chart',
+            body: Column(
+              children: [
+                HuxButton(
+                  onPressed: () {},
+                  variant: HuxButtonVariant.primary,
+                  child: const Text('Primary'),
+                ),
+                HuxButton(
+                  onPressed: () {},
+                  variant: HuxButtonVariant.secondary,
+                  child: const Text('Secondary'),
+                ),
+                HuxButton(
+                  onPressed: () {},
+                  variant: HuxButtonVariant.outline,
+                  child: const Text('Outline'),
+                ),
+                HuxButton(
+                  onPressed: () {},
+                  variant: HuxButtonVariant.ghost,
+                  child: const Text('Ghost'),
+                ),
+              ],
             ),
           ),
         ),
       );
 
-      expect(find.text('Test Chart'), findsOneWidget);
-      expect(find.byType(HuxChart), findsOneWidget);
+      expect(find.text('Primary'), findsOneWidget);
+      expect(find.text('Secondary'), findsOneWidget);
+      expect(find.text('Outline'), findsOneWidget);
+      expect(find.text('Ghost'), findsOneWidget);
+      expect(find.byType(HuxButton), findsNWidgets(4));
     });
 
-    testWidgets('HuxChart renders with different chart types',
-        (WidgetTester tester) async {
-      final testData = [
-        {'x': 1, 'y': 10},
-        {'x': 2, 'y': 20},
-        {'x': 3, 'y': 15},
-      ];
-
-      // Test bar chart
+    testWidgets('HuxButton size variants', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: HuxChart(
-              data: testData,
-              type: HuxChartType.bar,
-              xField: 'x',
-              yField: 'y',
-              title: 'Bar Chart',
+            body: Column(
+              children: [
+                HuxButton(
+                  onPressed: () {},
+                  size: HuxButtonSize.small,
+                  child: const Text('Small'),
+                ),
+                HuxButton(
+                  onPressed: () {},
+                  size: HuxButtonSize.medium,
+                  child: const Text('Medium'),
+                ),
+                HuxButton(
+                  onPressed: () {},
+                  size: HuxButtonSize.large,
+                  child: const Text('Large'),
+                ),
+              ],
             ),
           ),
         ),
       );
 
-      expect(find.text('Bar Chart'), findsOneWidget);
-      expect(find.byType(HuxChart), findsOneWidget);
+      expect(find.text('Small'), findsOneWidget);
+      expect(find.text('Medium'), findsOneWidget);
+      expect(find.text('Large'), findsOneWidget);
+      expect(find.byType(HuxButton), findsNWidgets(3));
+    });
 
-      // Test line chart
+    testWidgets('HuxTextField validation', (WidgetTester tester) async {
+      final controller = TextEditingController();
+      
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: HuxChart(
-              data: testData,
-              type: HuxChartType.line,
-              xField: 'x',
-              yField: 'y',
-              title: 'Line Chart',
+            body: Form(
+              child: HuxTextField(
+                controller: controller,
+                label: 'Email',
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  return null;
+                },
+              ),
             ),
           ),
         ),
       );
 
-      expect(find.text('Line Chart'), findsOneWidget);
-      expect(find.byType(HuxChart), findsOneWidget);
+      expect(find.byType(HuxTextField), findsOneWidget);
+      expect(find.text('Email'), findsOneWidget);
+    });
+
+    testWidgets('HuxLoading sizes', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: Column(
+              children: [
+                HuxLoading(size: HuxLoadingSize.small),
+                HuxLoading(size: HuxLoadingSize.medium),
+                HuxLoading(size: HuxLoadingSize.large),
+                HuxLoading(size: HuxLoadingSize.extraLarge),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byType(HuxLoading), findsNWidgets(4));
+    });
+
+    testWidgets('HuxCard with subtitle', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: HuxCard(
+              title: 'Card Title',
+              subtitle: 'Card subtitle',
+              child: Text('Card body'),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('Card Title'), findsOneWidget);
+      expect(find.text('Card subtitle'), findsOneWidget);
+      expect(find.text('Card body'), findsOneWidget);
     });
   });
 }

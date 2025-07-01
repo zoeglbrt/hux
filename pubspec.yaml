@@ -1,6 +1,6 @@
 name: hux
 description: An open-source state of the art UI library for Flutter
-version: 0.1.4
+version: 0.1.5
 homepage: https://github.com/zoeglbrt/hux
 repository: https://github.com/zoeglbrt/hux
 issue_tracker: https://github.com/zoeglbrt/hux/issues
@@ -16,6 +16,10 @@ topics:
 
 # Screenshots displayed on pub.dev
 screenshots:
+  - description: 'Hux UI - Modern Flutter component library'
+    path: screenshots/hux-ui.png
+  - description: 'Hux UI - Light theme showcase'
+    path: screenshots/hux-ui-light.png
   - description: 'HuxButton component variants'
     path: screenshots/hux-buttons.png
   - description: 'HuxCard with different configurations'
@@ -26,6 +30,8 @@ screenshots:
     path: screenshots/hux-loading.png
   - description: 'HuxChart data visualization'
     path: screenshots/hux-charts.png
+  - description: 'HuxContextMenu right-click interactions'
+    path: screenshots/hux-context-menu.png
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -43,6 +49,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  test: ^1.25.15
 
 # Explicitly declare platform support including WASM
 platforms:

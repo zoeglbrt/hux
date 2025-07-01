@@ -1,22 +1,20 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
-import '../../theme/hux_colors.dart';
+import '../../theme/hux_tokens.dart';
 
 /// HuxButton is a customizable button component
 ///
-/// The primary button uses HuxColors.primary by default (white), but can be customized
-/// using the primaryColor parameter with preset colors or any custom Color.
+/// The primary button uses theme-aware colors by default, adapting to light/dark mode.
+/// Can be customized using the primaryColor parameter with any custom Color.
 ///
 /// Examples:
 /// ```dart
-/// // Default white primary button
+/// // Default theme-aware primary button
 /// HuxButton(onPressed: () {}, child: Text('Default'))
-///
-/// // Using preset colors
-/// HuxButton(primaryColor: HuxColors.getPresetColor('purple'), ...)
-/// HuxButton(primaryColor: HuxColors.presetColors['blue']!, ...)
 ///
 /// // Using custom colors
 /// HuxButton(primaryColor: Colors.deepOrange, ...)
+/// HuxButton(primaryColor: Color(0xFF6366F1), ...)
 /// ```
 class HuxButton extends StatelessWidget {
   /// Creates a HuxButton widget.
@@ -31,7 +29,7 @@ class HuxButton extends StatelessWidget {
     this.isLoading = false,
     this.isDisabled = false,
     this.icon,
-    this.primaryColor = HuxColors.primary,
+    this.primaryColor,
   });
 
   /// Callback triggered when the button is pressed
@@ -55,13 +53,13 @@ class HuxButton extends StatelessWidget {
   /// Optional icon to display before the text
   final IconData? icon;
 
-  /// Primary color used for styling the button
-  final Color primaryColor;
+  /// Primary color used for styling the button (optional, defaults to theme primary)
+  final Color? primaryColor;
 
   @override
   Widget build(BuildContext context) {
-    final buttonStyle = _getButtonStyle();
-    final buttonChild = _buildButtonChild();
+    final buttonStyle = _getButtonStyle(context);
+    final buttonChild = _buildButtonChild(context);
 
     return SizedBox(
       height: _getHeight(),
@@ -73,51 +71,73 @@ class HuxButton extends StatelessWidget {
     );
   }
 
-  ButtonStyle _getButtonStyle() {
+  ButtonStyle _getButtonStyle(BuildContext context) {
     Color backgroundColor;
     Color foregroundColor;
+    BorderSide borderSide = BorderSide.none;
 
     switch (variant) {
       case HuxButtonVariant.primary:
-        backgroundColor = primaryColor;
-        foregroundColor = _getContrastingTextColor(primaryColor);
+        // Use theme-aware primary color by default, or custom color if provided
+        final effectivePrimaryColor =
+            primaryColor ?? HuxTokens.primary(context);
+        backgroundColor = effectivePrimaryColor;
+        foregroundColor =
+            _getContrastingTextColor(effectivePrimaryColor, context);
+        borderSide = BorderSide(
+            color: _getContrastingBorderColor(effectivePrimaryColor, context));
         break;
       case HuxButtonVariant.secondary:
-        backgroundColor = HuxColors.white20;
-        foregroundColor = HuxColors.white;
+        backgroundColor = HuxTokens.buttonSecondaryBackground(context);
+        foregroundColor = HuxTokens.buttonSecondaryText(context);
+        borderSide =
+            BorderSide(color: HuxTokens.buttonSecondaryBorder(context));
         break;
       case HuxButtonVariant.outline:
         backgroundColor = Colors.transparent;
-        foregroundColor = HuxColors.white;
+        foregroundColor = HuxTokens.buttonSecondaryText(context);
+        borderSide =
+            BorderSide(color: HuxTokens.buttonSecondaryBorder(context));
         break;
       case HuxButtonVariant.ghost:
         backgroundColor = Colors.transparent;
-        foregroundColor = HuxColors.white;
+        foregroundColor = HuxTokens.buttonSecondaryText(context);
         break;
     }
 
-    return ElevatedButton.styleFrom(
-      backgroundColor: backgroundColor,
-      foregroundColor: foregroundColor,
-      elevation: variant == HuxButtonVariant.primary ? 0 : 0,
-      padding: EdgeInsets.symmetric(
-        horizontal: _getHorizontalPadding(),
-        vertical: _getVerticalPadding(),
+    return ButtonStyle(
+      backgroundColor: WidgetStateProperty.all(backgroundColor),
+      foregroundColor: WidgetStateProperty.all(foregroundColor),
+      elevation: WidgetStateProperty.all(0),
+      shadowColor: WidgetStateProperty.all(Colors.transparent),
+      surfaceTintColor: WidgetStateProperty.all(Colors.transparent),
+      splashFactory: NoSplash.splashFactory, // Removes the round ripple effect
+      padding: WidgetStateProperty.all(
+        EdgeInsets.symmetric(
+          horizontal: _getHorizontalPadding(),
+          vertical: _getVerticalPadding(),
+        ),
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-        side: variant == HuxButtonVariant.outline
-            ? const BorderSide(color: HuxColors.white20)
-            : variant == HuxButtonVariant.primary
-                ? BorderSide(color: _getContrastingBorderColor(primaryColor))
-                : variant == HuxButtonVariant.secondary
-                    ? const BorderSide(color: HuxColors.white20)
-                    : BorderSide.none,
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: borderSide,
+        ),
+      ),
+      // Custom hover effect only (no press effect)
+      overlayColor: WidgetStateProperty.resolveWith<Color?>(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.hovered)) {
+            // Use consistent hover color across all button variants
+            return HuxTokens.surfaceHover(context);
+          }
+          return null; // No press effect
+        },
       ),
     );
   }
 
-  Widget _buildButtonChild() {
+  Widget _buildButtonChild(BuildContext context) {
     if (isLoading) {
       return const SizedBox(
         width: 16,
@@ -127,7 +147,7 @@ class HuxButton extends StatelessWidget {
     }
 
     if (icon != null) {
-      final foregroundColor = _getButtonForegroundColor();
+      final foregroundColor = _getForegroundColor(context);
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -145,6 +165,19 @@ class HuxButton extends StatelessWidget {
     }
 
     return child;
+  }
+
+  Color _getForegroundColor(BuildContext context) {
+    switch (variant) {
+      case HuxButtonVariant.primary:
+        final effectivePrimaryColor =
+            primaryColor ?? HuxTokens.primary(context);
+        return _getContrastingTextColor(effectivePrimaryColor, context);
+      case HuxButtonVariant.secondary:
+      case HuxButtonVariant.outline:
+      case HuxButtonVariant.ghost:
+        return HuxTokens.buttonSecondaryText(context);
+    }
   }
 
   double _getHeight() {
@@ -191,33 +224,55 @@ class HuxButton extends StatelessWidget {
     }
   }
 
-  /// Determines the appropriate text color based on background color brightness
-  Color _getContrastingTextColor(Color backgroundColor) {
-    // Calculate relative luminance to determine if color is light or dark
-    final luminance = backgroundColor.computeLuminance();
-    // Use white text for dark backgrounds, black text for light backgrounds
-    return luminance > 0.5 ? HuxColors.black : HuxColors.white;
+  /// Determines the appropriate text color based on WCAG AA contrast requirements
+  Color _getContrastingTextColor(Color backgroundColor, BuildContext context) {
+    // Calculate contrast ratios for both white and black text
+    final whiteContrast =
+        _calculateContrastRatio(backgroundColor, HuxTokens.textInvert(context));
+    final blackContrast = _calculateContrastRatio(
+        backgroundColor, HuxTokens.textPrimary(context));
+
+    // Choose the text color with better contrast ratio
+    // WCAG AA requires minimum 4.5:1 contrast ratio for normal text
+    return whiteContrast > blackContrast
+        ? HuxTokens.textInvert(context)
+        : HuxTokens.textPrimary(context);
+  }
+
+  /// Calculates the contrast ratio between two colors according to WCAG guidelines
+  /// Returns a value between 1 and 21, where higher values indicate better contrast
+  double _calculateContrastRatio(Color color1, Color color2) {
+    final luminance1 = _getRelativeLuminance(color1);
+    final luminance2 = _getRelativeLuminance(color2);
+
+    final lighter = luminance1 > luminance2 ? luminance1 : luminance2;
+    final darker = luminance1 > luminance2 ? luminance2 : luminance1;
+
+    return (lighter + 0.05) / (darker + 0.05);
+  }
+
+  /// Calculates the relative luminance of a color according to WCAG guidelines
+  /// Returns a value between 0 and 1
+  double _getRelativeLuminance(Color color) {
+    // Convert RGB values to 0-1 range
+    final r = color.r / 255.0;
+    final g = color.g / 255.0;
+    final b = color.b / 255.0;
+
+    // Apply gamma correction
+    final rLinear = r <= 0.03928 ? r / 12.92 : pow((r + 0.055) / 1.055, 2.4);
+    final gLinear = g <= 0.03928 ? g / 12.92 : pow((g + 0.055) / 1.055, 2.4);
+    final bLinear = b <= 0.03928 ? b / 12.92 : pow((b + 0.055) / 1.055, 2.4);
+
+    // Calculate relative luminance using ITU-R BT.709 coefficients
+    return 0.2126 * rLinear + 0.7152 * gLinear + 0.0722 * bLinear;
   }
 
   /// Determines the appropriate border color based on background color brightness
-  Color _getContrastingBorderColor(Color backgroundColor) {
-    final luminance = backgroundColor.computeLuminance();
-    // Use dark border for light backgrounds, light border for dark backgrounds
-    return luminance > 0.5 ? HuxColors.black20 : HuxColors.white20;
-  }
-
-  /// Get the foreground color for the current button variant
-  Color _getButtonForegroundColor() {
-    switch (variant) {
-      case HuxButtonVariant.primary:
-        return _getContrastingTextColor(primaryColor);
-      case HuxButtonVariant.secondary:
-        return HuxColors.white;
-      case HuxButtonVariant.outline:
-        return HuxColors.white;
-      case HuxButtonVariant.ghost:
-        return HuxColors.white;
-    }
+  Color _getContrastingBorderColor(
+      Color backgroundColor, BuildContext context) {
+    // Use consistent theme-aware border color for primary buttons
+    return HuxTokens.borderSecondary(context);
   }
 }
 

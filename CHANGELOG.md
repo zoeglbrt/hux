@@ -5,6 +5,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.5] - 2025-07-01
+
+### Added
+- **Light/Dark Mode Toggle**: Complete theme switching functionality in example app with toggle button in sidebar
+- **Design Token Architecture**: Comprehensive `HuxTokens` system with semantic color tokens that adapt to light/dark themes
+- **WCAG AA Contrast System**: Automatic contrast calculation for button text colors ensuring 4.5:1+ contrast ratio compliance
+- **Theme Customization**: Added "Default" theme option and custom color presets (Green #2E7252, Indigo #665CFF, Pink)
+- **Comprehensive Documentation**: Added dartdoc comments to all public methods in `HuxTokens` class
+
+### Fixed
+- **Button Visibility**: Fixed secondary, outline, and ghost buttons being invisible in light mode
+- **Component Theming**: All components now properly adapt to light/dark themes using semantic tokens
+- **Color Hardcoding**: Eliminated all hardcoded colors across the entire component library
+- **Deprecation Warnings**: Fixed deprecated `Color.red/green/blue` properties → `Color.r/g/b`
+- **Context Menu UX**: Restored proper browser context menu prevention for clean web experience
+
+### Changed
+- **Complete Component Overhaul**: Refactored ALL components to use `HuxTokens` instead of manual theme checks
+  - `HuxButton`: 100% token usage, WCAG AA compliance, theme-aware primary colors
+  - `HuxTextField`: Complete token integration, proper semantic color usage
+  - `HuxCard`: Updated to use `surfaceElevated`, `borderPrimary`, `textPrimary/tertiary` tokens
+  - `HuxLoading`: Theme-aware loading indicators using `primary(context)`
+  - `HuxChart`: Theme-aware tokens for grid, axis, and text colors
+  - `HuxContextMenu`: Enhanced with proper token usage and divider theming
+- **Design System Architecture**: Separation of primitive colors (`HuxColors`) from semantic tokens (`HuxTokens`)
+- **Button Enhancements**: 
+  - Removed hover shadows and splash effects for cleaner interactions
+  - Added custom overlay colors for subtle hover states
+  - Dynamic primary color adaptation (black in light mode, white in dark mode)
+- **Example App**: Enhanced with comprehensive theme controls and component demonstrations
+
+### Developer Experience
+- **Semantic Design Tokens**: Industry-standard design system with meaningful color names
+- **Theme Consistency**: All components follow the same theming patterns
+- **Better Documentation**: Enhanced API documentation and usage examples
+- **Accessibility**: Built-in WCAG AA contrast compliance for all text/background combinations
+
 ## [0.1.4] - 2025-06-30
 
 ### Added
@@ -31,7 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Easy-to-use API following established Hux UI patterns
 - Comprehensive examples showing various context menu configurations
 
-## [0.1.3] - 2025-01-07
+## [0.1.3] - 2025-06-29
 
 ### Added
 - **Component Screenshots**: Added beautiful visual documentation for all UI components
@@ -53,13 +90,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Visual documentation helps developers understand components at a glance
 - Enhanced metadata provides clear paths for support and documentation
 
-## [0.1.2] - 2025-01-07
+## [0.1.2] - 2025-06-29
 
 ### Fixed
 - Applied Dart formatter to all source files for pub.dev static analysis compliance
 - Resolved formatting issues to achieve perfect static analysis score
 
-## [0.1.1] - 2025-01-07
+## [0.1.1] - 2025-06-29
 
 ### Fixed
 - Fixed `CardTheme` deprecation by migrating to `CardThemeData` for better Flutter compatibility
@@ -82,7 +119,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Stricter code quality enforcement with comprehensive linting rules
 - Improved dependency resolution and compatibility testing
 
-## [0.1.0] - 2025-06-28
+## [0.1.0] - 2025-06-29
 
 ### Added
 - Initial release of Hux UI package

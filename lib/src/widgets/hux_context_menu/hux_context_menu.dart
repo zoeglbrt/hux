@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:universal_html/html.dart' as html;
-import '../../theme/hux_colors.dart';
+import '../../theme/hux_tokens.dart';
 import 'hux_context_menu_item.dart';
 import 'hux_context_menu_divider.dart';
 
@@ -87,21 +87,23 @@ class HuxContextMenu extends StatelessWidget {
   }
 
   void _showContextMenu(BuildContext context, Offset position) {
-    final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
+    final RenderBox overlay =
+        Overlay.of(context).context.findRenderObject() as RenderBox;
     final Size overlaySize = overlay.size;
-    
+
     // Calculate menu size estimation
     const double estimatedItemHeight = 40.0;
     const double menuPadding = 16.0;
     const double maxMenuWidth = 200.0;
-    
-    final double menuHeight = (menuItems.length * estimatedItemHeight) + menuPadding;
+
+    final double menuHeight =
+        (menuItems.length * estimatedItemHeight) + menuPadding;
     const double menuWidth = maxMenuWidth;
-    
+
     // Smart positioning to avoid overflow
     double left = position.dx;
     double top = position.dy;
-    
+
     // Adjust horizontal position if menu would overflow
     if (left + menuWidth > overlaySize.width) {
       left = overlaySize.width - menuWidth - 8;
@@ -109,7 +111,7 @@ class HuxContextMenu extends StatelessWidget {
     if (left < 8) {
       left = 8;
     }
-    
+
     // Adjust vertical position if menu would overflow
     if (top + menuHeight > overlaySize.height) {
       top = overlaySize.height - menuHeight - 8;
@@ -120,7 +122,8 @@ class HuxContextMenu extends StatelessWidget {
 
     showMenu<void>(
       context: context,
-      position: RelativeRect.fromLTRB(left, top, left + menuWidth, top + menuHeight),
+      position:
+          RelativeRect.fromLTRB(left, top, left + menuWidth, top + menuHeight),
       items: [
         PopupMenuItem<void>(
           enabled: false,
@@ -145,23 +148,21 @@ class _HuxContextMenuContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Container(
       constraints: const BoxConstraints(
         minWidth: 160,
         maxWidth: 240,
       ),
       decoration: BoxDecoration(
-        color: isDark ? HuxColors.black70 : HuxColors.white,
+        color: HuxTokens.surfacePrimary(context),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDark ? HuxColors.white20 : HuxColors.black20,
+          color: HuxTokens.borderPrimary(context),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: isDark ? HuxColors.black.withValues(alpha: 0.5) : HuxColors.black.withValues(alpha: 0.1),
+            color: HuxTokens.shadowColor(context),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -214,6 +215,8 @@ class _HuxContextMenuItemWrapper extends StatelessWidget {
       child: InkWell(
         onTap: item.isDisabled ? null : onItemTap,
         borderRadius: BorderRadius.circular(8),
+        hoverColor: HuxTokens.surfaceHover(context),
+        splashFactory: NoSplash.splashFactory, // Remove ripple effect
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           child: Row(
@@ -231,9 +234,9 @@ class _HuxContextMenuItemWrapper extends StatelessWidget {
                 child: Text(
                   item.text,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: _getTextColor(context),
-                    fontWeight: FontWeight.w500,
-                  ),
+                        color: _getTextColor(context),
+                        fontWeight: FontWeight.w500,
+                      ),
                 ),
               ),
             ],
@@ -244,27 +247,22 @@ class _HuxContextMenuItemWrapper extends StatelessWidget {
   }
 
   Color _getTextColor(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    
     if (item.isDisabled) {
-      return isDark ? HuxColors.white30 : HuxColors.black30;
+      return HuxTokens.textDisabled(context);
     } else if (item.isDestructive) {
-      return HuxColors.error;
+      return HuxTokens.alert(context);
     } else {
-      return isDark ? HuxColors.white : HuxColors.black90;
+      return HuxTokens.textPrimary(context);
     }
   }
 
   Color _getIconColor(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    
     if (item.isDisabled) {
-      return isDark ? HuxColors.white30 : HuxColors.black30;
+      return HuxTokens.textDisabled(context);
     } else if (item.isDestructive) {
-      return HuxColors.error;
+      return HuxTokens.alert(context);
     } else {
-      return isDark ? HuxColors.white70 : HuxColors.black70;
+      return HuxTokens.iconSecondary(context);
     }
   }
 }
-
