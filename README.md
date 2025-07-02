@@ -39,7 +39,6 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 ![HuxTextField Component](screenshots/hux-text-field.png)
 
-- `HuxDateTimePicker` - Versatile date and time selection component
 - `HuxCheckbox` - Interactive checkbox with custom styling and labels  
 - Label, helper text, and error state support
 - Multiple sizes and validation
@@ -245,31 +244,7 @@ HuxContextMenu(
 )
 ```
 
-#### Date/Time Picker
 
-```dart
-// Date picker
-HuxDateTimePicker(
-  mode: HuxDateTimePickerMode.date,
-  label: 'Select Date',
-  onChanged: (date) => print('Selected: $date'),
-)
-
-// Time picker  
-HuxDateTimePicker(
-  mode: HuxDateTimePickerMode.time,
-  label: 'Select Time',
-  onChanged: (time) => print('Selected: $time'),
-)
-
-// Date and time picker
-HuxDateTimePicker(
-  mode: HuxDateTimePickerMode.dateTime,
-  label: 'Select Date & Time',
-  initialValue: DateTime.now(),
-  onChanged: (dateTime) => print('Selected: $dateTime'),
-)
-```
 
 #### Avatar & Avatar Group
 

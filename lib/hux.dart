@@ -6,7 +6,6 @@
 /// - Modern button components with multiple variants and WCAG AA contrast
 /// - Flexible card components with semantic tokens
 /// - Enhanced text input fields with validation support
-/// - Beautiful date/time pickers with multiple modes and custom formatting
 /// - Customizable loading indicators with theme awareness
 /// - Beautiful data visualization charts with cristalyse integration
 /// - Right-click context menus with smart positioning
@@ -34,11 +33,6 @@
 ///               child: Text('Primary Button'),
 ///             ),
 ///             HuxTextField(label: 'Email'),
-///             HuxDateTimePicker(
-///               label: 'Select Date',
-///               mode: HuxDateTimePickerMode.date,
-///               onChanged: (date) => print('Selected: $date'),
-///             ),
 ///             HuxCard(title: 'Card Title'),
 ///           ],
 ///         ),
@@ -53,7 +47,6 @@ library;
 export 'src/components/buttons/hux_button.dart';
 export 'src/components/cards/hux_card.dart';
 export 'src/components/inputs/hux_text_field.dart';
-export 'src/components/inputs/hux_date_time_picker.dart';
 export 'src/components/inputs/hux_checkbox.dart';
 export 'src/components/switch/hux_switch.dart';
 export 'src/components/badge/hux_badge.dart';

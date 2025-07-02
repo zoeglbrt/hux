@@ -8,11 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.0] - 2025-07-02
 
 ### Added
-- **HuxDateTimePicker**: Versatile date and time selection component
-  - Three modes: date-only, time-only, or combined date/time selection
-  - Native picker integration with theming support
-  - Multiple size variants and validation support
-  - Proper keyboard and accessibility handling
 - **HuxBadge**: Status indicators and notification counters with semantic variants
   - Six variants: Primary, Secondary, Outline, Success, Destructive, Number badge
   - Consistent design tokens with theme-adaptive colors

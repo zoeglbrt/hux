@@ -72,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
   // Global keys for each section
   final _buttonsKey = GlobalKey();
   final _textFieldsKey = GlobalKey();
-  final _datePickerKey = GlobalKey();
   final _cardsKey = GlobalKey();
   final _chartsKey = GlobalKey();
   final _loadingKey = GlobalKey();
@@ -99,11 +98,6 @@ class _MyHomePageState extends State<MyHomePage> {
         title: 'Text Fields',
         icon: FeatherIcons.edit3,
         key: _textFieldsKey,
-      ),
-      NavigationItem(
-        title: 'Date/Time Picker',
-        icon: FeatherIcons.calendar,
-        key: _datePickerKey,
       ),
       NavigationItem(
         title: 'Cards',
@@ -662,84 +656,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                       label: 'Large',
                                       size: HuxTextFieldSize.large,
                                       hint: 'Large text field',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(height: 32),
-
-                      // Date/Time Picker Section
-                      Container(
-                        key: _datePickerKey,
-                        child: HuxCard(
-                          title: 'Date/Time Picker',
-                          subtitle: 'Versatile date and time selection components',
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 16),
-                              // Date only picker
-                              HuxDateTimePicker(
-                                mode: HuxDateTimePickerMode.date,
-                                label: 'Select Date',
-                                hint: 'Choose a date',
-                                onChanged: (date) {
-                                  if (date != null) {
-                                    _showSnackBar('Selected date: ${date.toString().split(' ')[0]}');
-                                  }
-                                },
-                              ),
-                              const SizedBox(height: 16),
-                              // Time only picker
-                              HuxDateTimePicker(
-                                mode: HuxDateTimePickerMode.time,
-                                label: 'Select Time',
-                                hint: 'Choose a time',
-                                onChanged: (time) {
-                                  if (time != null) {
-                                    final timeStr = '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
-                                    _showSnackBar('Selected time: $timeStr');
-                                  }
-                                },
-                              ),
-                              const SizedBox(height: 16),
-                              // Date and time picker
-                              HuxDateTimePicker(
-                                mode: HuxDateTimePickerMode.dateTime,
-                                label: 'Select Date & Time',
-                                hint: 'Choose date and time',
-                                initialValue: DateTime.now(),
-                                onChanged: (dateTime) {
-                                  if (dateTime != null) {
-                                    _showSnackBar('Selected: ${dateTime.toString().substring(0, 16)}');
-                                  }
-                                },
-                              ),
-                              const SizedBox(height: 16),
-                              const Divider(),
-                              const SizedBox(height: 16),
-                              // Different sizes
-                              const Row(
-                                children: [
-                                  Expanded(
-                                    child: HuxDateTimePicker(
-                                      mode: HuxDateTimePickerMode.date,
-                                      label: 'Small',
-                                      size: HuxDateTimePickerSize.small,
-                                      hint: 'Small picker',
-                                    ),
-                                  ),
-                                  SizedBox(width: 8),
-                                  Expanded(
-                                    child: HuxDateTimePicker(
-                                      mode: HuxDateTimePickerMode.date,
-                                      label: 'Large',
-                                      size: HuxDateTimePickerSize.large,
-                                      hint: 'Large picker',
                                     ),
                                   ),
                                 ],
