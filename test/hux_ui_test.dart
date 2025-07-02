@@ -139,7 +139,7 @@ void main() {
 
     testWidgets('HuxTextField validation', (WidgetTester tester) async {
       final controller = TextEditingController();
-      
+
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(

@@ -48,20 +48,22 @@ class HuxAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final avatarSize = _getAvatarSize();
-    
+
     return Container(
       width: avatarSize,
       height: avatarSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: useGradient ? _getGradient() : null,
-        color: useGradient ? null : (backgroundColor ?? HuxTokens.surfaceSecondary(context)),
+        color: useGradient
+            ? null
+            : (backgroundColor ?? HuxTokens.surfaceSecondary(context)),
         border: Border.all(
           color: HuxTokens.borderSecondary(context),
           width: 1, // Consistent with Hux borders
         ),
       ),
-      child: useGradient 
+      child: useGradient
           ? null // No content for gradient avatars
           : ClipOval(
               child: imageUrl != null
@@ -81,7 +83,7 @@ class HuxAvatar extends StatelessWidget {
 
   Widget _buildInitialsAvatar(BuildContext context) {
     final initials = _getInitials();
-    
+
     return Container(
       width: _getAvatarSize(),
       height: _getAvatarSize(),
@@ -107,13 +109,14 @@ class HuxAvatar extends StatelessWidget {
     if (name == null || name!.isEmpty) {
       return '?';
     }
-    
+
     final words = name!.trim().split(' ');
     if (words.length == 1) {
       return words[0].isNotEmpty ? words[0][0].toUpperCase() : '?';
     } else {
       final firstInitial = words[0].isNotEmpty ? words[0][0] : '';
-      final lastInitial = words[words.length - 1].isNotEmpty ? words[words.length - 1][0] : '';
+      final lastInitial =
+          words[words.length - 1].isNotEmpty ? words[words.length - 1][0] : '';
       return (firstInitial + lastInitial).toUpperCase();
     }
   }

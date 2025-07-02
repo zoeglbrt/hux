@@ -1210,12 +1210,30 @@ class BadgesSection extends StatelessWidget {
               spacing: 12,
               runSpacing: 8,
               children: [
-                HuxBadge(label: 'Primary', variant: HuxBadgeVariant.primary, size: HuxBadgeSize.small),
-                HuxBadge(label: 'Secondary', variant: HuxBadgeVariant.secondary, size: HuxBadgeSize.small),
-                HuxBadge(label: 'Outline', variant: HuxBadgeVariant.outline, size: HuxBadgeSize.small),
-                HuxBadge(label: 'Success', variant: HuxBadgeVariant.success, size: HuxBadgeSize.small),
-                HuxBadge(label: 'Destructive', variant: HuxBadgeVariant.destructive, size: HuxBadgeSize.small),
-                HuxBadge(label: '99+', variant: HuxBadgeVariant.primary, size: HuxBadgeSize.small),
+                HuxBadge(
+                    label: 'Primary',
+                    variant: HuxBadgeVariant.primary,
+                    size: HuxBadgeSize.small),
+                HuxBadge(
+                    label: 'Secondary',
+                    variant: HuxBadgeVariant.secondary,
+                    size: HuxBadgeSize.small),
+                HuxBadge(
+                    label: 'Outline',
+                    variant: HuxBadgeVariant.outline,
+                    size: HuxBadgeSize.small),
+                HuxBadge(
+                    label: 'Success',
+                    variant: HuxBadgeVariant.success,
+                    size: HuxBadgeSize.small),
+                HuxBadge(
+                    label: 'Destructive',
+                    variant: HuxBadgeVariant.destructive,
+                    size: HuxBadgeSize.small),
+                HuxBadge(
+                    label: '99+',
+                    variant: HuxBadgeVariant.primary,
+                    size: HuxBadgeSize.small),
               ],
             ),
           ),
@@ -1238,7 +1256,7 @@ class IndicatorsSection extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 16),
-          
+
           // Secondary Alert
           Center(
             child: HuxAlert(
@@ -1253,9 +1271,9 @@ class IndicatorsSection extends StatelessWidget {
               },
             ),
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Success Alert
           Center(
             child: HuxAlert(
@@ -1270,15 +1288,16 @@ class IndicatorsSection extends StatelessWidget {
               },
             ),
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Destructive Alert
           Center(
             child: HuxAlert(
               variant: HuxAlertVariant.error,
               title: 'Destructive',
-              message: 'This action cannot be undone. Please proceed with caution.',
+              message:
+                  'This action cannot be undone. Please proceed with caution.',
               showIcon: true,
               onDismiss: () {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -1287,7 +1306,7 @@ class IndicatorsSection extends StatelessWidget {
               },
             ),
           ),
-          
+
           const SizedBox(height: 16),
         ],
       ),
@@ -1307,7 +1326,7 @@ class DisplaySection extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 32),
-          
+
           // Avatars and avatar group inline
           Center(
             child: Row(
@@ -1344,7 +1363,7 @@ class DisplaySection extends StatelessWidget {
               ],
             ),
           ),
-          
+
           SizedBox(height: 32),
         ],
       ),

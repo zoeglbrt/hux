@@ -169,9 +169,11 @@ class HuxTokens {
   /// Surface color for destructive backgrounds
   static Color surfaceDestructive(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return isDark 
-        ? HuxColors.red.withValues(alpha: 0.60) // Dark mode: dark red with transparency
-        : HuxColors.redLight.withValues(alpha: 0.15); // Light mode: light red with low transparency
+    return isDark
+        ? HuxColors.red
+            .withValues(alpha: 0.60) // Dark mode: dark red with transparency
+        : HuxColors.redLight.withValues(
+            alpha: 0.15); // Light mode: light red with low transparency
   }
 
   /// Border color for destructive components
@@ -182,7 +184,7 @@ class HuxTokens {
   /// Text color for destructive content
   static Color textDestructive(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return isDark 
+    return isDark
         ? HuxColors.redLight // Dark mode: light red for contrast
         : HuxColors.red; // Light mode: dark red for better contrast
   }
@@ -197,9 +199,11 @@ class HuxTokens {
   /// Surface color for success backgrounds
   static Color surfaceSuccess(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return isDark 
-        ? HuxColors.green.withValues(alpha: 0.60) // Dark mode: dark green with transparency
-        : HuxColors.greenLight.withValues(alpha: 0.15); // Light mode: light green with low transparency
+    return isDark
+        ? HuxColors.green
+            .withValues(alpha: 0.60) // Dark mode: dark green with transparency
+        : HuxColors.greenLight.withValues(
+            alpha: 0.15); // Light mode: light green with low transparency
   }
 
   /// Border color for success components
@@ -210,7 +214,7 @@ class HuxTokens {
   /// Text color for success content
   static Color textSuccess(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return isDark 
+    return isDark
         ? HuxColors.greenLight // Dark mode: light green for contrast
         : HuxColors.green; // Light mode: dark green for better contrast
   }

@@ -81,17 +81,18 @@ class HuxAlert extends StatelessWidget {
                   Text(
                     title!,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w600, // Consistent with Hux typography
-                      color: _getTextColor(context),
-                    ),
+                          fontWeight:
+                              FontWeight.w600, // Consistent with Hux typography
+                          color: _getTextColor(context),
+                        ),
                   ),
                   const SizedBox(height: 4),
                 ],
                 Text(
                   message,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: _getTextColor(context),
-                  ),
+                        color: _getTextColor(context),
+                      ),
                 ),
               ],
             ),
@@ -126,7 +127,8 @@ class HuxAlert extends StatelessWidget {
       case HuxAlertVariant.success:
         return HuxTokens.surfaceSuccess(context);
       case HuxAlertVariant.warning:
-        return const Color(0xFFF59E0B).withValues(alpha: 0.1); // Amber background
+        return const Color(0xFFF59E0B)
+            .withValues(alpha: 0.1); // Amber background
       case HuxAlertVariant.error:
         return HuxTokens.surfaceDestructive(context);
     }

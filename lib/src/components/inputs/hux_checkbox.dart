@@ -45,50 +45,54 @@ class HuxCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: isDisabled || onChanged == null ? null : () => onChanged?.call(!value),
+      onTap: isDisabled || onChanged == null
+          ? null
+          : () => onChanged?.call(!value),
       child: Padding(
         padding: const EdgeInsets.all(4), // Touch target padding
         child: Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: _getCheckboxSize(),
-                height: _getCheckboxSize(),
-                decoration: BoxDecoration(
-                  color: _getBackgroundColor(context),
-                  border: Border.all(
-                    color: _getBorderColor(context),
-                    width: 1, // Consistent with Hux border width
-                  ),
-                  borderRadius: BorderRadius.circular(6), // Slightly rounded like cards
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: _getCheckboxSize(),
+              height: _getCheckboxSize(),
+              decoration: BoxDecoration(
+                color: _getBackgroundColor(context),
+                border: Border.all(
+                  color: _getBorderColor(context),
+                  width: 1, // Consistent with Hux border width
                 ),
-                child: value
-                    ? Icon(
-                        Icons.check,
-                        size: _getIconSize(),
-                        color: _getCheckColor(context),
-                      )
-                    : null,
+                borderRadius:
+                    BorderRadius.circular(6), // Slightly rounded like cards
               ),
-              if (label != null) ...[
-                SizedBox(width: _getLabelSpacing()),
-                Flexible(
-                  child: Text(
-                    label!,
-                    style: TextStyle(
-                      fontSize: _getFontSize(),
-                      fontWeight: FontWeight.w500, // Consistent with Hux typography
-                      color: isDisabled
-                          ? HuxTokens.textDisabled(context)
-                          : HuxTokens.textPrimary(context),
-                    ),
+              child: value
+                  ? Icon(
+                      Icons.check,
+                      size: _getIconSize(),
+                      color: _getCheckColor(context),
+                    )
+                  : null,
+            ),
+            if (label != null) ...[
+              SizedBox(width: _getLabelSpacing()),
+              Flexible(
+                child: Text(
+                  label!,
+                  style: TextStyle(
+                    fontSize: _getFontSize(),
+                    fontWeight:
+                        FontWeight.w500, // Consistent with Hux typography
+                    color: isDisabled
+                        ? HuxTokens.textDisabled(context)
+                        : HuxTokens.textPrimary(context),
                   ),
                 ),
-              ],
+              ),
             ],
-          ),
+          ],
         ),
+      ),
     );
   }
 

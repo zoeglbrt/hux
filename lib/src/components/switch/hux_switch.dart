@@ -40,41 +40,45 @@ class HuxSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: isDisabled || onChanged == null ? null : () => onChanged?.call(!value),
+      onTap: isDisabled || onChanged == null
+          ? null
+          : () => onChanged?.call(!value),
       child: Padding(
         padding: const EdgeInsets.all(4), // Touch target padding
         child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            width: _getSwitchWidth(),
-            height: _getSwitchHeight(),
-            padding: EdgeInsets.all(_getPadding()),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), // Consistent with Hux border radius
-              color: _getBackgroundColor(context),
-              border: Border.all(
-                color: _getBorderColor(context),
-                width: 1, // Consistent with Hux border width
-              ),
+          duration: const Duration(milliseconds: 200),
+          width: _getSwitchWidth(),
+          height: _getSwitchHeight(),
+          padding: EdgeInsets.all(_getPadding()),
+          decoration: BoxDecoration(
+            borderRadius:
+                BorderRadius.circular(10), // Consistent with Hux border radius
+            color: _getBackgroundColor(context),
+            border: Border.all(
+              color: _getBorderColor(context),
+              width: 1, // Consistent with Hux border width
             ),
-            child: AnimatedAlign(
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeInOut,
-              alignment: value ? Alignment.centerRight : Alignment.centerLeft,
-              child: Container(
-                width: _getHandleSize(),
-                height: _getHandleSize(),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8), // Consistent rounded corners
-                  color: _getHandleColor(context),
-                  border: Border.all(
-                    color: _getHandleBorderColor(context),
-                    width: 1,
-                  ),
+          ),
+          child: AnimatedAlign(
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeInOut,
+            alignment: value ? Alignment.centerRight : Alignment.centerLeft,
+            child: Container(
+              width: _getHandleSize(),
+              height: _getHandleSize(),
+              decoration: BoxDecoration(
+                borderRadius:
+                    BorderRadius.circular(8), // Consistent rounded corners
+                color: _getHandleColor(context),
+                border: Border.all(
+                  color: _getHandleBorderColor(context),
+                  width: 1,
                 ),
               ),
             ),
           ),
         ),
+      ),
     );
   }
 

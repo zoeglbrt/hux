@@ -48,8 +48,9 @@ class HuxAvatarGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final visibleAvatars = avatars.take(maxVisible).toList();
-    final remainingCount = avatars.length > maxVisible ? avatars.length - maxVisible : 0;
-    
+    final remainingCount =
+        avatars.length > maxVisible ? avatars.length - maxVisible : 0;
+
     if (overlap) {
       return _buildOverlappingAvatars(context, visibleAvatars, remainingCount);
     } else {
@@ -57,12 +58,15 @@ class HuxAvatarGroup extends StatelessWidget {
     }
   }
 
-  Widget _buildOverlappingAvatars(BuildContext context, List<HuxAvatar> visibleAvatars, int remainingCount) {
+  Widget _buildOverlappingAvatars(BuildContext context,
+      List<HuxAvatar> visibleAvatars, int remainingCount) {
     final avatarSize = _getAvatarSize();
     final overlapOffset = avatarSize * 0.7; // 30% overlap
-    
+
     return SizedBox(
-      width: (visibleAvatars.length - 1) * overlapOffset + avatarSize + (remainingCount > 0 ? overlapOffset : 0),
+      width: (visibleAvatars.length - 1) * overlapOffset +
+          avatarSize +
+          (remainingCount > 0 ? overlapOffset : 0),
       height: avatarSize,
       child: Stack(
         children: [
@@ -70,7 +74,7 @@ class HuxAvatarGroup extends StatelessWidget {
           ...visibleAvatars.asMap().entries.map((entry) {
             final index = entry.key;
             final avatar = entry.value;
-            
+
             return Positioned(
               left: index * overlapOffset,
               child: HuxAvatar(
@@ -83,7 +87,7 @@ class HuxAvatarGroup extends StatelessWidget {
               ),
             );
           }),
-          
+
           // Show remaining count if any
           if (remainingCount > 0)
             Positioned(
@@ -95,14 +99,15 @@ class HuxAvatarGroup extends StatelessWidget {
     );
   }
 
-  Widget _buildSpacedAvatars(BuildContext context, List<HuxAvatar> visibleAvatars, int remainingCount) {
+  Widget _buildSpacedAvatars(BuildContext context,
+      List<HuxAvatar> visibleAvatars, int remainingCount) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         ...visibleAvatars.asMap().entries.map((entry) {
           final index = entry.key;
           final avatar = entry.value;
-          
+
           return Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -118,7 +123,7 @@ class HuxAvatarGroup extends StatelessWidget {
             ],
           );
         }),
-        
+
         // Show remaining count if any
         if (remainingCount > 0) ...[
           SizedBox(width: spacing),

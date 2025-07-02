@@ -67,7 +67,7 @@ class HuxBadge extends StatelessWidget {
 
   Color _getBackgroundColor(BuildContext context) {
     if (customColor != null) return customColor!;
-    
+
     switch (variant) {
       case HuxBadgeVariant.primary:
         return HuxTokens.primary(context);
@@ -88,7 +88,7 @@ class HuxBadge extends StatelessWidget {
     if (customColor != null) {
       return customColor!.withValues(alpha: 0.3);
     }
-    
+
     switch (variant) {
       case HuxBadgeVariant.primary:
         return HuxTokens.primary(context).withValues(alpha: 0.3);
@@ -111,7 +111,7 @@ class HuxBadge extends StatelessWidget {
       final luminance = customColor!.computeLuminance();
       return luminance > 0.5 ? Colors.black87 : Colors.white;
     }
-    
+
     switch (variant) {
       case HuxBadgeVariant.primary:
         final primaryColor = HuxTokens.primary(context);
