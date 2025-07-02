@@ -5,6 +5,99 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2025-07-02
+
+### Added
+- **HuxDateTimePicker**: Versatile date and time selection component
+  - Three modes: date-only, time-only, or combined date/time selection
+  - Native picker integration with theming support
+  - Multiple size variants and validation support
+  - Proper keyboard and accessibility handling
+- **HuxBadge**: Status indicators and notification counters with semantic variants
+  - Six variants: Primary, Secondary, Outline, Success, Destructive, Number badge
+  - Consistent design tokens with theme-adaptive colors
+  - Small size optimized for UI indicators
+- **HuxCheckbox**: Interactive checkbox component with custom styling
+  - Smooth state transitions with proper accessibility
+  - Optional label support with consistent spacing
+  - Theme-aware colors using semantic design tokens
+  - Disabled state support
+- **HuxSwitch**: Toggle switch component with smooth animations
+  - 200ms animated transitions between states
+  - Theme-aware styling with primary color integration
+  - Consistent border styling using design tokens
+- **HuxAlert**: Message boxes with semantic variants and dismissible functionality
+  - Three variants: info, success, destructive (error)
+  - Theme-adaptive surface and text colors for optimal visibility
+  - Optional icons using Feather Icons for consistency
+  - Dismissible with close button and callback support
+  - Max-width constraint (600px) with center alignment
+- **HuxAvatar**: Advanced circular user image component
+  - Network image support with graceful error handling
+  - Automatic initials generation from names
+  - **Gradient Variants**: Five beautiful gradient options (bluePurple, greenBlue, orangeRed, purplePink, tealCyan)
+  - Theme-aware background using surfaceSecondary and borderSecondary tokens
+  - Multiple size variants (small, medium, large, extraLarge)
+- **HuxAvatarGroup**: Display multiple avatars with overlapping or spaced layouts
+  - Overlapping layout with 30% offset for space efficiency
+  - Smart overflow handling with "+N" count indicator
+  - Customizable spacing and maximum visible count
+  - Seamless integration with all HuxAvatar variants
+
+### Enhanced
+- **Design System Improvements**: Theme-adaptive success and destructive colors
+  - **Light Mode Optimization**: Improved visibility with proper contrast ratios
+  - Success: Dark green text on light green background (15% opacity)
+  - Destructive: Dark red text on light red background (15% opacity)
+  - **Dark Mode**: Maintained existing high-contrast appearance
+- **Icon System Migration**: Complete transition from Material Design to Feather Icons
+  - Consistent iconography across all components and navigation
+  - Updated theme toggle, dropdown, and navigation icons
+  - Enhanced context menu icons for better visual coherence
+- **Navigation & Organization**: Reordered sidebar to match content section sequence
+  - Logical component flow: Buttons → Inputs → Cards → Charts → Context Menu → Form Controls → Feedback → Display → Loading
+  - Renamed "Display" to "Avatar" for clarity
+  - Updated component titles to match actual functionality
+
+### Changed
+- **Component Simplification**: Removed size variations for optimal UX
+  - HuxCheckbox: Single medium size (removed small/large variants)
+  - HuxSwitch: Single medium size (streamlined interface)
+  - HuxBadge: Single small size (optimized for indicators)
+- **Badge Reorganization**: Improved semantic variant ordering
+  - Reordered: Primary, Secondary, Outline, Success, Destructive, Number
+  - Removed warning variant for cleaner design language
+  - Enhanced outline variant with proper transparent background
+- **Component Interactions**: Removed splash effects for cleaner interactions
+  - HuxCheckbox and HuxSwitch: Replaced Material splash with GestureDetector
+  - Cleaner, more professional interaction feedback
+
+### Fixed
+- **Linting & Code Quality**: Resolved all static analysis issues
+  - Removed unnecessary .toList() calls in spread operations
+  - Fixed BuildContext usage across async gaps with mounted checks
+  - Achieved 0 analyzer issues for publication readiness
+- **Import Dependencies**: Proper Feather Icons integration
+  - Added flutter_feather_icons dependency to all relevant files
+  - Consistent icon usage across example and library code
+
+### Developer Experience
+- **Enhanced Documentation**: Updated README with comprehensive examples
+  - Added usage examples for all new components
+  - Fixed import paths (hux_ui → hux)
+  - Visual component showcase with proper API documentation
+- **Publication Ready**: Complete package preparation
+  - All tests passing with comprehensive coverage
+  - Static analysis clean with 0 issues
+  - Proper semantic versioning for major feature release
+- **Improved Example App**: Comprehensive component demonstrations
+  - Centered sections with consistent spacing
+  - Simplified component showcases focusing on core functionality
+  - Theme-aware component examples
+
+### Breaking Changes
+- None - Full backward compatibility maintained
+
 ## [0.1.5] - 2025-07-01
 
 ### Added

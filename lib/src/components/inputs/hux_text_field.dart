@@ -174,13 +174,13 @@ class HuxTextField extends StatelessWidget {
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
-                color: HuxTokens.alert(context),
+                color: HuxTokens.borderDestructive(context),
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
-                color: HuxTokens.alert(context),
+                color: HuxTokens.textDestructive(context),
                 width: 2,
               ),
             ),

@@ -159,10 +159,60 @@ class HuxTokens {
         : HuxColors.black.withValues(alpha: 0.1);
   }
 
-  /// Alert color for warnings and destructive actions
-  static Color alert(BuildContext context) {
+  // DESTRUCTIVE TOKENS
+  /// Primary destructive color for warnings, errors, and dangerous actions
+  static Color destructive(BuildContext context) {
     return HuxColors
-        .red; // Red color for alert/warning/destructive states - same in both light and dark mode
+        .red; // Dark red color for destructive states - same in both light and dark mode
+  }
+
+  /// Surface color for destructive backgrounds
+  static Color surfaceDestructive(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return isDark 
+        ? HuxColors.red.withValues(alpha: 0.60) // Dark mode: dark red with transparency
+        : HuxColors.redLight.withValues(alpha: 0.15); // Light mode: light red with low transparency
+  }
+
+  /// Border color for destructive components
+  static Color borderDestructive(BuildContext context) {
+    return HuxColors.redLight; // Lighter red color for borders
+  }
+
+  /// Text color for destructive content
+  static Color textDestructive(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return isDark 
+        ? HuxColors.redLight // Dark mode: light red for contrast
+        : HuxColors.red; // Light mode: dark red for better contrast
+  }
+
+  // SUCCESS TOKENS
+  /// Primary success color for positive states and confirmations
+  static Color success(BuildContext context) {
+    return HuxColors
+        .green; // Dark green color for success states - same in both light and dark mode
+  }
+
+  /// Surface color for success backgrounds
+  static Color surfaceSuccess(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return isDark 
+        ? HuxColors.green.withValues(alpha: 0.60) // Dark mode: dark green with transparency
+        : HuxColors.greenLight.withValues(alpha: 0.15); // Light mode: light green with low transparency
+  }
+
+  /// Border color for success components
+  static Color borderSuccess(BuildContext context) {
+    return HuxColors.greenLight; // Lighter green color for borders
+  }
+
+  /// Text color for success content
+  static Color textSuccess(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return isDark 
+        ? HuxColors.greenLight // Dark mode: light green for contrast
+        : HuxColors.green; // Light mode: dark green for better contrast
   }
 
   /// Focus color for keyboard navigation

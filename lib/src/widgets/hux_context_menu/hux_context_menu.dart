@@ -250,7 +250,7 @@ class _HuxContextMenuItemWrapper extends StatelessWidget {
     if (item.isDisabled) {
       return HuxTokens.textDisabled(context);
     } else if (item.isDestructive) {
-      return HuxTokens.alert(context);
+      return HuxTokens.textDestructive(context);
     } else {
       return HuxTokens.textPrimary(context);
     }
@@ -260,7 +260,7 @@ class _HuxContextMenuItemWrapper extends StatelessWidget {
     if (item.isDisabled) {
       return HuxTokens.textDisabled(context);
     } else if (item.isDestructive) {
-      return HuxTokens.alert(context);
+      return HuxTokens.textDestructive(context);
     } else {
       return HuxTokens.iconSecondary(context);
     }

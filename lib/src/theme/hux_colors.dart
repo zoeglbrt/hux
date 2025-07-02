@@ -18,8 +18,17 @@ class HuxColors {
   /// Pure black color
   static const Color black = Color(0xFF000000);
 
-  /// Error color for validation and error states
-  static const Color red = Color(0xFFEF4444);
+  /// Destructive color for warnings, errors, and dangerous actions
+  static const Color red = Color(0xFF7F1D1D);
+
+  /// Lighter red color for destructive text and borders
+  static const Color redLight = Color(0xFFEF4444);
+
+  /// Success color for positive states and confirmations
+  static const Color green = Color(0xFF166534);
+
+  /// Lighter green color for success text and borders
+  static const Color greenLight = Color(0xFF10B981);
 
   // Essential preset colors for primary customization
   /// Preset colors available for theming

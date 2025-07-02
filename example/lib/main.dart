@@ -72,10 +72,16 @@ class _MyHomePageState extends State<MyHomePage> {
   // Global keys for each section
   final _buttonsKey = GlobalKey();
   final _textFieldsKey = GlobalKey();
+  final _datePickerKey = GlobalKey();
   final _cardsKey = GlobalKey();
   final _chartsKey = GlobalKey();
   final _loadingKey = GlobalKey();
   final _contextMenuKey = GlobalKey();
+  final _checkboxesKey = GlobalKey();
+  final _toggleSwitchesKey = GlobalKey();
+  final _badgesKey = GlobalKey();
+  final _indicatorsKey = GlobalKey();
+  final _displayKey = GlobalKey();
 
   // Navigation items
   late final List<NavigationItem> _navigationItems;
@@ -86,32 +92,62 @@ class _MyHomePageState extends State<MyHomePage> {
     _navigationItems = [
       NavigationItem(
         title: 'Buttons',
-        icon: Icons.smart_button,
+        icon: FeatherIcons.square,
         key: _buttonsKey,
       ),
       NavigationItem(
         title: 'Text Fields',
-        icon: Icons.text_fields,
+        icon: FeatherIcons.edit3,
         key: _textFieldsKey,
       ),
       NavigationItem(
+        title: 'Date/Time Picker',
+        icon: FeatherIcons.calendar,
+        key: _datePickerKey,
+      ),
+      NavigationItem(
         title: 'Cards',
-        icon: Icons.credit_card,
+        icon: FeatherIcons.creditCard,
         key: _cardsKey,
       ),
       NavigationItem(
         title: 'Charts',
-        icon: Icons.analytics,
+        icon: FeatherIcons.barChart2,
         key: _chartsKey,
       ),
       NavigationItem(
         title: 'Context Menu',
-        icon: Icons.menu,
+        icon: FeatherIcons.menu,
         key: _contextMenuKey,
       ),
       NavigationItem(
+        title: 'Checkbox',
+        icon: FeatherIcons.checkSquare,
+        key: _checkboxesKey,
+      ),
+      NavigationItem(
+        title: 'Switch',
+        icon: FeatherIcons.toggleLeft,
+        key: _toggleSwitchesKey,
+      ),
+      NavigationItem(
+        title: 'Badges',
+        icon: FeatherIcons.tag,
+        key: _badgesKey,
+      ),
+      NavigationItem(
+        title: 'Alerts',
+        icon: FeatherIcons.alertCircle,
+        key: _indicatorsKey,
+      ),
+      NavigationItem(
+        title: 'Avatar',
+        icon: FeatherIcons.user,
+        key: _displayKey,
+      ),
+      NavigationItem(
         title: 'Loading',
-        icon: Icons.refresh,
+        icon: FeatherIcons.loader,
         key: _loadingKey,
       ),
     ];
@@ -244,8 +280,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 child: Icon(
                                   widget.themeMode == ThemeMode.light
-                                      ? Icons.dark_mode_outlined
-                                      : Icons.light_mode_outlined,
+                                      ? FeatherIcons.moon
+                                      : FeatherIcons.sun,
                                   size: 20,
                                   color: Theme.of(context).brightness ==
                                           Brightness.dark
@@ -322,7 +358,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       : HuxColors.black80,
                                 ),
                             icon: Icon(
-                              Icons.keyboard_arrow_down,
+                              FeatherIcons.chevronDown,
                               color: Theme.of(context).brightness ==
                                       Brightness.dark
                                   ? HuxColors.white60
@@ -637,6 +673,84 @@ class _MyHomePageState extends State<MyHomePage> {
 
                       const SizedBox(height: 32),
 
+                      // Date/Time Picker Section
+                      Container(
+                        key: _datePickerKey,
+                        child: HuxCard(
+                          title: 'Date/Time Picker',
+                          subtitle: 'Versatile date and time selection components',
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 16),
+                              // Date only picker
+                              HuxDateTimePicker(
+                                mode: HuxDateTimePickerMode.date,
+                                label: 'Select Date',
+                                hint: 'Choose a date',
+                                onChanged: (date) {
+                                  if (date != null) {
+                                    _showSnackBar('Selected date: ${date.toString().split(' ')[0]}');
+                                  }
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              // Time only picker
+                              HuxDateTimePicker(
+                                mode: HuxDateTimePickerMode.time,
+                                label: 'Select Time',
+                                hint: 'Choose a time',
+                                onChanged: (time) {
+                                  if (time != null) {
+                                    final timeStr = '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
+                                    _showSnackBar('Selected time: $timeStr');
+                                  }
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              // Date and time picker
+                              HuxDateTimePicker(
+                                mode: HuxDateTimePickerMode.dateTime,
+                                label: 'Select Date & Time',
+                                hint: 'Choose date and time',
+                                initialValue: DateTime.now(),
+                                onChanged: (dateTime) {
+                                  if (dateTime != null) {
+                                    _showSnackBar('Selected: ${dateTime.toString().substring(0, 16)}');
+                                  }
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              const Divider(),
+                              const SizedBox(height: 16),
+                              // Different sizes
+                              const Row(
+                                children: [
+                                  Expanded(
+                                    child: HuxDateTimePicker(
+                                      mode: HuxDateTimePickerMode.date,
+                                      label: 'Small',
+                                      size: HuxDateTimePickerSize.small,
+                                      hint: 'Small picker',
+                                    ),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: HuxDateTimePicker(
+                                      mode: HuxDateTimePickerMode.date,
+                                      label: 'Large',
+                                      size: HuxDateTimePickerSize.large,
+                                      hint: 'Large picker',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 32),
+
                       // Cards Section
                       Container(
                         key: _cardsKey,
@@ -882,6 +996,31 @@ class _MyHomePageState extends State<MyHomePage> {
 
                       const SizedBox(height: 32),
 
+                      // Checkboxes Section
+                      CheckboxesSection(key: _checkboxesKey),
+
+                      const SizedBox(height: 32),
+
+                      // Toggle Switches Section
+                      ToggleSwitchesSection(key: _toggleSwitchesKey),
+
+                      const SizedBox(height: 32),
+
+                      // Badges Section
+                      BadgesSection(key: _badgesKey),
+
+                      const SizedBox(height: 32),
+
+                      // Alerts Section
+                      IndicatorsSection(key: _indicatorsKey),
+
+                      const SizedBox(height: 32),
+
+                      // Display Section
+                      DisplaySection(key: _displayKey),
+
+                      const SizedBox(height: 32),
+
                       // Loading Section
                       Container(
                         key: _loadingKey,
@@ -1037,4 +1176,262 @@ class NavigationItem {
     required this.icon,
     required this.key,
   });
+}
+
+// Checkboxes Section
+class CheckboxesSection extends StatefulWidget {
+  const CheckboxesSection({super.key});
+
+  @override
+  State<CheckboxesSection> createState() => _CheckboxesSectionState();
+}
+
+class _CheckboxesSectionState extends State<CheckboxesSection> {
+  bool _checkboxValue = false;
+  final bool _checkboxDisabled = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      title: 'Checkbox',
+      subtitle: 'Interactive checkbox controls',
+      child: Column(
+        children: [
+          const SizedBox(height: 32),
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                HuxCheckbox(
+                  value: _checkboxValue,
+                  onChanged: (value) {
+                    setState(() {
+                      _checkboxValue = value ?? false;
+                    });
+                  },
+                  label: 'I agree to the terms and conditions',
+                ),
+                const SizedBox(height: 16),
+                HuxCheckbox(
+                  value: _checkboxDisabled,
+                  onChanged: null,
+                  label: 'Disabled checkbox',
+                  isDisabled: true,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+// Toggle Switches Section
+class ToggleSwitchesSection extends StatefulWidget {
+  const ToggleSwitchesSection({super.key});
+
+  @override
+  State<ToggleSwitchesSection> createState() => _ToggleSwitchesSectionState();
+}
+
+class _ToggleSwitchesSectionState extends State<ToggleSwitchesSection> {
+  bool _switchValue = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      title: 'Switch',
+      subtitle: 'Interactive toggle switch control',
+      child: Column(
+        children: [
+          const SizedBox(height: 32),
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                HuxSwitch(
+                  value: _switchValue,
+                  onChanged: (value) {
+                    setState(() {
+                      _switchValue = value;
+                    });
+                  },
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  _switchValue ? 'Enabled' : 'Disabled',
+                  style: TextStyle(
+                    color: HuxTokens.textSecondary(context),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+// Badges Section
+class BadgesSection extends StatelessWidget {
+  const BadgesSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const HuxCard(
+      title: 'Badge',
+      subtitle: 'Status indicators and notification counters',
+      child: Column(
+        children: [
+          SizedBox(height: 32),
+          Center(
+            child: Wrap(
+              spacing: 12,
+              runSpacing: 8,
+              children: [
+                HuxBadge(label: 'Primary', variant: HuxBadgeVariant.primary, size: HuxBadgeSize.small),
+                HuxBadge(label: 'Secondary', variant: HuxBadgeVariant.secondary, size: HuxBadgeSize.small),
+                HuxBadge(label: 'Outline', variant: HuxBadgeVariant.outline, size: HuxBadgeSize.small),
+                HuxBadge(label: 'Success', variant: HuxBadgeVariant.success, size: HuxBadgeSize.small),
+                HuxBadge(label: 'Destructive', variant: HuxBadgeVariant.destructive, size: HuxBadgeSize.small),
+                HuxBadge(label: '99+', variant: HuxBadgeVariant.primary, size: HuxBadgeSize.small),
+              ],
+            ),
+          ),
+          SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+// Indicators Section
+class IndicatorsSection extends StatelessWidget {
+  const IndicatorsSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      title: 'Alerts',
+      subtitle: 'Feedback messages for user actions and status',
+      child: Column(
+        children: [
+          const SizedBox(height: 16),
+          
+          // Secondary Alert
+          Center(
+            child: HuxAlert(
+              variant: HuxAlertVariant.info,
+              title: 'Information',
+              message: 'This is a informational message.',
+              showIcon: true,
+              onDismiss: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Information alert dismissed')),
+                );
+              },
+            ),
+          ),
+          
+          const SizedBox(height: 16),
+          
+          // Success Alert
+          Center(
+            child: HuxAlert(
+              variant: HuxAlertVariant.success,
+              title: 'Success',
+              message: 'Your operation completed successfully!',
+              showIcon: true,
+              onDismiss: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Success alert dismissed')),
+                );
+              },
+            ),
+          ),
+          
+          const SizedBox(height: 16),
+          
+          // Destructive Alert
+          Center(
+            child: HuxAlert(
+              variant: HuxAlertVariant.error,
+              title: 'Destructive',
+              message: 'This action cannot be undone. Please proceed with caution.',
+              showIcon: true,
+              onDismiss: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Destructive alert dismissed')),
+                );
+              },
+            ),
+          ),
+          
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
+}
+
+// Display Section
+class DisplaySection extends StatelessWidget {
+  const DisplaySection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const HuxCard(
+      title: 'Avatar',
+      subtitle: 'User avatars and profile displays',
+      child: Column(
+        children: [
+          SizedBox(height: 32),
+          
+          // Avatars and avatar group inline
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                HuxAvatar(
+                  name: 'John Doe',
+                  size: HuxAvatarSize.small,
+                ),
+                SizedBox(width: 48),
+                HuxAvatar(
+                  useGradient: true,
+                  size: HuxAvatarSize.small,
+                ),
+                SizedBox(width: 48),
+                HuxAvatarGroup(
+                  avatars: [
+                    HuxAvatar(
+                      useGradient: true,
+                      gradientVariant: HuxAvatarGradient.bluePurple,
+                    ),
+                    HuxAvatar(
+                      useGradient: true,
+                      gradientVariant: HuxAvatarGradient.greenBlue,
+                    ),
+                    HuxAvatar(
+                      useGradient: true,
+                      gradientVariant: HuxAvatarGradient.orangeRed,
+                    ),
+                  ],
+                  size: HuxAvatarSize.small,
+                  overlap: true,
+                ),
+              ],
+            ),
+          ),
+          
+          SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
 }

@@ -36,10 +36,15 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 ### Inputs
 - `HuxTextField` - Enhanced text input with consistent styling
+
+![HuxTextField Component](screenshots/hux-text-field.png)
+
+- `HuxDateTimePicker` - Versatile date and time selection component
+- `HuxCheckbox` - Interactive checkbox with custom styling and labels  
 - Label, helper text, and error state support
 - Multiple sizes and validation
 
-![HuxTextField Component](screenshots/hux-text-field.png)
+![HuxCheckbox Component](screenshots/hux-checkbox.png)
 
 ### Widgets
 - `HuxLoading` - Customizable loading indicators
@@ -61,6 +66,26 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 *Right-click the example app components to see context menus in action!*
 
+### Switch
+- `HuxSwitch` - Toggle switch with smooth animations between on/off states
+
+![HuxSwitch Component](screenshots/hux-switch.png)
+
+### Feedback & Status
+- `HuxBadge` - Status indicators and notification counters with semantic variants
+
+![HuxBadge Component](screenshots/hux-badge.png)
+
+- `HuxAlert` - Message boxes with variants (info, success, error) and dismissible functionality
+
+![HuxAlert Component](screenshots/hux-alerts.png)
+
+### Avatar
+- `HuxAvatar` - Circular user images with initials fallback, custom colors, and beautiful gradient variants
+- `HuxAvatarGroup` - Display multiple avatars with overlapping or spaced layouts
+
+![HuxAvatar Component](screenshots/hux-avatar.png)
+
 ### Theme
 - `HuxTheme` - Pre-configured light and dark themes
 - `HuxColors` - Comprehensive color palette
@@ -80,7 +105,7 @@ Wrap your app with the Hux theme:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:hux_ui/hux.dart';
+import 'package:hux/hux.dart';
 
 void main() {
   runApp(MyApp());
@@ -196,19 +221,19 @@ HuxContextMenu(
   menuItems: [
     HuxContextMenuItem(
       text: 'Copy',
-      icon: Icons.copy,
+      icon: FeatherIcons.copy,
       onTap: () => print('Copy action'),
     ),
     HuxContextMenuItem(
       text: 'Paste',
-      icon: Icons.paste,
+      icon: FeatherIcons.clipboard,
       onTap: () => print('Paste action'),
       isDisabled: true,
     ),
     const HuxContextMenuDivider(),
     HuxContextMenuItem(
       text: 'Delete',
-      icon: Icons.delete,
+      icon: FeatherIcons.trash2,
       onTap: () => print('Delete action'),
       isDestructive: true,
     ),
@@ -217,6 +242,80 @@ HuxContextMenu(
     padding: const EdgeInsets.all(20),
     child: const Text('Right-click me!'),
   ),
+)
+```
+
+#### Date/Time Picker
+
+```dart
+// Date picker
+HuxDateTimePicker(
+  mode: HuxDateTimePickerMode.date,
+  label: 'Select Date',
+  onChanged: (date) => print('Selected: $date'),
+)
+
+// Time picker  
+HuxDateTimePicker(
+  mode: HuxDateTimePickerMode.time,
+  label: 'Select Time',
+  onChanged: (time) => print('Selected: $time'),
+)
+
+// Date and time picker
+HuxDateTimePicker(
+  mode: HuxDateTimePickerMode.dateTime,
+  label: 'Select Date & Time',
+  initialValue: DateTime.now(),
+  onChanged: (dateTime) => print('Selected: $dateTime'),
+)
+```
+
+#### Avatar & Avatar Group
+
+```dart
+// Simple avatar with initials
+HuxAvatar(
+  name: 'John Doe',
+  size: HuxAvatarSize.medium,
+)
+
+// Gradient avatar
+HuxAvatar(
+  useGradient: true,
+  gradientVariant: HuxAvatarGradient.bluePurple,
+  size: HuxAvatarSize.medium,
+)
+
+// Avatar group with overlap
+HuxAvatarGroup(
+  avatars: [
+    HuxAvatar(name: 'Alice'),
+    HuxAvatar(name: 'Bob'),
+    HuxAvatar(useGradient: true, gradientVariant: HuxAvatarGradient.greenBlue),
+  ],
+  overlap: true,
+  maxVisible: 3,
+)
+```
+
+#### Badges & Alerts
+
+```dart
+// Badge variants
+HuxBadge(
+  label: 'New',
+  variant: HuxBadgeVariant.primary,
+  size: HuxBadgeSize.small,
+)
+
+// Alert with dismissal
+HuxAlert(
+  variant: HuxAlertVariant.success,
+  title: 'Success!',
+  message: 'Operation completed successfully.',
+  showIcon: true,
+  onDismiss: () => print('Alert dismissed'),
 )
 ```
 
