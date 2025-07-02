@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2025-07-02
+
+### Changed
+- **Code Quality**: Applied consistent code formatting across all source files
+- **Dependencies**: Upgraded cristalyse from ^0.6.1 to ^0.9.2 for latest features and improvements
+
+### Added
+- **New Dependencies**: Added flutter_svg and vector graphics suite as transitive dependencies
+- **Enhanced Compatibility**: Improved package ecosystem integration with latest dependency versions
+
+### Developer Experience
+- **Consistent Formatting**: All source files now follow standardized Dart formatting rules
+- **Updated Dependencies**: Latest cristalyse version provides improved functionality and stability
+
 ## [0.2.0] - 2025-07-02
 
 ### Added
