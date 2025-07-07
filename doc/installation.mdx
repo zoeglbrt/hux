@@ -1,0 +1,267 @@
+---
+title: 'Installation'
+description: 'Get started with Hux UI in your Flutter project'
+---
+
+## Requirements
+
+Before installing Hux UI, ensure your development environment meets these requirements:
+
+<AccordionGroup>
+  <Accordion title="Flutter SDK" icon="mobile">
+    Flutter **3.16.0** or higher
+  </Accordion>
+  
+  <Accordion title="Dart SDK" icon="code">
+    Dart **3.0.0** or higher (included with Flutter)
+  </Accordion>
+  
+  <Accordion title="Platform Support" icon="devices">
+    - **Android** (API level 21+)
+    - **iOS** (iOS 12.0+)
+    - **Web** (JS and WASM)
+    - **Windows** (Windows 10+)
+    - **macOS** (macOS 10.15+)
+    - **Linux** (Ubuntu 18.04+)
+  </Accordion>
+</AccordionGroup>
+
+## Installation
+
+### Method 1: Using Flutter Command Line
+
+Add Hux UI to your Flutter project using the command line:
+
+```bash
+flutter pub add hux
+```
+
+This will automatically add the latest version of Hux UI to your `pubspec.yaml` file and run `flutter pub get`.
+
+### Method 2: Manual Installation
+
+Alternatively, you can manually add Hux UI to your `pubspec.yaml` file:
+
+```yaml pubspec.yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  hux: ^0.2.1  # Use the latest version
+```
+
+Then run:
+
+```bash
+flutter pub get
+```
+
+## Import and Setup
+
+### 1. Import Hux UI
+
+Import Hux UI in your Dart files where you want to use the components:
+
+```dart
+import 'package:hux/hux.dart';
+```
+
+This single import gives you access to all Hux UI components and utilities.
+
+### 2. Configure Themes
+
+Wrap your `MaterialApp` with Hux UI themes for the best experience:
+
+```dart main.dart
+import 'package:flutter/material.dart';
+import 'package:hux/hux.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'My Hux UI App',
+      
+      // Configure light theme
+      theme: HuxTheme.lightTheme,
+      
+      // Configure dark theme  
+      darkTheme: HuxTheme.darkTheme,
+      
+      // Optional: Set theme mode
+      themeMode: ThemeMode.system, // Follows system theme
+      
+      home: MyHomePage(),
+    );
+  }
+}
+```
+
+### 3. Start Using Components
+
+You're now ready to use Hux UI components in your app:
+
+```dart
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Hux UI Demo')),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            HuxButton(
+              onPressed: () => print('Button pressed!'),
+              child: Text('Primary Button'),
+              variant: HuxButtonVariant.primary,
+            ),
+            SizedBox(height: 16),
+            HuxCard(
+              title: 'Welcome to Hux UI',
+              child: Text('This is a Hux UI card component.'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+## Verification
+
+To verify that Hux UI is properly installed and working:
+
+### 1. Check Dependencies
+
+Ensure these dependencies are listed in your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  hux: ^0.2.1
+  flutter:
+    sdk: flutter
+```
+
+### 2. Test Import
+
+Create a simple test to verify the import:
+
+```dart test.dart
+import 'package:hux/hux.dart';
+
+void main() {
+  // If this compiles without errors, Hux UI is properly installed
+  final button = HuxButton(
+    onPressed: () {},
+    child: Text('Test'),
+  );
+  print('Hux UI installed successfully!');
+}
+```
+
+### 3. Run Your App
+
+Start your Flutter app:
+
+```bash
+flutter run
+```
+
+If you see Hux UI components rendering correctly, the installation is complete!
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Dependency Conflicts" icon="warning">
+    If you encounter dependency conflicts, try:
+    
+    ```bash
+    flutter pub deps
+    flutter clean
+    flutter pub get
+    ```
+    
+    Check for version conflicts with other packages in your `pubspec.yaml`.
+  </Accordion>
+  
+  <Accordion title="Import Errors" icon="exclamation-triangle">
+    If you get import errors:
+    
+    1. Ensure you're using the correct import: `import 'package:hux/hux.dart';`
+    2. Check that the package is listed in your `pubspec.yaml`
+    3. Run `flutter pub get` to fetch dependencies
+    4. Restart your IDE/editor
+  </Accordion>
+  
+  <Accordion title="Theme Issues" icon="palette">
+    If themes aren't working correctly:
+    
+    1. Ensure you're using `HuxTheme.lightTheme` and `HuxTheme.darkTheme`
+    2. Check that `MaterialApp` is properly configured
+    3. Verify theme mode settings
+    4. Make sure components are wrapped in a `MaterialApp` context
+  </Accordion>
+  
+  <Accordion title="Platform Specific Issues" icon="devices">
+    For web applications, ensure you have the latest Flutter web support:
+    
+    ```bash
+    flutter config --enable-web
+    flutter create . --platforms web
+    ```
+    
+    For desktop platforms:
+    
+    ```bash
+    flutter config --enable-windows-desktop --enable-macos-desktop --enable-linux-desktop
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+Now that Hux UI is installed, you can:
+
+<CardGroup cols={2}>
+  <Card
+    title="Follow the Quickstart"
+    icon="rocket"
+    href="/quickstart"
+  >
+    Learn the basics with our quickstart guide
+  </Card>
+  <Card
+    title="Explore Components"
+    icon="puzzle-piece"
+    href="/components/buttons"
+  >
+    Discover all available UI components
+  </Card>
+  <Card
+    title="Learn Theming"
+    icon="palette"
+    href="/theming"
+  >
+    Customize themes and design tokens
+  </Card>
+  <Card
+    title="View Examples"
+    icon="code"
+    href="/examples/basic-usage"
+  >
+    See practical implementation examples
+  </Card>
+</CardGroup>
+
+## Package Information
+
+- **Latest Version**: 0.2.1
+- **Package URL**: [pub.dev/packages/hux](https://pub.dev/packages/hux)
+- **Repository**: [github.com/zoeglbrt/hux](https://github.com/zoeglbrt/hux)
+- **License**: MIT
+- **Author**: [Zoe Gilbert](https://github.com/zoeglbrt)

@@ -1,0 +1,433 @@
+---
+title: 'Theming'
+description: 'Customize Hux UI themes and design tokens to match your brand'
+---
+
+## Overview
+
+Hux UI provides a comprehensive theming system based on design tokens that automatically adapt to light and dark modes. The theming system separates primitive colors from semantic tokens, following modern design system best practices.
+
+## Theme Configuration
+
+### Basic Setup
+
+Configure light and dark themes in your app:
+
+```dart main.dart
+import 'package:flutter/material.dart';
+import 'package:hux/hux.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'My App',
+      
+      // Use Hux UI themes
+      theme: HuxTheme.lightTheme,
+      darkTheme: HuxTheme.darkTheme,
+      
+      // Control theme mode
+      themeMode: ThemeMode.system, // Follow system setting
+      // themeMode: ThemeMode.light, // Force light mode
+      // themeMode: ThemeMode.dark,  // Force dark mode
+      
+      home: MyHomePage(),
+    );
+  }
+}
+```
+
+### Dynamic Theme Switching
+
+Implement theme switching in your app:
+
+```dart
+class ThemeProvider extends StatefulWidget {
+  @override
+  _ThemeProviderState createState() => _ThemeProviderState();
+}
+
+class _ThemeProviderState extends State<ThemeProvider> {
+  ThemeMode _themeMode = ThemeMode.system;
+
+  void toggleTheme() {
+    setState(() {
+      _themeMode = _themeMode == ThemeMode.light 
+          ? ThemeMode.dark 
+          : ThemeMode.light;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: HuxTheme.lightTheme,
+      darkTheme: HuxTheme.darkTheme,
+      themeMode: _themeMode,
+      home: Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              icon: Icon(_themeMode == ThemeMode.light 
+                  ? FeatherIcons.moon 
+                  : FeatherIcons.sun),
+              onPressed: toggleTheme,
+            ),
+          ],
+        ),
+        body: YourContent(),
+      ),
+    );
+  }
+}
+```
+
+## Design Tokens
+
+Hux UI uses semantic design tokens through the `HuxTokens` class. These tokens automatically adapt to the current theme.
+
+### Text Tokens
+
+```dart
+// Primary text (black in light, white in dark)
+Text(
+  'Primary Text',
+  style: TextStyle(color: HuxTokens.textPrimary(context)),
+)
+
+// Secondary text (70% opacity)
+Text(
+  'Secondary Text',
+  style: TextStyle(color: HuxTokens.textSecondary(context)),
+)
+
+// Tertiary text (50% opacity)
+Text(
+  'Tertiary Text',
+  style: TextStyle(color: HuxTokens.textTertiary(context)),
+)
+
+// Disabled text (30% opacity)
+Text(
+  'Disabled Text',
+  style: TextStyle(color: HuxTokens.textDisabled(context)),
+)
+```
+
+### Surface Tokens
+
+```dart
+// Primary surface (main background)
+Container(
+  color: HuxTokens.surfacePrimary(context),
+  child: YourContent(),
+)
+
+// Secondary surface (subtle background)
+Container(
+  color: HuxTokens.surfaceSecondary(context),
+  child: YourContent(),
+)
+
+// Elevated surface (cards, modals)
+Container(
+  color: HuxTokens.surfaceElevated(context),
+  child: YourContent(),
+)
+
+// Hover surface
+Container(
+  color: HuxTokens.surfaceHover(context),
+  child: YourContent(),
+)
+```
+
+### Border Tokens
+
+```dart
+// Primary borders
+Container(
+  decoration: BoxDecoration(
+    border: Border.all(color: HuxTokens.borderPrimary(context)),
+  ),
+  child: YourContent(),
+)
+
+// Secondary borders (more subtle)
+Container(
+  decoration: BoxDecoration(
+    border: Border.all(color: HuxTokens.borderSecondary(context)),
+  ),
+  child: YourContent(),
+)
+```
+
+### Status Tokens
+
+```dart
+// Success colors
+HuxAlert(
+  variant: HuxAlertVariant.success,
+  title: 'Success!',
+  message: 'Operation completed successfully.',
+)
+
+// Destructive colors
+HuxAlert(
+  variant: HuxAlertVariant.destructive,
+  title: 'Error',
+  message: 'Something went wrong.',
+)
+```
+
+## Custom Colors
+
+### Using Preset Colors
+
+Hux UI provides several preset colors for customization:
+
+```dart
+// Available preset colors
+final presets = HuxColors.availablePresetColors;
+// ['default', 'indigo', 'green', 'pink']
+
+// Use preset colors in buttons
+HuxButton(
+  onPressed: () {},
+  child: Text('Indigo Button'),
+  primaryColor: HuxColors.getPresetColor('indigo'), // #665CFF
+)
+
+HuxButton(
+  onPressed: () {},
+  child: Text('Green Button'),
+  primaryColor: HuxColors.getPresetColor('green'), // #2E7252
+)
+
+HuxButton(
+  onPressed: () {},
+  child: Text('Pink Button'),
+  primaryColor: HuxColors.getPresetColor('pink'), // #DF1D54
+)
+```
+
+### Custom Colors
+
+Use any custom color with Hux UI components:
+
+```dart
+HuxButton(
+  onPressed: () {},
+  child: Text('Custom Purple'),
+  primaryColor: Color(0xFF6366F1),
+)
+
+HuxButton(
+  onPressed: () {},
+  child: Text('Custom Orange'),
+  primaryColor: Colors.deepOrange,
+)
+```
+
+### Color Accessibility
+
+Hux UI automatically ensures WCAG AA contrast compliance:
+
+```dart
+// Button text color is automatically calculated for optimal contrast
+HuxButton(
+  onPressed: () {},
+  child: Text('Auto Contrast'), // Text color adapts to background
+  primaryColor: Colors.purple, // Any background color
+)
+```
+
+## Advanced Theming
+
+### Custom Theme Extensions
+
+Extend Hux themes with your own customizations:
+
+```dart
+final customLightTheme = HuxTheme.lightTheme.copyWith(
+  // Override specific properties
+  appBarTheme: HuxTheme.lightTheme.appBarTheme.copyWith(
+    backgroundColor: Colors.blue.shade50,
+  ),
+  // Add custom color scheme
+  colorScheme: HuxTheme.lightTheme.colorScheme.copyWith(
+    secondary: Colors.blue,
+  ),
+);
+
+final customDarkTheme = HuxTheme.darkTheme.copyWith(
+  appBarTheme: HuxTheme.darkTheme.appBarTheme.copyWith(
+    backgroundColor: Colors.blue.shade900,
+  ),
+  colorScheme: HuxTheme.darkTheme.colorScheme.copyWith(
+    secondary: Colors.blue.shade300,
+  ),
+);
+```
+
+### Theme-Aware Widgets
+
+Create widgets that respond to theme changes:
+
+```dart
+class ThemeAwareWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: HuxTokens.surfaceElevated(context),
+        border: Border.all(color: HuxTokens.borderPrimary(context)),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: [
+          Icon(
+            FeatherIcons.star,
+            color: HuxTokens.iconPrimary(context),
+          ),
+          Text(
+            'Theme Aware Content',
+            style: TextStyle(color: HuxTokens.textPrimary(context)),
+          ),
+          Text(
+            'Adapts to ${isDark ? 'dark' : 'light'} mode',
+            style: TextStyle(color: HuxTokens.textSecondary(context)),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Use Semantic Tokens" icon="palette">
+    Always use `HuxTokens` instead of hardcoded colors:
+    
+    ```dart
+    // ✅ Good - semantic tokens
+    Text(
+      'Hello',
+      style: TextStyle(color: HuxTokens.textPrimary(context)),
+    )
+    
+    // ❌ Bad - hardcoded colors
+    Text(
+      'Hello',
+      style: TextStyle(color: Colors.black),
+    )
+    ```
+  </Accordion>
+  
+  <Accordion title="Test Both Themes" icon="eye">
+    Always test your UI in both light and dark modes:
+    
+    ```dart
+    // Force different themes for testing
+    MaterialApp(
+      theme: HuxTheme.lightTheme,
+      darkTheme: HuxTheme.darkTheme,
+      themeMode: ThemeMode.light, // Test light mode
+      // themeMode: ThemeMode.dark, // Test dark mode
+    )
+    ```
+  </Accordion>
+  
+  <Accordion title="Consistent Spacing" icon="grid">
+    Use consistent spacing that works with the theme:
+    
+    ```dart
+    // Use multiples of 4 or 8 for consistent spacing
+    EdgeInsets.all(16), // ✅ Good
+    EdgeInsets.symmetric(horizontal: 20, vertical: 12), // ✅ Good
+    EdgeInsets.all(13), // ❌ Inconsistent
+    ```
+  </Accordion>
+  
+  <Accordion title="Accessibility" icon="universal-access">
+    Leverage automatic contrast calculation:
+    
+    ```dart
+    // Hux UI automatically ensures proper contrast
+    HuxButton(
+      primaryColor: Colors.purple, // Any color
+      child: Text('Button'), // Text color automatically calculated
+    )
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Color Reference
+
+### Preset Colors
+
+| Name | Light Mode | Dark Mode | Hex Code |
+|------|------------|-----------|----------|
+| Default | Black | White | Dynamic |
+| Indigo | Indigo | Indigo | `#665CFF` |
+| Green | Green | Green | `#2E7252` |
+| Pink | Pink | Pink | `#DF1D54` |
+
+### Status Colors
+
+| Status | Purpose | Light Mode | Dark Mode |
+|--------|---------|------------|-----------|
+| Success | Positive actions | Dark Green | Light Green |
+| Destructive | Errors, warnings | Dark Red | Light Red |
+
+### Token Categories
+
+- **Text**: Primary, Secondary, Tertiary, Disabled, Inverted
+- **Surface**: Primary, Secondary, Elevated, Hover
+- **Border**: Primary, Secondary, Destructive, Success
+- **Button**: Secondary Background, Secondary Text, Secondary Border
+- **Icon**: Primary, Secondary
+- **Chart**: Grid, Axis, Axis Text
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card
+    title="Theme Switching"
+    icon="moon"
+    href="/examples/theme-switching"
+  >
+    See how to implement dynamic theme switching
+  </Card>
+  <Card
+    title="Custom Branding"
+    icon="brush"
+    href="/examples/custom-branding"
+  >
+    Learn how to apply custom brand colors
+  </Card>
+  <Card
+    title="Accessibility"
+    icon="universal-access"
+    href="/advanced/accessibility"
+  >
+    Ensure your themes meet accessibility standards
+  </Card>
+  <Card
+    title="Advanced Customization"
+    icon="cog"
+    href="/advanced/customization"
+  >
+    Deep dive into advanced theming techniques
+  </Card>
+</CardGroup>

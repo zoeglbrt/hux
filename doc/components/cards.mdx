@@ -1,0 +1,44 @@
+---
+title: 'HuxCard'
+description: 'Flexible card component with headers, actions, and tap handling'
+---
+
+## Overview
+
+`HuxCard` provides a flexible container component for displaying content with optional headers, titles, and actions.
+
+## Basic Usage
+
+```dart
+HuxCard(
+  title: 'Card Title',
+  subtitle: 'Optional subtitle',
+  child: Text('Card content goes here'),
+)
+```
+
+## With Actions
+
+```dart
+HuxCard(
+  title: 'Settings',
+  action: IconButton(
+    icon: Icon(FeatherIcons.settings),
+    onPressed: () {},
+  ),
+  child: Text('Configure your preferences'),
+  onTap: () => print('Card tapped'),
+)
+```
+
+## Properties
+
+- `title` - Card title text
+- `subtitle` - Optional subtitle text
+- `action` - Optional action widget (usually IconButton)
+- `child` - Main content widget
+- `onTap` - Tap handler for the entire card
+
+<Note>
+  Complete HuxCard documentation is coming soon. See the [example app](https://github.com/zoeglbrt/hux/tree/main/example) for more usage patterns.
+</Note>

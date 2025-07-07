@@ -1,0 +1,410 @@
+---
+title: 'HuxButton'
+description: 'Customizable button component with multiple variants, sizes, and loading states'
+---
+
+## Overview
+
+`HuxButton` is a versatile button component that provides multiple visual variants, sizes, loading states, and automatic WCAG AA contrast compliance. It adapts seamlessly to light and dark themes.
+
+## Basic Usage
+
+```dart
+HuxButton(
+  onPressed: () => print('Button pressed!'),
+  child: Text('Primary Button'),
+)
+```
+
+## Variants
+
+HuxButton supports four visual variants through the `HuxButtonVariant` enum:
+
+### Primary
+The default variant with a filled background using the primary color.
+
+```dart
+HuxButton(
+  onPressed: () {},
+  child: Text('Primary Button'),
+  variant: HuxButtonVariant.primary, // Default
+)
+```
+
+### Secondary
+A subtle variant with a light background and border.
+
+```dart
+HuxButton(
+  onPressed: () {},
+  child: Text('Secondary Button'),
+  variant: HuxButtonVariant.secondary,
+)
+```
+
+### Outline
+A transparent button with only a border outline.
+
+```dart
+HuxButton(
+  onPressed: () {},
+  child: Text('Outline Button'),
+  variant: HuxButtonVariant.outline,
+)
+```
+
+### Ghost
+A minimal transparent button without borders.
+
+```dart
+HuxButton(
+  onPressed: () {},
+  child: Text('Ghost Button'),
+  variant: HuxButtonVariant.ghost,
+)
+```
+
+## Sizes
+
+Control button dimensions with three size options:
+
+### Small
+Compact size for tight spaces (32px height).
+
+```dart
+HuxButton(
+  onPressed: () {},
+  child: Text('Small'),
+  size: HuxButtonSize.small,
+)
+```
+
+### Medium
+Default size for most use cases (40px height).
+
+```dart
+HuxButton(
+  onPressed: () {},
+  child: Text('Medium'),
+  size: HuxButtonSize.medium, // Default
+)
+```
+
+### Large
+Prominent size for important actions (48px height).
+
+```dart
+HuxButton(
+  onPressed: () {},
+  child: Text('Large'),
+  size: HuxButtonSize.large,
+)
+```
+
+## States
+
+### Loading State
+Display a loading indicator while processing.
+
+```dart
+class LoadingButtonExample extends StatefulWidget {
+  @override
+  _LoadingButtonExampleState createState() => _LoadingButtonExampleState();
+}
+
+class _LoadingButtonExampleState extends State<LoadingButtonExample> {
+  bool _isLoading = false;
+
+  void _handlePress() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    // Simulate async operation
+    await Future.delayed(Duration(seconds: 2));
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxButton(
+      onPressed: _isLoading ? null : _handlePress,
+      isLoading: _isLoading,
+      child: Text('Submit'),
+    );
+  }
+}
+```
+
+### Disabled State
+Disable button interaction.
+
+```dart
+HuxButton(
+  onPressed: null, // or use isDisabled: true
+  child: Text('Disabled Button'),
+  isDisabled: true,
+)
+```
+
+## Icons
+
+Add icons to enhance button meaning:
+
+### Icon with Text
+```dart
+HuxButton(
+  onPressed: () {},
+  child: Text('Save'),
+  icon: FeatherIcons.save,
+)
+```
+
+### Icon-only Button
+```dart
+HuxButton(
+  onPressed: () {},
+  child: Icon(FeatherIcons.heart),
+  size: HuxButtonSize.small,
+)
+```
+
+## Custom Colors
+
+### Using Preset Colors
+```dart
+// Indigo theme
+HuxButton(
+  onPressed: () {},
+  child: Text('Indigo Button'),
+  primaryColor: HuxColors.getPresetColor('indigo'),
+)
+
+// Green theme
+HuxButton(
+  onPressed: () {},
+  child: Text('Green Button'),
+  primaryColor: HuxColors.getPresetColor('green'),
+)
+
+// Pink theme
+HuxButton(
+  onPressed: () {},
+  child: Text('Pink Button'),
+  primaryColor: HuxColors.getPresetColor('pink'),
+)
+```
+
+### Custom Colors
+```dart
+HuxButton(
+  onPressed: () {},
+  child: Text('Custom Purple'),
+  primaryColor: Color(0xFF6366F1),
+)
+
+HuxButton(
+  onPressed: () {},
+  child: Text('Custom Orange'),
+  primaryColor: Colors.deepOrange,
+)
+```
+
+## API Reference
+
+### HuxButton Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `onPressed` | `VoidCallback?` | **required** | Callback triggered when button is pressed |
+| `child` | `Widget` | **required** | The child widget to display inside the button |
+| `variant` | `HuxButtonVariant` | `primary` | Visual variant of the button |
+| `size` | `HuxButtonSize` | `medium` | Size variant of the button |
+| `isLoading` | `bool` | `false` | Whether to show loading indicator |
+| `isDisabled` | `bool` | `false` | Whether the button is disabled |
+| `icon` | `IconData?` | `null` | Optional icon to display before text |
+| `primaryColor` | `Color?` | `null` | Custom primary color (overrides theme) |
+
+### HuxButtonVariant Enum
+
+- `HuxButtonVariant.primary` - Filled background with primary color
+- `HuxButtonVariant.secondary` - Light background with border
+- `HuxButtonVariant.outline` - Transparent with border only
+- `HuxButtonVariant.ghost` - Transparent without border
+
+### HuxButtonSize Enum
+
+- `HuxButtonSize.small` - 32px height, compact padding
+- `HuxButtonSize.medium` - 40px height, standard padding
+- `HuxButtonSize.large` - 48px height, generous padding
+
+## Common Patterns
+
+### Form Buttons
+```dart
+Row(
+  children: [
+    Expanded(
+      child: HuxButton(
+        onPressed: () {},
+        child: Text('Cancel'),
+        variant: HuxButtonVariant.outline,
+      ),
+    ),
+    SizedBox(width: 12),
+    Expanded(
+      child: HuxButton(
+        onPressed: () {},
+        child: Text('Submit'),
+        variant: HuxButtonVariant.primary,
+      ),
+    ),
+  ],
+)
+```
+
+### Action Buttons
+```dart
+Column(
+  children: [
+    HuxButton(
+      onPressed: () {},
+      child: Text('Primary Action'),
+      variant: HuxButtonVariant.primary,
+      size: HuxButtonSize.large,
+    ),
+    SizedBox(height: 12),
+    HuxButton(
+      onPressed: () {},
+      child: Text('Secondary Action'),
+      variant: HuxButtonVariant.secondary,
+    ),
+    SizedBox(height: 8),
+    HuxButton(
+      onPressed: () {},
+      child: Text('Cancel'),
+      variant: HuxButtonVariant.ghost,
+    ),
+  ],
+)
+```
+
+### Button Grid
+```dart
+GridView.count(
+  crossAxisCount: 2,
+  shrinkWrap: true,
+  children: [
+    HuxButton(
+      onPressed: () {},
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(FeatherIcons.camera),
+          SizedBox(height: 8),
+          Text('Camera'),
+        ],
+      ),
+      variant: HuxButtonVariant.outline,
+    ),
+    HuxButton(
+      onPressed: () {},
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(FeatherIcons.image),
+          SizedBox(height: 8),
+          Text('Gallery'),
+        ],
+      ),
+      variant: HuxButtonVariant.outline,
+    ),
+  ],
+)
+```
+
+## Accessibility
+
+HuxButton includes several accessibility features:
+
+### Automatic Contrast
+Text color is automatically calculated to ensure WCAG AA compliance (4.5:1 contrast ratio) against any background color.
+
+### Semantic Roles
+Buttons include proper semantic roles for screen readers.
+
+### Focus States
+Keyboard navigation support with visible focus indicators.
+
+### Disabled States
+Proper disabled state handling for assistive technologies.
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Choose the Right Variant" icon="eye">
+    - Use **Primary** for the main action on a screen
+    - Use **Secondary** for important but not primary actions
+    - Use **Outline** for secondary actions that need visual weight
+    - Use **Ghost** for subtle actions like "Cancel" or "Skip"
+  </Accordion>
+  
+  <Accordion title="Size Appropriately" icon="resize">
+    - Use **Large** for important call-to-action buttons
+    - Use **Medium** for most standard interactions
+    - Use **Small** for compact interfaces or secondary actions
+  </Accordion>
+  
+  <Accordion title="Loading States" icon="loader">
+    ```dart
+    // Always disable the button during loading
+    HuxButton(
+      onPressed: _isLoading ? null : _handlePress,
+      isLoading: _isLoading,
+      child: Text('Submit'),
+    )
+    ```
+  </Accordion>
+  
+  <Accordion title="Clear Labels" icon="type">
+    - Use action-oriented labels: "Save", "Delete", "Continue"
+    - Avoid generic labels: "OK", "Submit", "Button"
+    - Keep labels concise but descriptive
+  </Accordion>
+</AccordionGroup>
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card
+    title="Form Building"
+    icon="edit"
+    href="/examples/form-building"
+  >
+    See buttons in action within forms
+  </Card>
+  <Card
+    title="Loading States"
+    icon="loader"
+    href="/examples/loading-states"
+  >
+    Learn how to handle async operations
+  </Card>
+  <Card
+    title="Custom Theming"
+    icon="palette"
+    href="/examples/custom-theming"
+  >
+    Apply custom colors and themes
+  </Card>
+  <Card
+    title="Accessibility"
+    icon="universal-access"
+    href="/advanced/accessibility"
+  >
+    Ensure your buttons are accessible
+  </Card>
+</CardGroup>

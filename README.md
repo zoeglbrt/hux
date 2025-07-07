@@ -89,6 +89,17 @@ A modern Flutter UI package with beautiful, customizable components designed for
 - `HuxTheme` - Pre-configured light and dark themes
 - `HuxColors` - Comprehensive color palette
 
+## Documentation
+
+📚 **[Complete Documentation](https://docs.thehuxdesign.com)** - Visit our comprehensive documentation site for detailed guides, API references, and examples.
+
+### Quick Links
+- [Installation Guide](https://docs.thehuxdesign.com/installation)
+- [Getting Started](https://docs.thehuxdesign.com/quickstart)
+- [Component Reference](https://docs.thehuxdesign.com/components/buttons)
+- [Theming Guide](https://docs.thehuxdesign.com/theming)
+- [Examples](https://docs.thehuxdesign.com/examples/basic-usage)
+
 ## Installation
 
 ```bash

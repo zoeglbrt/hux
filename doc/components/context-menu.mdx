@@ -1,0 +1,165 @@
+---
+title: 'Context Menu'
+description: 'Right-click context menus with smart positioning and cross-platform support'
+---
+
+## Overview
+
+Hux UI provides a comprehensive context menu system with smart positioning and cross-platform support:
+
+- **HuxContextMenu** - Main wrapper widget with smart positioning
+- **HuxContextMenuItem** - Individual menu items with icons and states
+- **HuxContextMenuDivider** - Visual separators for menu groups
+
+## Basic Usage
+
+```dart
+HuxContextMenu(
+  menuItems: [
+    HuxContextMenuItem(
+      text: 'Copy',
+      icon: FeatherIcons.copy,
+      onTap: () => print('Copy action'),
+    ),
+    HuxContextMenuItem(
+      text: 'Paste',
+      icon: FeatherIcons.clipboard,
+      onTap: () => print('Paste action'),
+      isDisabled: true,
+    ),
+    const HuxContextMenuDivider(),
+    HuxContextMenuItem(
+      text: 'Delete',
+      icon: FeatherIcons.trash2,
+      onTap: () => print('Delete action'),
+      isDestructive: true,
+    ),
+  ],
+  child: Container(
+    padding: const EdgeInsets.all(20),
+    child: const Text('Right-click me!'),
+  ),
+)
+```
+
+## Features
+
+- **Smart Positioning** - Automatic menu positioning to prevent screen overflow
+- **Cross-Platform** - Works on desktop, mobile, and web
+- **Web Optimization** - Proper browser context menu prevention
+- **Consistent Design** - Follows Hux UI design system
+- **Theme Aware** - Adapts to light and dark themes
+
+## Components
+
+### HuxContextMenu
+
+Main wrapper that handles context menu display and positioning.
+
+**Properties:**
+- `menuItems` - List of menu items and dividers
+- `child` - Widget that triggers the context menu
+
+### HuxContextMenuItem
+
+Individual menu item with icon, text, and interaction handling.
+
+**Properties:**
+- `text` - Menu item label
+- `icon` - Optional icon (FeatherIcons recommended)
+- `onTap` - Action callback
+- `isDisabled` - Whether the item is disabled
+- `isDestructive` - Whether the item represents a destructive action
+
+### HuxContextMenuDivider
+
+Visual separator for organizing menu items into groups.
+
+```dart
+const HuxContextMenuDivider()
+```
+
+## Advanced Example
+
+```dart
+HuxContextMenu(
+  menuItems: [
+    // File operations
+    HuxContextMenuItem(
+      text: 'New File',
+      icon: FeatherIcons.filePlus,
+      onTap: () => _createNewFile(),
+    ),
+    HuxContextMenuItem(
+      text: 'Open',
+      icon: FeatherIcons.folderOpen,
+      onTap: () => _openFile(),
+    ),
+    const HuxContextMenuDivider(),
+    
+    // Edit operations
+    HuxContextMenuItem(
+      text: 'Cut',
+      icon: FeatherIcons.scissors,
+      onTap: () => _cutSelection(),
+      isDisabled: !_hasSelection,
+    ),
+    HuxContextMenuItem(
+      text: 'Copy',
+      icon: FeatherIcons.copy,
+      onTap: () => _copySelection(),
+      isDisabled: !_hasSelection,
+    ),
+    HuxContextMenuItem(
+      text: 'Paste',
+      icon: FeatherIcons.clipboard,
+      onTap: () => _pasteClipboard(),
+      isDisabled: !_hasClipboardContent,
+    ),
+    const HuxContextMenuDivider(),
+    
+    // Destructive operations
+    HuxContextMenuItem(
+      text: 'Delete',
+      icon: FeatherIcons.trash2,
+      onTap: () => _deleteSelection(),
+      isDestructive: true,
+      isDisabled: !_hasSelection,
+    ),
+  ],
+  child: YourContentWidget(),
+)
+```
+
+## Platform Support
+
+- **Desktop** - Right-click support with proper positioning
+- **Mobile** - Long-press gesture support
+- **Web** - Proper browser context menu prevention
+
+<Note>
+  Context menus automatically prevent the browser's default context menu on web platforms using the universal_html package.
+</Note>
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card
+    title="File Manager"
+    icon="folder"
+    href="/examples/file-manager"
+  >
+    See context menus in a file management interface
+  </Card>
+  <Card
+    title="Text Editor"
+    icon="edit"
+    href="/examples/text-editor"
+  >
+    Learn how to implement editor context menus
+  </Card>
+</CardGroup>
+
+<Tip>
+  Right-click any component in the [example app](https://github.com/zoeglbrt/hux/tree/main/example) to see context menus in action!
+</Tip>

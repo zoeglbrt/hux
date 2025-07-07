@@ -1,0 +1,363 @@
+---
+title: 'Basic Usage Examples'
+description: 'Common patterns and implementations using Hux UI components'
+---
+
+## Overview
+
+This page showcases common usage patterns and implementations using Hux UI components. These examples are taken from real-world scenarios and demonstrate best practices.
+
+## Complete App Example
+
+Here's a minimal but complete Flutter app using Hux UI:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:hux/hux.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Hux UI Example',
+      theme: HuxTheme.lightTheme,
+      darkTheme: HuxTheme.darkTheme,
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Hux UI Demo')),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            HuxCard(
+              title: 'Welcome',
+              subtitle: 'Getting started with Hux UI',
+              child: Text('This is a simple example app.'),
+            ),
+            SizedBox(height: 20),
+            
+            HuxButton(
+              onPressed: () => print('Primary action'),
+              child: Text('Primary Button'),
+              variant: HuxButtonVariant.primary,
+            ),
+            SizedBox(height: 12),
+            
+            HuxButton(
+              onPressed: () => print('Secondary action'),
+              child: Text('Secondary Button'),
+              variant: HuxButtonVariant.secondary,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+## Form Example
+
+```dart
+class LoginForm extends StatefulWidget {
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  void _handleLogin() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      // Simulate login
+      await Future.delayed(Duration(seconds: 2));
+
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      title: 'Login',
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            HuxTextField(
+              label: 'Email',
+              hint: 'Enter your email',
+              controller: _emailController,
+              prefixIcon: Icon(FeatherIcons.mail),
+              validator: (value) {
+                if (value?.isEmpty ?? true) {
+                  return 'Email is required';
+                }
+                return null;
+              },
+            ),
+            SizedBox(height: 16),
+            
+            HuxTextField(
+              label: 'Password',
+              hint: 'Enter your password',
+              controller: _passwordController,
+              prefixIcon: Icon(FeatherIcons.lock),
+              obscureText: true,
+              validator: (value) {
+                if (value?.isEmpty ?? true) {
+                  return 'Password is required';
+                }
+                return null;
+              },
+            ),
+            SizedBox(height: 24),
+            
+            HuxButton(
+              onPressed: _isLoading ? null : _handleLogin,
+              isLoading: _isLoading,
+              child: Text('Login'),
+              variant: HuxButtonVariant.primary,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+## Settings Page Example
+
+```dart
+class SettingsPage extends StatefulWidget {
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  bool _notifications = true;
+  bool _darkMode = false;
+  bool _analytics = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Settings')),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            HuxCard(
+              title: 'Preferences',
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Push Notifications'),
+                      HuxSwitch(
+                        value: _notifications,
+                        onChanged: (value) {
+                          setState(() {
+                            _notifications = value;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Dark Mode'),
+                      HuxSwitch(
+                        value: _darkMode,
+                        onChanged: (value) {
+                          setState(() {
+                            _darkMode = value;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  
+                  HuxCheckbox(
+                    value: _analytics,
+                    onChanged: (value) {
+                      setState(() {
+                        _analytics = value ?? false;
+                      });
+                    },
+                    label: 'Share analytics data to help improve the app',
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            
+            HuxCard(
+              title: 'Account',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  HuxButton(
+                    onPressed: () {},
+                    child: Text('Change Password'),
+                    variant: HuxButtonVariant.outline,
+                  ),
+                  SizedBox(height: 12),
+                  
+                  HuxButton(
+                    onPressed: () {},
+                    child: Text('Export Data'),
+                    variant: HuxButtonVariant.outline,
+                  ),
+                  SizedBox(height: 12),
+                  
+                  HuxButton(
+                    onPressed: () {},
+                    child: Text('Delete Account'),
+                    variant: HuxButtonVariant.outline,
+                    primaryColor: HuxColors.red,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+## Profile Page Example
+
+```dart
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Profile')),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            HuxCard(
+              child: Row(
+                children: [
+                  HuxAvatar(
+                    name: 'John Doe',
+                    size: HuxAvatarSize.large,
+                  ),
+                  SizedBox(width: 16),
+                  
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'John Doe',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        Text(
+                          'john.doe@example.com',
+                          style: TextStyle(
+                            color: HuxTokens.textSecondary(context),
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        
+                        Row(
+                          children: [
+                            HuxBadge(
+                              label: 'Pro',
+                              variant: HuxBadgeVariant.primary,
+                            ),
+                            SizedBox(width: 8),
+                            HuxBadge(
+                              label: 'Verified',
+                              variant: HuxBadgeVariant.success,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            
+            HuxCard(
+              title: 'Team Members',
+              child: HuxAvatarGroup(
+                avatars: [
+                  HuxAvatar(name: 'Alice Smith'),
+                  HuxAvatar(name: 'Bob Johnson'),
+                  HuxAvatar(
+                    useGradient: true,
+                    gradientVariant: HuxAvatarGradient.bluePurple,
+                  ),
+                  HuxAvatar(name: 'Carol Williams'),
+                  HuxAvatar(name: 'David Brown'),
+                ],
+                overlap: true,
+                maxVisible: 4,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+<Note>
+  These examples demonstrate common patterns you'll use when building apps with Hux UI. For more complex examples, check out the [full example app](https://github.com/zoeglbrt/hux/tree/main/example).
+</Note>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Form Building"
+    icon="edit"
+    href="/examples/form-building"
+  >
+    Learn advanced form patterns and validation
+  </Card>
+  <Card
+    title="Theme Switching"
+    icon="palette"
+    href="/examples/theme-switching"
+  >
+    Implement dynamic theme switching
+  </Card>
+</CardGroup>

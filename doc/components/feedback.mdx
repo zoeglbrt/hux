@@ -1,0 +1,54 @@
+---
+title: 'Feedback Components'
+description: 'Badges, alerts, and status indicators for user feedback'
+---
+
+## Overview
+
+Hux UI provides feedback components for displaying status, alerts, and notifications:
+
+- **HuxBadge** - Status indicators and notification counters
+- **HuxAlert** - Message boxes with dismissible functionality
+
+## HuxBadge
+
+Status indicators with semantic variants for displaying important information.
+
+```dart
+HuxBadge(
+  label: 'New',
+  variant: HuxBadgeVariant.primary,
+)
+```
+
+### Variants
+
+- `primary` - Default badge style
+- `secondary` - Subtle badge style  
+- `outline` - Border-only badge
+- `success` - Green success badge
+- `destructive` - Red error/warning badge
+
+## HuxAlert
+
+Message boxes for displaying important information with optional dismissal.
+
+```dart
+HuxAlert(
+  variant: HuxAlertVariant.success,
+  title: 'Success!',
+  message: 'Operation completed successfully.',
+  showIcon: true,
+  onDismiss: () => print('Alert dismissed'),
+)
+```
+
+### Variants
+
+- `info` - Blue informational alert
+- `success` - Green success alert
+- `destructive` - Red error/warning alert
+
+<Note>
+  Complete documentation for feedback components is coming soon. See the [example app](https://github.com/zoeglbrt/hux/tree/main/example) for usage examples.
+</Note>

@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - 2025-07-07
+
+### Added
+- **Comprehensive Documentation Site**: Launched complete documentation at [docs.thehuxdesign.com](https://docs.thehuxdesign.com)
+  - **Mintlify-powered**: Professional documentation platform with modern design
+  - **18 Documentation Pages**: Complete coverage including installation, quickstart, components, and examples
+  - **Complete Component Reference**: Detailed API documentation starting with comprehensive HuxButton guide
+  - **Real-world Examples**: 25+ working code examples from actual usage patterns
+  - **Interactive Navigation**: Organized tabs for Documentation and Examples with intuitive grouping
+  - **Design System Guide**: Comprehensive theming documentation with design tokens and color customization
+  - **Installation & Setup**: Step-by-step guides with troubleshooting and platform-specific instructions
+  - **Accessibility Documentation**: WCAG AA compliance information and best practices
+  - **Cross-platform Coverage**: Documentation for Android, iOS, Web (JS/WASM), Windows, macOS, and Linux
+
+### Enhanced
+- **README Documentation**: Added comprehensive documentation links and quick navigation
+  - Direct links to installation guide, component reference, theming guide, and examples
+  - Professional documentation site integration
+- **Developer Experience**: Centralized documentation improves discoverability and ease of use
+  - Search functionality for quick navigation
+  - Mobile-responsive documentation experience
+  - Consistent cross-referencing between components and concepts
+
+### Documentation Structure
+- **Getting Started**: Installation, quickstart tutorial, and theming basics
+- **Components**: Complete reference for all 13+ Hux UI components
+- **Examples**: Real-world usage patterns and implementation guides
+- **Advanced**: Deep-dive guides for theming, customization, and accessibility
+- **External Integration**: Proper linking to pub.dev package and GitHub repository
+
 ## [0.2.1] - 2025-07-02
 
 ### Changed

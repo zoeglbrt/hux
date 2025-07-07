@@ -1,0 +1,67 @@
+---
+title: 'Avatar Components'
+description: 'User profile images and avatar groups with gradient variants'
+---
+
+## Overview
+
+Hux UI provides avatar components for displaying user profile images:
+
+- **HuxAvatar** - Circular user images with initials fallback
+- **HuxAvatarGroup** - Display multiple avatars with overlapping layouts
+
+## HuxAvatar
+
+Circular user image component with automatic initials generation and gradient variants.
+
+```dart
+HuxAvatar(
+  name: 'John Doe',
+  size: HuxAvatarSize.medium,
+)
+```
+
+### With Gradient
+
+```dart
+HuxAvatar(
+  useGradient: true,
+  gradientVariant: HuxAvatarGradient.bluePurple,
+  size: HuxAvatarSize.medium,
+)
+```
+
+### Sizes
+
+- `small` - Compact avatar
+- `medium` - Standard avatar (default)
+- `large` - Prominent avatar
+- `extraLarge` - Hero avatar
+
+### Gradient Variants
+
+- `bluePurple` - Blue to purple gradient
+- `greenBlue` - Green to blue gradient
+- `orangeRed` - Orange to red gradient
+- `purplePink` - Purple to pink gradient
+- `tealCyan` - Teal to cyan gradient
+
+## HuxAvatarGroup
+
+Display multiple avatars with overlapping or spaced layouts.
+
+```dart
+HuxAvatarGroup(
+  avatars: [
+    HuxAvatar(name: 'Alice'),
+    HuxAvatar(name: 'Bob'),
+    HuxAvatar(useGradient: true, gradientVariant: HuxAvatarGradient.greenBlue),
+  ],
+  overlap: true,
+  maxVisible: 3,
+)
+```
+
+<Note>
+  Complete avatar documentation is coming soon. See the [example app](https://github.com/zoeglbrt/hux/tree/main/example) for more usage patterns.
+</Note>

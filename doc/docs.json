@@ -1,55 +1,60 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
+  "theme": "almond",
+  "name": "Hux UI",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#000000",
+    "light": "#ffffff",
+    "dark": "#ffffff"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Getting Started",
             "pages": [
               "index",
+              "installation",
               "quickstart",
-              "development"
+              "theming"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Components",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "components/buttons",
+              "components/inputs",
+              "components/cards",
+              "components/feedback",
+              "components/avatar",
+              "components/loading",
+              "components/charts",
+              "components/context-menu"
+            ]
+          },
+          {
+            "group": "Advanced",
+            "pages": [
+              "advanced/theming",
+              "advanced/customization",
+              "advanced/accessibility"
             ]
           }
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "Examples",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "Usage Examples",
             "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "examples/basic-usage",
+              "examples/form-building",
+              "examples/data-visualization",
+              "examples/theme-switching"
             ]
           }
         ]
@@ -58,19 +63,19 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Package",
+          "href": "https://pub.dev/packages/hux",
+          "icon": "package"
         },
         {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
+          "anchor": "GitHub",
+          "href": "https://github.com/zoeglbrt/hux",
+          "icon": "github"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Issues",
+          "href": "https://github.com/zoeglbrt/hux/issues",
+          "icon": "bug"
         }
       ]
     }
@@ -82,21 +87,19 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "pub.dev",
+        "href": "https://pub.dev/packages/hux"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "GitHub",
+      "href": "https://github.com/zoeglbrt/hux"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/zoeglbrt/hux"
     }
   }
 }

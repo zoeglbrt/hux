@@ -1,0 +1,99 @@
+---
+title: 'HuxChart'
+description: 'Beautiful data visualization with line and bar charts'
+---
+
+## Overview
+
+`HuxChart` provides beautiful data visualization components powered by the cristalyse package, with automatic theme adaptation and smooth animations.
+
+## Line Charts
+
+Display data trends over time with smooth line charts.
+
+```dart
+HuxChart.line(
+  data: [
+    {'x': 1, 'y': 10},
+    {'x': 2, 'y': 20},
+    {'x': 3, 'y': 15},
+    {'x': 4, 'y': 25},
+  ],
+  xField: 'x',
+  yField: 'y',
+  title: 'Sales Over Time',
+  subtitle: 'Monthly data',
+  primaryColor: Colors.blue,
+)
+```
+
+## Bar Charts
+
+Visualize categorical data with responsive bar charts.
+
+```dart
+HuxChart.bar(
+  data: [
+    {'category': 'Product A', 'value': 30},
+    {'category': 'Product B', 'value': 45},
+    {'category': 'Product C', 'value': 25},
+    {'category': 'Product D', 'value': 35},
+  ],
+  xField: 'category',
+  yField: 'value',
+  title: 'Product Sales',
+  subtitle: 'Current quarter',
+)
+```
+
+## Features
+
+- **Theme Aware** - Automatically adapts to light/dark themes
+- **Responsive** - Adjusts to different screen sizes
+- **Smooth Animations** - Beautiful transitions and interactions
+- **Customizable Colors** - Use theme colors or custom palettes
+- **Multiple Chart Types** - Line charts, bar charts, and more
+
+## Properties
+
+- `data` - Array of data objects
+- `xField` - Field name for x-axis values
+- `yField` - Field name for y-axis values
+- `title` - Chart title (optional)
+- `subtitle` - Chart subtitle (optional)
+- `primaryColor` - Custom color override (optional)
+
+## Data Format
+
+Charts expect data in a simple array format:
+
+```dart
+final chartData = [
+  {'date': '2024-01', 'revenue': 15000, 'users': 120},
+  {'date': '2024-02', 'revenue': 18000, 'users': 150},
+  {'date': '2024-03', 'revenue': 22000, 'users': 180},
+];
+```
+
+<Note>
+  HuxChart is powered by the [cristalyse](https://pub.dev/packages/cristalyse) package. Complete chart documentation is coming soon.
+</Note>
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card
+    title="Data Visualization"
+    icon="chart-line"
+    href="/examples/data-visualization"
+  >
+    See charts in action with real data
+  </Card>
+  <Card
+    title="Dashboard"
+    icon="layout-dashboard"
+    href="/examples/dashboard"
+  >
+    Build dashboards with multiple charts
+  </Card>
+</CardGroup>

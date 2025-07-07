@@ -1,0 +1,90 @@
+---
+title: 'Loading Components'
+description: 'Loading indicators and overlays for async operations'
+---
+
+## Overview
+
+Hux UI provides loading components for indicating async operations:
+
+- **HuxLoading** - Customizable loading indicators
+- **HuxLoadingOverlay** - Full-screen loading overlays
+
+## HuxLoading
+
+Simple loading indicator with size variants.
+
+```dart
+HuxLoading(size: HuxLoadingSize.medium)
+```
+
+### Sizes
+
+- `small` - Compact loading indicator
+- `medium` - Standard loading indicator (default)
+- `large` - Prominent loading indicator
+
+## HuxLoadingOverlay
+
+Full-screen overlay for blocking user interaction during loading.
+
+```dart
+HuxLoadingOverlay(
+  isLoading: _isLoading,
+  message: 'Processing...',
+  child: YourContent(),
+)
+```
+
+### Properties
+
+- `isLoading` - Whether to show the loading overlay
+- `message` - Optional loading message text
+- `child` - Content to display behind overlay
+
+## Usage Example
+
+```dart
+class AsyncOperationExample extends StatefulWidget {
+  @override
+  _AsyncOperationExampleState createState() => _AsyncOperationExampleState();
+}
+
+class _AsyncOperationExampleState extends State<AsyncOperationExample> {
+  bool _isLoading = false;
+
+  void _performAsyncOperation() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    // Simulate async work
+    await Future.delayed(Duration(seconds: 3));
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxLoadingOverlay(
+      isLoading: _isLoading,
+      message: 'Loading data...',
+      child: Column(
+        children: [
+          HuxButton(
+            onPressed: _isLoading ? null : _performAsyncOperation,
+            isLoading: _isLoading,
+            child: Text('Start Operation'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+<Note>
+  Complete loading documentation is coming soon. See the [example app](https://github.com/zoeglbrt/hux/tree/main/example) for more usage patterns.
+</Note>

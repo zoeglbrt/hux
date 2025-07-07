@@ -1,71 +1,152 @@
 ---
-title: Introduction
-description: "Welcome to the home of your new documentation"
+title: Welcome to Hux UI
+description: "A modern Flutter UI package with beautiful, customizable components designed for clean and consistent user interfaces."
 ---
 
 <img
   className="block dark:hidden"
   src="/images/hero-light.png"
-  alt="Hero Light"
+  alt="Hux UI Light Theme"
 />
 <img
   className="hidden dark:block"
   src="/images/hero-dark.png"
-  alt="Hero Dark"
+  alt="Hux UI Dark Theme"
 />
 
-## Setting up
+## What is Hux UI?
 
-The first step to world-class documentation is setting up your editing environments.
-
-<CardGroup cols={2}>
-  <Card
-    title="Edit Your Docs"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Get your docs set up locally for easy development
-  </Card>
-  <Card
-    title="Preview Changes"
-    icon="image"
-    href="https://mintlify.com/docs/development"
-  >
-    Preview your changes before you push to make sure they're perfect
-  </Card>
-</CardGroup>
-
-## Make it yours
-
-Update your docs to your brand and add valuable content for the best user conversion.
+Hux UI is an open-source state-of-the-art UI library for Flutter, created by [Zoe Gilbert](https://github.com/zoeglbrt). It provides a comprehensive set of beautiful, customizable components designed for clean and consistent user interfaces.
 
 <CardGroup cols={2}>
   <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
+    title="Get Started"
+    icon="rocket"
+    href="/installation"
   >
-    Customize your docs to your company's colors and brands
+    Install Hux UI and set up your first Flutter app in minutes
   </Card>
   <Card
-    title="Reference APIs"
+    title="Components"
+    icon="puzzle-piece"
+    href="/components/buttons"
+  >
+    Explore our comprehensive collection of UI components
+  </Card>
+  <Card
+    title="Examples"
     icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
+    href="/examples/basic-usage"
   >
-    Automatically generate endpoints from an OpenAPI spec
+    See Hux UI in action with practical examples
   </Card>
   <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/content/components/accordions"
+    title="Theming"
+    icon="palette"
+    href="/theming"
   >
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/customers"
-  >
-    Check out our showcase of our favorite documentation
+    Learn how to customize themes and design tokens
   </Card>
 </CardGroup>
+
+## Key Features
+
+<AccordionGroup>
+  <Accordion title="🎨 Modern Design" icon="palette">
+    Clean, minimal design language with beautiful animations and smooth interactions.
+  </Accordion>
+  
+  <Accordion title="🌙 Dark Mode Support" icon="moon">
+    Built-in light and dark theme support with automatic adaptation and design tokens.
+  </Accordion>
+  
+  <Accordion title="📊 Data Visualization" icon="chart-line">
+    Beautiful animated charts for data presentation with line and bar chart support.
+  </Accordion>
+  
+  <Accordion title="📱 Responsive" icon="mobile">
+    Components adapt to different screen sizes and provide excellent cross-platform support.
+  </Accordion>
+  
+  <Accordion title="🎯 Customizable" icon="settings">
+    Extensive customization options with design tokens and theme system.
+  </Accordion>
+  
+  <Accordion title="♿ Accessible" icon="universal-access">
+    WCAG AA compliant with proper contrast ratios and accessibility features.
+  </Accordion>
+</AccordionGroup>
+
+## Available Components
+
+Hux UI includes 13+ carefully crafted components organized into logical categories:
+
+### Input & Forms
+- **HuxButton** - Multiple variants (primary, secondary, outline, ghost) with loading states
+- **HuxTextField** - Enhanced text input with validation and consistent styling  
+- **HuxCheckbox** - Interactive checkbox with custom styling and labels
+- **HuxSwitch** - Toggle switch with smooth animations
+
+### Layout & Display
+- **HuxCard** - Flexible card component with headers, actions, and tap handling
+- **HuxAvatar** - Circular user images with initials fallback and gradient variants
+- **HuxAvatarGroup** - Display multiple avatars with overlapping layouts
+
+### Feedback & Status
+- **HuxBadge** - Status indicators with semantic variants
+- **HuxAlert** - Message boxes with dismissible functionality
+- **HuxLoading** - Customizable loading indicators and overlays
+
+### Advanced Components
+- **HuxChart** - Beautiful data visualization with cristalyse integration
+- **HuxContextMenu** - Right-click context menus with smart positioning
+
+### Theme System
+- **HuxTheme** - Pre-configured light and dark themes
+- **HuxColors** - Comprehensive color palette
+- **HuxTokens** - Design token system for consistent theming
+
+## Quick Example
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:hux/hux.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Hux UI Demo',
+      theme: HuxTheme.lightTheme,
+      darkTheme: HuxTheme.darkTheme,
+      home: Scaffold(
+        body: Column(
+          children: [
+            HuxButton(
+              onPressed: () => print('Hello Hux!'),
+              child: Text('Get Started'),
+              variant: HuxButtonVariant.primary,
+            ),
+            HuxCard(
+              title: 'Welcome to Hux UI',
+              subtitle: 'Build beautiful Flutter apps',
+              child: Text('Start creating amazing user interfaces'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+## Links
+
+- **Package**: [pub.dev/packages/hux](https://pub.dev/packages/hux)
+- **Source Code**: [github.com/zoeglbrt/hux](https://github.com/zoeglbrt/hux)
+- **Issues**: [GitHub Issues](https://github.com/zoeglbrt/hux/issues)
+- **Documentation**: [docs.thehuxdesign.com](https://docs.thehuxdesign.com)

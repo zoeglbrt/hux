@@ -1,0 +1,104 @@
+---
+title: 'Input Components'
+description: 'Text fields, checkboxes, and form controls for user input'
+---
+
+## Overview
+
+Hux UI provides several input components for building forms and collecting user data:
+
+- **HuxTextField** - Enhanced text input with validation
+- **HuxCheckbox** - Interactive checkbox with custom styling
+- **HuxSwitch** - Toggle switch component
+
+## HuxTextField
+
+Enhanced text input with consistent styling, validation support, and theme adaptation.
+
+```dart
+HuxTextField(
+  label: 'Email',
+  hint: 'Enter your email address',
+  prefixIcon: Icon(FeatherIcons.mail),
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return 'Email is required';
+    }
+    return null;
+  },
+)
+```
+
+### Properties
+
+- `label` - Field label text
+- `hint` - Placeholder text
+- `prefixIcon` - Icon displayed at the start
+- `validator` - Form validation function
+- `controller` - Text editing controller
+- `onChanged` - Value change callback
+
+## HuxCheckbox
+
+Interactive checkbox with smooth animations and consistent styling.
+
+```dart
+HuxCheckbox(
+  value: isChecked,
+  onChanged: (value) {
+    setState(() {
+      isChecked = value ?? false;
+    });
+  },
+  label: 'I agree to the terms and conditions',
+)
+```
+
+### Properties
+
+- `value` - Current checked state
+- `onChanged` - State change callback
+- `label` - Optional label text
+
+## HuxSwitch
+
+Toggle switch for binary choices with smooth animations.
+
+```dart
+HuxSwitch(
+  value: isEnabled,
+  onChanged: (value) {
+    setState(() {
+      isEnabled = value;
+    });
+  },
+)
+```
+
+### Properties
+
+- `value` - Current switch state
+- `onChanged` - State change callback
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card
+    title="Form Building"
+    icon="edit"
+    href="/examples/form-building"
+  >
+    See input components in action within forms
+  </Card>
+  <Card
+    title="Validation"
+    icon="check-circle"
+    href="/examples/validation"
+  >
+    Learn form validation patterns
+  </Card>
+</CardGroup>
+
+<Note>
+  Detailed documentation for each input component is coming soon. For now, refer to the [example app](https://github.com/zoeglbrt/hux/tree/main/example) for usage patterns.
+</Note>
