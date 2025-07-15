@@ -43,26 +43,6 @@
 /// ```
 library;
 
-// Export all components
-export 'src/components/buttons/hux_button.dart';
-export 'src/components/cards/hux_card.dart';
-export 'src/components/inputs/hux_text_field.dart';
-export 'src/components/inputs/hux_checkbox.dart';
-export 'src/components/switch/hux_switch.dart';
-export 'src/components/badge/hux_badge.dart';
-export 'src/components/feedback/hux_alert.dart';
-export 'src/components/avatar/hux_avatar.dart';
-export 'src/components/avatar/hux_avatar_group.dart';
-export 'src/theme/hux_theme.dart';
-export 'src/theme/hux_colors.dart';
-export 'src/theme/hux_tokens.dart';
-export 'src/widgets/hux_loading.dart';
-export 'src/widgets/hux_chart.dart';
-export 'src/widgets/hux_context_menu/hux_context_menu.dart';
-export 'src/widgets/hux_context_menu/hux_context_menu_item.dart';
-export 'src/widgets/hux_context_menu/hux_context_menu_divider.dart';
-
-// Export external dependencies
 /// FeatherIcons - Beautiful icon set for Flutter applications
 ///
 /// Provides access to over 280+ beautiful, customizable SVG icons.
@@ -74,3 +54,23 @@ export 'src/widgets/hux_context_menu/hux_context_menu_divider.dart';
 /// Icon(FeatherIcons.user)
 /// ```
 export 'package:flutter_feather_icons/flutter_feather_icons.dart';
+
+export 'src/components/avatar/hux_avatar.dart';
+export 'src/components/avatar/hux_avatar_group.dart';
+export 'src/components/badge/hux_badge.dart';
+// Export all components
+export 'src/components/buttons/hux_button.dart';
+export 'src/components/cards/hux_card.dart';
+export 'src/components/feedback/hux_alert.dart';
+export 'src/components/inputs/hux_checkbox.dart';
+export 'src/components/inputs/hux_text_field.dart';
+export 'src/components/switch/hux_switch.dart';
+export 'src/theme/hux_colors.dart';
+export 'src/theme/hux_theme.dart';
+export 'src/theme/hux_tokens.dart';
+export 'src/widgets/hux_chart.dart';
+export 'src/widgets/hux_context_menu/hux_context_menu.dart';
+export 'src/widgets/hux_context_menu/hux_context_menu_divider.dart';
+export 'src/widgets/hux_context_menu/hux_context_menu_item.dart';
+export 'src/widgets/hux_date_picker.dart';
+export 'src/widgets/hux_loading.dart';
