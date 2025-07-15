@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hux/hux.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,6 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
   final _passwordController = TextEditingController();
   final _scrollController = ScrollController();
   bool _isLoading = false;
+  DateTime? _selectedDate;
+  TimeOfDay? _selectedTime;
 
   // Theme state
   String _selectedTheme = 'default';
@@ -81,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _badgesKey = GlobalKey();
   final _indicatorsKey = GlobalKey();
   final _displayKey = GlobalKey();
+  final _datePickerKey = GlobalKey();
 
   // Navigation items
   late final List<NavigationItem> _navigationItems;
@@ -144,6 +148,11 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: FeatherIcons.loader,
         key: _loadingKey,
       ),
+      NavigationItem(
+        title: 'Date Picker',
+        icon: FeatherIcons.calendar,
+        key: _datePickerKey,
+      ),
     ];
   }
 
@@ -178,6 +187,32 @@ class _MyHomePageState extends State<MyHomePage> {
             _isLoading = false;
           });
         }
+      });
+    }
+  }
+
+  Future<void> _selectDate() async {
+    final DateTime? picked = await showHuxDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+      });
+    }
+  }
+
+  Future<void> _selectTime() async {
+    final TimeOfDay? picked = await showHuxTimePicker(
+      context: context,
+      initialTime: _selectedTime ?? TimeOfDay.now(),
+    );
+    if (picked != null && picked != _selectedTime) {
+      setState(() {
+        _selectedTime = picked;
       });
     }
   }
@@ -988,6 +1023,52 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: Text(_isLoading
                                     ? 'Stop Loading'
                                     : 'Show Loading Overlay'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 32),
+                      Container(
+                        key: _datePickerKey,
+                        child: HuxCard(
+                          title: 'Date & Time Pickers',
+                          subtitle:
+                              'Themed pickers for date and time selection',
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 16),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  HuxButton(
+                                    onPressed: _selectDate,
+                                    variant: HuxButtonVariant.outline,
+                                    icon: FeatherIcons.calendar,
+                                    child: const Text('Select Date'),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  HuxButton(
+                                    onPressed: _selectTime,
+                                    variant: HuxButtonVariant.outline,
+                                    icon: FeatherIcons.clock,
+                                    child: const Text('Select Time'),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                'Selected Date: ${_selectedDate != null ? DateFormat.yMMMd().format(_selectedDate!) : 'None'}',
+                                style: TextStyle(
+                                  color: HuxTokens.textSecondary(context),
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Selected Time: ${_selectedTime != null ? _selectedTime!.format(context) : 'None'}',
+                                style: TextStyle(
+                                  color: HuxTokens.textSecondary(context),
+                                ),
                               ),
                             ],
                           ),
