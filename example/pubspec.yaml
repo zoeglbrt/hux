@@ -20,6 +20,22 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true 
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  web:
+    generate: true
+    image_path: "assets/icon.png"
+  windows:
+    generate: true
+    image_path: "assets/launcher.png"
+  macos:
+    generate: true
+    image_path: "assets/launcher_mac.png"
+  linux: true
+  image_path: "assets/launcher.png"
