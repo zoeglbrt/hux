@@ -45,6 +45,12 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 ![HuxCheckbox Component](screenshots/hux-checkbox.png)
 
+### Date & Time Pickers
+- `showHuxDatePickerDialog` - Modern date picker with month/year selection
+- `showHuxTimePickerDialog` - Clean time picker with hour/minute dropdowns
+- Theme-aware styling with Hux design tokens
+- Responsive calendar grid and smart navigation
+
 ### Widgets
 - `HuxLoading` - Customizable loading indicators
 - `HuxLoadingOverlay` - Full-screen loading overlay
@@ -178,6 +184,24 @@ HuxCard(
   child: Text('Card content goes here'),
   onTap: () => print('Card tapped'),
 )
+```
+
+#### Date & Time Pickers
+
+```dart
+// Date picker
+final DateTime? selectedDate = await showHuxDatePickerDialog(
+  context: context,
+  initialDate: DateTime.now(),
+  firstDate: DateTime(2020),
+  lastDate: DateTime(2030),
+);
+
+// Time picker
+final TimeOfDay? selectedTime = await showHuxTimePickerDialog(
+  context: context,
+  initialTime: TimeOfDay.now(),
+);
 ```
 
 #### Loading
