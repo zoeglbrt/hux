@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hux/hux.dart';
-import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,8 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final _passwordController = TextEditingController();
   final _scrollController = ScrollController();
   bool _isLoading = false;
-  DateTime? _selectedDate;
-  TimeOfDay? _selectedTime;
+  DateTime? _selectedDateInline;
+  // Time picker temporarily disabled
+  // TimeOfDay? _selectedTime;
 
   // Theme state
   String _selectedTheme = 'default';
@@ -84,9 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
   final _badgesKey = GlobalKey();
   final _indicatorsKey = GlobalKey();
   final _displayKey = GlobalKey();
-  final _datePickerKey = GlobalKey();
   final _datePickerNavKey = GlobalKey();
-  final _timePickerKey = GlobalKey();
+  // final _timePickerKey = GlobalKey();
+  // final _timePickerNavKey = GlobalKey();
+  // final _timeButtonKey = GlobalKey();
 
   // Navigation items
   late final List<NavigationItem> _navigationItems;
@@ -155,11 +156,11 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: FeatherIcons.calendar,
         key: _datePickerNavKey,
       ),
-      NavigationItem(
-        title: 'Time Picker',
-        icon: FeatherIcons.clock,
-        key: _timePickerKey,
-      ),
+      // NavigationItem(
+      //   title: 'Time Picker',
+      //   icon: FeatherIcons.clock,
+      //   key: _timePickerKey,
+      // ),
     ];
   }
 
@@ -198,32 +199,20 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Future<void> _selectDate() async {
-    final DateTime? picked = await showHuxDatePickerDialog(
-      context: context,
-      initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-      targetKey: _datePickerKey,
-    );
-    if (picked != null && picked != _selectedDate) {
-      setState(() {
-        _selectedDate = picked;
-      });
-    }
-  }
+  // Removed _selectDate() dialog opener
 
-  Future<void> _selectTime() async {
-    final TimeOfDay? picked = await showHuxTimePickerDialog(
-      context: context,
-      initialTime: _selectedTime ?? TimeOfDay.now(),
-    );
-    if (picked != null && picked != _selectedTime) {
-      setState(() {
-        _selectedTime = picked;
-      });
-    }
-  }
+  // Future<void> _selectTime() async {
+  //   final TimeOfDay? picked = await showHuxTimePickerDialog(
+  //     context: context,
+  //     initialTime: _selectedTime ?? TimeOfDay.now(),
+  //     targetKey: _timeButtonKey,
+  //   );
+  //   if (picked != null && picked != _selectedTime) {
+  //     setState(() {
+  //       _selectedTime = picked;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -1046,17 +1035,20 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Column(
                             children: [
                               const SizedBox(height: 32),
+                              // Dropdown-only variant
                               Center(
-                                child: HuxButton(
-                                  key: _datePickerKey,
-                                  onPressed: _selectDate,
+                                child: HuxDatePicker(
+                                  initialDate: _selectedDateInline,
+                                  firstDate: DateTime(2000),
+                                  lastDate: DateTime(2101),
+                                  onDateChanged: (date) {
+                                    setState(() {
+                                      _selectedDateInline = date;
+                                    });
+                                  },
                                   variant: HuxButtonVariant.outline,
                                   icon: FeatherIcons.calendar,
-                                  child: Text(
-                                    _selectedDate != null 
-                                        ? DateFormat.yMMMd().format(_selectedDate!)
-                                        : 'Select Date',
-                                  ),
+                                  placeholder: 'Select Date',
                                 ),
                               ),
                               const SizedBox(height: 32),
@@ -1064,33 +1056,33 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 32),
-                      Container(
-                        key: _timePickerKey,
-                        child: HuxCard(
-                          title: 'Time Picker',
-                          subtitle:
-                              'Themed picker for time selection',
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 32),
-                              Center(
-                                child: HuxButton(
-                                  onPressed: _selectTime,
-                                  variant: HuxButtonVariant.outline,
-                                  icon: FeatherIcons.clock,
-                                  child: Text(
-                                    _selectedTime != null 
-                                        ? '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}'
-                                        : 'Select Time',
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 32),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // const SizedBox(height: 32),
+                      // Container(
+                      //   key: _timePickerNavKey,
+                      //   child: HuxCard(
+                      //     title: 'Time Picker',
+                      //     subtitle: 'Themed picker for time selection',
+                      //     child: Column(
+                      //       children: [
+                      //         const SizedBox(height: 32),
+                      //         Center(
+                      //           child: HuxButton(
+                      //             key: _timeButtonKey,
+                      //             onPressed: _selectTime,
+                      //             variant: HuxButtonVariant.outline,
+                      //             icon: FeatherIcons.clock,
+                      //             child: Text(
+                      //               _selectedTime != null
+                      //                   ? '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}'
+                      //                   : 'Select Time',
+                      //             ),
+                      //           ),
+                      //         ),
+                      //         const SizedBox(height: 32),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

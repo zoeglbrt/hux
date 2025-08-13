@@ -18,14 +18,104 @@ import '../theme/hux_tokens.dart';
 Future<TimeOfDay?> showHuxTimePickerDialog({
   required BuildContext context,
   required TimeOfDay initialTime,
+  GlobalKey? targetKey,  // ADD THIS PARAMETER
 }) {
+  // Get button position if targetKey is provided
+  Offset? buttonPosition;
+  Size? buttonSize;
+  
+  if (targetKey != null && targetKey.currentContext != null) {
+    final RenderBox renderBox = targetKey.currentContext!.findRenderObject() as RenderBox;
+    buttonPosition = renderBox.localToGlobal(Offset.zero);
+    buttonSize = renderBox.size;
+  }
+  
   return showDialog<TimeOfDay>(
     context: context,
     barrierColor: Colors.transparent,
-    builder: (context) => HuxTimePickerDialog(
-      initialTime: initialTime,
-    ),
+    builder: (context) {
+      if (buttonPosition != null && buttonSize != null) {
+        return Stack(
+          children: [
+            Positioned.fill(
+              child: GestureDetector(
+                onTap: () => Navigator.of(context).pop(),
+                child: Container(color: Colors.transparent),
+              ),
+            ),
+            CustomSingleChildLayout(
+              delegate: _TimePickerLayoutDelegate(
+                targetPosition: buttonPosition,
+                targetSize: buttonSize,
+              ),
+              child: Material(
+                color: Colors.transparent,
+                child: HuxTimePickerDialog(
+                  initialTime: initialTime,
+                ),
+              ),
+            ),
+          ],
+        );
+      } else {
+        return Center(
+          child: HuxTimePickerDialog(
+            initialTime: initialTime,
+          ),
+        );
+      }
+    },
   );
+}
+
+class _TimePickerLayoutDelegate extends SingleChildLayoutDelegate {
+  _TimePickerLayoutDelegate({
+    required this.targetPosition,
+    required this.targetSize,
+  });
+  
+  final Offset targetPosition;
+  final Size targetSize;
+  
+  @override
+  Size getSize(BoxConstraints constraints) => constraints.biggest;
+  
+  @override
+  BoxConstraints getConstraintsForChild(BoxConstraints constraints) {
+    return BoxConstraints.loose(constraints.biggest);
+  }
+  
+  @override
+  Offset getPositionForChild(Size size, Size childSize) {
+    // ignore: prefer_final_locals
+    double x = targetPosition.dx;
+    // Use a reasonable estimate for picker height instead of childSize.height
+    const estimatedPickerHeight = 160.0;
+    // ignore: prefer_final_locals
+    double y = targetPosition.dy - estimatedPickerHeight - 4; // Bottom of picker 4px above button top
+    
+    if (x + childSize.width > size.width - 10) {
+      x = size.width - childSize.width - 10;
+    }
+    if (x < 10) {
+      x = 10;
+    }
+    
+    final buttonCenter = targetPosition.dx + (targetSize.width / 2);
+    final pickerCenter = childSize.width / 2;
+    if (buttonCenter - pickerCenter > 10 && 
+        buttonCenter + pickerCenter < size.width - 10) {
+      x = buttonCenter - pickerCenter;
+    }
+    
+    return Offset(x, y);
+  }
+  
+  @override
+  bool shouldRelayout(_TimePickerLayoutDelegate oldDelegate) {
+    return targetPosition != oldDelegate.targetPosition ||
+           targetSize != oldDelegate.targetSize;
+  }
 }
 
 /// A custom Hux UI-themed time picker dialog widget.
@@ -102,11 +192,7 @@ class _HuxTimePickerDialogState extends State<HuxTimePickerDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      backgroundColor: Colors.transparent,
-      surfaceTintColor: Colors.transparent,
-      elevation: 0,
-      child: Container(
+    return Container(
         width: 280,
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
@@ -258,7 +344,6 @@ class _HuxTimePickerDialogState extends State<HuxTimePickerDialog> {
             ],
           ],
         ),
-      ),
     );
   }
 }
