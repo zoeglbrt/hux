@@ -19,6 +19,7 @@ class HuxDatePicker extends StatefulWidget {
     this.size = HuxButtonSize.medium,
     this.icon,
     this.primaryColor,
+    this.overlayColor
   });
 
   /// The initially selected date. If null, the button shows [placeholder].
@@ -47,6 +48,9 @@ class HuxDatePicker extends StatefulWidget {
 
   /// Optional primary color override for the trigger button.
   final Color? primaryColor;
+
+  /// Optional color for DatePicker Overlay
+  final Color? overlayColor;
 
   @override
   State<HuxDatePicker> createState() => _HuxDatePickerState();
@@ -98,14 +102,10 @@ class _HuxDatePickerState extends State<HuxDatePicker> {
     bool showAbove = false;
     Offset followerOffset = Offset(0, buttonSize.height + belowGap);
     final double buttonGlobalDy = buttonBox.localToGlobal(Offset.zero).dy;
-    
-    // Check if there's enough space below the button
+
     final double spaceBelow = screenSize.height - (buttonGlobalDy + buttonSize.height);
     if (spaceBelow < panelHeight + belowGap + 20) { // 20px buffer
       showAbove = true;
-      // Position above button: move panel completely above the button
-      // The followerOffset is relative to the CompositedTransformTarget (button's top-left)
-      // So we move up by the panel height plus the gap
       followerOffset = Offset(0, -panelHeight - aboveGap);
     }
 
@@ -125,7 +125,7 @@ class _HuxDatePickerState extends State<HuxDatePicker> {
               showWhenUnlinked: false,
               offset: followerOffset,
               child: Material(
-                color: Colors.transparent,
+                color: widget.overlayColor,
                 child: _HuxDatePickerPanel(
                   initialDate: _currentDate,
                   firstDate: widget.firstDate,
