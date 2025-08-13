@@ -1,0 +1,19 @@
+title: "Idea: "
+body:
+  - type: markdown
+    attributes:
+      value: "We love new ideas for The Hux UI! 💡"
+  - type: textarea
+    attributes:
+      label: Describe your idea
+      description: What would you like to see added or improved?
+      placeholder: e.g. A responsive pricing table component
+  - type: textarea
+    attributes:
+      label: Why would this be useful?
+      description: Explain how it would help users or improve The Hux UI.
+      placeholder: e.g. Many landing pages need this to display plans
+  - type: textarea
+    attributes:
+      label: Any references or inspiration?
+      description: Share links, screenshots, or code snippets if you have them.
