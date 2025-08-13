@@ -1056,33 +1056,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
-                      // const SizedBox(height: 32),
-                      // Container(
-                      //   key: _timePickerNavKey,
-                      //   child: HuxCard(
-                      //     title: 'Time Picker',
-                      //     subtitle: 'Themed picker for time selection',
-                      //     child: Column(
-                      //       children: [
-                      //         const SizedBox(height: 32),
-                      //         Center(
-                      //           child: HuxButton(
-                      //             key: _timeButtonKey,
-                      //             onPressed: _selectTime,
-                      //             variant: HuxButtonVariant.outline,
-                      //             icon: FeatherIcons.clock,
-                      //             child: Text(
-                      //               _selectedTime != null
-                      //                   ? '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}'
-                      //                   : 'Select Time',
-                      //             ),
-                      //           ),
-                      //         ),
-                      //         const SizedBox(height: 32),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
+                      
                     ],
                   ),
                 ),
