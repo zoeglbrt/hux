@@ -91,15 +91,22 @@ class _HuxDatePickerState extends State<HuxDatePicker> {
     final Size buttonSize = buttonBox.size;
     final Size screenSize = MediaQuery.of(context).size;
 
-    const double estimatedPanelHeight = 350.0;
-    const double belowGap = -4.0; // slight overlap to visually “stick”
+    const double panelHeight = 318.0; // Slightly more to account for variation
+    const double belowGap = 4.0; // Small gap below button
+    const double aboveGap = 4.0; // Smaller gap above button for closer positioning
 
     bool showAbove = false;
     Offset followerOffset = Offset(0, buttonSize.height + belowGap);
     final double buttonGlobalDy = buttonBox.localToGlobal(Offset.zero).dy;
-    if (buttonGlobalDy + buttonSize.height + belowGap + estimatedPanelHeight > screenSize.height) {
+    
+    // Check if there's enough space below the button
+    final double spaceBelow = screenSize.height - (buttonGlobalDy + buttonSize.height);
+    if (spaceBelow < panelHeight + belowGap + 20) { // 20px buffer
       showAbove = true;
-      followerOffset = const Offset(0, -estimatedPanelHeight + 2);
+      // Position above button: move panel completely above the button
+      // The followerOffset is relative to the CompositedTransformTarget (button's top-left)
+      // So we move up by the panel height plus the gap
+      followerOffset = Offset(0, -panelHeight - aboveGap);
     }
 
     _overlayEntry = OverlayEntry(
