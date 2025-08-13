@@ -61,6 +61,8 @@ export 'src/widgets/hux_chart.dart';
 export 'src/widgets/hux_context_menu/hux_context_menu.dart';
 export 'src/widgets/hux_context_menu/hux_context_menu_item.dart';
 export 'src/widgets/hux_context_menu/hux_context_menu_divider.dart';
+export 'src/widgets/hux_date_picker.dart';
+export 'src/widgets/hux_time_picker.dart';
 
 // Export external dependencies
 /// FeatherIcons - Beautiful icon set for Flutter applications

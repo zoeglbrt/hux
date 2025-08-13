@@ -58,6 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final _passwordController = TextEditingController();
   final _scrollController = ScrollController();
   bool _isLoading = false;
+  DateTime? _selectedDateInline;
+  // Time picker temporarily disabled
+  // TimeOfDay? _selectedTime;
 
   // Theme state
   String _selectedTheme = 'default';
@@ -81,6 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
   final _badgesKey = GlobalKey();
   final _indicatorsKey = GlobalKey();
   final _displayKey = GlobalKey();
+  final _datePickerNavKey = GlobalKey();
+  // final _timePickerKey = GlobalKey();
+  // final _timePickerNavKey = GlobalKey();
+  // final _timeButtonKey = GlobalKey();
 
   // Navigation items
   late final List<NavigationItem> _navigationItems;
@@ -144,6 +151,16 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: FeatherIcons.loader,
         key: _loadingKey,
       ),
+      NavigationItem(
+        title: 'Date Picker',
+        icon: FeatherIcons.calendar,
+        key: _datePickerNavKey,
+      ),
+      // NavigationItem(
+      //   title: 'Time Picker',
+      //   icon: FeatherIcons.clock,
+      //   key: _timePickerKey,
+      // ),
     ];
   }
 
@@ -181,6 +198,21 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     }
   }
+
+  // Removed _selectDate() dialog opener
+
+  // Future<void> _selectTime() async {
+  //   final TimeOfDay? picked = await showHuxTimePickerDialog(
+  //     context: context,
+  //     initialTime: _selectedTime ?? TimeOfDay.now(),
+  //     targetKey: _timeButtonKey,
+  //   );
+  //   if (picked != null && picked != _selectedTime) {
+  //     setState(() {
+  //       _selectedTime = picked;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -993,6 +1025,38 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 32),
+                      Container(
+                        key: _datePickerNavKey,
+                        child: HuxCard(
+                          title: 'Date Picker',
+                          subtitle:
+                              'Themed picker for date selection',
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 32),
+                              // Dropdown-only variant
+                              Center(
+                                child: HuxDatePicker(
+                                  initialDate: _selectedDateInline,
+                                  firstDate: DateTime(2000),
+                                  lastDate: DateTime(2101),
+                                  onDateChanged: (date) {
+                                    setState(() {
+                                      _selectedDateInline = date;
+                                    });
+                                  },
+                                  variant: HuxButtonVariant.outline,
+                                  icon: FeatherIcons.calendar,
+                                  placeholder: 'Select Date',
+                                ),
+                              ),
+                              const SizedBox(height: 32),
+                            ],
+                          ),
+                        ),
+                      ),
+                      
                     ],
                   ),
                 ),
