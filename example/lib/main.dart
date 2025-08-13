@@ -1030,8 +1030,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         key: _datePickerNavKey,
                         child: HuxCard(
                           title: 'Date Picker',
-                          subtitle:
-                              'Themed picker for date selection',
+                          subtitle: 'Themed picker for date selection',
                           child: Column(
                             children: [
                               const SizedBox(height: 32),
@@ -1056,7 +1055,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
-                      
                     ],
                   ),
                 ),

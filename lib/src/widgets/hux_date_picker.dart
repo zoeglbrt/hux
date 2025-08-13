@@ -8,19 +8,18 @@ import '../components/buttons/hux_button.dart';
 /// positioned relative to the button (below by default, flips above if needed).
 class HuxDatePicker extends StatefulWidget {
   /// Creates a Hux date picker dropdown anchored to the trigger button.
-  const HuxDatePicker({
-    super.key,
-    this.initialDate,
-    required this.firstDate,
-    required this.lastDate,
-    this.onDateChanged,
-    this.placeholder,
-    this.variant = HuxButtonVariant.outline,
-    this.size = HuxButtonSize.medium,
-    this.icon,
-    this.primaryColor,
-    this.overlayColor
-  });
+  const HuxDatePicker(
+      {super.key,
+      this.initialDate,
+      required this.firstDate,
+      required this.lastDate,
+      this.onDateChanged,
+      this.placeholder,
+      this.variant = HuxButtonVariant.outline,
+      this.size = HuxButtonSize.medium,
+      this.icon,
+      this.primaryColor,
+      this.overlayColor});
 
   /// The initially selected date. If null, the button shows [placeholder].
   final DateTime? initialDate;
@@ -71,7 +70,8 @@ class _HuxDatePickerState extends State<HuxDatePicker> {
   @override
   void didUpdateWidget(covariant HuxDatePicker oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.initialDate != oldWidget.initialDate && widget.initialDate != null) {
+    if (widget.initialDate != oldWidget.initialDate &&
+        widget.initialDate != null) {
       _currentDate = widget.initialDate!;
     }
   }
@@ -91,20 +91,24 @@ class _HuxDatePickerState extends State<HuxDatePicker> {
   }
 
   void _showOverlay() {
-    final RenderBox buttonBox = _buttonKey.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox buttonBox =
+        _buttonKey.currentContext!.findRenderObject() as RenderBox;
     final Size buttonSize = buttonBox.size;
     final Size screenSize = MediaQuery.of(context).size;
 
     const double panelHeight = 318.0; // Slightly more to account for variation
     const double belowGap = 4.0; // Small gap below button
-    const double aboveGap = 4.0; // Smaller gap above button for closer positioning
+    const double aboveGap =
+        4.0; // Smaller gap above button for closer positioning
 
     bool showAbove = false;
     Offset followerOffset = Offset(0, buttonSize.height + belowGap);
     final double buttonGlobalDy = buttonBox.localToGlobal(Offset.zero).dy;
 
-    final double spaceBelow = screenSize.height - (buttonGlobalDy + buttonSize.height);
-    if (spaceBelow < panelHeight + belowGap + 20) { // 20px buffer
+    final double spaceBelow =
+        screenSize.height - (buttonGlobalDy + buttonSize.height);
+    if (spaceBelow < panelHeight + belowGap + 20) {
+      // 20px buffer
       showAbove = true;
       followerOffset = Offset(0, -panelHeight - aboveGap);
     }
@@ -218,8 +222,8 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
     _selectedDate = widget.initialDate;
     final int defaultYear =
         widget.initialDate.year >= 1900 && widget.initialDate.year <= 2050
-        ? widget.initialDate.year 
-        : 2025;
+            ? widget.initialDate.year
+            : 2025;
     _currentMonth = DateTime(defaultYear, widget.initialDate.month);
     _yearScrollController = ScrollController();
   }
@@ -250,10 +254,10 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: HuxTokens.surfaceElevated(context),
-          borderRadius: BorderRadius.circular(12),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: HuxTokens.surfaceElevated(context),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(color: HuxTokens.buttonSecondaryBorder(context)),
         boxShadow: [
           BoxShadow(
@@ -262,12 +266,12 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
             offset: const Offset(0, 4),
           ),
         ],
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
           SizedBox(width: 7 * 32 + 6, child: _buildHeader()),
-            const SizedBox(height: 16),
+          const SizedBox(height: 16),
           if (_isShowingMonthPicker)
             SizedBox(width: 7 * 32 + 6, child: _buildMonthPicker())
           else if (_isShowingYearPicker)
@@ -370,35 +374,35 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
         Column(
           children: [
             Row(children: [
-                _buildMonthItem(1, 'Jan'),
-                const SizedBox(width: 8),
-                _buildMonthItem(2, 'Feb'),
-                const SizedBox(width: 8),
-                _buildMonthItem(3, 'Mar'),
+              _buildMonthItem(1, 'Jan'),
+              const SizedBox(width: 8),
+              _buildMonthItem(2, 'Feb'),
+              const SizedBox(width: 8),
+              _buildMonthItem(3, 'Mar'),
             ]),
             const SizedBox(height: 8),
             Row(children: [
-                _buildMonthItem(4, 'Apr'),
-                const SizedBox(width: 8),
-                _buildMonthItem(5, 'May'),
-                const SizedBox(width: 8),
-                _buildMonthItem(6, 'Jun'),
+              _buildMonthItem(4, 'Apr'),
+              const SizedBox(width: 8),
+              _buildMonthItem(5, 'May'),
+              const SizedBox(width: 8),
+              _buildMonthItem(6, 'Jun'),
             ]),
             const SizedBox(height: 8),
             Row(children: [
-                _buildMonthItem(7, 'Jul'),
-                const SizedBox(width: 8),
-                _buildMonthItem(8, 'Aug'),
-                const SizedBox(width: 8),
-                _buildMonthItem(9, 'Sep'),
+              _buildMonthItem(7, 'Jul'),
+              const SizedBox(width: 8),
+              _buildMonthItem(8, 'Aug'),
+              const SizedBox(width: 8),
+              _buildMonthItem(9, 'Sep'),
             ]),
             const SizedBox(height: 8),
             Row(children: [
-                _buildMonthItem(10, 'Oct'),
-                const SizedBox(width: 8),
-                _buildMonthItem(11, 'Nov'),
-                const SizedBox(width: 8),
-                _buildMonthItem(12, 'Dec'),
+              _buildMonthItem(10, 'Oct'),
+              const SizedBox(width: 8),
+              _buildMonthItem(11, 'Nov'),
+              const SizedBox(width: 8),
+              _buildMonthItem(12, 'Dec'),
             ]),
           ],
         ),
@@ -413,7 +417,8 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
       width: itemWidth,
       child: HuxButton(
         onPressed: () => _handleMonthSelection(month),
-        variant: isSelected ? HuxButtonVariant.primary : HuxButtonVariant.outline,
+        variant:
+            isSelected ? HuxButtonVariant.primary : HuxButtonVariant.outline,
         size: HuxButtonSize.small,
         child: Center(
           child: Text(
@@ -426,7 +431,8 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
   }
 
   Widget _buildYearPicker() {
-    final List<int> years = List.generate(2050 - 1900 + 1, (index) => 1900 + index);
+    final List<int> years =
+        List.generate(2050 - 1900 + 1, (index) => 1900 + index);
     return Column(
       children: [
         Text(
@@ -441,35 +447,39 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
         SizedBox(
           height: 4 * 32 + 24,
           child: ScrollConfiguration(
-            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            behavior:
+                ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: ListView.builder(
               controller: _yearScrollController,
               physics: const ClampingScrollPhysics(),
               itemCount: years.length,
-            itemBuilder: (context, index) {
+              itemBuilder: (context, index) {
                 final int year = years[index];
                 final bool isSelected = year == _currentMonth.year;
-                             return Padding(
-                 padding: const EdgeInsets.only(bottom: 8),
-                 child: HuxButton(
-                   onPressed: () => _handleYearSelection(year),
-                   variant: isSelected ? HuxButtonVariant.primary : HuxButtonVariant.outline,
-                   size: HuxButtonSize.small,
-                   child: SizedBox(
-                     width: double.infinity,
-                     child: Center(
-                       child: Text(
-                         year.toString(),
-                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                       ),
-                     ),
-                   ),
-                 ),
-               );
-            },
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: HuxButton(
+                    onPressed: () => _handleYearSelection(year),
+                    variant: isSelected
+                        ? HuxButtonVariant.primary
+                        : HuxButtonVariant.outline,
+                    size: HuxButtonSize.small,
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: Center(
+                        child: Text(
+                          year.toString(),
+                          style: const TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
-      ),
       ],
     );
   }
@@ -480,17 +490,17 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
         Row(
           children: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
               .map((day) => SizedBox(
-              width: 32,
-              child: Center(
-                child: Text(
-                  day,
-                  style: TextStyle(
-                    color: HuxTokens.textSecondary(context),
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
+                    width: 32,
+                    child: Center(
+                      child: Text(
+                        day,
+                        style: TextStyle(
+                          color: HuxTokens.textSecondary(context),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
                   ))
               .toList(),
         ),
@@ -501,17 +511,21 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
   }
 
   List<Widget> _buildCalendarRows() {
-    final int daysInMonth = DateTime(_currentMonth.year, _currentMonth.month + 1, 0).day;
-    final DateTime firstDayOfMonth = DateTime(_currentMonth.year, _currentMonth.month, 1);
+    final int daysInMonth =
+        DateTime(_currentMonth.year, _currentMonth.month + 1, 0).day;
+    final DateTime firstDayOfMonth =
+        DateTime(_currentMonth.year, _currentMonth.month, 1);
     final int firstWeekday = firstDayOfMonth.weekday;
     final int daysFromPrevMonth = (firstWeekday - 1) % 7;
-    final DateTime prevMonth = DateTime(_currentMonth.year, _currentMonth.month - 1);
-    final int daysInPrevMonth = DateTime(prevMonth.year, prevMonth.month + 1, 0).day;
-    
+    final DateTime prevMonth =
+        DateTime(_currentMonth.year, _currentMonth.month - 1);
+    final int daysInPrevMonth =
+        DateTime(prevMonth.year, prevMonth.month + 1, 0).day;
+
     final List<Widget> rows = [];
     final int totalDaysToShow = daysFromPrevMonth + daysInMonth;
     final int numberOfWeeks = (totalDaysToShow / 7).ceil();
-    
+
     for (int weekIndex = 0; weekIndex < numberOfWeeks; weekIndex++) {
       bool hasCurrentMonthDay = false;
       for (int dayIndex = 0; dayIndex < 7; dayIndex++) {
@@ -527,7 +541,8 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(
               children: List.generate(7, (dayIndex) {
-                final int dayNumber = weekIndex * 7 + dayIndex - daysFromPrevMonth + 1;
+                final int dayNumber =
+                    weekIndex * 7 + dayIndex - daysFromPrevMonth + 1;
                 final bool isPrevMonth = dayNumber <= 0;
                 final bool isNextMonth = dayNumber > daysInMonth;
                 if (isPrevMonth) {
@@ -555,18 +570,18 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
                     ),
                   );
                 } else {
-                  final DateTime date =
-                      DateTime(_currentMonth.year, _currentMonth.month, dayNumber);
-                  final bool isSelected =
-                      date.year == _selectedDate.year &&
+                  final DateTime date = DateTime(
+                      _currentMonth.year, _currentMonth.month, dayNumber);
+                  final bool isSelected = date.year == _selectedDate.year &&
                       date.month == _selectedDate.month &&
                       date.day == _selectedDate.day;
                   final DateTime now = DateTime.now();
-                  final bool isToday =
-                      date.year == now.year && date.month == now.month && date.day == now.day;
-                  final bool isDisabled =
-                      date.isBefore(widget.firstDate) || date.isAfter(widget.lastDate);
-                  
+                  final bool isToday = date.year == now.year &&
+                      date.month == now.month &&
+                      date.day == now.day;
+                  final bool isDisabled = date.isBefore(widget.firstDate) ||
+                      date.isAfter(widget.lastDate);
+
                   return SizedBox(
                     width: 32,
                     child: _buildDayCell(
@@ -585,7 +600,7 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
         );
       }
     }
-    
+
     return rows;
   }
 
@@ -609,7 +624,18 @@ class _HuxDatePickerPanelState extends State<_HuxDatePickerPanel> {
 
   String _getMonthName(int month) {
     const List<String> months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
     ];
     return months[month - 1];
   }
@@ -644,7 +670,9 @@ class _DayCellState extends State<_DayCell> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: widget.isDisabled ? SystemMouseCursors.basic : SystemMouseCursors.click,
+      cursor: widget.isDisabled
+          ? SystemMouseCursors.basic
+          : SystemMouseCursors.click,
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
@@ -662,18 +690,18 @@ class _DayCellState extends State<_DayCell> {
             borderRadius: BorderRadius.circular(8),
             border: _getBorder(),
           ),
-                      child: Center(
-              child: Text(
-                widget.day.toString(),
-                style: TextStyle(
-                  color: _getTextColor(),
-                  fontSize: 14,
+          child: Center(
+            child: Text(
+              widget.day.toString(),
+              style: TextStyle(
+                color: _getTextColor(),
+                fontSize: 14,
                 fontWeight: widget.isSelected || widget.isToday
                     ? FontWeight.w600
                     : FontWeight.w500,
-                ),
               ),
             ),
+          ),
         ),
       ),
     );
@@ -682,9 +710,15 @@ class _DayCellState extends State<_DayCell> {
   Color _getBackgroundColor() {
     if (widget.isDisabled) return Colors.transparent;
     if (widget.isSelected) return HuxTokens.primary(context);
-    if (_isPressed) return HuxTokens.surfaceHover(context);
-    if (_isHovered && !widget.isSelected) return HuxTokens.surfaceHover(context);
-    if (widget.isToday) return HuxTokens.primary(context).withValues(alpha: 0.1);
+    if (_isPressed) {
+      return HuxTokens.surfaceHover(context);
+    }
+    if (_isHovered && !widget.isSelected) {
+      return HuxTokens.surfaceHover(context);
+    }
+    if (widget.isToday) {
+      return HuxTokens.primary(context).withValues(alpha: 0.1);
+    }
     return Colors.transparent;
   }
 
@@ -733,10 +767,10 @@ class _NavigationButtonState extends State<_NavigationButton> {
         onTapDown: (_) => setState(() => _isPressed = true),
         onTapUp: (_) => setState(() => _isPressed = false),
         onTapCancel: () => setState(() => _isPressed = false),
-                 child: AnimatedContainer(
-           duration: const Duration(milliseconds: 150),
-           width: 32,
-           height: 32,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          width: 32,
+          height: 32,
           decoration: BoxDecoration(
             color: _getBackgroundColor(),
             borderRadius: BorderRadius.circular(8),
@@ -763,5 +797,3 @@ class _NavigationButtonState extends State<_NavigationButton> {
     return HuxTokens.textPrimary(context);
   }
 }
-
-

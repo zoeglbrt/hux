@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.3] - 2025-08-13
+
+### Added
+- **HuxDatePicker**: New date selection widget with theme-aware styling and overlay-based calendar
+  - Optional `overlayColor` parameter for fine-tuned overlay appearance
+- **Public Exports**: Added `HuxDatePicker` and `HuxTimePicker` to `lib/hux.dart`
+
+### Fixed
+- **Date Picker Overlay**: Corrected overlay positioning for reliable alignment with the trigger
+
+### Enhanced
+- **Documentation & README**: Updated docs pages and README with new details and visuals
+- **Example App**: Cleanups and demos for new pickers; added Vercel Analytics to web index
+
+### Assets & Internal
+- **Screenshots**: Added component screenshots under `doc/images/` for documentation
+- **Coverage**: Committed `coverage/lcov.info` for internal reporting
+
+### Breaking Changes
+- None
+
 ## [0.2.2] - 2025-07-07
 
 ### Added

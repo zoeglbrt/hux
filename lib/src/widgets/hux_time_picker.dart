@@ -18,18 +18,19 @@ import '../theme/hux_tokens.dart';
 Future<TimeOfDay?> showHuxTimePickerDialog({
   required BuildContext context,
   required TimeOfDay initialTime,
-  GlobalKey? targetKey,  // ADD THIS PARAMETER
+  GlobalKey? targetKey, // ADD THIS PARAMETER
 }) {
   // Get button position if targetKey is provided
   Offset? buttonPosition;
   Size? buttonSize;
-  
+
   if (targetKey != null && targetKey.currentContext != null) {
-    final RenderBox renderBox = targetKey.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox renderBox =
+        targetKey.currentContext!.findRenderObject() as RenderBox;
     buttonPosition = renderBox.localToGlobal(Offset.zero);
     buttonSize = renderBox.size;
   }
-  
+
   return showDialog<TimeOfDay>(
     context: context,
     barrierColor: Colors.transparent,
@@ -73,18 +74,18 @@ class _TimePickerLayoutDelegate extends SingleChildLayoutDelegate {
     required this.targetPosition,
     required this.targetSize,
   });
-  
+
   final Offset targetPosition;
   final Size targetSize;
-  
+
   @override
   Size getSize(BoxConstraints constraints) => constraints.biggest;
-  
+
   @override
   BoxConstraints getConstraintsForChild(BoxConstraints constraints) {
     return BoxConstraints.loose(constraints.biggest);
   }
-  
+
   @override
   Offset getPositionForChild(Size size, Size childSize) {
     // ignore: prefer_final_locals
@@ -92,29 +93,31 @@ class _TimePickerLayoutDelegate extends SingleChildLayoutDelegate {
     // Use a reasonable estimate for picker height instead of childSize.height
     const estimatedPickerHeight = 160.0;
     // ignore: prefer_final_locals
-    double y = targetPosition.dy - estimatedPickerHeight - 4; // Bottom of picker 4px above button top
-    
+    double y = targetPosition.dy -
+        estimatedPickerHeight -
+        4; // Bottom of picker 4px above button top
+
     if (x + childSize.width > size.width - 10) {
       x = size.width - childSize.width - 10;
     }
     if (x < 10) {
       x = 10;
     }
-    
+
     final buttonCenter = targetPosition.dx + (targetSize.width / 2);
     final pickerCenter = childSize.width / 2;
-    if (buttonCenter - pickerCenter > 10 && 
+    if (buttonCenter - pickerCenter > 10 &&
         buttonCenter + pickerCenter < size.width - 10) {
       x = buttonCenter - pickerCenter;
     }
-    
+
     return Offset(x, y);
   }
-  
+
   @override
   bool shouldRelayout(_TimePickerLayoutDelegate oldDelegate) {
     return targetPosition != oldDelegate.targetPosition ||
-           targetSize != oldDelegate.targetSize;
+        targetSize != oldDelegate.targetSize;
   }
 }
 
@@ -193,157 +196,157 @@ class _HuxTimePickerDialogState extends State<HuxTimePickerDialog> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 280,
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: HuxTokens.surfaceElevated(context),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: HuxTokens.buttonSecondaryBorder(context),
-            width: 1,
+      width: 280,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: HuxTokens.surfaceElevated(context),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: HuxTokens.buttonSecondaryBorder(context),
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: HuxTokens.shadowColor(context),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
           ),
-          boxShadow: [
-            BoxShadow(
-              color: HuxTokens.shadowColor(context),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Hour selector
-                MouseRegion(
-                  onEnter: (_) => setState(() => _isHourHovered = true),
-                  onExit: (_) => setState(() => _isHourHovered = false),
-                  child: GestureDetector(
-                    onTap: _toggleHourSelection,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Hour selector
+              MouseRegion(
+                onEnter: (_) => setState(() => _isHourHovered = true),
+                onExit: (_) => setState(() => _isHourHovered = false),
+                child: GestureDetector(
+                  onTap: _toggleHourSelection,
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: _isSelectingHour
+                          ? HuxTokens.primary(context)
+                          : _isHourHovered
+                              ? HuxTokens.surfaceHover(context)
+                              : Colors.transparent,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      _selectedTime.hour.toString().padLeft(2, '0'),
+                      style: TextStyle(
                         color: _isSelectingHour
-                            ? HuxTokens.primary(context)
-                            : _isHourHovered
-                                ? HuxTokens.surfaceHover(context)
-                                : Colors.transparent,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        _selectedTime.hour.toString().padLeft(2, '0'),
-                        style: TextStyle(
-                          color: _isSelectingHour
-                              ? HuxTokens.surfacePrimary(context)
-                              : HuxTokens.textPrimary(context),
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                        ),
+                            ? HuxTokens.surfacePrimary(context)
+                            : HuxTokens.textPrimary(context),
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
                 ),
-                Text(
-                  ':',
-                  style: TextStyle(
-                    color: HuxTokens.textPrimary(context),
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                  ),
+              ),
+              Text(
+                ':',
+                style: TextStyle(
+                  color: HuxTokens.textPrimary(context),
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
                 ),
-                // Minute selector
-                MouseRegion(
-                  onEnter: (_) => setState(() => _isMinuteHovered = true),
-                  onExit: (_) => setState(() => _isMinuteHovered = false),
-                  child: GestureDetector(
-                    onTap: _toggleMinuteSelection,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
+              ),
+              // Minute selector
+              MouseRegion(
+                onEnter: (_) => setState(() => _isMinuteHovered = true),
+                onExit: (_) => setState(() => _isMinuteHovered = false),
+                child: GestureDetector(
+                  onTap: _toggleMinuteSelection,
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: _isSelectingMinute
+                          ? HuxTokens.primary(context)
+                          : _isMinuteHovered
+                              ? HuxTokens.surfaceHover(context)
+                              : Colors.transparent,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      _selectedTime.minute.toString().padLeft(2, '0'),
+                      style: TextStyle(
                         color: _isSelectingMinute
-                            ? HuxTokens.primary(context)
-                            : _isMinuteHovered
-                                ? HuxTokens.surfaceHover(context)
-                                : Colors.transparent,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        _selectedTime.minute.toString().padLeft(2, '0'),
-                        style: TextStyle(
-                          color: _isSelectingMinute
-                              ? HuxTokens.surfacePrimary(context)
-                              : HuxTokens.textPrimary(context),
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                        ),
+                            ? HuxTokens.surfacePrimary(context)
+                            : HuxTokens.textPrimary(context),
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
                 ),
-              ],
+              ),
+            ],
+          ),
+
+          // Hour dropdown
+          if (_isSelectingHour) ...[
+            const SizedBox(height: 16),
+            Container(
+              height: 200,
+              decoration: BoxDecoration(
+                color: HuxTokens.surfaceSecondary(context),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: HuxTokens.buttonSecondaryBorder(context),
+                  width: 1,
+                ),
+              ),
+              child: ListView.builder(
+                itemCount: 24,
+                itemBuilder: (context, index) {
+                  final hour = index;
+                  final isSelected = hour == _selectedTime.hour;
+                  return _HourItem(
+                    hour: hour,
+                    isSelected: isSelected,
+                    onTap: () => _selectHour(hour),
+                  );
+                },
+              ),
             ),
-
-            // Hour dropdown
-            if (_isSelectingHour) ...[
-              const SizedBox(height: 16),
-              Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  color: HuxTokens.surfaceSecondary(context),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: HuxTokens.buttonSecondaryBorder(context),
-                    width: 1,
-                  ),
-                ),
-                child: ListView.builder(
-                  itemCount: 24,
-                  itemBuilder: (context, index) {
-                    final hour = index;
-                    final isSelected = hour == _selectedTime.hour;
-                    return _HourItem(
-                      hour: hour,
-                      isSelected: isSelected,
-                      onTap: () => _selectHour(hour),
-                    );
-                  },
-                ),
-              ),
-            ],
-
-            // Minute dropdown
-            if (_isSelectingMinute) ...[
-              const SizedBox(height: 16),
-              Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  color: HuxTokens.surfaceSecondary(context),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: HuxTokens.buttonSecondaryBorder(context),
-                    width: 1,
-                  ),
-                ),
-                child: ListView.builder(
-                  itemCount: 60,
-                  itemBuilder: (context, index) {
-                    final minute = index;
-                    final isSelected = minute == _selectedTime.minute;
-                    return _MinuteItem(
-                      minute: minute,
-                      isSelected: isSelected,
-                      onTap: () => _selectMinute(minute),
-                    );
-                  },
-                ),
-              ),
-            ],
           ],
-        ),
+
+          // Minute dropdown
+          if (_isSelectingMinute) ...[
+            const SizedBox(height: 16),
+            Container(
+              height: 200,
+              decoration: BoxDecoration(
+                color: HuxTokens.surfaceSecondary(context),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: HuxTokens.buttonSecondaryBorder(context),
+                  width: 1,
+                ),
+              ),
+              child: ListView.builder(
+                itemCount: 60,
+                itemBuilder: (context, index) {
+                  final minute = index;
+                  final isSelected = minute == _selectedTime.minute;
+                  return _MinuteItem(
+                    minute: minute,
+                    isSelected: isSelected,
+                    onTap: () => _selectMinute(minute),
+                  );
+                },
+              ),
+            ),
+          ],
+        ],
+      ),
     );
   }
 }
