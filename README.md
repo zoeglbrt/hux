@@ -2,12 +2,12 @@
 
 A modern Flutter UI package with beautiful, customizable components designed for clean and consistent user interfaces.
 
-[![pub package](https://img.shields.io/pub/v/hux.svg)](https://pub.dev/packages/hux)
-[![pub points](https://img.shields.io/pub/points/hux)](https://pub.dev/packages/hux/score)
-[![likes](https://img.shields.io/pub/likes/hux)](https://pub.dev/packages/hux/score)
-[![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios%20%7C%20web%20%7C%20windows%20%7C%20macos%20%7C%20linux-blue)](https://flutter.dev/)
-[![Flutter support](https://img.shields.io/badge/Flutter-1.17%2B-blue)](https://flutter.dev/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![pub package](https://img.shields.io/pub/v/hux?color=C0C0C0)](https://pub.dev/packages/hux)
+[![pub points](https://img.shields.io/pub/points/hux?color=3C3C3C)](https://pub.dev/packages/hux/score)
+[![likes](https://img.shields.io/pub/likes/hux?color=C0C0C0)](https://pub.dev/packages/hux/score)
+[![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios%20%7C%20web%20%7C%20windows%20%7C%20macos%20%7C%20linux-C0C0C0)](https://flutter.dev/)
+[![Flutter support](https://img.shields.io/badge/Flutter-1.17%2B-3C3C3C)](https://flutter.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-C0C0C0)](https://opensource.org/licenses/MIT)
 
 ## Features
 
