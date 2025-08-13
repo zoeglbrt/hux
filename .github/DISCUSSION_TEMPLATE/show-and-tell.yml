@@ -1,0 +1,20 @@
+title: "Show and Tell: "
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for sharing your work with The Hux UI! 🎉"
+  - type: textarea
+    attributes:
+      label: What did you build?
+      description: Briefly describe your project.
+      placeholder: e.g. A landing page using the new Hux UI components
+  - type: textarea
+    attributes:
+      label: Screenshots / Demo link
+      description: Share images, videos, or a live link so others can see it in action.
+      placeholder: Paste image links or video URLs here
+  - type: textarea
+    attributes:
+      label: Which components did you use?
+      description: List the Hux UI components you used or customized.
+      placeholder: e.g. Navbar, Hero, Buttons, Cards
