@@ -82,13 +82,13 @@ packages:
     source: hosted
     version: "1.19.1"
   cristalyse:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cristalyse
-      sha256: fbda20c0e68c1f68952a8ed6e66352ac405812ee1eab4b0c783c119c45008152
+      sha256: "43fc0e54bf1160ecb4a861f564874bef1b1a4619f2912b7a74bcd4ae642a87c9"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.4"
+    version: "1.1.0"
   crypto:
     dependency: transitive
     description:
@@ -201,7 +201,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.3.0"
+    version: "0.3.1"
   image:
     dependency: transitive
     description:
@@ -210,6 +210,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.5.4"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: "3df61194eb431efc39c4ceba583b95633a403f46c9fd341e550ce0bfa50e9aa5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.20.2"
   json_annotation:
     dependency: transitive
     description:
