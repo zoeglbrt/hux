@@ -28,7 +28,7 @@ HuxLoading(size: HuxLoadingSize.medium)
 
 ## HuxLoadingOverlay
 
-Full-screen overlay for blocking user interaction during loading.
+Full-screen overlay that blocks user interaction during loading operations. Perfect for API calls, file uploads, or any long-running processes.
 
 ```dart
 HuxLoadingOverlay(
@@ -40,9 +40,26 @@ HuxLoadingOverlay(
 
 ### Properties
 
-- `isLoading` - Whether to show the loading overlay
-- `message` - Optional loading message text
-- `child` - Content to display behind overlay
+- **`isLoading`** - Boolean flag to control overlay visibility
+- **`message`** - Optional loading message displayed above the spinner
+- **`child`** - The main content widget that will be covered by the overlay
+- **`barrierColor`** - Optional custom barrier color (defaults to semi-transparent black)
+- **`spinnerColor`** - Optional custom spinner color (defaults to theme primary color)
+
+### Advanced Usage
+
+```dart
+HuxLoadingOverlay(
+  isLoading: _isLoading,
+  message: 'Uploading files...',
+  barrierColor: Colors.black54,
+  spinnerColor: HuxTokens.primary(context),
+  child: Scaffold(
+    appBar: AppBar(title: Text('File Upload')),
+    body: FileUploadForm(),
+  ),
+)
+```
 
 ## Usage Example
 
@@ -87,6 +104,17 @@ class _AsyncOperationExampleState extends State<AsyncOperationExample> {
 }
 ```
 
-<Note>
-  Complete loading documentation is coming soon. See the [example app](https://github.com/zoeglbrt/hux/tree/main/example) for more usage patterns.
-</Note>
+## Best Practices
+
+1. **Use for blocking operations** - Perfect for API calls, file uploads, or data processing
+2. **Provide clear messages** - Help users understand what's happening
+3. **Consider duration** - For very short operations (< 500ms), consider using inline loading instead
+4. **Accessibility** - The overlay automatically handles screen reader announcements
+5. **Theme integration** - Colors automatically adapt to light/dark themes
+
+## Accessibility Features
+
+- **Screen reader support** - Loading state is announced to assistive technologies
+- **Focus management** - Prevents interaction with background content during loading
+- **High contrast support** - Uses Hux UI's accessible color tokens
+- **Keyboard navigation** - Properly blocks keyboard input during loading states

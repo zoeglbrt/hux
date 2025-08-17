@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
         key: _buttonsKey,
       ),
       NavigationItem(
-        title: 'Text Fields',
+        title: 'Input',
         icon: FeatherIcons.edit3,
         key: _textFieldsKey,
       ),
@@ -522,42 +522,19 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: HuxCard(
                           title: 'Buttons',
                           subtitle: 'Different button variants and sizes',
+                          action: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              _buildSizeButton('S', HuxButtonSize.small),
+                              const SizedBox(width: 8),
+                              _buildSizeButton('M', HuxButtonSize.medium),
+                              const SizedBox(width: 8),
+                              _buildSizeButton('L', HuxButtonSize.large),
+                            ],
+                          ),
                           child: Column(
                             children: [
                               const SizedBox(height: 16),
-
-                              // Size Selector Tabs
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? HuxColors.black70
-                                      : HuxColors.white10,
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: Theme.of(context).brightness ==
-                                            Brightness.dark
-                                        ? HuxColors.white20
-                                        : HuxColors.black20,
-                                  ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: _buildSizeTab(
-                                          'Small', HuxButtonSize.small),
-                                    ),
-                                    Expanded(
-                                      child: _buildSizeTab(
-                                          'Medium', HuxButtonSize.medium),
-                                    ),
-                                    Expanded(
-                                      child: _buildSizeTab(
-                                          'Large', HuxButtonSize.large),
-                                    ),
-                                  ],
-                                ),
-                              ),
 
                               const SizedBox(height: 20),
 
@@ -613,12 +590,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height:
                                     48, // Fixed height to prevent layout shifts
                                 child: Center(
-                                  child: HuxButton(
-                                    onPressed: _toggleLoading,
-                                    primaryColor: _currentPrimaryColor(context),
-                                    size: _selectedButtonSize,
-                                    icon: FeatherIcons.upload,
-                                    child: const Text('With Icon'),
+                                  child: Wrap(
+                                    spacing: 12,
+                                    children: [
+                                      HuxButton(
+                                        onPressed: _toggleLoading,
+                                        primaryColor:
+                                            _currentPrimaryColor(context),
+                                        size: _selectedButtonSize,
+                                        icon: FeatherIcons.upload,
+                                        child: const Text('With Icon'),
+                                      ),
+                                      HuxButton(
+                                        onPressed: _toggleLoading,
+                                        primaryColor:
+                                            _currentPrimaryColor(context),
+                                        size: _selectedButtonSize,
+                                        icon: FeatherIcons.upload,
+                                        width: HuxButtonWidth.fixed,
+                                        widthValue: _getButtonHeight(
+                                            _selectedButtonSize), // Square button
+                                        child: const SizedBox(
+                                            width: 0), // Icon only
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -629,69 +624,71 @@ class _MyHomePageState extends State<MyHomePage> {
 
                       const SizedBox(height: 32),
 
-                      // Text Fields Section
+                      // Input Section
                       Container(
                         key: _textFieldsKey,
                         child: HuxCard(
-                          title: 'Text Fields',
+                          title: 'Input',
                           subtitle: 'Input components with validation',
                           child: Column(
                             children: [
                               const SizedBox(height: 16),
-                              HuxTextField(
-                                controller: _emailController,
-                                label: 'Email',
-                                hint: 'Enter your email address',
-                                prefixIcon: const Icon(FeatherIcons.mail),
-                                keyboardType: TextInputType.emailAddress,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your email';
-                                  }
-                                  if (!value.contains('@')) {
-                                    return 'Please enter a valid email';
-                                  }
-                                  return null;
-                                },
+                              Center(
+                                child: HuxInput(
+                                  controller: _emailController,
+                                  label: 'Email',
+                                  hint: 'Enter your email address',
+                                  prefixIcon: const Icon(FeatherIcons.mail),
+                                  keyboardType: TextInputType.emailAddress,
+                                  width: 400, // Fixed width of 400px
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter your email';
+                                    }
+                                    if (!value.contains('@')) {
+                                      return 'Please enter a valid email';
+                                    }
+                                    return null;
+                                  },
+                                ),
                               ),
                               const SizedBox(height: 16),
-                              HuxTextField(
-                                controller: _passwordController,
-                                label: 'Password',
-                                hint: 'Enter your password',
-                                prefixIcon: const Icon(FeatherIcons.lock),
-                                suffixIcon: const Icon(FeatherIcons.eye),
-                                obscureText: true,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your password';
-                                  }
-                                  if (value.length < 6) {
-                                    return 'Password must be at least 6 characters';
-                                  }
-                                  return null;
-                                },
+                              Center(
+                                child: HuxInput(
+                                  controller: _passwordController,
+                                  label: 'Password',
+                                  hint: 'Enter your password',
+                                  prefixIcon: const Icon(FeatherIcons.lock),
+                                  suffixIcon: const Icon(FeatherIcons.eye),
+                                  obscureText: true,
+                                  width: 400, // Fixed width of 400px
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter your password';
+                                    }
+                                    if (value.length < 6) {
+                                      return 'Password must be at least 6 characters';
+                                    }
+                                    return null;
+                                  },
+                                ),
                               ),
                               const SizedBox(height: 16),
-                              const Row(
-                                children: [
-                                  Expanded(
-                                    child: HuxTextField(
-                                      label: 'Small',
-                                      size: HuxTextFieldSize.small,
-                                      hint: 'Small text field',
-                                    ),
-                                  ),
-                                  SizedBox(width: 8),
-                                  Expanded(
-                                    child: HuxTextField(
-                                      label: 'Large',
-                                      size: HuxTextFieldSize.large,
-                                      hint: 'Large text field',
-                                    ),
-                                  ),
-                                ],
+
+                              // Date Input Example
+                              Center(
+                                child: HuxDateInput(
+                                  label: 'Select Date',
+                                  hint: 'MM/DD/YYYY',
+                                  helperText:
+                                      'Click the calendar icon or type the date manually',
+                                  width: 400, // Fixed width of 200px
+                                  onDateChanged: (date) {
+                                    // Handle date change
+                                  },
+                                ),
                               ),
+                              const SizedBox(height: 16),
                             ],
                           ),
                         ),
@@ -1105,42 +1102,39 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _buildSizeTab(String label, HuxButtonSize size) {
+  Widget _buildSizeButton(String label, HuxButtonSize size) {
     final isSelected = _selectedButtonSize == size;
 
-    return GestureDetector(
-      onTap: () {
+    return HuxButton(
+      onPressed: () {
         setState(() {
           _selectedButtonSize = size;
         });
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? (Theme.of(context).brightness == Brightness.dark
-                  ? HuxColors.white20
-                  : HuxColors.black10)
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(4),
-        ),
-        child: Center(
-          child: Text(
-            label,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                  color: isSelected
-                      ? (Theme.of(context).brightness == Brightness.dark
-                          ? HuxColors.white
-                          : HuxColors.black)
-                      : (Theme.of(context).brightness == Brightness.dark
-                          ? HuxColors.white60
-                          : HuxColors.black60),
-                ),
-          ),
+      variant: isSelected ? HuxButtonVariant.primary : HuxButtonVariant.outline,
+      size: HuxButtonSize.small,
+      width: HuxButtonWidth.fixed,
+      widthValue: 40,
+      child: Text(
+        label,
+        // ignore: prefer_const_constructors
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
+  }
+
+  double _getButtonHeight(HuxButtonSize size) {
+    switch (size) {
+      case HuxButtonSize.small:
+        return 32.0; // Square button: 32x32
+      case HuxButtonSize.medium:
+        return 40.0; // Square button: 40x40
+      case HuxButtonSize.large:
+        return 48.0; // Square button: 48x48
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 name: hux
 description: An open-source state of the art UI library for Flutter
-version: 0.3.2
+version: 0.4.0
 homepage: https://github.com/zoeglbrt/hux
 repository: https://github.com/zoeglbrt/hux
 issue_tracker: https://github.com/zoeglbrt/hux/issues
@@ -24,7 +24,7 @@ screenshots:
     path: screenshots/hux-buttons.png
   - description: 'HuxCard with different configurations'
     path: screenshots/hux-cards.png
-  - description: 'HuxTextField input component'
+  - description: 'HuxInput input component'
     path: screenshots/hux-text-field.png
   - description: 'HuxLoading indicators'
     path: screenshots/hux-loading.png

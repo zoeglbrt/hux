@@ -35,9 +35,10 @@ A modern Flutter UI package with beautiful, customizable components designed for
 ![HuxCard Examples](screenshots/hux-cards.png)
 
 ### Inputs
-- `HuxTextField` - Enhanced text input with consistent styling
+- `HuxInput` - Enhanced text input with consistent styling (renamed from HuxTextField)
+- `HuxDateInput` - Date input with automatic formatting and integrated calendar picker
 
-![HuxTextField Component](screenshots/hux-text-field.png)
+![HuxInput Component](screenshots/hux-input.png)
 
 - `HuxCheckbox` - Interactive checkbox with custom styling and labels  
 - Label, helper text, and error state support
@@ -157,7 +158,7 @@ HuxButton(
 #### Text Field
 
 ```dart
-HuxTextField(
+HuxInput(
   label: 'Email',
   hint: 'Enter your email',
   prefixIcon: Icon(Icons.email),

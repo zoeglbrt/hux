@@ -79,13 +79,18 @@ Hux UI is an open-source state-of-the-art UI library for Flutter, created by [Zo
 
 ## Available Components
 
-Hux UI includes 13+ carefully crafted components organized into logical categories:
+Hux UI includes 15+ carefully crafted components organized into logical categories:
 
 ### Input & Forms
-- **HuxButton** - Multiple variants (primary, secondary, outline, ghost) with loading states
-- **HuxTextField** - Enhanced text input with validation and consistent styling  
+- **HuxButton** - Multiple variants (primary, secondary, outline, ghost) with loading states and icon-only support
+- **HuxInput** - Enhanced text input with validation and consistent styling
+- **HuxDateInput** - Date input with automatic formatting and calendar picker
 - **HuxCheckbox** - Interactive checkbox with custom styling and labels
 - **HuxSwitch** - Toggle switch with smooth animations
+
+### Date & Time Selection
+- **HuxDatePicker** - Modern date picker with overlay calendar and icon-only mode
+- **HuxDateInput** - Integrated date input with automatic formatting
 
 ### Layout & Display
 - **HuxCard** - Flexible card component with headers, actions, and tap handling
@@ -131,6 +136,14 @@ class MyApp extends StatelessWidget {
               child: Text('Get Started'),
               variant: HuxButtonVariant.primary,
             ),
+            HuxInput(
+              label: 'Your Name',
+              hint: 'Enter your name',
+            ),
+            HuxDateInput(
+              label: 'Birth Date',
+              onDateChanged: (date) => print('Selected: $date'),
+            ),
             HuxCard(
               title: 'Welcome to Hux UI',
               subtitle: 'Build beautiful Flutter apps',
@@ -143,6 +156,7 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+</invoke>
 
 ## Links
 
@@ -150,3 +164,4 @@ class MyApp extends StatelessWidget {
 - **Source Code**: [github.com/zoeglbrt/hux](https://github.com/zoeglbrt/hux)
 - **Issues**: [GitHub Issues](https://github.com/zoeglbrt/hux/issues)
 - **Documentation**: [docs.thehuxdesign.com](https://docs.thehuxdesign.com)
+- **Changelog**: [GitHub Releases](https://github.com/zoeglbrt/hux/releases)

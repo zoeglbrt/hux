@@ -18,6 +18,9 @@ class HuxColors {
   /// Pure black color
   static const Color black = Color(0xFF000000);
 
+  /// Neutral grey color for overlays and hover states
+  static const Color grey = Color(0xFF6B7280);
+
   /// Destructive color for warnings, errors, and dangerous actions
   static const Color red = Color(0xFF7F1D1D);
 

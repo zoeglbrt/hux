@@ -105,7 +105,7 @@ class _LoginFormState extends State<LoginForm> {
         key: _formKey,
         child: Column(
           children: [
-            HuxTextField(
+            HuxInput(
               label: 'Email',
               hint: 'Enter your email',
               controller: _emailController,
@@ -119,7 +119,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
             SizedBox(height: 16),
             
-            HuxTextField(
+            HuxInput(
               label: 'Password',
               hint: 'Enter your password',
               controller: _passwordController,
@@ -342,6 +342,62 @@ class ProfilePage extends StatelessWidget {
 <Note>
   These examples demonstrate common patterns you'll use when building apps with Hux UI. For more complex examples, check out the [full example app](https://github.com/zoeglbrt/hux/tree/main/example).
 </Note>
+
+## Date Input Example
+
+```dart
+class DateSelectionForm extends StatefulWidget {
+  @override
+  _DateSelectionFormState createState() => _DateSelectionFormState();
+}
+
+class _DateSelectionFormState extends State<DateSelectionForm> {
+  DateTime? _selectedDate;
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      title: 'Event Details',
+      child: Column(
+        children: [
+          HuxInput(
+            label: 'Event Name',
+            hint: 'Enter event name',
+            prefixIcon: Icon(FeatherIcons.calendar),
+          ),
+          SizedBox(height: 16),
+          
+                      HuxDateInput(
+              label: 'Event Date',
+              hint: 'MM/DD/YYYY',
+              onDateChanged: (date) {
+                setState(() {
+                  _selectedDate = date;
+                });
+              },
+              validator: (date) {
+                if (date == null) return 'Please select a date';
+                if (date.isBefore(DateTime.now())) {
+                  return 'Date cannot be in the past';
+                }
+                return null;
+              },
+            ),
+          SizedBox(height: 16),
+          
+          HuxButton(
+            onPressed: _selectedDate != null ? () {
+              print('Event scheduled for: $_selectedDate');
+            } : null,
+            child: Text('Schedule Event'),
+            variant: HuxButtonVariant.primary,
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
 
 ## Next Steps
 

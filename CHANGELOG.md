@@ -5,6 +5,49 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2025-08-18
+
+### Added
+- **HuxDateInput**: New date input component with automatic formatting
+  - Automatic '/' insertion for date input (MM/DD/YYYY format)
+  - Integrated calendar icon that opens date picker overlay directly
+  - Compact, square calendar icon with minimal padding
+  - Form validation and error handling
+  - Consistent styling with other input components
+- **HuxInput**: Renamed from HuxTextField for better naming consistency
+  - More intuitive and concise component name
+  - Maintains all existing functionality and API
+  - Better alignment with modern UI library naming conventions
+
+### Enhanced
+- **HuxButton**: Added icon-only button support with square dimensions
+  - New `HuxButtonWidth` enum for precise width control (hug, expand, fixed)
+  - Icon-only buttons automatically remove padding and hover effects
+  - Square button support for consistent icon presentation
+- **HuxDatePicker**: Enhanced with icon-only mode for text field integration
+  - `showText` parameter for calendar-only display
+  - Ghost variant support for seamless text field integration
+  - Compact sizing for suffix icon usage
+
+### Improved
+- **Button Hover States**: Enhanced primary button hover with subtle grey overlay
+  - Uses `HuxTokens.buttonPrimaryHover` for consistent theming
+  - Adaptive hover effects based on button variant
+- **Text Field Sizing**: Simplified to single consistent size for better UX
+  - Fixed 40px height for all text fields
+  - Consistent padding and icon sizing
+  - Better alignment with button heights
+
+### Fixed
+- **Component Naming**: Standardized component names for better developer experience
+- **Icon Positioning**: Improved calendar icon centering and sizing in date fields
+- **Height Consistency**: Resolved text field height discrepancies across components
+
+### Breaking Changes
+- **HuxTextField → HuxInput**: Component renamed for better naming consistency
+  - Update imports from `HuxTextField` to `HuxInput`
+  - All functionality remains identical
+
 ## [0.3.2] - 2025-08-14
 
 ### Improvements

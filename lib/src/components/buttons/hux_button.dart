@@ -26,6 +26,8 @@ class HuxButton extends StatelessWidget {
     required this.child,
     this.variant = HuxButtonVariant.primary,
     this.size = HuxButtonSize.medium,
+    this.width,
+    this.widthValue,
     this.isLoading = false,
     this.isDisabled = false,
     this.icon,
@@ -56,6 +58,15 @@ class HuxButton extends StatelessWidget {
   /// Primary color used for styling the button (optional, defaults to theme primary)
   final Color? primaryColor;
 
+  /// Width behavior of the button (optional)
+  /// - null: Hug content (default)
+  /// - HuxButtonWidth.expand: Full width
+  /// - HuxButtonWidth.fixed: Fixed width (requires widthValue)
+  final HuxButtonWidth? width;
+
+  /// Specific width value when using HuxButtonWidth.fixed
+  final double? widthValue;
+
   @override
   Widget build(BuildContext context) {
     final buttonStyle = _getButtonStyle(context);
@@ -63,6 +74,7 @@ class HuxButton extends StatelessWidget {
 
     return SizedBox(
       height: _getHeight(),
+      width: _getWidth(),
       child: ElevatedButton(
         onPressed: isDisabled || isLoading ? null : onPressed,
         style: buttonStyle,
@@ -105,6 +117,11 @@ class HuxButton extends StatelessWidget {
         break;
     }
 
+    // Check if this is an icon-only button to adjust padding
+    final isIconOnly = child is SizedBox && (child as SizedBox).width == 0;
+    final horizontalPadding = isIconOnly ? 0.0 : _getHorizontalPadding();
+    final verticalPadding = isIconOnly ? 0.0 : _getVerticalPadding();
+
     return ButtonStyle(
       backgroundColor: WidgetStateProperty.all(backgroundColor),
       foregroundColor: WidgetStateProperty.all(foregroundColor),
@@ -114,8 +131,8 @@ class HuxButton extends StatelessWidget {
       splashFactory: NoSplash.splashFactory, // Removes the round ripple effect
       padding: WidgetStateProperty.all(
         EdgeInsets.symmetric(
-          horizontal: _getHorizontalPadding(),
-          vertical: _getVerticalPadding(),
+          horizontal: horizontalPadding,
+          vertical: verticalPadding,
         ),
       ),
       shape: WidgetStateProperty.all(
@@ -128,7 +145,16 @@ class HuxButton extends StatelessWidget {
       overlayColor: WidgetStateProperty.resolveWith<Color?>(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.hovered)) {
-            // Use consistent hover color across all button variants
+            // No hover effect for icon-only buttons
+            if (child is SizedBox && (child as SizedBox).width == 0) {
+              return null; // No hover effect for icon-only
+            }
+            // Enhanced hover effect for primary buttons
+            if (variant == HuxButtonVariant.primary) {
+              return HuxTokens.buttonPrimaryHover(
+                  context); // Use HuxTokens for primary button hover
+            }
+            // Use consistent hover color for other variants
             return HuxTokens.surfaceHover(context);
           }
           return null; // No press effect
@@ -148,6 +174,19 @@ class HuxButton extends StatelessWidget {
 
     if (icon != null) {
       final foregroundColor = _getForegroundColor(context);
+
+      // Check if this should be an icon-only button (when child has zero width)
+      if (child is SizedBox && (child as SizedBox).width == 0) {
+        return IconTheme(
+          data: IconThemeData(
+            color: foregroundColor,
+            size: _getIconSize(),
+          ),
+          child: Icon(icon, size: _getIconSize()),
+        );
+      }
+
+      // Regular icon + text button
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -188,6 +227,19 @@ class HuxButton extends StatelessWidget {
         return 40;
       case HuxButtonSize.large:
         return 48;
+    }
+  }
+
+  double? _getWidth() {
+    if (width == null) return null; // Hug content (default)
+
+    switch (width!) {
+      case HuxButtonWidth.hug:
+        return null; // Hug content
+      case HuxButtonWidth.expand:
+        return double.infinity; // Full width
+      case HuxButtonWidth.fixed:
+        return widthValue; // Specific width
     }
   }
 
@@ -301,4 +353,16 @@ enum HuxButtonSize {
 
   /// Large button with generous padding
   large
+}
+
+/// Width behavior variants for HuxButton
+enum HuxButtonWidth {
+  /// Button width adapts to content
+  hug,
+
+  /// Button expands to fill available width
+  expand,
+
+  /// Button uses specific width (set via widthValue parameter)
+  fixed,
 }

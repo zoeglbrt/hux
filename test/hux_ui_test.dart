@@ -20,11 +20,11 @@ void main() {
       expect(find.byType(HuxButton), findsOneWidget);
     });
 
-    testWidgets('HuxTextField renders correctly', (WidgetTester tester) async {
+    testWidgets('HuxInput renders correctly', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: HuxTextField(
+            body: HuxInput(
               label: 'Test Field',
               hint: 'Enter text',
             ),
@@ -33,7 +33,7 @@ void main() {
       );
 
       expect(find.text('Test Field'), findsOneWidget);
-      expect(find.byType(HuxTextField), findsOneWidget);
+      expect(find.byType(HuxInput), findsOneWidget);
     });
 
     testWidgets('HuxCard renders correctly', (WidgetTester tester) async {
@@ -137,14 +137,14 @@ void main() {
       expect(find.byType(HuxButton), findsNWidgets(3));
     });
 
-    testWidgets('HuxTextField validation', (WidgetTester tester) async {
+    testWidgets('HuxInput validation', (WidgetTester tester) async {
       final controller = TextEditingController();
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: Form(
-              child: HuxTextField(
+              child: HuxInput(
                 controller: controller,
                 label: 'Email',
                 validator: (value) {
@@ -159,7 +159,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(HuxTextField), findsOneWidget);
+      expect(find.byType(HuxInput), findsOneWidget);
       expect(find.text('Email'), findsOneWidget);
     });
 

@@ -70,7 +70,7 @@ Get up and running with Hux UI in just a few minutes. This guide will help you c
                 ),
                 SizedBox(height: 20),
                 
-                HuxTextField(
+                HuxInput(
                   label: 'Enter your name',
                   hint: 'Type here...',
                   controller: _textController,
@@ -133,7 +133,8 @@ Get up and running with Hux UI in just a few minutes. This guide will help you c
 Congratulations! You just created a Flutter app with:
 
 - **HuxCard** - A beautiful card container with title and subtitle
-- **HuxTextField** - An enhanced text input with icon and validation support
+- **HuxInput** - An enhanced text input with icon and validation support
+- **HuxDateInput** - Date input with automatic formatting and calendar picker
 - **HuxButton** - Multiple button variants with loading states
 - **Automatic theming** - Light and dark mode support
 
@@ -150,7 +151,7 @@ Here are some common patterns you'll use with Hux UI:
       key: _formKey,
       child: Column(
         children: [
-          HuxTextField(
+          HuxInput(
             label: 'Email',
             hint: 'Enter your email',
             validator: (value) {

@@ -7,22 +7,23 @@ description: 'Text fields, checkboxes, and form controls for user input'
 
 Hux UI provides several input components for building forms and collecting user data:
 
-- **HuxTextField** - Enhanced text input with validation
+- **HuxInput** - Enhanced text input with validation
+- **HuxDateInput** - Date input with automatic formatting and calendar picker
 - **HuxCheckbox** - Interactive checkbox with custom styling
 - **HuxSwitch** - Toggle switch component
 
-![HuxTextField Component](/images/hux-text-field.png)
+![HuxInput Component](/images/hux-input.png)
 
 ![HuxCheckbox Component](/images/hux-checkbox.png)
 
 ![HuxSwitch Component](/images/hux-switch.png)
 
-## HuxTextField
+## HuxInput
 
 Enhanced text input with consistent styling, validation support, and theme adaptation.
 
 ```dart
-HuxTextField(
+HuxInput(
   label: 'Email',
   hint: 'Enter your email address',
   prefixIcon: Icon(FeatherIcons.mail),
@@ -43,6 +44,35 @@ HuxTextField(
 - `validator` - Form validation function
 - `controller` - Text editing controller
 - `onChanged` - Value change callback
+
+## HuxDateInput
+
+Specialized date input with automatic formatting and integrated calendar picker.
+
+```dart
+HuxDateInput(
+  label: 'Select Date',
+  hint: 'MM/DD/YYYY',
+  onDateChanged: (date) {
+    print('Selected date: $date');
+  },
+  validator: (date) {
+    if (date == null) return 'Date is required';
+    return null;
+  },
+)
+```
+
+### Properties
+
+- `label` - Field label text
+- `hint` - Placeholder text (defaults to MM/DD/YYYY)
+- `onDateChanged` - Date selection callback
+- `validator` - Form validation function
+- `showCalendarIcon` - Whether to show calendar icon (default: true)
+- `format` - Custom date format (defaults to MM/dd/yyyy)
+- `firstDate` - Earliest selectable date
+- `lastDate` - Latest selectable date
 
 ## HuxCheckbox
 

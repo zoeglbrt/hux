@@ -19,7 +19,8 @@ class HuxDatePicker extends StatefulWidget {
       this.size = HuxButtonSize.medium,
       this.icon,
       this.primaryColor,
-      this.overlayColor});
+      this.overlayColor,
+      this.showText = true});
 
   /// The initially selected date. If null, the button shows [placeholder].
   final DateTime? initialDate;
@@ -50,6 +51,9 @@ class HuxDatePicker extends StatefulWidget {
 
   /// Optional color for DatePicker Overlay
   final Color? overlayColor;
+
+  /// Whether to show text label (default: true). Set to false for icon-only version.
+  final bool showText;
 
   @override
   State<HuxDatePicker> createState() => _HuxDatePickerState();
@@ -166,16 +170,20 @@ class _HuxDatePickerState extends State<HuxDatePicker> {
         ? (widget.placeholder ?? 'Select Date')
         : _formatDate(context, _currentDate);
 
+    // Use ghost variant (no border, no background, no padding) for icon-only mode
+    final buttonVariant =
+        widget.showText ? widget.variant : HuxButtonVariant.ghost;
+
     return CompositedTransformTarget(
       link: _layerLink,
       child: HuxButton(
         key: _buttonKey,
         onPressed: _toggleOverlay,
-        variant: widget.variant,
+        variant: buttonVariant,
         size: widget.size,
         primaryColor: widget.primaryColor,
         icon: widget.icon ?? Icons.calendar_today,
-        child: Text(label),
+        child: widget.showText ? Text(label) : const SizedBox(width: 0),
       ),
     );
   }

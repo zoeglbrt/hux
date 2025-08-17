@@ -7,6 +7,57 @@ description: 'Advanced form patterns and validation with Hux UI components'
 
 Learn how to build robust forms using Hux UI components with proper validation, error handling, and user experience patterns.
 
+## Form Components
+
+Hux UI provides several components for building forms:
+
+- **HuxInput** - Text input with validation and consistent styling
+- **HuxDateInput** - Date input with automatic formatting and calendar picker
+- **HuxCheckbox** - Interactive checkbox for boolean inputs
+- **HuxSwitch** - Toggle switch for binary choices
+- **HuxButton** - Form submission and action buttons
+
+## Basic Form Example
+
+```dart
+Form(
+  key: _formKey,
+  child: Column(
+    children: [
+      HuxInput(
+        label: 'Full Name',
+        hint: 'Enter your full name',
+        validator: (value) {
+          if (value?.isEmpty ?? true) return 'Name is required';
+          return null;
+        },
+      ),
+      SizedBox(height: 16),
+      
+      HuxDateInput(
+        label: 'Birth Date',
+        onDateChanged: (date) => _birthDate = date,
+        validator: (date) {
+          if (date == null) return 'Birth date is required';
+          return null;
+        },
+      ),
+      SizedBox(height: 16),
+      
+      HuxButton(
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            // Form is valid, proceed
+          }
+        },
+        child: Text('Submit'),
+        variant: HuxButtonVariant.primary,
+      ),
+    ],
+  ),
+)
+```
+
 <Note>
-  Detailed form building documentation is coming soon. For now, see the basic form example in [Basic Usage](/examples/basic-usage).
+  For more detailed examples, see the [Basic Usage](/examples/basic-usage) page and the [full example app](https://github.com/zoeglbrt/hux/tree/main/example).
 </Note>

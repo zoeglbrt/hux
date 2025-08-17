@@ -98,6 +98,11 @@ class HuxTokens {
     return isDark ? HuxColors.white : HuxColors.black;
   }
 
+  /// Hover overlay color for primary buttons
+  static Color buttonPrimaryHover(BuildContext context) {
+    return HuxColors.grey.withValues(alpha: 0.35);
+  }
+
   /// Border color for secondary buttons
   static Color buttonSecondaryBorder(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;

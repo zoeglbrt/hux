@@ -16,7 +16,7 @@ Hux UI is currently in active development (pre-1.0). We provide security updates
 
 For a Flutter UI component library like Hux UI, security vulnerabilities may include:
 
-- **Input validation issues** in form components (HuxTextField, HuxCheckbox, etc.)
+- **Input validation issues** in form components (HuxInput, HuxCheckbox, etc.)
 - **XSS vulnerabilities** in web implementations of components
 - **Data exposure** through improper logging or debugging output
 - **Theme/styling injection** that could allow malicious content rendering
@@ -71,7 +71,7 @@ Please include the following information in your report:
 When using Hux UI in your applications:
 
 ### Input Components
-- **Validate user input** on both client and server sides when using HuxTextField
+- **Validate user input** on both client and server sides when using HuxInput
 - **Sanitize data** before displaying it in components
 - **Use proper form validation** with the built-in validator functions
 

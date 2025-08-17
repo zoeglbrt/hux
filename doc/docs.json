@@ -32,7 +32,8 @@
               "components/avatar",
               "components/loading",
               "components/charts",
-              "components/context-menu"
+              "components/context-menu",
+              "components/date-picker"
             ]
           },
           {
@@ -94,12 +95,39 @@
     "primary": {
       "type": "button",
       "label": "GitHub",
-      "href": "https://github.com/zoeglbrt/hux"
+      "href": "https://github.com/zoeglbrt/hux",
+      "style": {
+        "backgroundColor": "#000000",
+        "color": "#ffffff"
+      }
     }
   },
   "footer": {
     "socials": {
       "github": "https://github.com/zoeglbrt/hux"
     }
-  }
+  },
+  "css": [
+    ".global-anchors a { color: #ffffff !important; }",
+    ".global-anchors a:hover { color: #e5e5e5 !important; }",
+    ".navbar-primary { background-color: #000000 !important; color: #ffffff !important; }",
+    ".navbar-primary:hover { background-color: #333333 !important; }",
+    ".navbar-primary .navbar-primary-label { color: #ffffff !important; }",
+    ".navbar-primary:hover .navbar-primary-label { color: #ffffff !important; }",
+    ".global-anchors a[href*='github'] { color: #ffffff !important; }",
+    ".global-anchors a[href*='github']:hover { color: #e5e5e5 !important; }",
+    ".global-anchors img { display: block !important; }",
+    ".global-anchors svg { display: block !important; }",
+    "button[data-testid='navbar-primary'] { background-color: #000000 !important; color: #ffffff !important; }",
+    "button[data-testid='navbar-primary']:hover { background-color: #333333 !important; }",
+    "button[data-testid='navbar-primary'] span { color: #ffffff !important; }",
+    "button[data-testid='navbar-primary']:hover span { color: #ffffff !important; }",
+    ".navbar-primary { color: #ffffff !important; }",
+    ".navbar-primary:hover { color: #ffffff !important; }",
+    ".navbar-primary * { color: #ffffff !important; }",
+    ".navbar-primary:hover * { color: #ffffff !important; }",
+    ".global-anchors .global-anchor-icon { display: block !important; }",
+    ".global-anchors .global-anchor-icon svg { display: block !important; }",
+    ".global-anchors .global-anchor-icon img { display: block !important; }"
+  ]
 }

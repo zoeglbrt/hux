@@ -32,7 +32,7 @@
 ///               onPressed: () {},
 ///               child: Text('Primary Button'),
 ///             ),
-///             HuxTextField(label: 'Email'),
+///             HuxInput(label: 'Email'),
 ///             HuxCard(title: 'Card Title'),
 ///           ],
 ///         ),
@@ -46,7 +46,8 @@ library;
 // Export all components
 export 'src/components/buttons/hux_button.dart';
 export 'src/components/cards/hux_card.dart';
-export 'src/components/inputs/hux_text_field.dart';
+export 'src/components/inputs/hux_input.dart';
+export 'src/components/inputs/hux_date_input.dart';
 export 'src/components/inputs/hux_checkbox.dart';
 export 'src/components/switch/hux_switch.dart';
 export 'src/components/badge/hux_badge.dart';
