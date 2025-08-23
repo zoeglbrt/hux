@@ -54,6 +54,7 @@ export 'src/components/badge/hux_badge.dart';
 export 'src/components/feedback/hux_alert.dart';
 export 'src/components/avatar/hux_avatar.dart';
 export 'src/components/avatar/hux_avatar_group.dart';
+export 'src/components/tooltip/hux_tooltip.dart';
 export 'src/theme/hux_theme.dart';
 export 'src/theme/hux_colors.dart';
 export 'src/theme/hux_tokens.dart';

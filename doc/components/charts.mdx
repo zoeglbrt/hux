@@ -9,9 +9,81 @@ description: 'Beautiful data visualization with line and bar charts'
 
 ![HuxChart Visualization](/images/hux-charts.png)
 
-## Line Charts
+## Component Variants
 
-Display data trends over time with smooth line charts.
+### Line Charts
+Display data trends over time with smooth line charts:
+```dart
+HuxChart.line(
+  data: [
+    {'x': 1, 'y': 10},
+    {'x': 2, 'y': 20},
+    {'x': 3, 'y': 15},
+    {'x': 4, 'y': 25},
+  ],
+  xField: 'x',
+  yField: 'y',
+  title: 'Sales Over Time',
+  subtitle: 'Monthly data',
+  primaryColor: Colors.blue,
+)
+```
+
+### Bar Charts
+Visualize categorical data with responsive bar charts:
+```dart
+HuxChart.bar(
+  data: [
+    {'category': 'Product A', 'value': 30},
+    {'category': 'Product B', 'value': 45},
+    {'category': 'Product C', 'value': 25},
+    {'category': 'Product D', 'value': 35},
+  ],
+  xField: 'category',
+  yField: 'value',
+  title: 'Product Sales',
+  subtitle: 'Current quarter',
+)
+```
+
+### Small Charts
+Compact charts for dashboards and tight spaces:
+```dart
+HuxChart.line(
+  data: chartData,
+  xField: 'date',
+  yField: 'revenue',
+  size: HuxChartSize.small,
+  title: 'Revenue Trend',
+)
+```
+
+### Large Charts
+Full-size charts for detailed analysis:
+```dart
+HuxChart.bar(
+  data: chartData,
+  xField: 'month',
+  yField: 'sales',
+  size: HuxChartSize.large,
+  title: 'Annual Sales Analysis',
+  subtitle: 'Detailed monthly breakdown',
+)
+```
+
+### Themed Charts
+Charts that automatically adapt to your app's theme:
+```dart
+HuxChart.line(
+  data: chartData,
+  xField: 'date',
+  yField: 'users',
+  primaryColor: HuxTokens.primary(context),
+  title: 'User Growth',
+)
+```
+
+## Line Charts
 
 ```dart
 HuxChart.line(

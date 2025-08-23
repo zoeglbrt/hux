@@ -1,0 +1,301 @@
+---
+title: Tooltip
+description: Display helpful information when hovering over or long-pressing on widgets
+---
+
+import { Callout } from '/snippets/callout'
+import { Tabs, Tab } from '/snippets/tabs'
+
+# Overview
+
+The HuxTooltip component provides additional context when hovering over or long-pressing on widgets. It automatically adapts to light and dark themes and provides various positioning and styling options.
+
+![HuxTooltip Component](/images/hux-tooltip.png)
+
+## Basic Usage
+
+The simplest way to use a tooltip is to wrap any widget with `HuxTooltip`:
+
+```dart
+HuxTooltip(
+  message: 'This is a helpful tooltip',
+  child: Icon(Icons.info),
+)
+```
+
+## Variants
+
+### Standard Tooltip
+
+The basic tooltip with customizable styling:
+
+```dart
+HuxTooltip(
+  message: 'Click to save your changes',
+  child: ElevatedButton(
+    onPressed: () {},
+    child: Text('Save'),
+  ),
+)
+```
+
+### Tooltip with Icon
+
+For enhanced visual context, add an icon parameter to `HuxTooltip`.
+
+```dart
+HuxTooltip(
+  message: 'Information about this feature',
+  icon: Icons.info_outline,  // Material Icons
+  child: Icon(Icons.help),
+)
+
+// Or with Lucide/Feather icons
+HuxTooltip(
+  message: 'Help information',
+  icon: FeatherIcons.info,   // Lucide/Feather icons
+  child: Icon(FeatherIcons.help),
+)
+```
+
+## Customization
+
+### Colors
+
+Customize the tooltip appearance with your own colors:
+
+```dart
+HuxTooltip(
+  message: 'Custom styled tooltip',
+  backgroundColor: Colors.deepPurple,
+  textColor: Colors.white,
+  child: Text('Hover me'),
+)
+```
+
+### Positioning
+
+Control where the tooltip appears relative to the child:
+
+```dart
+HuxTooltip(
+  message: 'Tooltip above the element',
+  preferBelow: false, // Show above instead of below
+  verticalOffset: 20.0, // Increase distance from child
+  child: Icon(Icons.info),
+)
+```
+
+### Timing
+
+Adjust when and how long the tooltip appears:
+
+```dart
+HuxTooltip(
+  message: 'Quick tooltip',
+  waitDuration: Duration(milliseconds: 200), // Show faster
+  showDuration: Duration(seconds: 5), // Show longer
+  child: Icon(Icons.info),
+)
+```
+
+### Advanced Styling
+
+For complete control over the tooltip appearance:
+
+```dart
+HuxTooltip(
+  message: 'Custom styled tooltip',
+  decoration: BoxDecoration(
+    color: Colors.blue,
+    borderRadius: BorderRadius.circular(16),
+    border: Border.all(color: Colors.white, width: 2),
+  ),
+  textStyle: TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  ),
+  padding: EdgeInsets.all(16),
+  child: Icon(Icons.info),
+)
+```
+
+## Props
+
+### HuxTooltip
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `message` | `String` | **required** | The text to display in the tooltip |
+| `child` | `Widget` | **required** | The widget below this tooltip |
+| `backgroundColor` | `Color?` | Theme surface | Background color of the tooltip |
+| `textColor` | `Color?` | Theme text | Text color of the tooltip |
+| `preferBelow` | `bool` | `true` | Whether to prefer showing below the child |
+| `excludeFromSemantics` | `bool` | `false` | Whether to exclude from semantics tree |
+| `verticalOffset` | `double` | `10.0` | Vertical offset from the child |
+| `waitDuration` | `Duration` | `500ms` | How long to wait before showing |
+| `showDuration` | `Duration` | `3000ms` | How long to show the tooltip |
+| `decoration` | `Decoration?` | Default theme | Custom decoration for the tooltip |
+| `textStyle` | `TextStyle?` | Default theme | Custom text style |
+| `height` | `double?` | Auto | Height of the tooltip |
+| `padding` | `EdgeInsetsGeometry?` | `12x8` | Padding inside the tooltip |
+| `margin` | `EdgeInsetsGeometry?` | `8` | Margin around the tooltip |
+| `richMessage` | `InlineSpan?` | `null` | Rich text message (overrides message) |
+
+### HuxTooltip Icon Parameters
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `icon` | `IconData?` | `null` | The icon to display alongside the message (rendered as an Icon widget) |
+| `iconColor` | `Color?` | Theme text color | Color of the icon |
+| `iconSize` | `double` | `16.0` | Size of the icon |
+
+## Component Variants
+
+### Basic Tooltip
+Simple tooltip with just a message:
+```dart
+HuxTooltip(
+  message: 'This is a basic tooltip',
+  child: Icon(Icons.info),
+)
+```
+
+### Tooltip with Icon
+Enhanced tooltip with visual icon:
+```dart
+HuxTooltip(
+  message: 'Information about this feature',
+  icon: Icons.info_outline,
+  child: Icon(Icons.help),
+)
+```
+
+### Positioned Tooltip
+Tooltip that appears above the element:
+```dart
+HuxTooltip(
+  message: 'Tooltip above the element',
+  preferBelow: false,
+  verticalOffset: 16.0,
+  child: HuxButton(
+    onPressed: () {},
+    variant: HuxButtonVariant.outline,
+    child: Text('Hover me'),
+  ),
+)
+```
+
+### Custom Styled Tooltip
+Tooltip with custom colors and styling:
+```dart
+HuxTooltip(
+  message: 'Custom styled tooltip',
+  backgroundColor: Colors.deepPurple,
+  textColor: Colors.white,
+  iconColor: Colors.yellow,
+  icon: Icons.star,
+  child: Icon(Icons.favorite),
+)
+```
+
+### Quick Tooltip
+Tooltip with custom timing:
+```dart
+HuxTooltip(
+  message: 'Quick tooltip',
+  waitDuration: Duration(milliseconds: 200),
+  showDuration: Duration(seconds: 5),
+  child: Icon(Icons.flash_on),
+)
+```
+
+## Examples
+
+Provide context for form inputs:
+
+```dart
+Row(
+  children: [
+    Expanded(
+      child: HuxInput(
+        label: 'Email Address',
+        hintText: 'Enter your email',
+      ),
+    ),
+    HuxTooltip(
+      message: 'We\'ll use this to send you important updates',
+      child: Icon(Icons.help_outline, color: Colors.grey),
+    ),
+  ],
+)
+```
+
+### Button Explanations
+
+Explain button actions:
+
+```dart
+HuxTooltip(
+  message: 'This will permanently delete your account',
+  icon: Icons.warning,
+  child: ElevatedButton(
+    onPressed: () {},
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.red,
+      foregroundColor: Colors.white,
+    ),
+    child: Text('Delete Account'),
+  ),
+)
+```
+
+### Navigation Hints
+
+Guide users through complex interfaces:
+
+```dart
+HuxTooltip(
+  message: 'Click to expand this section and see more options',
+  child: IconButton(
+    onPressed: () {},
+    icon: Icon(Icons.expand_more),
+  ),
+)
+```
+
+## Best Practices
+
+### Content Guidelines
+
+- **Keep messages concise**: Tooltips should be brief and to the point
+- **Use clear language**: Avoid technical jargon unless necessary
+- **Provide value**: Only show tooltips when they add meaningful context
+
+### Accessibility
+
+- **Semantic content**: Tooltips are automatically included in the accessibility tree
+- **Keyboard navigation**: Tooltips work with keyboard navigation
+- **Screen readers**: Content is properly announced to assistive technologies
+
+### Performance
+
+- **Lazy loading**: Tooltips only render when needed
+- **Efficient positioning**: Smart positioning algorithms minimize layout calculations
+- **Memory management**: Proper cleanup when tooltips are dismissed
+
+### Theme Integration
+
+- **Automatic adaptation**: Tooltips automatically adapt to light/dark themes
+- **Consistent styling**: Uses Hux design tokens for consistent appearance
+- **Customizable**: Override theme colors when needed for specific use cases
+
+## Related Components
+
+- **[Button](/components/buttons)** - Add tooltips to buttons for better UX
+- **[Input](/components/inputs)** - Provide help text for form fields
+- **[Card](/components/cards)** - Add context to card content
+- **[Badge](/components/badge)** - Explain badge meanings with tooltips
+
+

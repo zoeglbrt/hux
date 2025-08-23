@@ -1,26 +1,121 @@
 ---
-title: 'Input Components'
-description: 'Text fields, checkboxes, and form controls for user input'
+title: 'Input & Form Components'
+description: 'Text fields, date inputs, checkboxes, and switches for building forms'
 ---
 
 ## Overview
 
-Hux UI provides several input components for building forms and collecting user data:
+Hux UI provides several components for building forms and collecting user data:
 
-- **HuxInput** - Enhanced text input with validation
-- **HuxDateInput** - Date input with automatic formatting and calendar picker
-- **HuxCheckbox** - Interactive checkbox with custom styling
-- **HuxSwitch** - Toggle switch component
+### **Text & Date Inputs**
+Components for text and date entry:
+
+#### HuxInput
+Enhanced text input with validation
 
 ![HuxInput Component](/images/hux-input.png)
 
+#### HuxDateInput
+Date input with automatic formatting and calendar picker
+
+### **Form Controls**
+Interactive components for user selection:
+
+#### HuxCheckbox
+Interactive checkbox with custom styling
+
 ![HuxCheckbox Component](/images/hux-checkbox.png)
+
+#### HuxSwitch
+Toggle switch component
 
 ![HuxSwitch Component](/images/hux-switch.png)
 
-## HuxInput
+## Text Input Variants
 
-Enhanced text input with consistent styling, validation support, and theme adaptation.
+### Basic Text Input
+Simple text field with label and hint:
+```dart
+HuxInput(
+  label: 'Email',
+  hint: 'Enter your email address',
+)
+```
+
+### Input with Icon
+Text field with prefix icon:
+```dart
+HuxInput(
+  label: 'Search',
+  hint: 'Search for products...',
+  prefixIcon: Icon(FeatherIcons.search),
+)
+```
+
+### Input with Validation
+Text field with form validation:
+```dart
+HuxInput(
+  label: 'Password',
+  hint: 'Enter your password',
+  prefixIcon: Icon(FeatherIcons.lock),
+  obscureText: true,
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required';
+    }
+    if (value.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+    return null;
+  },
+)
+```
+
+## Date Input Variants
+
+### Basic Date Input
+Specialized date picker with calendar integration:
+```dart
+HuxDateInput(
+  label: 'Birth Date',
+  hint: 'MM/DD/YYYY',
+  onDateChanged: (date) {
+    print('Selected: $date');
+  },
+)
+```
+
+## Form Control Variants
+
+### Checkbox
+Interactive checkbox with label:
+```dart
+HuxCheckbox(
+  value: isAgreed,
+  onChanged: (value) {
+    setState(() {
+      isAgreed = value ?? false;
+    });
+  },
+  label: 'I agree to the terms',
+)
+```
+
+### Switch
+Toggle switch component:
+```dart
+HuxSwitch(
+  value: isEnabled,
+  onChanged: (value) {
+    setState(() {
+      isEnabled = value;
+    });
+  },
+)
+```
+
+## HuxInput
 
 ```dart
 HuxInput(

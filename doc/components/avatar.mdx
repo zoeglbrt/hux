@@ -12,16 +12,95 @@ Hux UI provides avatar components for displaying user profile images:
 
 ![HuxAvatar Component](/images/hux-avatar.png)
 
-## HuxAvatar
+## Component Variants
 
-Circular user image component with automatic initials generation and gradient variants.
-
+### Basic Avatar
+Simple avatar with name and initials:
 ```dart
 HuxAvatar(
   name: 'John Doe',
   size: HuxAvatarSize.medium,
 )
 ```
+
+### Avatar with Image
+Avatar with custom profile image:
+```dart
+HuxAvatar(
+  name: 'Jane Smith',
+  imageUrl: 'https://example.com/profile.jpg',
+  size: HuxAvatarSize.large,
+)
+```
+
+### Gradient Avatar
+Avatar with beautiful gradient background:
+```dart
+HuxAvatar(
+  useGradient: true,
+  gradientVariant: HuxAvatarGradient.bluePurple,
+  size: HuxAvatarSize.medium,
+)
+```
+
+### Small Avatar
+Compact avatar for tight spaces:
+```dart
+HuxAvatar(
+  name: 'Bob',
+  size: HuxAvatarSize.small,
+)
+```
+
+### Large Avatar
+Prominent avatar for important displays:
+```dart
+HuxAvatar(
+  name: 'Alice',
+  size: HuxAvatarSize.large,
+)
+```
+
+### Extra Large Avatar
+Hero avatar for main displays:
+```dart
+HuxAvatar(
+  name: 'CEO',
+  size: HuxAvatarSize.extraLarge,
+  useGradient: true,
+  gradientVariant: HuxAvatarGradient.purplePink,
+)
+```
+
+### Avatar Group
+Multiple avatars with overlapping layout:
+```dart
+HuxAvatarGroup(
+  avatars: [
+    HuxAvatar(name: 'Alice'),
+    HuxAvatar(name: 'Bob'),
+    HuxAvatar(useGradient: true, gradientVariant: HuxAvatarGradient.greenBlue),
+  ],
+  overlap: true,
+  maxVisible: 3,
+)
+```
+
+### Spaced Avatar Group
+Multiple avatars with spacing between them:
+```dart
+HuxAvatarGroup(
+  avatars: [
+    HuxAvatar(name: 'Team A'),
+    HuxAvatar(name: 'Team B'),
+    HuxAvatar(name: 'Team C'),
+  ],
+  overlap: false,
+  spacing: 8.0,
+)
+```
+
+## HuxAvatar
 
 ### With Gradient
 

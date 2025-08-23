@@ -2,10 +2,13 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "almond",
   "name": "Hux UI",
+  "icons": {
+    "library": "lucide"
+  },
   "colors": {
-    "primary": "#000000",
+    "primary": "#333333",
     "light": "#ffffff",
-    "dark": "#ffffff"
+    "dark": "#333333"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -31,6 +34,7 @@
               "components/feedback",
               "components/avatar",
               "components/loading",
+              "components/tooltip",
               "components/charts",
               "components/context-menu",
               "components/date-picker"
@@ -66,7 +70,7 @@
         {
           "anchor": "Package",
           "href": "https://pub.dev/packages/hux",
-          "icon": "package"
+          "icon": "box"
         },
         {
           "anchor": "GitHub",
@@ -93,13 +97,9 @@
       }
     ],
     "primary": {
-      "type": "button",
-      "label": "GitHub",
-      "href": "https://github.com/zoeglbrt/hux",
-      "style": {
-        "backgroundColor": "#000000",
-        "color": "#ffffff"
-      }
+      "type": "github",
+      "href": "https://github.com/zoeglbrt/hux"
+      
     }
   },
   "footer": {
@@ -110,22 +110,10 @@
   "css": [
     ".global-anchors a { color: #ffffff !important; }",
     ".global-anchors a:hover { color: #e5e5e5 !important; }",
-    ".navbar-primary { background-color: #000000 !important; color: #ffffff !important; }",
-    ".navbar-primary:hover { background-color: #333333 !important; }",
-    ".navbar-primary .navbar-primary-label { color: #ffffff !important; }",
-    ".navbar-primary:hover .navbar-primary-label { color: #ffffff !important; }",
     ".global-anchors a[href*='github'] { color: #ffffff !important; }",
     ".global-anchors a[href*='github']:hover { color: #e5e5e5 !important; }",
     ".global-anchors img { display: block !important; }",
     ".global-anchors svg { display: block !important; }",
-    "button[data-testid='navbar-primary'] { background-color: #000000 !important; color: #ffffff !important; }",
-    "button[data-testid='navbar-primary']:hover { background-color: #333333 !important; }",
-    "button[data-testid='navbar-primary'] span { color: #ffffff !important; }",
-    "button[data-testid='navbar-primary']:hover span { color: #ffffff !important; }",
-    ".navbar-primary { color: #ffffff !important; }",
-    ".navbar-primary:hover { color: #ffffff !important; }",
-    ".navbar-primary * { color: #ffffff !important; }",
-    ".navbar-primary:hover * { color: #ffffff !important; }",
     ".global-anchors .global-anchor-icon { display: block !important; }",
     ".global-anchors .global-anchor-icon svg { display: block !important; }",
     ".global-anchors .global-anchor-icon img { display: block !important; }"

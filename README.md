@@ -6,7 +6,7 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![pub points](https://img.shields.io/pub/points/hux?color=3C3C3C)](https://pub.dev/packages/hux/score)
 [![likes](https://img.shields.io/pub/likes/hux?color=C0C0C0)](https://pub.dev/packages/hux/score)
 [![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios%20%7C%20web%20%7C%20windows%20%7C%20macos%20%7C%20linux-C0C0C0)](https://flutter.dev/)
-[![Flutter support](https://img.shields.io/badge/Flutter-1.17%2B-3C3C3C)](https://flutter.dev/)
+[![Flutter support](https://img.shields.io/badge/Flutter-3.16%2B-3C3C3C)](https://flutter.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-C0C0C0)](https://opensource.org/licenses/MIT)
 
 ## Features
@@ -76,6 +76,14 @@ A modern Flutter UI package with beautiful, customizable components designed for
 - `HuxSwitch` - Toggle switch with smooth animations between on/off states
 
 ![HuxSwitch Component](screenshots/hux-switch.png)
+
+### Tooltip
+- `HuxTooltip` - Contextual help and information with optional icon support
+- Automatic light/dark theme adaptation
+- Customizable positioning, colors, and timing
+- Support for any icon library (Material Icons, Lucide, Feather, etc.)
+
+![HuxTooltip Component](screenshots/hux-tooltip.png)
 
 ### Feedback & Status
 - `HuxBadge` - Status indicators and notification counters with semantic variants
@@ -307,6 +315,29 @@ HuxAvatarGroup(
   ],
   overlap: true,
   maxVisible: 3,
+)
+```
+
+#### Tooltip
+
+```dart
+// Basic tooltip
+HuxTooltip(
+  message: 'This is a helpful tooltip',
+  child: Icon(Icons.info),
+)
+
+// Tooltip with icon and custom positioning
+HuxTooltip(
+  message: 'Information about this feature',
+  icon: Icons.info_outline,
+  preferBelow: false,
+  verticalOffset: 16.0,
+  child: HuxButton(
+    onPressed: () {},
+    variant: HuxButtonVariant.outline,
+    child: Text('Hover me'),
+  ),
 )
 ```
 

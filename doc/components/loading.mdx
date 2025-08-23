@@ -12,13 +12,42 @@ Hux UI provides loading components for indicating async operations:
 
 ![HuxLoading Indicators](/images/hux-loading.png)
 
-## HuxLoading
+## Component Variants
 
-Simple loading indicator with size variants.
+### Small Loading Indicator
+Compact loading indicator for tight spaces:
+```dart
+HuxLoading(size: HuxLoadingSize.small)
+```
 
+### Medium Loading Indicator
+Standard loading indicator (default size):
 ```dart
 HuxLoading(size: HuxLoadingSize.medium)
 ```
+
+### Large Loading Indicator
+Prominent loading indicator for important operations:
+```dart
+HuxLoading(size: HuxLoadingSize.large)
+```
+
+### Extra Large Loading Indicator
+Maximum size loading indicator:
+```dart
+HuxLoading(size: HuxLoadingSize.extraLarge)
+```
+
+### Loading with Custom Colors
+Loading indicator with theme-aware colors:
+```dart
+HuxLoading(
+  size: HuxLoadingSize.medium,
+  color: HuxTokens.primary(context),
+)
+```
+
+## HuxLoading
 
 ### Sizes
 

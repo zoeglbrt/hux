@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-08-23
+
+### Added
+- **HuxTooltip**: New tooltip component with contextual help and information
+  - Optional icon support for enhanced visual communication
+  - Automatic light/dark theme adaptation
+  - Customizable positioning, colors, and timing
+  - Support for any icon library (Material Icons, Lucide, Feather, etc.)
+  - Comprehensive documentation and examples
+
+### Enhanced
+- **Documentation**: Added new tooltip component documentation
+  - Complete API reference with usage examples
+  - Visual component showcase with screenshots
+  - Integration examples in documentation site
+
+### Fixed
+- **Component Consistency**: Improved naming consistency across all components
+- **Documentation Updates**: Enhanced component documentation with latest features
+
 ## [0.4.0] - 2025-08-18
 
 ### Added

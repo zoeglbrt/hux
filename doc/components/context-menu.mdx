@@ -13,8 +13,10 @@ Hux UI provides a comprehensive context menu system with smart positioning and c
 
 ![HuxContextMenu Component](/images/hux-context-menu.png)
 
-## Basic Usage
+## Component Variants
 
+### Basic Context Menu
+Simple context menu with basic actions:
 ```dart
 HuxContextMenu(
   menuItems: [
@@ -27,7 +29,26 @@ HuxContextMenu(
       text: 'Paste',
       icon: FeatherIcons.clipboard,
       onTap: () => print('Paste action'),
-      isDisabled: true,
+    ),
+  ],
+  child: Text('Right-click me!'),
+)
+```
+
+### Context Menu with Dividers
+Organized menu with visual separators:
+```dart
+HuxContextMenu(
+  menuItems: [
+    HuxContextMenuItem(
+      text: 'Copy',
+      icon: FeatherIcons.copy,
+      onTap: () => print('Copy action'),
+    ),
+    HuxContextMenuItem(
+      text: 'Paste',
+      icon: FeatherIcons.clipboard,
+      onTap: () => print('Paste action'),
     ),
     const HuxContextMenuDivider(),
     HuxContextMenuItem(
@@ -43,6 +64,68 @@ HuxContextMenu(
   ),
 )
 ```
+
+### Context Menu with Disabled Items
+Menu with disabled and destructive actions:
+```dart
+HuxContextMenu(
+  menuItems: [
+    HuxContextMenuItem(
+      text: 'Edit',
+      icon: FeatherIcons.edit2,
+      onTap: () => print('Edit action'),
+    ),
+    HuxContextMenuItem(
+      text: 'Duplicate',
+      icon: FeatherIcons.copy,
+      onTap: () => print('Duplicate action'),
+      isDisabled: true, // Disabled item
+    ),
+    const HuxContextMenuDivider(),
+    HuxContextMenuItem(
+      text: 'Delete',
+      icon: FeatherIcons.trash2,
+      onTap: () => print('Delete action'),
+      isDestructive: true, // Destructive action
+    ),
+  ],
+  child: Icon(Icons.more_vert),
+)
+```
+
+### File Context Menu
+Context menu for file operations:
+```dart
+HuxContextMenu(
+  menuItems: [
+    HuxContextMenuItem(
+      text: 'New File',
+      icon: FeatherIcons.filePlus,
+      onTap: () => _createNewFile(),
+    ),
+    HuxContextMenuItem(
+      text: 'Open',
+      icon: FeatherIcons.folderOpen,
+      onTap: () => _openFile(),
+    ),
+    const HuxContextMenuDivider(),
+    HuxContextMenuItem(
+      text: 'Rename',
+      icon: FeatherIcons.edit2,
+      onTap: () => _renameFile(),
+    ),
+    HuxContextMenuItem(
+      text: 'Delete',
+      icon: FeatherIcons.trash2,
+      onTap: () => _deleteFile(),
+      isDestructive: true,
+    ),
+  ],
+  child: FileIcon(),
+)
+```
+
+## Basic Usage
 
 ## Features
 

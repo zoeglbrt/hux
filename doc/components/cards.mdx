@@ -9,8 +9,19 @@ description: 'Flexible card component with headers, actions, and tap handling'
 
 ![HuxCard Examples](/images/hux-cards.png)
 
-## Basic Usage
+## Component Variants
 
+### Basic Card
+Simple card with title and content:
+```dart
+HuxCard(
+  title: 'Card Title',
+  child: Text('Card content goes here'),
+)
+```
+
+### Card with Subtitle
+Card with additional subtitle text:
 ```dart
 HuxCard(
   title: 'Card Title',
@@ -18,6 +29,51 @@ HuxCard(
   child: Text('Card content goes here'),
 )
 ```
+
+### Card with Action
+Card with action button in header:
+```dart
+HuxCard(
+  title: 'Settings',
+  action: IconButton(
+    icon: Icon(FeatherIcons.settings),
+    onPressed: () {},
+  ),
+  child: Text('Configure your preferences'),
+)
+```
+
+### Interactive Card
+Card with tap handling:
+```dart
+HuxCard(
+  title: 'Clickable Card',
+  child: Text('Tap me!'),
+  onTap: () => print('Card tapped'),
+)
+```
+
+### Nested Cards
+Card containing other cards:
+```dart
+HuxCard(
+  title: 'Parent Card',
+  child: Column(
+    children: [
+      HuxCard(
+        title: 'Child Card 1',
+        child: Text('Nested content'),
+      ),
+      HuxCard(
+        title: 'Child Card 2',
+        child: Text('More nested content'),
+      ),
+    ],
+  ),
+)
+```
+
+## Basic Usage
 
 ## With Actions
 

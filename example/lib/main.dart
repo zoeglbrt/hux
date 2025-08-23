@@ -85,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _indicatorsKey = GlobalKey();
   final _displayKey = GlobalKey();
   final _datePickerNavKey = GlobalKey();
+  final _tooltipKey = GlobalKey();
   // final _timePickerKey = GlobalKey();
   // final _timePickerNavKey = GlobalKey();
   // final _timeButtonKey = GlobalKey();
@@ -155,6 +156,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: 'Date Picker',
         icon: FeatherIcons.calendar,
         key: _datePickerNavKey,
+      ),
+      NavigationItem(
+        title: 'Tooltip',
+        icon: FeatherIcons.messageCircle,
+        key: _tooltipKey,
       ),
       // NavigationItem(
       //   title: 'Time Picker',
@@ -1052,6 +1058,34 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 32),
+                      Container(
+                        key: _tooltipKey,
+                        child: HuxCard(
+                          title: 'Tooltip',
+                          subtitle: 'Contextual help and information',
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 32),
+                              // Basic tooltip example
+                              Center(
+                                child: HuxTooltip(
+                                  message: 'This is a tooltip message',
+                                  preferBelow: false,
+                                  verticalOffset: 16.0,
+                                  child: HuxButton(
+                                    onPressed: () {},
+                                    variant: HuxButtonVariant.outline,
+                                    child: const Text('Hover'),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 32),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 32),
                     ],
                   ),
                 ),

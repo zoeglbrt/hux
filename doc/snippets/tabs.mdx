@@ -1,0 +1,22 @@
+import React, { useState } from 'react';
+
+export function Tabs({ children, defaultTab = 0 }) {
+  const [activeTab, setActiveTab] = useState(defaultTab);
+  
+  return (
+    <div className="tabs">
+      {children}
+    </div>
+  );
+}
+
+export function Tab({ children, label, index, isActive, onClick }) {
+  return (
+    <button
+      className={`tab ${isActive ? 'active' : ''}`}
+      onClick={() => onClick(index)}
+    >
+      {label}
+    </button>
+  );
+}

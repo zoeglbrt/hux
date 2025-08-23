@@ -1,6 +1,6 @@
 name: hux
 description: An open-source state of the art UI library for Flutter
-version: 0.4.0
+version: 0.5.0
 homepage: https://github.com/zoeglbrt/hux
 repository: https://github.com/zoeglbrt/hux
 issue_tracker: https://github.com/zoeglbrt/hux/issues
@@ -32,6 +32,8 @@ screenshots:
     path: screenshots/hux-charts.png
   - description: 'HuxContextMenu right-click interactions'
     path: screenshots/hux-context-menu.png
+  - description: 'HuxTooltip with contextual help and information'
+    path: screenshots/hux-tooltip.png
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

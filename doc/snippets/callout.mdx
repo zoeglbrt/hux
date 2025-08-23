@@ -1,0 +1,13 @@
+import React from 'react';
+
+export default function Callout({ children, type = 'info' }) {
+  const bgColor = type === 'warning' ? 'bg-yellow-50' : 'bg-blue-50';
+  const borderColor = type === 'warning' ? 'border-yellow-200' : 'border-blue-200';
+  const textColor = type === 'warning' ? 'text-yellow-800' : 'text-blue-800';
+  
+  return (
+    <div className={`p-4 border-l-4 ${bgColor} ${borderColor} ${textColor}`}>
+      {children}
+    </div>
+  );
+}
