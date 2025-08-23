@@ -78,7 +78,8 @@ class HuxBadge extends StatelessWidget {
       case HuxBadgeVariant.outline:
         return Colors.transparent;
       case HuxBadgeVariant.error:
-        return const Color(0xFFEF4444); // Red
+        return HuxTokens.surfaceDestructive(
+            context); // Use destructive surface token
       case HuxBadgeVariant.destructive:
         return HuxTokens.surfaceDestructive(context);
     }
@@ -91,15 +92,15 @@ class HuxBadge extends StatelessWidget {
 
     switch (variant) {
       case HuxBadgeVariant.primary:
-        return HuxTokens.primary(context).withValues(alpha: 0.3);
+        return HuxTokens.borderPrimary(context); // Use border primary token
       case HuxBadgeVariant.secondary:
-        return HuxTokens.borderPrimary(context);
+        return HuxTokens.borderSecondary(context);
       case HuxBadgeVariant.success:
         return HuxTokens.borderSecondary(context);
       case HuxBadgeVariant.outline:
         return HuxTokens.buttonSecondaryBorder(context);
       case HuxBadgeVariant.error:
-        return const Color(0xFFEF4444).withValues(alpha: 0.3);
+        return HuxTokens.borderSecondary(context);
       case HuxBadgeVariant.destructive:
         return HuxTokens.borderSecondary(context);
     }
@@ -124,7 +125,7 @@ class HuxBadge extends StatelessWidget {
       case HuxBadgeVariant.outline:
         return HuxTokens.buttonSecondaryText(context);
       case HuxBadgeVariant.error:
-        return Colors.white;
+        return HuxTokens.textDestructive(context); // Use destructive text token
       case HuxBadgeVariant.destructive:
         return HuxTokens.textDestructive(context);
     }

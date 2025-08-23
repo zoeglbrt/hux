@@ -138,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
         key: _badgesKey,
       ),
       NavigationItem(
-        title: 'Alerts',
+        title: 'Snackbar',
         icon: FeatherIcons.alertCircle,
         key: _indicatorsKey,
       ),
@@ -1183,7 +1183,6 @@ class NavigationItem {
     required this.key,
   });
 }
-
 // Checkboxes Section
 class CheckboxesSection extends StatefulWidget {
   const CheckboxesSection({super.key});
@@ -1341,13 +1340,13 @@ class IndicatorsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HuxCard(
-      title: 'Alerts',
-      subtitle: 'Feedback messages for user actions and status',
+      title: 'Snackbar',
+      subtitle: 'Temporary notification messages for user actions and status',
       child: Column(
         children: [
           const SizedBox(height: 16),
 
-          // Secondary Alert
+          // Information Snackbar
           Center(
             child: HuxAlert(
               variant: HuxAlertVariant.info,
@@ -1460,3 +1459,4 @@ class DisplaySection extends StatelessWidget {
     );
   }
 }
+

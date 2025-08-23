@@ -178,7 +178,7 @@ class HuxInput extends StatelessWidget {
                 errorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
-                    color: HuxTokens.borderDestructive(context),
+                    color: HuxTokens.borderSecondary(context),
                   ),
                 ),
                 focusedErrorBorder: OutlineInputBorder(

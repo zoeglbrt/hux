@@ -1,0 +1,183 @@
+---
+title: 'Badge'
+description: 'Status indicators and notification counters with semantic variants'
+---
+
+## Overview
+
+HuxBadge is a versatile component for displaying status indicators, notification counters, and labels throughout your application. It provides semantic variants for different contexts while maintaining consistent styling and excellent accessibility.
+
+![HuxBadge Component](/images/hux-badge.png)
+
+## Basic Usage
+
+### Primary Badge
+```dart
+HuxBadge(
+  label: 'New',
+  variant: HuxBadgeVariant.primary,
+)
+```
+
+### Success Badge
+```dart
+HuxBadge(
+  label: 'Active',
+  variant: HuxBadgeVariant.success,
+)
+```
+
+### Notification Counter
+```dart
+HuxBadge(
+  label: '5',
+  variant: HuxBadgeVariant.number,
+)
+```
+
+### Custom Color Badge
+```dart
+HuxBadge(
+  label: 'Custom',
+  customColor: Colors.purple,
+)
+```
+
+## Properties
+
+### Core Properties
+- `label` - Text content displayed in the badge
+- `variant` - Visual style variant
+- `size` - Badge size (small, medium, large)
+
+### Customization Properties
+- `customColor` - Custom background color (overrides variant)
+
+## Variants
+
+### Primary Badge (`HuxBadgeVariant.primary`)
+- **Purpose**: Main actions and primary states
+- **Colors**: Theme-aware primary colors
+- **Use Case**: Main features, primary actions
+
+### Secondary Badge (`HuxBadgeVariant.secondary`)
+- **Purpose**: Secondary information and states
+- **Colors**: Theme-aware secondary colors
+- **Use Case**: Secondary features, additional info
+
+### Outline Badge (`HuxBadgeVariant.outline`)
+- **Purpose**: Subtle indicators with borders
+- **Colors**: Transparent background with borders
+- **Use Case**: Subtle status indicators
+
+### Success Badge (`HuxBadgeVariant.success`)
+- **Purpose**: Positive states and confirmations
+- **Colors**: Theme-aware success colors
+- **Use Case**: Completed tasks, positive status
+
+### Destructive Badge (`HuxBadgeVariant.destructive`)
+- **Purpose**: Errors and critical states
+- **Colors**: Theme-aware destructive colors
+- **Use Case**: Error states, critical warnings
+
+### Number Badge (`HuxBadgeVariant.number`)
+- **Purpose**: Notification counters and numbers
+- **Colors**: Theme-aware number colors
+- **Use Case**: Notification counts, item quantities
+
+## Size Variants
+
+### Small Badge
+- **Height**: 20px
+- **Font Size**: 11px
+- **Horizontal Padding**: 8px
+- **Vertical Padding**: 4px
+
+### Medium Badge ⭐ **Default**
+- **Height**: 24px
+- **Font Size**: 12px
+- **Horizontal Padding**: 12px
+- **Vertical Padding**: 6px
+
+### Large Badge
+- **Height**: 28px
+- **Font Size**: 14px
+- **Horizontal Padding**: 16px
+- **Vertical Padding**: 8px
+
+## Styling & Colors
+
+### Background Colors
+- **Primary**: `HuxTokens.primary(context)`
+- **Secondary**: `HuxTokens.buttonSecondaryBackground(context)`
+- **Success**: `HuxTokens.surfaceSuccess(context)`
+- **Destructive**: `HuxTokens.surfaceDestructive(context)`
+- **Custom**: User-defined color
+
+### Text Colors
+- **Primary**: Auto-calculated for optimal contrast
+- **Secondary**: `HuxTokens.buttonSecondaryText(context)`
+- **Success**: `HuxTokens.textSuccess(context)`
+- **Destructive**: `HuxTokens.textDestructive(context)`
+- **Custom**: Auto-calculated for optimal contrast
+
+### Border Colors
+- **Primary**: `HuxTokens.borderSecondary(context)`
+- **Secondary**: `HuxTokens.buttonSecondaryBorder(context)`
+- **Success**: `HuxTokens.borderSecondary(context)`
+- **Destructive**: `HuxTokens.borderSecondary(context)`
+- **Custom**: User-defined color
+
+## States
+
+### Default State
+- Fully visible with normal styling
+- Proper contrast and readability
+- Interactive and accessible
+
+### Custom Color State
+- User-defined background color
+- Automatically calculated text color
+- Maintains accessibility standards
+
+## Accessibility
+
+### Screen Reader Support
+- Proper semantic labeling
+- Variant announcements
+- Content descriptions
+
+### Visual Design
+- High contrast ratios
+- Clear visual hierarchy
+- Consistent sizing
+
+### Touch Targets
+- Appropriate sizing for mobile
+- Clear visual feedback
+- Proper spacing
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card
+    title="Status Indicators"
+    icon="tag"
+    href="/examples/status-indicators"
+  >
+    See HuxBadge in different contexts
+  </Card>
+  <Card
+    title="Notification Counters"
+    icon="bell"
+    href="/examples/notifications"
+  >
+    Badge usage for notifications
+  </Card>
+</CardGroup>
+
+## Related Components
+
+- [HuxAlert](/components/alert) - Message boxes for user feedback
+- [HuxButton](/components/buttons) - Action buttons
+- [HuxAvatar](/components/avatar) - User profile components

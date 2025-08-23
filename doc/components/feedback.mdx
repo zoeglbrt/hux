@@ -1,42 +1,59 @@
 ---
 title: 'Feedback Components'
-description: 'Badges, alerts, and status indicators for user feedback'
+description: 'Overview of all feedback and status components available in Hux UI'
 ---
 
 ## Overview
 
-Hux UI provides feedback components for displaying status, alerts, and notifications:
+Hux UI provides a comprehensive set of feedback components for displaying status, alerts, and notifications to users. Each component is designed with consistency, accessibility, and theme awareness in mind.
 
-- **HuxBadge** - Status indicators and notification counters
-- **HuxAlert** - Message boxes with dismissible functionality
+## Available Components
 
-![Hux badge component showing rounded blue label with Hux logo and 'Beta' tag](/images/hux-badge.png)
+<CardGroup cols={2}>
+  <Card
+    title="HuxAlert"
+    icon="message-circle"
+    href="/components/alert"
+  >
+    Message boxes with semantic variants and dismissible functionality
+  </Card>
+  <Card
+    title="HuxBadge"
+    icon="tag"
+    href="/components/badge"
+  >
+    Status indicators and notification counters with semantic variants
+  </Card>
+</CardGroup>
 
-![Hux alert component showing red error banner with exclamation icon and sample message](/images/hux-alerts.png)
+## Component Features
 
-## HuxBadge
+### **Semantic Variants**
+- Clear visual distinction between different message types
+- Consistent color coding across all feedback components
+- Automatic theme adaptation (light/dark mode)
 
-Status indicators with semantic variants for displaying important information.
+### **Accessibility First**
+- WCAG AA compliance for all components
+- Proper screen reader support
+- Keyboard navigation support
+- High contrast ratios
 
-```dart
-HuxBadge(
-  label: 'New',
-  variant: HuxBadgeVariant.primary,
-)
-```
+### **User Experience**
+- Dismissible alerts for user control
+- Clear visual hierarchy and typography
+- Smooth animations and transitions
+- Responsive design for all screen sizes
 
-### Variants
+### **Integration**
+- Seamless integration with other Hux UI components
+- Consistent spacing and typography
+- Theme-aware styling system
+- Customizable appearance
 
-- `primary` - Default badge style
-- `secondary` - Subtle badge style  
-- `outline` - Border-only badge
-- `success` - Green success badge
-- `destructive` - Red error/warning badge
+## Quick Examples
 
-## HuxAlert
-
-Message boxes for displaying important information with optional dismissal.
-
+### Alert Component
 ```dart
 HuxAlert(
   variant: HuxAlertVariant.success,
@@ -47,12 +64,37 @@ HuxAlert(
 )
 ```
 
-### Variants
+### Badge Component
+```dart
+HuxBadge(
+  label: 'New',
+  variant: HuxBadgeVariant.primary,
+  size: HuxBadgeSize.medium,
+)
+```
 
-- `info` - Blue informational alert
-- `success` - Green success alert
-- `destructive` - Red error/warning alert
+## Examples
 
-<Note>
-  Complete documentation for feedback components is coming soon. See the [example app](https://github.com/zoeglbrt/hux/tree/main/example) for usage examples.
-</Note>
+<CardGroup cols={2}>
+  <Card
+    title="Status Indicators"
+    icon="tag"
+    href="/examples/status-indicators"
+  >
+    See feedback components in different contexts
+  </Card>
+  <Card
+    title="Form Feedback"
+    icon="edit"
+    href="/examples/form-building"
+  >
+    Alerts and badges in form scenarios
+  </Card>
+</CardGroup>
+
+## Related Documentation
+
+- [Form Building Guide](/examples/form-building) - Learn how to use feedback in forms
+- [Theming Guide](/theming) - Customize component appearance
+- [Accessibility Guide](/advanced/accessibility) - Ensure your feedback is accessible
+- [Component Library](/components/buttons) - Explore all available components

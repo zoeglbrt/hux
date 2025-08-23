@@ -5,6 +5,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2025-08-24
+
+### Added
+- **Documentation Restructuring**: Complete reorganization of component documentation
+  - Individual pages for each component (Input, Checkbox, Switch, Alert, Badge)
+  - Alphabetical navigation ordering for better discoverability
+- **Snackbar Documentation**: Renamed Alert to Snackbar for better clarity
+  - More descriptive and industry-standard terminology
+  - Updated all code examples to use HuxSnackbar naming
+  - Maintains backward compatibility with HuxAlert class
+
+### Enhanced
+- **Component Organization**: Improved documentation structure
+  - Split monolithic "Input Components" into individual pages
+  - Split monolithic "Feedback Components" into individual pages
+- **Color System**: Refactored color usage for better maintainability
+  - Added explicit color constants (red10, red60, grey35, green10, green60)
+  - Replaced runtime `.withValues(alpha: X)` with predefined constants
+  - Improved performance and code readability
+- **Badge Component**: Updated to use destructive design tokens
+  - Consistent destructive styling across error and destructive variants
+  - Better theme integration and accessibility
+
+### Improved
+- **Documentation Navigation**: Professional, organized structure
+  - Removed overview pages in favor of direct component access
+  - Consistent component naming throughout documentation
+  - Better SEO with individual component pages
+- **Developer Experience**: Cleaner, more focused documentation
+  - Each component gets dedicated, comprehensive documentation
+  - Easier to find specific component information
+  - Consistent formatting and examples across all components
+
+### Removed
+- **Legacy Files**: Cleaned up redundant documentation files
+  - Removed `inputs.mdx` overview page
+  - Streamlined navigation structure
+
 ## [0.5.0] - 2025-08-23
 
 ### Added

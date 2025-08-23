@@ -1,0 +1,266 @@
+---
+title: 'Snackbar'
+description: 'Temporary notification messages with semantic variants and dismissible functionality'
+---
+
+## Overview
+
+HuxSnackbar is a message box component that provides clear communication to users through semantic variants (info, success, error) and dismissible functionality. It automatically adapts to light and dark themes while maintaining excellent readability and accessibility.
+
+![HuxAlert Examples](/images/hux-alerts.png)
+
+## Component Variants
+
+### Info Snackbar
+Informational messages with blue styling:
+```dart
+HuxSnackbar(
+  message: 'Your changes have been saved successfully!',
+  variant: HuxSnackbarVariant.info,
+  onDismiss: () => print('Dismissed'),
+)
+```
+
+### Success Snackbar
+Positive confirmation messages with green styling:
+```dart
+HuxSnackbar(
+  message: 'Profile updated successfully!',
+  variant: HuxSnackbarVariant.success,
+  onDismiss: () => print('Dismissed'),
+)
+```
+
+### Error Snackbar
+Error messages with red styling:
+```dart
+HuxSnackbar(
+  message: 'Failed to save changes. Please try again.',
+  variant: HuxSnackbarVariant.error,
+  onDismiss: () => print('Dismissed'),
+)
+```
+
+### Warning Snackbar
+Warning messages with orange styling:
+```dart
+HuxSnackbar(
+  message: 'You have unsaved changes. Save before leaving?',
+  variant: HuxSnackbarVariant.warning,
+  onDismiss: () => print('Dismissed'),
+)
+```
+
+## Basic Usage
+
+### Simple Snackbar
+Basic snackbar with message:
+```dart
+HuxSnackbar(
+  message: 'This is a simple snackbar message',
+)
+```
+
+### Dismissible Snackbar
+Snackbar that can be dismissed by the user:
+```dart
+HuxSnackbar(
+  message: 'Click the X to dismiss this message',
+  onDismiss: () {
+    // Handle dismiss action
+    print('Snackbar dismissed');
+  },
+)
+```
+
+### Auto-dismiss Snackbar
+Snackbar that automatically disappears after a set duration:
+```dart
+HuxSnackbar(
+  message: 'This will disappear in 5 seconds',
+  autoDismiss: true,
+  dismissDuration: Duration(seconds: 5),
+)
+```
+
+## Properties
+
+### HuxSnackbar Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `message` | `String` | **required** | The message text to display |
+| `variant` | `HuxAlertVariant` | `info` | Visual variant of the snackbar |
+| `onDismiss` | `VoidCallback?` | `null` | Callback when dismiss button is pressed |
+| `autoDismiss` | `bool` | `false` | Whether to automatically dismiss after duration |
+| `dismissDuration` | `Duration` | `5 seconds` | How long to wait before auto-dismissing |
+| `showDismissButton` | `bool` | `true` | Whether to show the dismiss button |
+| `dismissButtonText` | `String` | `'Dismiss'` | Text for the dismiss button |
+
+### HuxSnackbarVariant Enum
+
+- `HuxSnackbarVariant.info` - Blue styling for informational messages
+- `HuxSnackbarVariant.success` - Green styling for success confirmations  
+- `HuxSnackbarVariant.error` - Red styling for error messages
+- `HuxSnackbarVariant.warning` - Orange styling for warning messages
+
+## Styling
+
+### Custom Colors
+Override default colors for specific use cases:
+```dart
+HuxSnackbar(
+  message: 'Custom styled snackbar',
+  variant: HuxSnackbarVariant.info,
+  backgroundColor: Colors.deepPurple,
+  textColor: Colors.white,
+)
+```
+
+### Custom Dismiss Button
+Customize the dismiss button appearance:
+```dart
+HuxSnackbar(
+  message: 'Custom dismiss button',
+  dismissButtonText: 'Got it!',
+  onDismiss: () => print('Custom dismiss action'),
+)
+```
+
+## Layout Options
+
+### Full Width
+Snackbar that spans the full width of its container:
+```dart
+HuxSnackbar(
+  message: 'Full width snackbar message',
+  width: double.infinity,
+)
+```
+
+### Custom Width
+Snackbar with specific width:
+```dart
+HuxSnackbar(
+  message: 'Custom width snackbar',
+  width: 300,
+)
+```
+
+## Colors
+
+### Theme-Aware Colors
+Snackbar automatically adapts to light and dark themes:
+
+- **Info**: Blue tones with appropriate contrast
+- **Success**: Green tones with appropriate contrast  
+- **Error**: Red tones with appropriate contrast
+- **Warning**: Orange tones with appropriate contrast
+
+### Custom Color Overrides
+```dart
+HuxSnackbar(
+  message: 'Custom colored snackbar',
+  backgroundColor: Colors.deepPurple,
+  textColor: Colors.white,
+  dismissButtonColor: Colors.purpleAccent,
+)
+```
+
+## States
+
+### Default State
+Normal snackbar appearance with all interactive elements enabled.
+
+### Dismissed State
+Snackbar is removed from the UI after user interaction or auto-dismiss.
+
+### Loading State
+For future enhancement - snackbar with loading indicator.
+
+## Accessibility
+
+HuxSnackbar includes several accessibility features:
+
+### Screen Reader Support
+- Message content is properly announced
+- Dismiss button includes appropriate labels
+- Variant information is conveyed through ARIA attributes
+
+### Keyboard Navigation
+- Tab navigation to dismiss button
+- Enter/Space key support for dismissal
+- Escape key support for quick dismissal
+
+### High Contrast Support
+- Colors automatically adjust for high contrast themes
+- Maintains WCAG AA compliance (4.5:1 contrast ratio)
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Choose the Right Variant" icon="eye">
+    - Use **Info** for general information and updates
+    - Use **Success** for positive confirmations and achievements
+    - Use **Error** for actual errors that need user attention
+    - Use **Warning** for potential issues or important notices
+  </Accordion>
+  
+  <Accordion title="Message Length" icon="type">
+    - Keep messages concise (under 2 lines when possible)
+    - Use clear, action-oriented language
+    - Avoid technical jargon unless necessary
+  </Accordion>
+  
+  <Accordion title="Timing" icon="clock">
+    - Use auto-dismiss for informational messages (3-5 seconds)
+    - Keep error messages visible until user dismisses
+    - Consider user reading time for longer messages
+  </Accordion>
+  
+  <Accordion title="Placement" icon="layout">
+    - Position at the top or bottom of the screen
+    - Avoid covering important content
+    - Consider mobile keyboard visibility
+  </Accordion>
+</AccordionGroup>
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card
+    title="Form Feedback"
+    icon="edit"
+    href="/examples/form-building"
+  >
+    Show success/error messages after form submission
+  </Card>
+  <Card
+    title="User Notifications"
+    icon="bell"
+    href="/examples/user-notifications"
+  >
+    Display system updates and user alerts
+  </Card>
+  <Card
+    title="Action Confirmations"
+    icon="check-circle"
+    href="/examples/action-confirmations"
+  >
+    Confirm successful operations and actions
+  </Card>
+  <Card
+    title="Error Handling"
+    icon="alert-triangle"
+    href="/examples/error-handling"
+  >
+    Gracefully handle and display errors
+  </Card>
+</CardGroup>
+
+## Related Components
+
+- [HuxInput](/components/input) - Form input components
+- [HuxButton](/components/buttons) - Action buttons for forms
+- [HuxBadge](/components/badge) - Status indicators
+- [HuxCard](/components/cards) - Content containers

@@ -28,16 +28,20 @@
           {
             "group": "Components",
             "pages": [
-              "components/buttons",
-              "components/inputs",
-              "components/cards",
-              "components/feedback",
+              "components/alert",
               "components/avatar",
-              "components/loading",
-              "components/tooltip",
+              "components/badge",
+              "components/buttons",
+              "components/cards",
               "components/charts",
+              "components/checkbox",
               "components/context-menu",
-              "components/date-picker"
+              "components/date-picker",
+              "components/input",
+              "components/loading",
+              "components/snackbar",
+              "components/switch",
+              "components/tooltip"
             ]
           },
           {
@@ -78,6 +82,11 @@
           "icon": "github"
         },
         {
+          "anchor": "Sponsor",
+          "href": "https://github.com/sponsors/zoeglbrt",
+          "icon": "heart"
+        },
+        {
           "anchor": "Issues",
           "href": "https://github.com/zoeglbrt/hux/issues",
           "icon": "bug"
@@ -105,7 +114,18 @@
   "footer": {
     "socials": {
       "github": "https://github.com/zoeglbrt/hux"
-    }
+    },
+    "links": [
+      {
+        "group": "Support",
+        "items": [
+          {
+            "label": "GitHub Sponsors",
+            "href": "https://github.com/sponsors/zoeglbrt"
+          }
+        ]
+      }
+    ]
   },
   "css": [
     ".global-anchors a { color: #ffffff !important; }",

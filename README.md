@@ -8,6 +8,7 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios%20%7C%20web%20%7C%20windows%20%7C%20macos%20%7C%20linux-C0C0C0)](https://flutter.dev/)
 [![Flutter support](https://img.shields.io/badge/Flutter-3.16%2B-3C3C3C)](https://flutter.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-C0C0C0)](https://opensource.org/licenses/MIT)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-Support%20Hux%20UI-red?style=for-the-badge&logo=github)](https://github.com/sponsors/zoeglbrt)
 
 ## Features
 
@@ -90,7 +91,7 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 ![HuxBadge Component](screenshots/hux-badge.png)
 
-- `HuxAlert` - Message boxes with variants (info, success, error) and dismissible functionality
+- `HuxSnackbar` - Temporary notification messages with semantic variants (previously HuxAlert)
 
 ![HuxAlert Component](screenshots/hux-alerts.png)
 
@@ -107,6 +108,8 @@ A modern Flutter UI package with beautiful, customizable components designed for
 ## Documentation
 
 📚 **[Complete Documentation](https://docs.thehuxdesign.com)** - Visit our comprehensive documentation site for detailed guides, API references, and examples.
+
+**✨ Recently Updated**: Our documentation has been completely restructured with individual pages for each component, alphabetical navigation, and improved clarity!
 
 ### Quick Links
 - [Installation Guide](https://docs.thehuxdesign.com/installation)
@@ -374,6 +377,22 @@ Container(
   child: Text('Primary colored container'),
 )
 ```
+
+## Support
+
+If you find Hux UI helpful and would like to support its continued development, consider becoming a GitHub Sponsor! 🌟
+
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-Support%20Hux%20UI-red?style=for-the-badge&logo=github)](https://github.com/sponsors/zoeglbrt)
+
+Your support helps us:
+- 🚀 Maintain and improve Hux UI components
+- 📚 Create better documentation and examples
+- 🐛 Fix bugs and add new features faster
+- 💡 Invest in new component development
+
+**Thank you to all our sponsors!** Your contributions make a real difference in the Flutter community.
+
+---
 
 ## Contributing
 

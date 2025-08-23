@@ -100,7 +100,7 @@ class HuxTokens {
 
   /// Hover overlay color for primary buttons
   static Color buttonPrimaryHover(BuildContext context) {
-    return HuxColors.grey.withValues(alpha: 0.35);
+    return HuxColors.grey35;
   }
 
   /// Border color for secondary buttons
@@ -153,15 +153,13 @@ class HuxTokens {
   // UTILITY TOKENS
   /// Overlay color for modals and backdrops
   static Color overlay(BuildContext context) {
-    return HuxColors.black.withValues(alpha: 0.5);
+    return HuxColors.black50;
   }
 
   /// Shadow color for elevated components
   static Color shadowColor(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return isDark
-        ? HuxColors.black.withValues(alpha: 0.5)
-        : HuxColors.black.withValues(alpha: 0.1);
+    return isDark ? HuxColors.black50 : HuxColors.black10;
   }
 
   // DESTRUCTIVE TOKENS
@@ -175,15 +173,8 @@ class HuxTokens {
   static Color surfaceDestructive(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return isDark
-        ? HuxColors.red
-            .withValues(alpha: 0.60) // Dark mode: dark red with transparency
-        : HuxColors.redLight.withValues(
-            alpha: 0.15); // Light mode: light red with low transparency
-  }
-
-  /// Border color for destructive components
-  static Color borderDestructive(BuildContext context) {
-    return HuxColors.redLight; // Lighter red color for borders
+        ? HuxColors.red60 // Dark mode: dark red with 60% opacity
+        : HuxColors.red10; // Light mode: light red with 10% opacity
   }
 
   /// Text color for destructive content
@@ -205,15 +196,8 @@ class HuxTokens {
   static Color surfaceSuccess(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return isDark
-        ? HuxColors.green
-            .withValues(alpha: 0.60) // Dark mode: dark green with transparency
-        : HuxColors.greenLight.withValues(
-            alpha: 0.15); // Light mode: light green with low transparency
-  }
-
-  /// Border color for success components
-  static Color borderSuccess(BuildContext context) {
-    return HuxColors.greenLight; // Lighter green color for borders
+        ? HuxColors.green60 // Dark mode: dark green with 60% opacity
+        : HuxColors.green10; // Light mode: light green with 10% opacity
   }
 
   /// Text color for success content

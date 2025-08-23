@@ -27,11 +27,28 @@ class HuxColors {
   /// Lighter red color for destructive text and borders
   static const Color redLight = Color(0xFFEF4444);
 
+  // Red color variants with different opacity levels
+  /// Red with 10% opacity for subtle destructive backgrounds
+  static const Color red10 = Color(0x1AEF4444); // 10% redLight
+
+  /// Red with 60% opacity for destructive backgrounds
+  static const Color red60 = Color(0x997F1D1D); // 60% red
+
+  /// Grey with 35% opacity for subtle backgrounds
+  static const Color grey35 = Color(0x596B7280); // 35% grey
+
   /// Success color for positive states and confirmations
   static const Color green = Color(0xFF166534);
 
   /// Lighter green color for success text and borders
   static const Color greenLight = Color(0xFF10B981);
+
+  // Green color variants with different opacity levels
+  /// Green with 10% opacity for subtle success backgrounds
+  static const Color green10 = Color(0x1A10B981); // 10% greenLight
+
+  /// Green with 60% opacity for success backgrounds
+  static const Color green60 = Color(0x99166534); // 60% green
 
   // Essential preset colors for primary customization
   /// Preset colors available for theming

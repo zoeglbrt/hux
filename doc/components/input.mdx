@@ -1,0 +1,155 @@
+---
+title: 'Input'
+description: 'Enhanced text input component with validation and consistent styling'
+---
+
+## Overview
+
+HuxInput is a customizable text input component with consistent styling and extensive customization options. It provides a clean, modern text input with support for labels, hints, validation, icons, and different sizes while automatically adapting to light and dark themes.
+
+![HuxInput Component](/images/hux-input.png)
+
+## Basic Usage
+
+### Simple Text Input
+```dart
+HuxInput(
+  label: 'Email',
+  hint: 'Enter your email address',
+)
+```
+
+### Input with Icon
+```dart
+HuxInput(
+  label: 'Search',
+  hint: 'Search for products...',
+  prefixIcon: Icon(FeatherIcons.search),
+)
+```
+
+### Input with Validation
+```dart
+HuxInput(
+  label: 'Password',
+  hint: 'Enter your password',
+  prefixIcon: Icon(FeatherIcons.lock),
+  obscureText: true,
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required';
+    }
+    if (value.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+    return null;
+  },
+)
+```
+
+## Properties
+
+### Core Properties
+- `label` - Field label text displayed above the input
+- `hint` - Placeholder text displayed inside the input when empty
+- `controller` - TextEditingController for managing input state
+- `onChanged` - Callback triggered when the input value changes
+- `onSubmitted` - Callback triggered when the user submits the input
+
+### Validation Properties
+- `validator` - Form validation function that returns error text or null
+- `errorText` - Custom error message (overrides validator output)
+- `helperText` - Helper text displayed below the input
+
+### Icon Properties
+- `prefixIcon` - Icon displayed at the beginning of the input
+- `suffixIcon` - Icon displayed at the end of the input
+- `iconSize` - Custom size for icons (default: 18px)
+
+### Behavior Properties
+- `obscureText` - Whether to hide the input text (for passwords)
+- `enabled` - Whether the input is interactive
+- `maxLines` - Maximum number of text lines (default: 1)
+- `keyboardType` - Type of keyboard to display
+- `textInputAction` - Action button for the keyboard
+
+### Layout Properties
+- `width` - Custom width (default: full width)
+
+## Styling & Dimensions
+
+### Fixed Dimensions
+- **Height**: 40px (consistent across all inputs)
+- **Border Radius**: 8px (rounded corners)
+- **Font Size**: 14px with 1.4 line height
+
+### Padding & Spacing
+- **Horizontal Padding**: 18px (left and right inside input)
+- **Vertical Padding**: 12px (top and bottom inside input)
+- **Label Gap**: 6px (space between label and input)
+
+### Icon Spacing
+- **Icon Size**: 18px (default, customizable)
+- **Icon Outer Padding**: 14px (space from edge to icon)
+- **Icon Inner Padding**: 4px (space between icon and text)
+
+## Color System
+
+### Border Colors
+- **Default**: `HuxTokens.borderPrimary(context)`
+- **Focused**: `HuxTokens.primary(context)` with 50% opacity
+- **Error**: `HuxTokens.borderDestructive(context)`
+- **Focused Error**: `HuxTokens.textDestructive(context)` with 2px width
+- **Disabled**: `HuxTokens.borderSecondary(context)`
+
+### Background Colors
+- **Enabled**: `HuxTokens.surfacePrimary(context)`
+- **Disabled**: `HuxTokens.surfaceSecondary(context)`
+
+### Text Colors
+- **Input Text**: Inherits from theme with 14px font size
+- **Label Text**: `HuxTokens.textSecondary(context)` with medium weight
+- **Icon Color**: `HuxTokens.iconSecondary(context)`
+
+## States
+
+### Enabled State
+- Fully interactive with normal styling
+- Responds to user input and focus
+
+### Focused State
+- Enhanced border with primary color
+- Visual focus indicator for accessibility
+
+### Error State
+- Red border and error text display
+- Clear visual feedback for validation issues
+
+### Disabled State
+- Reduced opacity and non-interactive
+- Maintains visual consistency
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card
+    title="Form Building"
+    icon="edit"
+    href="/examples/form-building"
+  >
+    See HuxInput in action within forms
+  </Card>
+  <Card
+    title="Validation Patterns"
+    icon="check-circle"
+    href="/examples/validation"
+  >
+    Learn form validation best practices
+  </Card>
+</CardGroup>
+
+## Related Components
+
+- [HuxDateInput](/components/date-input) - Specialized date input component
+- [HuxCheckbox](/components/checkbox) - Interactive checkbox component
+- [HuxSwitch](/components/switch) - Toggle switch component

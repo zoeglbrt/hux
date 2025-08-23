@@ -1,6 +1,6 @@
 name: hux
 description: An open-source state of the art UI library for Flutter
-version: 0.5.0
+version: 0.6.0
 homepage: https://github.com/zoeglbrt/hux
 repository: https://github.com/zoeglbrt/hux
 issue_tracker: https://github.com/zoeglbrt/hux/issues
@@ -13,6 +13,10 @@ topics:
   - components
   - design-system
   - buttons
+
+# Support information for pub.dev
+funding:
+  - "https://github.com/sponsors/zoeglbrt"
 
 # Screenshots displayed on pub.dev
 screenshots:

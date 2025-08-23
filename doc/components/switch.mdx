@@ -1,0 +1,163 @@
+---
+title: 'Switch'
+description: 'Toggle switch component with smooth animations and theme-aware styling'
+---
+
+## Overview
+
+HuxSwitch is a toggle switch component with smooth animations, consistent styling, and automatic theme adaptation. It provides a clean, modern interface for binary choices while maintaining accessibility standards.
+
+![HuxSwitch Component](/images/hux-switch.png)
+![HuxSwitch Component](/images/hux-switch-off.png)
+
+## Basic Usage
+
+### Simple Switch
+```dart
+HuxSwitch(
+  value: isEnabled,
+  onChanged: (value) {
+    setState(() {
+      isEnabled = value;
+    });
+  },
+)
+```
+
+### Switch with Label
+```dart
+Row(
+  children: [
+    Text('Enable notifications'),
+    const SizedBox(width: 12),
+    HuxSwitch(
+      value: notificationsEnabled,
+      onChanged: (value) {
+        setState(() {
+          notificationsEnabled = value;
+        });
+      },
+    ),
+  ],
+)
+```
+
+### Disabled Switch
+```dart
+HuxSwitch(
+  value: isEnabled,
+  onChanged: null, // Disables the switch
+)
+```
+
+## Properties
+
+### Core Properties
+- `value` - Current switch state (true/false)
+- `onChanged` - Callback triggered when state changes (null for disabled)
+
+### Styling Properties
+- `size` - Switch size variant (small, medium, large)
+
+## Size Variants
+
+### Small Switch
+- **Switch Size**: 32px × 20px
+- **Thumb Size**: 16px × 16px
+- **Track Width**: 32px
+- **Track Height**: 20px
+
+### Medium Switch ⭐ **Default**
+- **Switch Size**: 40px × 24px
+- **Thumb Size**: 20px × 20px
+- **Track Width**: 40px
+- **Track Height**: 24px
+
+### Large Switch
+- **Switch Size**: 48px × 28px
+- **Thumb Size**: 24px × 24px
+- **Track Width**: 48px
+- **Track Height**: 28px
+
+## Styling & Colors
+
+### Switch Colors
+- **Track (Off)**: `HuxTokens.surfaceSecondary(context)`
+- **Track (On)**: `HuxTokens.primary(context)`
+- **Thumb (Off)**: `HuxTokens.surfacePrimary(context)`
+- **Thumb (On)**: `HuxTokens.surfacePrimary(context)`
+- **Border**: `HuxTokens.borderPrimary(context)`
+
+### Disabled State Colors
+- **Track (Disabled)**: `HuxTokens.surfaceSecondary(context)` with 50% opacity
+- **Thumb (Disabled)**: `HuxTokens.surfacePrimary(context)` with 50% opacity
+
+## States
+
+### Off State
+- Track in neutral color
+- Thumb positioned to the left
+- Ready for user interaction
+
+### On State
+- Track in primary color
+- Thumb positioned to the right
+- Visual confirmation of activation
+
+### Disabled State
+- Reduced opacity and non-interactive
+- Maintains visual consistency
+
+## Animation
+
+### Transition Timing
+- **Duration**: 200ms smooth animation
+- **Curve**: Natural easing for professional feel
+- **Properties**: Position, color, and opacity transitions
+
+### Interactive Feedback
+- Smooth thumb movement
+- Color transitions
+- Hover state effects
+
+## Accessibility
+
+### Screen Reader Support
+- Proper semantic labeling
+- State announcements
+- Focus management
+
+### Keyboard Navigation
+- Tab key support
+- Space/Enter key activation
+- Focus indicators
+
+### Touch Targets
+- Minimum 44px touch area
+- Proper spacing for mobile use
+- Clear visual feedback
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card
+    title="Form Building"
+    icon="edit"
+    href="/examples/form-building"
+  >
+    See HuxSwitch in action within forms
+  </Card>
+  <Card
+    title="Interactive Examples"
+    icon="mouse-pointer"
+    href="/examples/interactive"
+  >
+    Try different switch configurations
+  </Card>
+</CardGroup>
+
+## Related Components
+
+- [HuxInput](/components/input) - Text input component
+- [HuxCheckbox](/components/checkbox) - Checkbox component
+- [HuxDateInput](/components/date-input) - Date input component
