@@ -47,6 +47,12 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 ![HuxCheckbox Component](screenshots/hux-checkbox.png)
 
+- `HuxRadio` - Radio button controls for single selection from groups
+- Support for different value types
+- Consistent sizing and theme adaptation
+
+![HuxRadio Component](screenshots/hux-radio.png)
+
 ### Date & Time Pickers
 - `showHuxDatePickerDialog` - Modern date picker with month/year selection
 - `showHuxTimePickerDialog` - Clean time picker with hour/minute dropdowns

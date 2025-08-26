@@ -18,7 +18,7 @@ enum HuxSnackbarVariant {
 }
 
 /// A proper snackbar component that provides temporary notification messages.
-/// 
+///
 /// Built using composition to avoid inheritance conflicts with SnackBar.
 /// Follows Hux design system principles with consistent theming and accessibility.
 class HuxSnackbar {
@@ -222,7 +222,7 @@ class HuxSnackbar {
 
   Color _getTextColor(BuildContext context) {
     if (textColor != null) return textColor!;
-    
+
     switch (variant) {
       case HuxSnackbarVariant.info:
         return HuxTokens.textPrimary(context);
@@ -266,7 +266,8 @@ extension HuxSnackbarExtension on BuildContext {
     Color? actionTextColor,
     double elevation = 6,
     EdgeInsets margin = const EdgeInsets.all(16),
-    EdgeInsets padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    EdgeInsets padding =
+        const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
     ShapeBorder? shape,
   }) {
     final snackbar = HuxSnackbar(
@@ -286,7 +287,7 @@ extension HuxSnackbarExtension on BuildContext {
       padding: padding,
       shape: shape,
     );
-    
+
     ScaffoldMessenger.of(this).showSnackBar(snackbar.build(this));
   }
 }

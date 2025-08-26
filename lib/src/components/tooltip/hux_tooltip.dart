@@ -50,7 +50,6 @@ class HuxTooltip extends StatelessWidget {
     this.showDuration = const Duration(milliseconds: 3000),
     this.decoration,
     this.textStyle,
-
     this.padding,
     this.margin,
     this.richMessage,
@@ -98,8 +97,6 @@ class HuxTooltip extends StatelessWidget {
 
   /// Custom text style for the tooltip (optional)
   final TextStyle? textStyle;
-
-
 
   /// Padding inside the tooltip (optional)
   final EdgeInsetsGeometry? padding;
@@ -177,7 +174,6 @@ class HuxTooltip extends StatelessWidget {
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
               )),
-
       padding: effectivePadding,
       margin: effectiveMargin,
       richMessage: effectiveRichMessage,

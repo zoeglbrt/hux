@@ -35,6 +35,7 @@
               "components/cards",
               "components/charts",
               "components/checkbox",
+              "components/radio",
               "components/context-menu",
               "components/date-picker",
               "components/input",

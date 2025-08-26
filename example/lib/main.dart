@@ -80,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _loadingKey = GlobalKey();
   final _contextMenuKey = GlobalKey();
   final _checkboxesKey = GlobalKey();
+  final _radioButtonsKey = GlobalKey();
   final _toggleSwitchesKey = GlobalKey();
   final _badgesKey = GlobalKey();
   final _indicatorsKey = GlobalKey();
@@ -126,6 +127,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: 'Checkbox',
         icon: FeatherIcons.checkSquare,
         key: _checkboxesKey,
+      ),
+      NavigationItem(
+        title: 'Radio Buttons',
+        icon: FeatherIcons.circle,
+        key: _radioButtonsKey,
       ),
       NavigationItem(
         title: 'Switch',
@@ -952,6 +958,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
                       const SizedBox(height: 32),
 
+                      // Radio Buttons Section
+                      RadioButtonsSection(key: _radioButtonsKey),
+
+                      const SizedBox(height: 32),
+
                       // Toggle Switches Section
                       ToggleSwitchesSection(key: _toggleSwitchesKey),
 
@@ -1183,6 +1194,7 @@ class NavigationItem {
     required this.key,
   });
 }
+
 // Checkboxes Section
 class CheckboxesSection extends StatefulWidget {
   const CheckboxesSection({super.key});
@@ -1223,6 +1235,72 @@ class _CheckboxesSectionState extends State<CheckboxesSection> {
                   onChanged: null,
                   label: 'Disabled checkbox',
                   isDisabled: true,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+// Radio Buttons Section
+class RadioButtonsSection extends StatefulWidget {
+  const RadioButtonsSection({super.key});
+
+  @override
+  State<RadioButtonsSection> createState() => _RadioButtonsSectionState();
+}
+
+class _RadioButtonsSectionState extends State<RadioButtonsSection> {
+  String _selectedOption = 'option1';
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      title: 'Radio Buttons',
+      subtitle: 'Interactive radio button controls',
+      child: Column(
+        children: [
+          const SizedBox(height: 32),
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                HuxRadio<String>(
+                  value: 'option1',
+                  groupValue: _selectedOption,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedOption = value ?? 'option1';
+                    });
+                  },
+                  label: 'Option 1',
+                ),
+                const SizedBox(height: 16),
+                HuxRadio<String>(
+                  value: 'option2',
+                  groupValue: _selectedOption,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedOption = value ?? 'option1';
+                    });
+                  },
+                  label: 'Option 2',
+                ),
+                const SizedBox(height: 16),
+                HuxRadio<String>(
+                  value: 'option3',
+                  groupValue: _selectedOption,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedOption = value ?? 'option1';
+                    });
+                  },
+                  label: 'Option 3',
                 ),
               ],
             ),
@@ -1459,4 +1537,3 @@ class DisplaySection extends StatelessWidget {
     );
   }
 }
-
