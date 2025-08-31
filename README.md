@@ -53,6 +53,14 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 ![HuxRadio Component](screenshots/hux-radio.png)
 
+### Dialogs
+- `HuxDialog` - General-purpose dialog with modern design and multiple size variants
+- Built-in close button with ghost styling and precise positioning
+- Support for title, subtitle, content, and action buttons
+- Consistent Hux design system integration
+
+![HuxDialog Component](screenshots/hux-dialog.png)
+
 ### Date & Time Pickers
 - `showHuxDatePickerDialog` - Modern date picker with month/year selection
 - `showHuxTimePickerDialog` - Clean time picker with hour/minute dropdowns
@@ -202,6 +210,28 @@ HuxCard(
   child: Text('Card content goes here'),
   onTap: () => print('Card tapped'),
 )
+```
+
+#### Dialog
+
+```dart
+// Basic dialog
+showHuxDialog(
+  context: context,
+  title: 'Confirm Action',
+  content: Text('Are you sure you want to proceed?'),
+  actions: [
+    HuxButton(
+      onPressed: () => Navigator.of(context).pop(false),
+      variant: HuxButtonVariant.secondary,
+      child: Text('Cancel'),
+    ),
+    HuxButton(
+      onPressed: () => Navigator.of(context).pop(true),
+      child: Text('Confirm'),
+    ),
+  ],
+);
 ```
 
 #### Date & Time Pickers

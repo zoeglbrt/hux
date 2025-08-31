@@ -38,6 +38,7 @@
               "components/radio",
               "components/context-menu",
               "components/date-picker",
+              "components/dialog",
               "components/input",
               "components/loading",
               "components/snackbar",

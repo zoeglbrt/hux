@@ -87,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _displayKey = GlobalKey();
   final _datePickerNavKey = GlobalKey();
   final _tooltipKey = GlobalKey();
+  final _dialogKey = GlobalKey();
   // final _timePickerKey = GlobalKey();
   // final _timePickerNavKey = GlobalKey();
   // final _timeButtonKey = GlobalKey();
@@ -167,6 +168,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: 'Tooltip',
         icon: FeatherIcons.messageCircle,
         key: _tooltipKey,
+      ),
+      NavigationItem(
+        title: 'Dialog',
+        icon: FeatherIcons.messageSquare,
+        key: _dialogKey,
       ),
       // NavigationItem(
       //   title: 'Time Picker',
@@ -1097,6 +1103,28 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       const SizedBox(height: 32),
+                      Container(
+                        key: _dialogKey,
+                        child: HuxCard(
+                          title: 'Dialog',
+                          subtitle: 'Modal dialogs with Hux styling',
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 32),
+                              // Confirmation dialog example
+                              Center(
+                                child: HuxButton(
+                                  onPressed: () => _showConfirmationDialog(context),
+                                  variant: HuxButtonVariant.outline,
+                                  child: const Text('Show Confirmation Dialog'),
+                                ),
+                              ),
+                              const SizedBox(height: 32),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 32),
                     ],
                   ),
                 ),
@@ -1144,6 +1172,29 @@ class _MyHomePageState extends State<MyHomePage> {
         content: Text(message),
         behavior: SnackBarBehavior.floating,
       ),
+    );
+  }
+
+  void _showConfirmationDialog(BuildContext context) {
+    showHuxDialog(
+      context: context,
+      title: 'Confirm Action',
+      subtitle: 'Are you sure you want to proceed?',
+      content: const Text('This action cannot be undone. Please confirm that you want to continue.'),
+      actions: [
+        HuxButton(
+          onPressed: () => Navigator.of(context).pop(false),
+          variant: HuxButtonVariant.secondary,
+          child: const Text('Cancel'),
+        ),
+        HuxButton(
+          onPressed: () {
+            Navigator.of(context).pop(true);
+            _showSnackBar('Action confirmed!');
+          },
+          child: const Text('Confirm'),
+        ),
+      ],
     );
   }
 

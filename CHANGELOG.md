@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2025-08-31
+
+### Added
+- **HuxDialog**: New general-purpose dialog component with modern design
+  - Multiple size variants (small, medium, large, extra large)
+  - Built-in close button with ghost styling and precise positioning
+  - Consistent Hux design system integration using HuxTokens
+  - Support for title, subtitle, content, and action buttons
+  - Responsive width constraints and proper spacing
+  - Comprehensive test coverage and documentation
+
+### Enhanced
+- **HuxButton**: Improved icon-only button support
+  - Fixed hover effects for icon-only buttons
+  - Automatic square dimensions for icon-only buttons
+
+### Fixed
+- **Component Consistency**: Enhanced button behavior for better UX
+- **Documentation Updates**: Added comprehensive dialog component documentation
+
 ## [0.7.0] - 2025-08-26
 
 ### Added

@@ -1,0 +1,74 @@
+---
+title: 'Radio'
+description: 'Radio button controls for single selection from groups'
+---
+
+# HuxRadio
+
+Radio button controls for single selection from groups with consistent sizing and theme adaptation.
+
+## Overview
+
+The `HuxRadio` component provides radio button controls that allow users to select a single option from a group of related choices. It features consistent 18x18 pixel sizing for optimal UX and automatic light/dark theme adaptation.
+
+## Usage
+
+```dart
+HuxRadio<String>(
+  value: 'option1',
+  groupValue: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  label: 'Option 1',
+)
+```
+
+## Properties
+
+- `value` - The value represented by this radio button
+- `groupValue` - The currently selected value for the group
+- `onChanged` - Callback when the radio button is selected
+- `label` - Optional text label for the radio button
+- `size` - Size variant (small, medium, large)
+- `isDisabled` - Whether the radio button is disabled
+
+## Examples
+
+### Basic Radio Group
+
+```dart
+String selectedValue = 'option1';
+
+Column(
+  children: [
+    HuxRadio<String>(
+      value: 'option1',
+      groupValue: selectedValue,
+      onChanged: (value) => setState(() => selectedValue = value!),
+      label: 'Option 1',
+    ),
+    HuxRadio<String>(
+      value: 'option2',
+      groupValue: selectedValue,
+      onChanged: (value) => setState(() => selectedValue = value!),
+      label: 'Option 2',
+    ),
+  ],
+)
+```
+
+### Disabled State
+
+```dart
+HuxRadio<String>(
+  value: 'disabled',
+  groupValue: selectedValue,
+  onChanged: null, // This makes it disabled
+  label: 'Disabled Option',
+)
+```
+
+## Related Components
+
+- [HuxCheckbox](/components/checkbox) - For multiple selection
+- [HuxSwitch](/components/switch) - For toggle states
+- [HuxButton](/components/buttons) - For action buttons

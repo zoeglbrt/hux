@@ -145,10 +145,6 @@ class HuxButton extends StatelessWidget {
       overlayColor: WidgetStateProperty.resolveWith<Color?>(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.hovered)) {
-            // No hover effect for icon-only buttons
-            if (child is SizedBox && (child as SizedBox).width == 0) {
-              return null; // No hover effect for icon-only
-            }
             // Enhanced hover effect for primary buttons
             if (variant == HuxButtonVariant.primary) {
               return HuxTokens.buttonPrimaryHover(
@@ -231,6 +227,11 @@ class HuxButton extends StatelessWidget {
   }
 
   double? _getWidth() {
+    // For icon-only buttons, ensure they are square by matching height
+    if (icon != null && child is SizedBox && (child as SizedBox).width == 0) {
+      return _getHeight(); // Make icon-only buttons square
+    }
+    
     if (width == null) return null; // Hug content (default)
 
     switch (width!) {
