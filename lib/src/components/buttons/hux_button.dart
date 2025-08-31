@@ -231,7 +231,7 @@ class HuxButton extends StatelessWidget {
     if (icon != null && child is SizedBox && (child as SizedBox).width == 0) {
       return _getHeight(); // Make icon-only buttons square
     }
-    
+
     if (width == null) return null; // Hug content (default)
 
     switch (width!) {

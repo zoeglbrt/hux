@@ -79,7 +79,8 @@ void main() {
       expect(find.byIcon(Icons.close), findsOneWidget);
     });
 
-    testWidgets('hides close button when showCloseButton is false', (WidgetTester tester) async {
+    testWidgets('hides close button when showCloseButton is false',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -95,7 +96,8 @@ void main() {
       expect(find.byIcon(Icons.close), findsNothing);
     });
 
-    testWidgets('applies different sizes correctly', (WidgetTester tester) async {
+    testWidgets('applies different sizes correctly',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -114,7 +116,8 @@ void main() {
   });
 
   group('showHuxDialog', () {
-    testWidgets('shows dialog with showHuxDialog function', (WidgetTester tester) async {
+    testWidgets('shows dialog with showHuxDialog function',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(

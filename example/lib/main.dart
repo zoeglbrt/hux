@@ -1114,7 +1114,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               // Confirmation dialog example
                               Center(
                                 child: HuxButton(
-                                  onPressed: () => _showConfirmationDialog(context),
+                                  onPressed: () =>
+                                      _showConfirmationDialog(context),
                                   variant: HuxButtonVariant.outline,
                                   child: const Text('Show Confirmation Dialog'),
                                 ),
@@ -1180,7 +1181,8 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       title: 'Confirm Action',
       subtitle: 'Are you sure you want to proceed?',
-      content: const Text('This action cannot be undone. Please confirm that you want to continue.'),
+      content: const Text(
+          'This action cannot be undone. Please confirm that you want to continue.'),
       actions: [
         HuxButton(
           onPressed: () => Navigator.of(context).pop(false),

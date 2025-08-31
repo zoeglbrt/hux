@@ -6,13 +6,13 @@ import '../buttons/hux_button.dart';
 enum HuxDialogVariant {
   /// Default dialog styling
   default_,
-  
+
   /// Destructive dialog styling for dangerous actions
   destructive,
-  
+
   /// Success dialog styling for positive confirmations
   success,
-  
+
   /// Warning dialog styling for cautionary messages
   warning,
 }
@@ -21,13 +21,13 @@ enum HuxDialogVariant {
 enum HuxDialogSize {
   /// Small dialog for simple confirmations
   small,
-  
+
   /// Medium dialog for standard content (default)
   medium,
-  
+
   /// Large dialog for complex content
   large,
-  
+
   /// Extra large dialog for extensive content
   extraLarge,
 }
@@ -72,7 +72,8 @@ class HuxDialog extends StatelessWidget {
     this.shape,
     this.constraints,
     this.alignment,
-    this.insetPadding = const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
+    this.insetPadding =
+        const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
   });
 
   /// Optional title text displayed in the dialog header
@@ -152,12 +153,9 @@ class HuxDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (title != null || subtitle != null)
-                _buildHeader(context),
-              if (content != null)
-                _buildContent(context),
-              if (actions?.isNotEmpty ?? false)
-                _buildActions(context),
+              if (title != null || subtitle != null) _buildHeader(context),
+              if (content != null) _buildContent(context),
+              if (actions?.isNotEmpty ?? false) _buildActions(context),
             ],
           ),
         ),
@@ -234,14 +232,14 @@ class HuxDialog extends StatelessWidget {
   List<Widget> _buildActionButtons(BuildContext context) {
     final List<Widget> buttons = [];
     final actionsList = actions ?? [];
-    
+
     for (int i = 0; i < actionsList.length; i++) {
       if (i > 0) {
         buttons.add(const SizedBox(width: 12));
       }
       buttons.add(actionsList[i]);
     }
-    
+
     return buttons;
   }
 
@@ -251,8 +249,6 @@ class HuxDialog extends StatelessWidget {
       borderRadius: BorderRadius.circular(_getBorderRadius()),
     );
   }
-
-
 
   /// Gets the default constraints based on the dialog size
   BoxConstraints _getDefaultConstraints() {
@@ -366,7 +362,8 @@ Future<T?> showHuxDialog<T>({
       shape: shape,
       constraints: constraints,
       alignment: alignment,
-      insetPadding: insetPadding ?? const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
+      insetPadding: insetPadding ??
+          const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
     ),
   );
 }
