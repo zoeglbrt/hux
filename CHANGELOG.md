@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.2] - 2025-09-07
+
+### Enhanced
+- **Documentation Screenshots**: Added individual button variant screenshots to Mintlify documentation
+  - Added primary, secondary, outline, and ghost button variant images
+  - Added small, medium, and large button size images
+  - Added icon with text and icon-only button examples
+  - Enhanced visual documentation for better developer experience
+  - [View updated button documentation](https://docs.thehuxdesign.com/components/buttons)
+
 ## [0.8.1] - 2025-08-31
 
 ### Fixed

@@ -10,6 +10,17 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-C0C0C0)](https://opensource.org/licenses/MIT)
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-Support%20Hux%20UI-red?style=for-the-badge&logo=github)](https://github.com/sponsors/zoeglbrt)
 
+## Latest Version: 0.8.2
+
+**What's New in v0.8.2:**
+- 📸 **Enhanced Documentation**: Added individual button variant screenshots to Mintlify documentation
+- 🎨 **Visual Improvements**: Primary, secondary, outline, and ghost button variant images
+- 📏 **Size Examples**: Small, medium, and large button size demonstrations
+- 🔗 **Icon Support**: Icon with text and icon-only button examples
+- 📚 **Better UX**: Enhanced visual documentation for improved developer experience
+
+[View the complete changelog](CHANGELOG.md) | [Browse documentation](https://docs.thehuxdesign.com)
+
 ## Features
 
 - 🎨 **Modern Design** - Clean, minimal design language
