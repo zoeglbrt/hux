@@ -10,12 +10,13 @@ Hux UI provides avatar components for displaying user profile images:
 - **HuxAvatar** - Circular user images with initials fallback
 - **HuxAvatarGroup** - Display multiple avatars with overlapping layouts
 
-![HuxAvatar Component](/images/hux-avatar.png)
-
 ## Component Variants
 
 ### Basic Avatar
 Simple avatar with name and initials:
+
+![Avatar with Initials](/images/avatar/avatar-initial.png)
+
 ```dart
 HuxAvatar(
   name: 'John Doe',
@@ -25,6 +26,9 @@ HuxAvatar(
 
 ### Avatar with Image
 Avatar with custom profile image:
+
+![Avatar Group](/images/avatar/avatar-image.png)
+
 ```dart
 HuxAvatar(
   name: 'Jane Smith',
@@ -35,6 +39,9 @@ HuxAvatar(
 
 ### Gradient Avatar
 Avatar with beautiful gradient background:
+
+![Gradient Avatar](/images/avatar/avatar-gradient.png)
+
 ```dart
 HuxAvatar(
   useGradient: true,
@@ -74,12 +81,15 @@ HuxAvatar(
 
 ### Avatar Group
 Multiple avatars with overlapping layout:
+
+![Avatar Group](/images/avatar/avatar-group.png)
+
 ```dart
 HuxAvatarGroup(
   avatars: [
-    HuxAvatar(name: 'Alice'),
-    HuxAvatar(name: 'Bob'),
-    HuxAvatar(useGradient: true, gradientVariant: HuxAvatarGradient.greenBlue),
+    HuxAvatar(useGradient: true, gradientVariant: HuxAvatarGradient.bluePurple),
+    HuxAvatar(useGradient: true, gradientVariant: HuxAvatarGradient.tealCyan),
+    HuxAvatar(useGradient: true, gradientVariant: HuxAvatarGradient.orangeRed),
   ],
   overlap: true,
   maxVisible: 3,
@@ -88,6 +98,9 @@ HuxAvatarGroup(
 
 ### Spaced Avatar Group
 Multiple avatars with spacing between them:
+
+![Avatar Group](/images/avatar/avatar-group2.png)
+
 ```dart
 HuxAvatarGroup(
   avatars: [

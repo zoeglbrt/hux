@@ -7,12 +7,13 @@ description: 'Flexible card component with headers, actions, and tap handling'
 
 `HuxCard` provides a flexible container component for displaying content with optional headers, titles, and actions.
 
-![HuxCard Examples](/images/hux-cards.png)
-
 ## Component Variants
 
 ### Basic Card
 Simple card with title and content:
+
+![Basic Card](/images/card/card.png)
+
 ```dart
 HuxCard(
   title: 'Card Title',
@@ -22,34 +23,41 @@ HuxCard(
 
 ### Card with Subtitle
 Card with additional subtitle text:
+
+![Card with Subtitle](/images/card/card-subtitle.png)
+
 ```dart
 HuxCard(
-  title: 'Card Title',
-  subtitle: 'Optional subtitle',
-  child: Text('Card content goes here'),
+  title: 'Design System Update',
+  subtitle: 'Version 2.1.0 • 2 hours ago',
+  child: Text('New components and improved accessibility features'),
 )
 ```
 
 ### Card with Action
 Card with action button in header:
+
+![Card with Action](/images/card/card-action.png)
+
 ```dart
 HuxCard(
-  title: 'Settings',
+  title: 'Project Dashboard',
   action: IconButton(
-    icon: Icon(FeatherIcons.settings),
-    onPressed: () {},
+    icon: Icon(FeatherIcons.moreVertical),
+    onPressed: () => _showProjectMenu(),
   ),
-  child: Text('Configure your preferences'),
+  child: Text('View project analytics and team performance'),
 )
 ```
 
 ### Interactive Card
 Card with tap handling:
+
 ```dart
 HuxCard(
-  title: 'Clickable Card',
-  child: Text('Tap me!'),
-  onTap: () => print('Card tapped'),
+  title: 'View Analytics',
+  child: Text('Tap to see detailed performance metrics'),
+  onTap: () => _navigateToAnalytics(),
 )
 ```
 

@@ -35,12 +35,12 @@
               "components/cards",
               "components/charts",
               "components/checkbox",
-              "components/radio",
               "components/context-menu",
               "components/date-picker",
               "components/dialog",
               "components/input",
               "components/loading",
+              "components/radio",
               "components/snackbar",
               "components/switch",
               "components/tooltip"
@@ -82,6 +82,11 @@
           "anchor": "GitHub",
           "href": "https://github.com/zoeglbrt/hux",
           "icon": "github"
+        },
+        {
+          "anchor": "Figma Library",
+          "href": "https://www.figma.com/community/file/1541197128732135637/the-hux-ui",
+          "icon": "figma"
         },
         {
           "anchor": "Sponsor",

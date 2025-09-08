@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.3] - 2025-09-09
+
+### Enhanced
+- **Documentation Media**: Added comprehensive images to component documentation
+  - Added checkbox images (checked, unchecked, disabled, with/without label)
+  - Added radio button images (checked, unchecked, disabled states)
+  - Added dialog images for all size variants and states
+  - Added input images (enabled, focused, disabled, error, helper text states)
+  - Added snackbar images for all variants (info, success, error, warning)
+  - Added switch images (on, off, disabled, with label states)
+  - Added tooltip images for different configurations
+  - Enhanced visual documentation for better developer experience
+
+### Fixed
+- **Documentation Consistency**: Improved component documentation structure
+  - Removed redundant sections across multiple components
+  - Fixed alphabetical ordering of components in navigation
+  - Updated examples to use Hux components consistently
+  - Clarified tooltip icon usage and placement
+  - Streamlined states sections to avoid repetition
+
+### Improved
+- **Component Documentation**: Enhanced visual examples and code clarity
+  - Better image organization and naming
+  - Clearer state demonstrations
+  - More consistent code examples using Hux design system
+  - Improved accessibility and usability information
+
 ## [0.8.2] - 2025-09-07
 
 ### Enhanced

@@ -8,9 +8,7 @@ import { Tabs, Tab } from '/snippets/tabs'
 
 # Overview
 
-The HuxTooltip component provides additional context when hovering over or long-pressing on widgets. It automatically adapts to light and dark themes and provides various positioning and styling options.
-
-![HuxTooltip Component](/images/hux-tooltip.png)
+`HuxTooltip` component provides additional context when hovering over or long-pressing on widgets. It automatically adapts to light and dark themes and provides various positioning and styling options.
 
 ## Basic Usage
 
@@ -26,13 +24,15 @@ HuxTooltip(
 ## Variants
 
 ### Standard Tooltip
-
 The basic tooltip with customizable styling:
+
+![Standard tooltip](/images/tooltip/tooltip.png)
+
 
 ```dart
 HuxTooltip(
-  message: 'Click to save your changes',
-  child: ElevatedButton(
+  message: 'This is a tooltip message',
+  child: HuxButton(
     onPressed: () {},
     child: Text('Save'),
   ),
@@ -40,14 +40,18 @@ HuxTooltip(
 ```
 
 ### Tooltip with Icon
-
 For enhanced visual context, add an icon parameter to `HuxTooltip`.
+
+![Tooltip with icon](/images/tooltip/tooltip-icon.png)
 
 ```dart
 HuxTooltip(
-  message: 'Information about this feature',
-  icon: Icons.info_outline,  // Material Icons
-  child: Icon(Icons.help),
+  message: 'New feature',
+  icon: Icons.info_outline,  // Icon appears inside the tooltip
+  child: HuxButton(
+    onPressed: () {},
+    child: Text('Help'),
+  ),
 )
 
 // Or with Lucide/Feather icons
@@ -151,66 +155,6 @@ HuxTooltip(
 | `iconColor` | `Color?` | Theme text color | Color of the icon |
 | `iconSize` | `double` | `16.0` | Size of the icon |
 
-## Component Variants
-
-### Basic Tooltip
-Simple tooltip with just a message:
-```dart
-HuxTooltip(
-  message: 'This is a basic tooltip',
-  child: Icon(Icons.info),
-)
-```
-
-### Tooltip with Icon
-Enhanced tooltip with visual icon:
-```dart
-HuxTooltip(
-  message: 'Information about this feature',
-  icon: Icons.info_outline,
-  child: Icon(Icons.help),
-)
-```
-
-### Positioned Tooltip
-Tooltip that appears above the element:
-```dart
-HuxTooltip(
-  message: 'Tooltip above the element',
-  preferBelow: false,
-  verticalOffset: 16.0,
-  child: HuxButton(
-    onPressed: () {},
-    variant: HuxButtonVariant.outline,
-    child: Text('Hover me'),
-  ),
-)
-```
-
-### Custom Styled Tooltip
-Tooltip with custom colors and styling:
-```dart
-HuxTooltip(
-  message: 'Custom styled tooltip',
-  backgroundColor: Colors.deepPurple,
-  textColor: Colors.white,
-  iconColor: Colors.yellow,
-  icon: Icons.star,
-  child: Icon(Icons.favorite),
-)
-```
-
-### Quick Tooltip
-Tooltip with custom timing:
-```dart
-HuxTooltip(
-  message: 'Quick tooltip',
-  waitDuration: Duration(milliseconds: 200),
-  showDuration: Duration(seconds: 5),
-  child: Icon(Icons.flash_on),
-)
-```
-
 ## Examples
 
 Provide context for form inputs:
@@ -240,12 +184,9 @@ Explain button actions:
 HuxTooltip(
   message: 'This will permanently delete your account',
   icon: Icons.warning,
-  child: ElevatedButton(
+  child: HuxButton(
     onPressed: () {},
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.red,
-      foregroundColor: Colors.white,
-    ),
+    variant: HuxButtonVariant.destructive,
     child: Text('Delete Account'),
   ),
 )
@@ -258,9 +199,10 @@ Guide users through complex interfaces:
 ```dart
 HuxTooltip(
   message: 'Click to expand this section and see more options',
-  child: IconButton(
+  child: HuxButton(
     onPressed: () {},
-    icon: Icon(Icons.expand_more),
+    variant: HuxButtonVariant.ghost,
+    child: Icon(Icons.expand_more),
   ),
 )
 ```

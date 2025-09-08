@@ -1,4 +1,4 @@
-# Hux UI
+# ![Hux UI Logo](doc/logo/dark.svg)
 
 A modern Flutter UI package with beautiful, customizable components designed for clean and consistent user interfaces.
 
@@ -10,16 +10,16 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-C0C0C0)](https://opensource.org/licenses/MIT)
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-Support%20Hux%20UI-red?style=for-the-badge&logo=github)](https://github.com/sponsors/zoeglbrt)
 
-## Latest Version: 0.8.2
+## Latest Version: 0.8.3
 
-**What's New in v0.8.2:**
-- 📸 **Enhanced Documentation**: Added individual button variant screenshots to Mintlify documentation
-- 🎨 **Visual Improvements**: Primary, secondary, outline, and ghost button variant images
-- 📏 **Size Examples**: Small, medium, and large button size demonstrations
-- 🔗 **Icon Support**: Icon with text and icon-only button examples
-- 📚 **Better UX**: Enhanced visual documentation for improved developer experience
+**What's New in v0.8.3:**
+- 📸 **Comprehensive Documentation Media**: Added images to all component documentation
+- 🎨 **Visual Component Examples**: Checkbox, radio, dialog, input, snackbar, switch, and tooltip images
+- 📏 **State Demonstrations**: Clear visual examples of all component states and variants
+- 🔗 **Consistent Examples**: Updated all code examples to use Hux components
+- 📚 **Improved Structure**: Streamlined documentation and removed redundant sections
 
-[View the complete changelog](CHANGELOG.md) | [Browse documentation](https://docs.thehuxdesign.com)
+[View the complete changelog](CHANGELOG.md) | [Browse documentation](https://docs.thehuxdesign.com) | [Figma Library](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
 
 ## Features
 
@@ -134,6 +134,8 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 📚 **[Complete Documentation](https://docs.thehuxdesign.com)** - Visit our comprehensive documentation site for detailed guides, API references, and examples.
 
+🎨 **[Figma Library](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)** - Access the complete Hux UI design system in Figma with all components, colors, and design tokens.
+
 **✨ Recently Updated**: Our documentation has been completely restructured with individual pages for each component, alphabetical navigation, and improved clarity!
 
 ### Quick Links
@@ -142,6 +144,7 @@ A modern Flutter UI package with beautiful, customizable components designed for
 - [Component Reference](https://docs.thehuxdesign.com/components/buttons)
 - [Theming Guide](https://docs.thehuxdesign.com/theming)
 - [Examples](https://docs.thehuxdesign.com/examples/basic-usage)
+- [Figma Library](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
 
 ## Installation
 

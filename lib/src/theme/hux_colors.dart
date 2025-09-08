@@ -25,7 +25,7 @@ class HuxColors {
   static const Color red = Color(0xFF7F1D1D);
 
   /// Lighter red color for destructive text and borders
-  static const Color redLight = Color(0xFFEF4444);
+  static const Color redLight = Color(0xFFEF6F6F);
 
   // Red color variants with different opacity levels
   /// Red with 10% opacity for subtle destructive backgrounds
@@ -41,7 +41,7 @@ class HuxColors {
   static const Color green = Color(0xFF166534);
 
   /// Lighter green color for success text and borders
-  static const Color greenLight = Color(0xFF10B981);
+  static const Color greenLight = Color(0xFF3CBD92);
 
   // Green color variants with different opacity levels
   /// Green with 10% opacity for subtle success backgrounds

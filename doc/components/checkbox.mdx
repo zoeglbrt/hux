@@ -5,13 +5,13 @@ description: 'Interactive checkbox component with smooth animations and consiste
 
 ## Overview
 
-HuxCheckbox is an interactive checkbox component with smooth animations, consistent styling, and proper accessibility support. It automatically adapts to light and dark themes while providing a clean, professional appearance.
-
-![HuxCheckbox Component](/images/hux-checkbox.png)
+`HuxCheckbox` is an interactive checkbox component with smooth animations, consistent styling, and proper accessibility support. It automatically adapts to light and dark themes while providing a clean, professional appearance.
 
 ## Basic Usage
 
 ### Simple Checkbox
+![Checkbox without label](/images/checkbox/checkbox-nolabel.png)
+
 ```dart
 HuxCheckbox(
   value: isChecked,
@@ -24,6 +24,8 @@ HuxCheckbox(
 ```
 
 ### Checkbox with Label
+![Checkbox with label](/images/checkbox/checkbox-label.png)
+
 ```dart
 HuxCheckbox(
   value: isAgreed,
@@ -36,20 +38,12 @@ HuxCheckbox(
 )
 ```
 
-### Disabled Checkbox
-```dart
-HuxCheckbox(
-  value: isChecked,
-  onChanged: null, // Disables the checkbox
-  label: 'This option is disabled',
-)
-```
-
 ## Properties
 
 ### Core Properties
 - `value` - Current checked state (true/false)
 - `onChanged` - Callback triggered when state changes (null for disabled)
+- `isDisabled` - Whether the checkbox is disabled (default: false)
 
 ### Label Properties
 - `label` - Optional text label displayed next to the checkbox
@@ -97,14 +91,27 @@ HuxCheckbox(
 ## States
 
 ### Unchecked State
+![Unchecked checkbox](/images/checkbox/checkbox-unchecked.png)
 - Empty checkbox with border
 - Ready for user interaction
 
 ### Checked State
+![Checked checkbox](/images/checkbox/checkbox-checked.png)
 - Filled checkbox with check icon
 - Visual confirmation of selection
 
 ### Disabled State
+![Disabled checkbox](/images/checkbox/checkbox-disabled.png)
+
+```dart
+HuxCheckbox(
+  value: isChecked,
+  onChanged: null, // Disables the checkbox
+  label: 'This option is disabled',
+  isDisabled: true,
+)
+```
+
 - Reduced opacity and non-interactive
 - Maintains visual consistency
 
@@ -125,15 +132,15 @@ HuxCheckbox(
 <CardGroup cols={2}>
   <Card
     title="Form Building"
-    icon="edit"
+    icon="file-text"
     href="/examples/form-building"
   >
     See HuxCheckbox in action within forms
   </Card>
   <Card
-    title="Interactive Examples"
+    title="Basic Usage"
     icon="mouse-pointer"
-    href="/examples/interactive"
+    href="/examples/basic-usage"
   >
     Try different checkbox configurations
   </Card>

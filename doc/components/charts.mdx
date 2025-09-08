@@ -7,12 +7,13 @@ description: 'Beautiful data visualization with line and bar charts'
 
 `HuxChart` provides beautiful data visualization components powered by the cristalyse package, with automatic theme adaptation and smooth animations.
 
-![HuxChart Visualization](/images/hux-charts.png)
-
 ## Component Variants
 
 ### Line Charts
 Display data trends over time with smooth line charts:
+
+![Line Chart](/images/chart/chart-line.png)
+
 ```dart
 HuxChart.line(
   data: [
@@ -31,6 +32,9 @@ HuxChart.line(
 
 ### Bar Charts
 Visualize categorical data with responsive bar charts:
+
+![Bar Chart](/images/chart/chart-bar.png)
+
 ```dart
 HuxChart.bar(
   data: [
@@ -48,6 +52,7 @@ HuxChart.bar(
 
 ### Small Charts
 Compact charts for dashboards and tight spaces:
+
 ```dart
 HuxChart.line(
   data: chartData,
@@ -60,6 +65,7 @@ HuxChart.line(
 
 ### Large Charts
 Full-size charts for detailed analysis:
+
 ```dart
 HuxChart.bar(
   data: chartData,
@@ -73,6 +79,7 @@ HuxChart.bar(
 
 ### Themed Charts
 Charts that automatically adapt to your app's theme:
+
 ```dart
 HuxChart.line(
   data: chartData,
@@ -83,42 +90,6 @@ HuxChart.line(
 )
 ```
 
-## Line Charts
-
-```dart
-HuxChart.line(
-  data: [
-    {'x': 1, 'y': 10},
-    {'x': 2, 'y': 20},
-    {'x': 3, 'y': 15},
-    {'x': 4, 'y': 25},
-  ],
-  xField: 'x',
-  yField: 'y',
-  title: 'Sales Over Time',
-  subtitle: 'Monthly data',
-  primaryColor: Colors.blue,
-)
-```
-
-## Bar Charts
-
-Visualize categorical data with responsive bar charts.
-
-```dart
-HuxChart.bar(
-  data: [
-    {'category': 'Product A', 'value': 30},
-    {'category': 'Product B', 'value': 45},
-    {'category': 'Product C', 'value': 25},
-    {'category': 'Product D', 'value': 35},
-  ],
-  xField: 'category',
-  yField: 'value',
-  title: 'Product Sales',
-  subtitle: 'Current quarter',
-)
-```
 
 ## Features
 

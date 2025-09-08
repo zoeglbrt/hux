@@ -7,8 +7,6 @@ description: 'Customizable button component with multiple variants, sizes, and l
 
 `HuxButton` is a versatile button component that provides multiple visual variants, sizes, loading states, and automatic WCAG AA contrast compliance. It adapts seamlessly to light and dark themes.
 
-![HuxButton Variants](/images/hux-buttons.png)
-
 ## Basic Usage
 
 ```dart
@@ -30,7 +28,7 @@ The default variant with a filled background using the primary color.
 ```dart
 HuxButton(
   onPressed: () {},
-  child: Text('Primary Button'),
+  child: Text('Primary'),
   variant: HuxButtonVariant.primary, // Default
 )
 ```
@@ -43,7 +41,7 @@ A subtle variant with a light background and border.
 ```dart
 HuxButton(
   onPressed: () {},
-  child: Text('Secondary Button'),
+  child: Text('Secondary'),
   variant: HuxButtonVariant.secondary,
 )
 ```
@@ -56,7 +54,7 @@ A transparent button with only a border outline.
 ```dart
 HuxButton(
   onPressed: () {},
-  child: Text('Outline Button'),
+  child: Text('Outline'),
   variant: HuxButtonVariant.outline,
 )
 ```
@@ -69,7 +67,7 @@ A minimal transparent button without borders.
 ```dart
 HuxButton(
   onPressed: () {},
-  child: Text('Ghost Button'),
+  child: Text('Ghost'),
   variant: HuxButtonVariant.ghost,
 )
 ```
@@ -94,7 +92,7 @@ HuxButton(
 ### Medium
 Default size for most use cases (40px height).
 
-![Medium Button](/images/button-primary.png)
+![Medium Button](/images/button-medium.png)
 
 ```dart
 HuxButton(
@@ -213,6 +211,8 @@ Control button width behavior with the `HuxButtonWidth` enum:
 ### Hug Content (Default)
 Button width matches its content.
 
+![Hug Content Button](/images/button-hug.png)
+
 ```dart
 HuxButton(
   onPressed: () {},
@@ -224,6 +224,8 @@ HuxButton(
 ### Expand to Fill
 Button takes full available width.
 
+![Full Width Button](/images/button-full.png)
+
 ```dart
 HuxButton(
   onPressed: () {},
@@ -234,6 +236,8 @@ HuxButton(
 
 ### Fixed Width
 Button has a specific width.
+
+![Fixed Width Button](/images/button-fixed.png)
 
 ```dart
 HuxButton(
@@ -424,7 +428,7 @@ Proper disabled state handling for assistive technologies.
     - Use **Ghost** for subtle actions like "Cancel" or "Skip"
   </Accordion>
   
-  <Accordion title="Size Appropriately" icon="resize">
+  <Accordion title="Size Appropriately" icon="ruler">
     - Use **Large** for important call-to-action buttons
     - Use **Medium** for most standard interactions
     - Use **Small** for compact interfaces or secondary actions

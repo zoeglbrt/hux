@@ -7,12 +7,12 @@ description: 'Toggle switch component with smooth animations and theme-aware sty
 
 HuxSwitch is a toggle switch component with smooth animations, consistent styling, and automatic theme adaptation. It provides a clean, modern interface for binary choices while maintaining accessibility standards.
 
-![HuxSwitch Component](/images/hux-switch.png)
-![HuxSwitch Component](/images/hux-switch-off.png)
-
 ## Basic Usage
 
-### Simple Switch
+### Switch States
+![Switch off](/images/switch/switch-off.png)
+![Switch on](/images/switch/switch-on.png)
+
 ```dart
 HuxSwitch(
   value: isEnabled,
@@ -25,6 +25,8 @@ HuxSwitch(
 ```
 
 ### Switch with Label
+![Switch with label off](/images/switch/switch-label.png)
+
 ```dart
 Row(
   children: [
@@ -43,6 +45,8 @@ Row(
 ```
 
 ### Disabled Switch
+![Disabled switch](/images/switch/switch-disabled.png)
+
 ```dart
 HuxSwitch(
   value: isEnabled,
@@ -91,22 +95,6 @@ HuxSwitch(
 ### Disabled State Colors
 - **Track (Disabled)**: `HuxTokens.surfaceSecondary(context)` with 50% opacity
 - **Thumb (Disabled)**: `HuxTokens.surfacePrimary(context)` with 50% opacity
-
-## States
-
-### Off State
-- Track in neutral color
-- Thumb positioned to the left
-- Ready for user interaction
-
-### On State
-- Track in primary color
-- Thumb positioned to the right
-- Visual confirmation of activation
-
-### Disabled State
-- Reduced opacity and non-interactive
-- Maintains visual consistency
 
 ## Animation
 

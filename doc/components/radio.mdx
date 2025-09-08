@@ -11,17 +11,6 @@ Radio button controls for single selection from groups with consistent sizing an
 
 The `HuxRadio` component provides radio button controls that allow users to select a single option from a group of related choices. It features consistent 18x18 pixel sizing for optimal UX and automatic light/dark theme adaptation.
 
-## Usage
-
-```dart
-HuxRadio<String>(
-  value: 'option1',
-  groupValue: selectedValue,
-  onChanged: (value) => setState(() => selectedValue = value),
-  label: 'Option 1',
-)
-```
-
 ## Properties
 
 - `value` - The value represented by this radio button
@@ -31,9 +20,61 @@ HuxRadio<String>(
 - `size` - Size variant (small, medium, large)
 - `isDisabled` - Whether the radio button is disabled
 
+## States
+
+### Unchecked State
+![Unchecked radio button](/images/radio/radio-unchecked.png)
+
+```dart
+HuxRadio<String>(
+  value: 'option1',
+  groupValue: null, // No selection yet
+  onChanged: (value) => setState(() => selectedValue = value),
+  label: 'Option 1',
+)
+```
+
+- Empty radio button with border
+- Ready for user interaction
+- Part of a radio group
+
+### Checked State
+![Checked radio button](/images/radio/radio-checked.png)
+
+```dart
+HuxRadio<String>(
+  value: 'option1',
+  groupValue: 'option1', // This option is selected
+  onChanged: (value) => setState(() => selectedValue = value),
+  label: 'Option 1',
+)
+```
+
+- Filled radio button with dot
+- Visual confirmation of selection
+- Only one radio button can be selected per group
+
+### Disabled State
+
+```dart
+HuxRadio<String>(
+  value: 'disabled',
+  groupValue: selectedValue,
+  onChanged: null, // This makes it disabled
+  label: 'Disabled Option',
+  isDisabled: true,
+)
+```
+
+- Reduced opacity and non-interactive
+- Maintains visual consistency
+- Cannot be selected even if clicked
+
 ## Examples
 
 ### Basic Radio Group
+
+![Disabled radio button](/images/radio/radio.png)
 
 ```dart
 String selectedValue = 'option1';
@@ -53,17 +94,6 @@ Column(
       label: 'Option 2',
     ),
   ],
-)
-```
-
-### Disabled State
-
-```dart
-HuxRadio<String>(
-  value: 'disabled',
-  groupValue: selectedValue,
-  onChanged: null, // This makes it disabled
-  label: 'Disabled Option',
 )
 ```
 

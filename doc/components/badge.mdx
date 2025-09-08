@@ -5,13 +5,14 @@ description: 'Status indicators and notification counters with semantic variants
 
 ## Overview
 
-HuxBadge is a versatile component for displaying status indicators, notification counters, and labels throughout your application. It provides semantic variants for different contexts while maintaining consistent styling and excellent accessibility.
+`HuxBadge` is a versatile component for displaying status indicators, notification counters, and labels throughout your application. It provides semantic variants for different contexts while maintaining consistent styling and excellent accessibility.
 
-![HuxBadge Component](/images/hux-badge.png)
 
 ## Basic Usage
 
 ### Primary Badge
+![Primary Badge Example](/images/badge/badge-primary.png)
+
 ```dart
 HuxBadge(
   label: 'New',
@@ -20,6 +21,8 @@ HuxBadge(
 ```
 
 ### Success Badge
+![Success Badge Example](/images/badge/badge-success.png)
+
 ```dart
 HuxBadge(
   label: 'Active',
@@ -28,6 +31,8 @@ HuxBadge(
 ```
 
 ### Notification Counter
+![Number Badge Example](/images/badge/badge-number.png)
+
 ```dart
 HuxBadge(
   label: '5',
@@ -36,6 +41,8 @@ HuxBadge(
 ```
 
 ### Custom Color Badge
+![Custom Badge Example](/images/badge/badge-custom.png)
+
 ```dart
 HuxBadge(
   label: 'Custom',
@@ -55,32 +62,98 @@ HuxBadge(
 
 ## Variants
 
-### Primary Badge (`HuxBadgeVariant.primary`)
+### Primary Badge
+Main actions and primary states with theme-aware primary colors.
+
+![Primary Badge Variant](/images/badge/badge-primary.png)
+
+```dart
+HuxBadge(
+  label: 'New',
+  variant: HuxBadgeVariant.primary,
+)
+```
+
 - **Purpose**: Main actions and primary states
 - **Colors**: Theme-aware primary colors
 - **Use Case**: Main features, primary actions
 
-### Secondary Badge (`HuxBadgeVariant.secondary`)
+### Secondary Badge
+Secondary information and states with theme-aware secondary colors.
+
+![Secondary Badge Variant](/images/badge/badge-secondary.png)
+
+```dart
+HuxBadge(
+  label: 'Info',
+  variant: HuxBadgeVariant.secondary,
+)
+```
+
 - **Purpose**: Secondary information and states
 - **Colors**: Theme-aware secondary colors
 - **Use Case**: Secondary features, additional info
 
-### Outline Badge (`HuxBadgeVariant.outline`)
+### Outline Badge
+Subtle indicators with transparent background and borders.
+
+![Outline Badge Variant](/images/badge/badge-outline.png)
+
+```dart
+HuxBadge(
+  label: 'Draft',
+  variant: HuxBadgeVariant.outline,
+)
+```
+
 - **Purpose**: Subtle indicators with borders
 - **Colors**: Transparent background with borders
 - **Use Case**: Subtle status indicators
 
-### Success Badge (`HuxBadgeVariant.success`)
+### Success Badge
+Positive states and confirmations with theme-aware success colors.
+
+![Success Badge Variant](/images/badge/badge-success.png)
+
+```dart
+HuxBadge(
+  label: 'Active',
+  variant: HuxBadgeVariant.success,
+)
+```
+
 - **Purpose**: Positive states and confirmations
 - **Colors**: Theme-aware success colors
 - **Use Case**: Completed tasks, positive status
 
-### Destructive Badge (`HuxBadgeVariant.destructive`)
+### Destructive Badge
+Errors and critical states with theme-aware destructive colors.
+
+![Destructive Badge Variant](/images/badge/badge-destructive.png)
+
+```dart
+HuxBadge(
+  label: 'Error',
+  variant: HuxBadgeVariant.destructive,
+)
+```
+
 - **Purpose**: Errors and critical states
 - **Colors**: Theme-aware destructive colors
 - **Use Case**: Error states, critical warnings
 
-### Number Badge (`HuxBadgeVariant.number`)
+### Number Badge
+Notification counters and numbers with theme-aware number colors.
+
+![Number Badge Variant](/images/badge/badge-number.png)
+
+```dart
+HuxBadge(
+  label: '5',
+  variant: HuxBadgeVariant.number,
+)
+```
+
 - **Purpose**: Notification counters and numbers
 - **Colors**: Theme-aware number colors
 - **Use Case**: Notification counts, item quantities
@@ -93,17 +166,41 @@ HuxBadge(
 - **Horizontal Padding**: 8px
 - **Vertical Padding**: 4px
 
+```dart
+HuxBadge(
+  label: 'New',
+  variant: HuxBadgeVariant.primary,
+  size: HuxBadgeSize.small,
+)
+```
+
 ### Medium Badge ⭐ **Default**
 - **Height**: 24px
 - **Font Size**: 12px
 - **Horizontal Padding**: 12px
 - **Vertical Padding**: 6px
 
+```dart
+HuxBadge(
+  label: 'Info',
+  variant: HuxBadgeVariant.secondary,
+  size: HuxBadgeSize.medium,
+)
+```
+
 ### Large Badge
 - **Height**: 28px
 - **Font Size**: 14px
 - **Horizontal Padding**: 16px
 - **Vertical Padding**: 8px
+
+```dart
+HuxBadge(
+  label: 'Active',
+  variant: HuxBadgeVariant.success,
+  size: HuxBadgeSize.large,
+)
+```
 
 ## Styling & Colors
 

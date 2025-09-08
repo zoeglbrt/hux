@@ -7,11 +7,11 @@ description: 'Enhanced text input component with validation and consistent styli
 
 HuxInput is a customizable text input component with consistent styling and extensive customization options. It provides a clean, modern text input with support for labels, hints, validation, icons, and different sizes while automatically adapting to light and dark themes.
 
-![HuxInput Component](/images/hux-input.png)
-
 ## Basic Usage
 
 ### Simple Text Input
+![Simple input](/images/input/input.png)
+
 ```dart
 HuxInput(
   label: 'Email',
@@ -20,27 +20,43 @@ HuxInput(
 ```
 
 ### Input with Icon
+![Input with icon](/images/input/input-icon.png)
+
 ```dart
 HuxInput(
-  label: 'Search',
   hint: 'Search for products...',
   prefixIcon: Icon(FeatherIcons.search),
 )
 ```
 
-### Input with Validation
+### Input with Helper Text
+![Input with helper text](/images/input/input-helper.png)
+
 ```dart
 HuxInput(
   label: 'Password',
   hint: 'Enter your password',
   prefixIcon: Icon(FeatherIcons.lock),
   obscureText: true,
+  helperText: 'Password must be at least 6 characters',
+)
+```
+
+### Input with Error State
+![Input with error](/images/input/input-error.png)
+
+```dart
+HuxInput(
+  label: 'Email',
+  hint: 'Enter your email address',
+  prefixIcon: Icon(FeatherIcons.mail),
+  errorText: 'Please enter a valid email address',
   validator: (value) {
     if (value == null || value.isEmpty) {
-      return 'Password is required';
+      return 'Email is required';
     }
-    if (value.length < 6) {
-      return 'Password must be at least 6 characters';
+    if (!value.contains('@')) {
+      return 'Please enter a valid email address';
     }
     return null;
   },
@@ -50,7 +66,7 @@ HuxInput(
 ## Properties
 
 ### Core Properties
-- `label` - Field label text displayed above the input
+- `label` - Optional field label text displayed above the input
 - `hint` - Placeholder text displayed inside the input when empty
 - `controller` - TextEditingController for managing input state
 - `onChanged` - Callback triggered when the input value changes
@@ -114,18 +130,17 @@ HuxInput(
 ## States
 
 ### Enabled State
+![Enabled input](/images/input/input.png)
 - Fully interactive with normal styling
 - Responds to user input and focus
 
 ### Focused State
+![Focused input](/images/input/input-focused.png)
 - Enhanced border with primary color
 - Visual focus indicator for accessibility
 
-### Error State
-- Red border and error text display
-- Clear visual feedback for validation issues
-
 ### Disabled State
+![Disabled input](/images/input/input-disabled.png)
 - Reduced opacity and non-interactive
 - Maintains visual consistency
 
@@ -134,14 +149,14 @@ HuxInput(
 <CardGroup cols={2}>
   <Card
     title="Form Building"
-    icon="edit"
+    icon="file-text"
     href="/examples/form-building"
   >
     See HuxInput in action within forms
   </Card>
   <Card
     title="Validation Patterns"
-    icon="check-circle"
+    icon="shield-check"
     href="/examples/validation"
   >
     Learn form validation best practices

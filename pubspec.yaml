@@ -1,6 +1,6 @@
 name: hux
 description: An open-source state of the art UI library for Flutter
-version: 0.8.2
+version: 0.8.3
 homepage: https://github.com/zoeglbrt/hux
 repository: https://github.com/zoeglbrt/hux
 issue_tracker: https://github.com/zoeglbrt/hux/issues
@@ -50,7 +50,7 @@ dependencies:
     sdk: flutter
   google_fonts: ^6.3.0
   flutter_feather_icons: ^2.0.0+1
-  cristalyse: ^1.2.4
+  cristalyse: ^1.6.0
   universal_html: ^2.2.4
 
 dev_dependencies:
