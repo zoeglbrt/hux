@@ -1,34 +1,38 @@
-# ![Hux UI Logo](doc/logo/dark.svg)
+# <img src="doc/logo/dark.svg" alt="Hux UI Logo" width="200">
 
 A modern Flutter UI package with beautiful, customizable components designed for clean and consistent user interfaces.
 
-[![pub package](https://img.shields.io/pub/v/hux?color=C0C0C0)](https://pub.dev/packages/hux)
-[![pub points](https://img.shields.io/pub/points/hux?color=3C3C3C)](https://pub.dev/packages/hux/score)
-[![likes](https://img.shields.io/pub/likes/hux?color=C0C0C0)](https://pub.dev/packages/hux/score)
-[![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios%20%7C%20web%20%7C%20windows%20%7C%20macos%20%7C%20linux-C0C0C0)](https://flutter.dev/)
-[![Flutter support](https://img.shields.io/badge/Flutter-3.16%2B-3C3C3C)](https://flutter.dev/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-C0C0C0)](https://opensource.org/licenses/MIT)
-[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-Support%20Hux%20UI-red?style=for-the-badge&logo=github)](https://github.com/sponsors/zoeglbrt)
+[![Flutter support](https://img.shields.io/badge/Flutter-3.16%2B-white?style=flat&labelColor=black&logo=flutter&logoColor=WHITE)](https://flutter.dev/)
+[![Figma](https://img.shields.io/badge/Figma%20users-4-white?style=flat&labelColor=black&logo=figma&logoColor=white)](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsor-Hux%20UI-white?style=flat&labelColor=black&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/zoeglbrt)
 
-## Latest Version: 0.8.3
+[![pub package](https://img.shields.io/pub/v/hux?style=flat&color=white&labelColor=black)](https://pub.dev/packages/hux)
+[![pub points](https://img.shields.io/pub/points/hux?style=flat&color=white&labelColor=black)](https://pub.dev/packages/hux/score)
+[![Pub Downloads](https://img.shields.io/pub/dm/hux?style=flat&color=white&labelColor=black&logo=dart&logoColor=white)](https://pub.dev/packages/hux/score)
+[![likes](https://img.shields.io/pub/likes/hux?style=flat&color=white&labelColor=black)](https://pub.dev/packages/hux/score)
+[![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios%20%7C%20web%20%7C%20windows%20%7C%20macos%20%7C%20linux-white?style=flat&labelColor=black)](https://flutter.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
-**What's New in v0.8.3:**
-- 📸 **Comprehensive Documentation Media**: Added images to all component documentation
-- 🎨 **Visual Component Examples**: Checkbox, radio, dialog, input, snackbar, switch, and tooltip images
-- 📏 **State Demonstrations**: Clear visual examples of all component states and variants
-- 🔗 **Consistent Examples**: Updated all code examples to use Hux components
-- 📚 **Improved Structure**: Streamlined documentation and removed redundant sections
 
-[View the complete changelog](CHANGELOG.md) | [Browse documentation](https://docs.thehuxdesign.com) | [Figma Library](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
+## Latest Version: 0.8.4
+
+**What's New in v0.8.4:**
+- **Enhanced README Design**: Redesigned badges with modern flat styling and consistent color scheme
+- **Improved Visual Hierarchy**: Reorganized badge layout with better grouping and visual flow
+- **Added Download Metrics**: New Pub Downloads badge to showcase package usage
+- **Figma Integration**: Added Figma community file badge with download count
+
+[![Changelog](https://img.shields.io/badge/Changelog-View-black?style=for-the-badge&labelColor=white&logo=github&logoColor=black)](CHANGELOG.md)
+[![Docs](https://img.shields.io/badge/Docs-Browse-black?style=for-the-badge&labelColor=white&logo=readthedocs&logoColor=black)](https://docs.thehuxdesign.com)
 
 ## Features
 
-- 🎨 **Modern Design** - Clean, minimal design language
-- 🌙 **Dark Mode Support** - Built-in light and dark theme support
-- 📊 **Data Visualization** - Beautiful animated charts for data presentation
-- 📱 **Responsive** - Components adapt to different screen sizes
-- 🎯 **Customizable** - Extensive customization options
-- 🚀 **Easy to Use** - Simple, intuitive API
+- **Modern Design** - Clean, minimal design language
+- **Dark Mode Support** - Built-in light and dark theme support
+- **Data Visualization** - Beautiful animated charts for data presentation
+- **Responsive** - Components adapt to different screen sizes
+- **Customizable** - Extensive customization options
+- **Easy to Use** - Simple, intuitive API
 
 ## Components
 
@@ -432,17 +436,15 @@ Container(
 
 If you find Hux UI helpful and would like to support its continued development, consider becoming a GitHub Sponsor! 🌟
 
-[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-Support%20Hux%20UI-red?style=for-the-badge&logo=github)](https://github.com/sponsors/zoeglbrt)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsor-Hux%20UI-white?style=for-the-badge&labelColor=black&logo=github&logoColor=white)](https://github.com/sponsors/zoeglbrt)
 
 Your support helps us:
-- 🚀 Maintain and improve Hux UI components
-- 📚 Create better documentation and examples
-- 🐛 Fix bugs and add new features faster
-- 💡 Invest in new component development
+- Maintain and improve Hux UI components
+- Create better documentation and examples
+- Fix bugs and add new features faster
+- Invest in new component development
 
 **Thank you to all our sponsors!** Your contributions make a real difference in the Flutter community.
-
----
 
 ## Contributing
 

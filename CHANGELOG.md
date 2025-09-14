@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.4] - 2025-09-14
+
+### Enhanced
+- **README Design Overhaul**: Redesign of project badges and visual hierarchy
+  - Implemented modern flat badge styling with consistent black/white color scheme
+  - Reorganized badge layout with better grouping and visual flow
+  - Added new Pub Downloads badge to showcase package usage metrics
+  - Integrated Figma community file badge with download count display
+  - Removed emojis throughout for a cleaner, more professional aesthetic
+  - Enhanced logo sizing with proper HTML img tag for better control
+
+### Changed
+- **Visual Design**: Transitioned from colorful badges to minimal black/white design system
+- **Badge Organization**: Grouped related badges for better visual hierarchy
+
 ## [0.8.3] - 2025-09-09
 
 ### Enhanced
