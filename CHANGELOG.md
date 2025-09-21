@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.1] - 2025-09-22
+
+### Fixed
+- **Pub.dev Compliance**: Fixed screenshot count for package validation
+  - Reduced screenshots in pubspec.yaml from 11 to 10 (pub.dev limit)
+  - Removed HuxRadio screenshot in favor of new HuxDropdown
+  - Updated dropdown screenshot description for better clarity
+
 ## [0.9.0] - 2025-09-21
 
 ### Added

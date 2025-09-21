@@ -1,6 +1,6 @@
 name: hux
 description: An open-source state of the art UI library for Flutter
-version: 0.9.0
+version: 0.9.1
 homepage: https://github.com/zoeglbrt/hux
 repository: https://github.com/zoeglbrt/hux
 issue_tracker: https://github.com/zoeglbrt/hux/issues
@@ -38,9 +38,7 @@ screenshots:
     path: screenshots/hux-context-menu.png
   - description: 'HuxTooltip with contextual help and information'
     path: screenshots/hux-tooltip.png
-  - description: 'HuxRadio radio button controls'
-    path: screenshots/hux-radio.png
-  - description: 'HuxDropdown'
+  - description: 'HuxDropdown component with variants and states'
     path: screenshots/hux-dropdown.png
 
 environment:

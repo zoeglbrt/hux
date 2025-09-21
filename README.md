@@ -14,13 +14,16 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.8.4
+## Latest Version: 0.9.1
 
-**What's New in v0.8.4:**
-- **Enhanced README Design**: Redesigned badges with modern flat styling and consistent color scheme
-- **Improved Visual Hierarchy**: Reorganized badge layout with better grouping and visual flow
-- **Added Download Metrics**: New Pub Downloads badge to showcase package usage
-- **Figma Integration**: Added Figma community file badge with download count
+**What's New in v0.9.1:**
+- **Fixed Pub.dev Compliance**: Optimized screenshot count to meet pub.dev requirements
+- **New HuxDropdown Component**: Added in v0.9.0 with multiple variants and states
+  - Primary, secondary, outline, and ghost variants
+  - Small, medium, and large sizes
+  - Default, expanded, selected, and disabled states
+  - Custom color support with WCAG AA contrast compliance
+  - Comprehensive documentation and examples
 
 [![Changelog](https://img.shields.io/badge/Changelog-View-black?style=for-the-badge&labelColor=white&logo=github&logoColor=black)](CHANGELOG.md)
 [![Docs](https://img.shields.io/badge/Docs-Browse-black?style=for-the-badge&labelColor=white&logo=readthedocs&logoColor=black)](https://docs.thehuxdesign.com)
