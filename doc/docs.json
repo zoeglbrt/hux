@@ -38,6 +38,7 @@
               "components/context-menu",
               "components/date-picker",
               "components/dialog",
+              "components/dropdown",
               "components/input",
               "components/loading",
               "components/radio",

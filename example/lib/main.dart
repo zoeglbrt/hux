@@ -88,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _datePickerNavKey = GlobalKey();
   final _tooltipKey = GlobalKey();
   final _dialogKey = GlobalKey();
+  final _dropdownKey = GlobalKey();
   // final _timePickerKey = GlobalKey();
   // final _timePickerNavKey = GlobalKey();
   // final _timeButtonKey = GlobalKey();
@@ -173,6 +174,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: 'Dialog',
         icon: FeatherIcons.messageSquare,
         key: _dialogKey,
+      ),
+      NavigationItem(
+        title: 'Dropdown',
+        icon: FeatherIcons.chevronDown,
+        key: _dropdownKey,
       ),
       // NavigationItem(
       //   title: 'Time Picker',
@@ -1126,6 +1132,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       const SizedBox(height: 32),
+                      Container(
+                        key: _dropdownKey,
+                        child: DropdownSection(
+                          primaryColor: _currentPrimaryColor(context),
+                        ),
+                      ),
+                      const SizedBox(height: 32),
                     ],
                   ),
                 ),
@@ -1585,6 +1598,133 @@ class DisplaySection extends StatelessWidget {
           ),
 
           SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+// Dropdown Section
+class DropdownSection extends StatefulWidget {
+  final Color primaryColor;
+
+  const DropdownSection({
+    super.key,
+    required this.primaryColor,
+  });
+
+  @override
+  State<DropdownSection> createState() => _DropdownSectionState();
+}
+
+class _DropdownSectionState extends State<DropdownSection> {
+  String? _selectedOption;
+  HuxButtonVariant _selectedVariant = HuxButtonVariant.outline;
+
+  final List<HuxDropdownItem<String>> _options = [
+    const HuxDropdownItem(
+      value: 'Option 1',
+      child: Row(
+        children: [
+          Icon(FeatherIcons.user, size: 16),
+          SizedBox(width: 8),
+          Text('Option 1'),
+        ],
+      ),
+    ),
+    const HuxDropdownItem(
+      value: 'Option 2',
+      child: Row(
+        children: [
+          Icon(FeatherIcons.settings, size: 16),
+          SizedBox(width: 8),
+          Text('Option 2'),
+        ],
+      ),
+    ),
+    const HuxDropdownItem(
+      value: 'Option 3',
+      child: Row(
+        children: [
+          Icon(FeatherIcons.bell, size: 16),
+          SizedBox(width: 8),
+          Text('Option 3'),
+        ],
+      ),
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      title: 'Dropdown',
+      subtitle: 'Dropdown/select components with various styles',
+      action: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Variant:',
+            style: TextStyle(
+              color: HuxTokens.textSecondary(context),
+            ),
+          ),
+          const SizedBox(width: 8),
+          SizedBox(
+            width: 160,
+            child: HuxDropdown<HuxButtonVariant>(
+              items: const [
+                HuxDropdownItem(
+                  value: HuxButtonVariant.primary,
+                  child: Text('Primary'),
+                ),
+                HuxDropdownItem(
+                  value: HuxButtonVariant.secondary,
+                  child: Text('Secondary'),
+                ),
+                HuxDropdownItem(
+                  value: HuxButtonVariant.outline,
+                  child: Text('Outline'),
+                ),
+                HuxDropdownItem(
+                  value: HuxButtonVariant.ghost,
+                  child: Text('Ghost'),
+                ),
+              ],
+              value: _selectedVariant,
+              onChanged: (value) {
+                setState(() {
+                  _selectedVariant = value;
+                });
+              },
+              placeholder: 'Select variant',
+              variant: HuxButtonVariant.outline,
+              size: HuxButtonSize.small,
+              primaryColor: widget.primaryColor,
+            ),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          const SizedBox(height: 32),
+          Center(
+            child: SizedBox(
+              width: 200,
+              child: HuxDropdown<String>(
+                items: _options,
+                value: _selectedOption,
+                onChanged: (value) {
+                  setState(() {
+                    _selectedOption = value;
+                  });
+                },
+                placeholder: 'Select an option',
+                variant: _selectedVariant,
+                primaryColor: widget.primaryColor,
+              ),
+            ),
+          ),
+          const SizedBox(height: 32),
         ],
       ),
     );

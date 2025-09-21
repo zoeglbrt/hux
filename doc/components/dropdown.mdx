@@ -1,0 +1,448 @@
+---
+title: 'Dropdown'
+description: 'A customizable dropdown/select component with various styles and variants'
+---
+
+## Overview
+
+`HuxDropdown` is a versatile dropdown/select component that provides multiple visual variants, sizes, and supports custom item rendering with icons. It adapts seamlessly to light and dark themes.
+
+## Basic Usage
+
+```dart
+HuxDropdown<String>(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+)
+```
+
+## Variants
+
+HuxDropdown supports four visual variants through the `HuxButtonVariant` enum:
+
+### Primary
+The default variant with a filled background using the primary color.
+
+![Primary Dropdown](/images/dropdown/dropdown-primary.png)
+
+```dart
+HuxDropdown(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+  variant: HuxButtonVariant.primary,
+)
+```
+
+### Secondary
+A subtle variant with a light background and border.
+
+![Secondary Dropdown](/images/dropdown/dropdown-secondary.png)
+
+```dart
+HuxDropdown(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+  variant: HuxButtonVariant.secondary,
+)
+```
+
+### Outline
+A transparent dropdown with only a border outline.
+
+![Outline Dropdown](/images/dropdown/dropdown-outline.png)
+
+```dart
+HuxDropdown(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+  variant: HuxButtonVariant.outline,
+)
+```
+
+### Ghost
+A minimal transparent dropdown without borders.
+
+![Ghost Dropdown](/images/dropdown/dropdown-ghost.png)
+
+```dart
+HuxDropdown(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+  variant: HuxButtonVariant.ghost,
+)
+```
+
+## States
+
+### Default
+Shows the placeholder text when no value is selected.
+
+![Dropdown Default](/images/dropdown/dropdown-default.png)
+
+```dart
+HuxDropdown<String>(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+  ],
+  value: null,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+)
+```
+
+### Expanded
+Shows the dropdown panel with options.
+
+![Dropdown Expanded](/images/dropdown/dropdown-expanded.png)
+
+```dart
+HuxDropdown<String>(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+    HuxDropdownItem(
+      value: 'item3',
+      child: Text('Item 3'),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+)
+```
+
+### Selected
+Shows the selected option.
+
+![Dropdown Selected](/images/dropdown/dropdown-selected.png)
+
+```dart
+HuxDropdown<String>(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+  ],
+  value: 'Item 1',
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+)
+```
+
+### Disabled
+Prevents user interaction.
+
+![Dropdown Disabled](/images/dropdown/dropdown-disabled.png)
+
+```dart
+HuxDropdown<String>(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: null, // or enabled: false
+  placeholder: 'Select',
+  enabled: false,
+)
+```
+
+## Sizes
+
+HuxDropdown supports three size variants through the `HuxButtonSize` enum:
+
+### Small
+Compact size for tight spaces (32px height).
+
+![Small Dropdown](/images/dropdown/dropdown-small.png)
+
+```dart
+HuxDropdown<String>(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+  size: HuxButtonSize.small,
+)
+```
+
+### Medium
+Default size for most use cases (40px height).
+
+![Medium Dropdown](/images/dropdown/dropdown-medium.png)
+
+```dart
+HuxDropdown<String>(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+  size: HuxButtonSize.medium, // Default
+)
+```
+
+### Large
+Prominent size for important selections (48px height).
+
+![Large Dropdown](/images/dropdown/dropdown-large.png)
+
+```dart
+HuxDropdown<String>(
+  items: [
+    HuxDropdownItem(
+      value: 'item1',
+      child: Text('Item 1'),
+    ),
+    HuxDropdownItem(
+      value: 'item2',
+      child: Text('Item 2'),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+  size: HuxButtonSize.large,
+)
+```
+
+## With Icons
+
+Enhance dropdown items with icons.
+
+![Dropdown with icons](/images/dropdown/dropdown-icons.png)
+
+```dart
+HuxDropdown<String>(
+  items: [
+    HuxDropdownItem(
+      value: 'user',
+      child: Row(
+        children: [
+          Icon(FeatherIcons.user, size: 16),
+          SizedBox(width: 8),
+          Text('User'),
+        ],
+      ),
+    ),
+    HuxDropdownItem(
+      value: 'settings',
+      child: Row(
+        children: [
+          Icon(FeatherIcons.settings, size: 16),
+          SizedBox(width: 8),
+          Text('Settings'),
+        ],
+      ),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select',
+)
+```
+
+## Custom Colors
+
+Override the primary color of the dropdown.
+
+![Custom Dropdown](/images/dropdown/dropdown-custom.png)
+
+```dart
+HuxDropdown(
+  primaryColor: Colors.purple,
+  // ...
+)
+```
+
+## API Reference
+
+### HuxDropdown Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `items` | `List<HuxDropdownItem<T>>` | **required** | List of dropdown items |
+| `value` | `T?` | `null` | Currently selected value |
+| `onChanged` | `ValueChanged<T>?` | `null` | Called when selection changes |
+| `placeholder` | `String` | `'Select'` | Text shown when no value is selected |
+| `variant` | `HuxButtonVariant` | `outline` | Visual style of the dropdown |
+| `size` | `HuxButtonSize` | `medium` | Size of the dropdown |
+| `primaryColor` | `Color?` | `null` | Optional primary color override |
+| `enabled` | `bool` | `true` | Whether the dropdown is enabled |
+| `maxHeight` | `double` | `200` | Maximum height of the dropdown panel |
+
+### HuxDropdownItem Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `value` | `T` | **required** | The value associated with this item |
+| `child` | `Widget` | **required** | The widget to display for this item |
+
+## Accessibility
+
+HuxDropdown includes several accessibility features:
+
+### Automatic Contrast
+Text color is automatically calculated to ensure WCAG AA compliance (4.5:1 contrast ratio) against any background color.
+
+### Keyboard Navigation
+- Arrow keys to navigate items
+- Enter/Space to open/close and select
+- Escape to close dropdown
+
+### Focus States
+Proper focus management and visible focus indicators.
+
+### Semantic Labels
+Clear labels and roles for screen readers.
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Choose the Right Size" icon="ruler">
+    - Use **Large** for primary selection fields
+    - Use **Medium** for most standard forms
+    - Use **Small** for compact interfaces or filters
+  </Accordion>
+  
+  <Accordion title="Clear Labels" icon="type">
+    - Use descriptive placeholders
+    - Group related dropdowns logically
+    - Consider adding helper text for complex selections
+  </Accordion>
+  
+  <Accordion title="Item Organization" icon="list">
+    - Keep items concise
+    - Use icons to enhance visual scanning
+    - Order items logically (e.g., alphabetically)
+  </Accordion>
+</AccordionGroup>
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card
+    title="Form Building"
+    icon="file-text"
+    href="/examples/form-building"
+  >
+    See dropdowns in action within forms
+  </Card>
+  <Card
+    title="Custom Theming"
+    icon="palette"
+    href="/advanced/theming"
+  >
+    Apply custom colors and themes
+  </Card>
+  <Card
+    title="Accessibility"
+    icon="accessibility"
+    href="/advanced/accessibility"
+  >
+    Ensure your dropdowns are accessible
+  </Card>
+  <Card
+    title="Data Visualization"
+    icon="chart-line"
+    href="/examples/data-visualization"
+  >
+    Use dropdowns for data filtering
+  </Card>
+</CardGroup>

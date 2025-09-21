@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2025-09-21
+
+### Added
+- **HuxDropdown**: New dropdown/select component with modern design
+  - Multiple variants (primary, secondary, outline, ghost)
+  - Customizable sizes (small, medium, large)
+  - Support for custom primary colors
+  - WCAG AA compliant contrast ratios
+  - Custom item rendering with icon support
+  - Disabled state support
+  - Keyboard navigation
+  - Comprehensive documentation and examples
+
+### Enhanced
+- **Documentation**: Added dropdown component documentation with usage examples
+  - Complete API reference
+  - Visual component showcase
+  - Integration examples
+
 ## [0.8.4] - 2025-09-14
 
 ### Enhanced
@@ -19,7 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **Visual Design**: Transitioned from colorful badges to minimal black/white design system
 - **Badge Organization**: Grouped related badges for better visual hierarchy
-
 ## [0.8.3] - 2025-09-09
 
 ### Enhanced
@@ -47,7 +65,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Clearer state demonstrations
   - More consistent code examples using Hux design system
   - Improved accessibility and usability information
-
 ## [0.8.2] - 2025-09-07
 
 ### Enhanced
@@ -500,3 +517,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Customizable styling options
 - Responsive design support
 - Accessibility considerations 
+

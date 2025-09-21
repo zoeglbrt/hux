@@ -63,7 +63,7 @@ class HuxTokens {
   /// Elevated surface background color for cards and modals
   static Color surfaceElevated(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return isDark ? HuxColors.black70 : HuxColors.white;
+    return isDark ? HuxColors.black90 : HuxColors.white;
   }
 
   /// Surface color for hover states
