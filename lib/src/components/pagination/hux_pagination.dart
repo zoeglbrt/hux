@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:hux/src/components/buttons/hux_button.dart';
 import 'package:hux/src/theme/hux_tokens.dart';
@@ -47,7 +46,6 @@ class HuxPagination extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      spacing: 8,
       children: [
 
         HuxButton(
@@ -59,7 +57,9 @@ class HuxPagination extends StatelessWidget {
           child: const Icon(FeatherIcons.chevronLeft, size: 16),
         ),
 
+        const SizedBox(width: 8),
         ..._buildPageNumbers(context),
+        const SizedBox(width: 8),
 
         HuxButton(
           onPressed: currentPage < totalPages
@@ -181,17 +181,6 @@ class HuxPagination extends StatelessWidget {
   /// Calculates the relative luminance of a color according to WCAG guidelines
   /// Returns a value between 0 and 1
   double _getRelativeLuminance(Color color) {
-    // Convert RGB values to 0-1 range
-    final r = color.r / 255.0;
-    final g = color.g / 255.0;
-    final b = color.b / 255.0;
-
-    // Apply gamma correction
-    final rLinear = r <= 0.03928 ? r / 12.92 : pow((r + 0.055) / 1.055, 2.4);
-    final gLinear = g <= 0.03928 ? g / 12.92 : pow((g + 0.055) / 1.055, 2.4);
-    final bLinear = b <= 0.03928 ? b / 12.92 : pow((b + 0.055) / 1.055, 2.4);
-
-    // Calculate relative luminance using ITU-R BT.709 coefficients
-    return 0.2126 * rLinear + 0.7152 * gLinear + 0.0722 * bLinear;
+    return color.computeLuminance();
   }
 }
