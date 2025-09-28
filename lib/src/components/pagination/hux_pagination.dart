@@ -82,21 +82,35 @@ class HuxPagination extends StatelessWidget {
       );
     }
 
-    final List<Widget> widgets = [];
-    final int window = maxPagesToShow;
+    final int budget = maxPagesToShow;
+    int window = budget;
+
     int start = currentPage - ((window - 1) ~/ 2);
     int end = start + window - 1;
 
-    if (start < 1) {
-      start = 1;
-      end = window;
+    void clampWindow() {
+      if (start < 1) {
+        start = 1;
+        end = start + window - 1;
+      }
+      if (end > totalPages) {
+        end = totalPages;
+        start = end - window + 1;
+      }
     }
 
-    if (end > totalPages) {
-      end = totalPages;
-      start = totalPages - window + 1;
+    clampWindow();
+
+    final int extras = (start > 1 ? 1 : 0) + (end < totalPages ? 1 : 0);
+
+    if (extras > 0 && window + extras > budget) {
+      window = (budget - extras).clamp(1, totalPages);
+      start = currentPage - ((window - 1) ~/ 2);
+      end = start + window - 1;
+      clampWindow();
     }
 
+    final List<Widget> widgets = [];
     if (start > 1) {
       widgets.add(_buildPageButton(context, 1));
       if (start > 2) {
