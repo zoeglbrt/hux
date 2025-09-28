@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _tooltipKey = GlobalKey();
   final _dialogKey = GlobalKey();
   final _dropdownKey = GlobalKey();
+  final _paginationKey = GlobalKey();
   // final _timePickerKey = GlobalKey();
   // final _timePickerNavKey = GlobalKey();
   // final _timeButtonKey = GlobalKey();
@@ -185,6 +186,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: 'Dropdown',
         icon: FeatherIcons.chevronDown,
         key: _dropdownKey,
+      ),
+      NavigationItem(
+        title: 'Pagination',
+        icon: FeatherIcons.code,
+        key: _paginationKey,
       ),
       // NavigationItem(
       //   title: 'Time Picker',
@@ -1150,6 +1156,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       const SizedBox(height: 32),
+
+                      PaginationSection(key: _paginationKey,),
+                      const SizedBox(height: 32),
                     ],
                   ),
                 ),
@@ -1843,6 +1852,47 @@ class _ToggleButtonsSectionState extends State<ToggleButtonsSection> {
                 ),
               ],
             ),
+          ),
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+//Pagination Section
+class PaginationSection extends StatefulWidget {
+  const PaginationSection({super.key});
+
+  @override
+  State<PaginationSection> createState() => _PaginationSectionState();
+}
+
+class _PaginationSectionState extends State<PaginationSection> {
+  int _currentPage = 1;
+  final int _totalPages = 20;
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      title: 'Pagination',
+      subtitle: 'Navigating through pages of content',
+      child: Column(
+        children: [
+          const SizedBox(height: 32),
+          HuxPagination(
+            currentPage: _currentPage,
+            totalPages: _totalPages,
+            onPageChanged: (page) {
+              setState(() {
+                _currentPage = page;
+              });
+            },
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Current Page: $_currentPage',
+            style: TextStyle(color: HuxTokens.textSecondary(context)),
           ),
           const SizedBox(height: 32),
         ],

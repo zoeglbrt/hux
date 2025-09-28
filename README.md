@@ -135,6 +135,14 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 ![HuxAvatar Component](screenshots/hux-avatar.png)
 
+### Pagination
+- `HuxPagination` - A widget for navigating through paginated data.
+- Displays the current page and total pages.
+- Provides buttons for navigating to the previous and next pages.
+- Intelligently displays a limited number of page buttons, with ellipses for larger page ranges.
+
+![HuxPagination Component](screenshots/hux-pagination.png)
+
 ### Theme
 - `HuxTheme` - Pre-configured light and dark themes
 - `HuxColors` - Comprehensive color palette
@@ -420,6 +428,18 @@ HuxAlert(
   message: 'Operation completed successfully.',
   showIcon: true,
   onDismiss: () => print('Alert dismissed'),
+)
+```
+
+#### Pagination
+
+```dart
+HuxPagination(
+  currentPage: 5,
+  totalPages: 10,
+  onPageChanged: (page) {
+    print('Selected page: $page');
+  },
 )
 ```
 
