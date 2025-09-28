@@ -28,7 +28,10 @@ class HuxPagination extends StatelessWidget {
     required this.totalPages,
     required this.onPageChanged,
     this.maxPagesToShow = 5,
-  });
+  })  : assert(totalPages >= 1, 'totalPages must be ≥ 1'),
+        assert(currentPage >= 1 && currentPage <= totalPages,
+            'currentPage must be within 1..totalPages'),
+        assert(maxPagesToShow >= 1, 'maxPagesToShow must be ≥ 1');
 
   /// The currently active page. Must be between 1 and [totalPages].
   final int currentPage;
@@ -47,7 +50,6 @@ class HuxPagination extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-
         HuxButton(
           onPressed:
               currentPage > 1 ? () => onPageChanged(currentPage - 1) : null,
@@ -56,11 +58,9 @@ class HuxPagination extends StatelessWidget {
           size: HuxButtonSize.small,
           child: const Icon(FeatherIcons.chevronLeft, size: 16),
         ),
-
         const SizedBox(width: 8),
         ..._buildPageNumbers(context),
         const SizedBox(width: 8),
-
         HuxButton(
           onPressed: currentPage < totalPages
               ? () => onPageChanged(currentPage + 1)
@@ -83,18 +83,18 @@ class HuxPagination extends StatelessWidget {
     }
 
     final List<Widget> widgets = [];
-    final int half = maxPagesToShow ~/ 2;
-    int start = currentPage - half;
-    int end = currentPage + half;
+    final int window = maxPagesToShow;
+    int start = currentPage - ((window - 1) ~/ 2);
+    int end = start + window - 1;
 
-    if (start <= 1) {
+    if (start < 1) {
       start = 1;
-      end = maxPagesToShow;
+      end = window;
     }
 
-    if (end >= totalPages) {
+    if (end > totalPages) {
       end = totalPages;
-      start = totalPages - maxPagesToShow + 1;
+      start = totalPages - window + 1;
     }
 
     if (start > 1) {
