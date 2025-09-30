@@ -44,6 +44,7 @@
               "components/radio",
               "components/snackbar",
               "components/switch",
+              "components/toggle",
               "components/tooltip"
             ]
           },

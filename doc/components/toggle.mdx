@@ -1,0 +1,263 @@
+---
+title: 'Toggle'
+description: 'Two-state toggle button for formatting controls and feature toggles'
+---
+
+## Overview
+
+`HuxToggle` is a two-state button component commonly used for formatting controls (like bold, italic) or feature toggles. It supports both icon-only and icon-with-text configurations, with multiple variants and sizes.
+
+## Basic Usage
+
+```dart
+HuxToggle(
+  value: isBold,
+  onChanged: (value) => setState(() => isBold = value),
+  icon: FeatherIcons.bold,
+  label: 'Bold', // Optional
+)
+```
+
+![Basic toggle usage](/images/toggle/toggle-primary.png)
+
+## Icon-Only Toggle
+
+```dart
+HuxToggle(
+  value: isEditing,
+  onChanged: (value) => setState(() => isEditing = value),
+  icon: FeatherIcons.edit2,
+)
+```
+
+## Variants
+
+HuxToggle supports four visual variants through the `HuxButtonVariant` enum:
+
+### Primary Toggle
+
+![Primary toggle variants](/images/toggle/toggle-primary.png)
+
+```dart
+HuxToggle(
+  value: isActive,
+  onChanged: (value) => setState(() => isActive = value),
+  icon: FeatherIcons.edit2,
+  variant: HuxButtonVariant.primary, // Default
+)
+```
+
+### Secondary Toggle
+
+![Secondary toggle variants](/images/toggle/toggle-secondary.png)
+
+```dart
+HuxToggle(
+  value: isActive,
+  onChanged: (value) => setState(() => isActive = value),
+  icon: FeatherIcons.edit2,
+  variant: HuxButtonVariant.secondary,
+)
+```
+
+### Outline Toggle
+
+![Outline toggle variants](/images/toggle/toggle-outline.png)
+
+```dart
+HuxToggle(
+  value: isActive,
+  onChanged: (value) => setState(() => isActive = value),
+  icon: FeatherIcons.edit2,
+  variant: HuxButtonVariant.outline,
+)
+```
+
+### Ghost Toggle
+
+![Ghost toggle variants](/images/toggle/toggle-ghost.png)
+
+```dart
+HuxToggle(
+  value: isActive,
+  onChanged: (value) => setState(() => isActive = value),
+  icon: FeatherIcons.edit2,
+  variant: HuxButtonVariant.ghost,
+)
+```
+
+## Sizes
+
+Control toggle dimensions with three size options:
+
+### Small Toggle
+
+Compact size for tight spaces (32px height).
+
+![Small toggle](/images/toggle/toggle-small.png)
+
+```dart
+HuxToggle(
+  value: isActive,
+  onChanged: (value) => setState(() => isActive = value),
+  icon: FeatherIcons.edit2,
+  size: HuxToggleSize.small,
+)
+```
+
+### Medium Toggle (Default)
+
+Default size for most use cases (40px height).
+
+![Medium toggle](/images/toggle/toggle-primary.png)
+
+```dart
+HuxToggle(
+  value: isActive,
+  onChanged: (value) => setState(() => isActive = value),
+  icon: FeatherIcons.edit2,
+  size: HuxToggleSize.medium, // Default
+)
+```
+
+### Large Toggle
+
+Prominent size for important actions (48px height).
+
+![Large toggle](/images/toggle/toggle-large.png)
+
+```dart
+HuxToggle(
+  value: isActive,
+  onChanged: (value) => setState(() => isActive = value),
+  icon: FeatherIcons.edit2,
+  size: HuxToggleSize.large,
+)
+```
+
+## States
+
+### Disabled State
+
+![Disabled toggle states](/images/toggle/toggle-disabled.png)
+
+```dart
+HuxToggle(
+  value: isActive,
+  onChanged: null, // Disable the toggle
+  icon: FeatherIcons.edit2,
+  isDisabled: true,
+)
+```
+
+### Custom Primary Color
+
+![Custom color toggle](/images/toggle/toggle-custom.png)
+
+```dart
+HuxToggle(
+  value: isActive,
+  onChanged: (value) => setState(() => isActive = value),
+  icon: FeatherIcons.edit2,
+  primaryColor: Colors.deepPurple,
+)
+```
+
+## API Reference
+
+### HuxToggle Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `value` | `bool` | **required** | The current toggle state (on/off) |
+| `onChanged` | `ValueChanged<bool>?` | `null` | Callback triggered when toggle state changes |
+| `icon` | `IconData` | **required** | The icon to display in the toggle |
+| `label` | `String?` | `null` | Optional text label to display next to the icon |
+| `size` | `HuxToggleSize` | `medium` | Size variant of the toggle |
+| `variant` | `HuxButtonVariant` | `primary` | Visual variant of the toggle |
+| `isDisabled` | `bool` | `false` | Whether the toggle is disabled |
+| `primaryColor` | `Color?` | `null` | Optional custom primary color |
+
+### HuxToggleSize Enum
+
+- `HuxToggleSize.small` - 32px height, compact padding
+- `HuxToggleSize.medium` - 40px height, standard padding
+- `HuxToggleSize.large` - 48px height, generous padding
+
+## Accessibility
+
+HuxToggle includes several accessibility features:
+
+### Automatic Contrast
+Text and icon colors are automatically calculated to ensure WCAG AA compliance (4.5:1 contrast ratio) against any background color.
+
+### Semantic Roles
+Toggles include proper semantic roles for screen readers.
+
+### Focus States
+Keyboard navigation support with visible focus indicators.
+
+### Disabled States
+Proper disabled state handling for assistive technologies.
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Choose the Right Variant" icon="eye">
+    - Use **Primary** for important toggles that need emphasis
+    - Use **Secondary** for standard toggles in content areas
+    - Use **Outline** for toggles that need visual separation
+    - Use **Ghost** for subtle toggles in toolbars
+  </Accordion>
+  
+  <Accordion title="Size Appropriately" icon="ruler">
+    - Use **Large** for important feature toggles
+    - Use **Medium** for most standard interactions
+    - Use **Small** for compact toolbars or formatting controls
+  </Accordion>
+  
+  <Accordion title="Icon Selection" icon="image">
+    - Choose clear, meaningful icons that represent the action
+    - Use standard icons (bold, italic) for formatting controls
+    - Add labels for actions that aren't immediately clear
+  </Accordion>
+  
+  <Accordion title="Theme Integration" icon="palette">
+    - Let toggles adapt to your app's theme
+    - Use `primaryColor` only for specific emphasis
+    - Maintain consistent styling within toggle groups
+  </Accordion>
+</AccordionGroup>
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card
+    title="Form Building"
+    icon="edit"
+    href="/examples/form-building"
+  >
+    See toggles in action within forms
+  </Card>
+  <Card
+    title="Text Editor"
+    icon="type"
+    href="/examples/text-editor"
+  >
+    Learn how to build a formatting toolbar
+  </Card>
+  <Card
+    title="Custom Theming"
+    icon="palette"
+    href="/examples/custom-theming"
+  >
+    Apply custom colors and themes
+  </Card>
+  <Card
+    title="Accessibility"
+    icon="universal-access"
+    href="/advanced/accessibility"
+  >
+    Ensure your toggles are accessible
+  </Card>
+</CardGroup>
