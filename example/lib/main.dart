@@ -1157,7 +1157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       const SizedBox(height: 32),
 
-                      PaginationSection(key: _paginationKey,),
+                      PaginationSection(key: _paginationKey),
                       const SizedBox(height: 32),
                     ],
                   ),
