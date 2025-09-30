@@ -101,10 +101,10 @@ packages:
     dependency: "direct main"
     description:
       name: cristalyse
-      sha256: a10dde8ec09b758f573386b6fdd9e0a09e963b82d1a1287807215ae04f54e34c
+      sha256: "0081cf1b47f59889453dc814024febc7f5ac455cd6d8a0d616afb951c13e3b72"
       url: "https://pub.dev"
     source: hosted
-    version: "1.6.1"
+    version: "1.7.0"
   crypto:
     dependency: transitive
     description:
@@ -199,10 +199,10 @@ packages:
     dependency: "direct main"
     description:
       name: google_fonts
-      sha256: ebc94ed30fd13cefd397cb1658b593f21571f014b7d1197eeb41fb95f05d899a
+      sha256: "517b20870220c48752eafa0ba1a797a092fb22df0d89535fd9991e86ee2cdd9c"
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.1"
+    version: "6.3.2"
   html:
     dependency: transitive
     description:

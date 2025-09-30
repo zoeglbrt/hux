@@ -82,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _checkboxesKey = GlobalKey();
   final _radioButtonsKey = GlobalKey();
   final _toggleSwitchesKey = GlobalKey();
+  final _toggleButtonsKey = GlobalKey();
   final _badgesKey = GlobalKey();
   final _indicatorsKey = GlobalKey();
   final _displayKey = GlobalKey();
@@ -139,6 +140,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: 'Switch',
         icon: FeatherIcons.toggleLeft,
         key: _toggleSwitchesKey,
+      ),
+      NavigationItem(
+        title: 'Toggle',
+        icon: FeatherIcons.edit3,
+        key: _toggleButtonsKey,
       ),
       NavigationItem(
         title: 'Badges',
@@ -980,6 +986,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
                       const SizedBox(height: 32),
 
+                      // Toggle Buttons Section
+                      ToggleButtonsSection(key: _toggleButtonsKey),
+
+                      const SizedBox(height: 32),
+
                       // Badges Section
                       BadgesSection(key: _badgesKey),
 
@@ -1722,6 +1733,115 @@ class _DropdownSectionState extends State<DropdownSection> {
                 variant: _selectedVariant,
                 primaryColor: widget.primaryColor,
               ),
+            ),
+          ),
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+// Toggle Buttons Section
+class ToggleButtonsSection extends StatefulWidget {
+  const ToggleButtonsSection({super.key});
+
+  @override
+  State<ToggleButtonsSection> createState() => _ToggleButtonsSectionState();
+}
+
+class _ToggleButtonsSectionState extends State<ToggleButtonsSection> {
+  bool _isEditing = false;
+  HuxButtonVariant _selectedVariant = HuxButtonVariant.primary;
+
+  Color _currentPrimaryColor(BuildContext context) {
+    final parentState = context.findAncestorStateOfType<_MyHomePageState>();
+    return parentState?._currentPrimaryColor(context) ??
+        HuxTokens.primary(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      title: 'Toggle',
+      subtitle: 'Two-state toggle buttons for formatting controls',
+      action: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Variant:',
+            style: TextStyle(
+              color: HuxTokens.textSecondary(context),
+            ),
+          ),
+          const SizedBox(width: 8),
+          SizedBox(
+            width: 160,
+            child: HuxDropdown<HuxButtonVariant>(
+              items: const [
+                HuxDropdownItem(
+                  value: HuxButtonVariant.primary,
+                  child: Text('Primary'),
+                ),
+                HuxDropdownItem(
+                  value: HuxButtonVariant.secondary,
+                  child: Text('Secondary'),
+                ),
+                HuxDropdownItem(
+                  value: HuxButtonVariant.outline,
+                  child: Text('Outline'),
+                ),
+                HuxDropdownItem(
+                  value: HuxButtonVariant.ghost,
+                  child: Text('Ghost'),
+                ),
+              ],
+              value: _selectedVariant,
+              onChanged: (value) {
+                setState(() {
+                  _selectedVariant = value;
+                });
+              },
+              placeholder: 'Select variant',
+              variant: HuxButtonVariant.outline,
+              size: HuxButtonSize.small,
+            ),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          const SizedBox(height: 32),
+          Center(
+            child: Column(
+              children: [
+                // Icon-only toggle
+                HuxToggle(
+                  value: _isEditing,
+                  onChanged: (value) {
+                    setState(() {
+                      _isEditing = value;
+                    });
+                  },
+                  icon: FeatherIcons.edit2,
+                  variant: _selectedVariant,
+                  primaryColor: _currentPrimaryColor(context),
+                ),
+                const SizedBox(height: 16),
+                // Icon with text toggle
+                HuxToggle(
+                  value: _isEditing,
+                  onChanged: (value) {
+                    setState(() {
+                      _isEditing = value;
+                    });
+                  },
+                  icon: FeatherIcons.edit2,
+                  label: 'Edit',
+                  variant: _selectedVariant,
+                  primaryColor: _currentPrimaryColor(context),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 32),

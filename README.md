@@ -14,16 +14,18 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.9.1
+## Latest Version: 0.10.0
 
-**What's New in v0.9.1:**
-- **Fixed Pub.dev Compliance**: Optimized screenshot count to meet pub.dev requirements
-- **New HuxDropdown Component**: Added in v0.9.0 with multiple variants and states
-  - Primary, secondary, outline, and ghost variants
-  - Small, medium, and large sizes
-  - Default, expanded, selected, and disabled states
-  - Custom color support with WCAG AA contrast compliance
+**What's New in v0.10.0:**
+- **New HuxToggle Component**: Two-state toggle button for formatting controls
+  - Multiple variants (primary, secondary, outline, ghost)
+  - Three sizes (small, medium, large)
+  - Icon-only and icon-with-text modes
+  - Theme-aware styling with HuxTokens
+  - WCAG AA compliant contrast ratios
+  - Smooth animations and hover effects
   - Comprehensive documentation and examples
+- **Enhanced Theme Integration**: Improved theme-awareness across components
 
 [![Changelog](https://img.shields.io/badge/Changelog-View-black?style=for-the-badge&labelColor=white&logo=github&logoColor=black)](CHANGELOG.md)
 [![Docs](https://img.shields.io/badge/Docs-Browse-black?style=for-the-badge&labelColor=white&logo=readthedocs&logoColor=black)](https://docs.thehuxdesign.com)

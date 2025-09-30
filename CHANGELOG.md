@@ -5,7 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] - 2025-09-30
+
+### Added
+- **HuxToggle**: New two-state toggle button component
+  - Multiple variants (primary, secondary, outline, ghost)
+  - Three sizes (small, medium, large)
+  - Icon-only and icon-with-text modes
+  - Theme-aware styling with HuxTokens
+  - WCAG AA compliant contrast ratios
+  - Smooth animations and hover effects
+  - Comprehensive documentation and examples
+
+### Enhanced
+- **Theme Integration**: Improved theme-awareness across components
+  - HuxToggle uses theme-aware primary colors
+  - Consistent hover effects with HuxButton
+  - Better dark mode support
+
 ## [0.9.1] - 2025-09-22
+
+- Added HuxToggle component for two-state toggle buttons (e.g., formatting controls)
 
 ### Fixed
 - **Pub.dev Compliance**: Fixed screenshot count for package validation
