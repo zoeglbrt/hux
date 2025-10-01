@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0] - 2025-10-02
+
+### Added
+- **HuxPagination**: New pagination component for navigating through pages (originally contributed by @Kingsley-EZE)
+  - Displays page numbers with intelligent ellipsis handling for large page counts
+  - Previous/next arrow buttons with proper disabled states
+  - Configurable maximum pages to show
+  - Theme-aware styling with HuxTokens
+  - WCAG AA compliant contrast ratios
+  - Compact button design with proper spacing
+  - Comprehensive documentation and examples
+
+### Enhanced
+- **HuxButton**: Fixed `hug` width behavior to properly size to content
+  - Override ElevatedButton's minimum size constraints for true hugging
+  - Improved compact button support across all Hux components
+  - Better consistency with expected button sizing behavior
+
 ## [0.10.1] - 2025-10-01
 
 ### Fixed
@@ -553,4 +571,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Customizable styling options
 - Responsive design support
 - Accessibility considerations 
-

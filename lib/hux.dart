@@ -69,6 +69,7 @@ export 'src/widgets/hux_date_picker.dart';
 export 'src/widgets/hux_time_picker.dart';
 export 'src/components/dialog/hux_dialog.dart';
 export 'src/components/dropdown/hux_dropdown.dart';
+export 'src/components/pagination/hux_pagination.dart';
 export 'src/components/toggle/hux_toggle.dart';
 
 // Export external dependencies

@@ -3,7 +3,7 @@
 A modern Flutter UI package with beautiful, customizable components designed for clean and consistent user interfaces.
 
 [![Flutter support](https://img.shields.io/badge/Flutter-3.16%2B-white?style=flat&labelColor=black&logo=flutter&logoColor=WHITE)](https://flutter.dev/)
-[![Figma](https://img.shields.io/badge/Figma%20users-6-white?style=flat&labelColor=black&logo=figma&logoColor=white)](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
+[![Figma](https://img.shields.io/badge/Figma%20users-9-white?style=flat&labelColor=black&logo=figma&logoColor=white)](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsor-Hux%20UI-white?style=flat&labelColor=black&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/zoeglbrt)
 
 [![pub package](https://img.shields.io/pub/v/hux?style=flat&color=white&labelColor=black)](https://pub.dev/packages/hux)
@@ -14,22 +14,20 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.10.1
+## Latest Version: 0.11.0
 
-**What's New in v0.10.1:**
-- Fixed deprecated Material APIs in HuxToggle component for Flutter 3.19+ compatibility
-- Updated to use Widget layer APIs for better platform support
-
-**Previous Release (v0.10.0):**
-- **New HuxToggle Component**: Two-state toggle button for formatting controls
-  - Multiple variants (primary, secondary, outline, ghost)
-  - Three sizes (small, medium, large)
-  - Icon-only and icon-with-text modes
+**What's New in v0.11.0:**
+- **New HuxPagination Component**: Navigate through pages with intelligent ellipsis handling (originally contributed by @Kingsley-EZE)
+  - Previous/next arrow buttons with proper disabled states
+  - Configurable maximum pages to show
   - Theme-aware styling with HuxTokens
   - WCAG AA compliant contrast ratios
-  - Smooth animations and hover effects
+  - Compact button design with proper spacing
   - Comprehensive documentation and examples
-- **Enhanced Theme Integration**: Improved theme-awareness across components
+- **Enhanced HuxButton**: Fixed `hug` width behavior to properly size to content
+  - Override ElevatedButton's minimum size constraints for true hugging
+  - Improved compact button support across all Hux components
+  - Better consistency with expected button sizing behavior
 
 [![Changelog](https://img.shields.io/badge/Changelog-View-black?style=for-the-badge&labelColor=white&logo=github&logoColor=black)](CHANGELOG.md)
 [![Docs](https://img.shields.io/badge/Docs-Browse-black?style=for-the-badge&labelColor=white&logo=readthedocs&logoColor=black)](https://docs.thehuxdesign.com)
@@ -138,6 +136,16 @@ A modern Flutter UI package with beautiful, customizable components designed for
 - `HuxAvatarGroup` - Display multiple avatars with overlapping or spaced layouts
 
 ![HuxAvatar Component](screenshots/hux-avatar.png)
+
+### Pagination
+- `HuxPagination` - Navigate through pages with intelligent ellipsis handling (originally contributed by @Kingsley-EZE)
+- Previous/next arrow buttons with proper disabled states
+- Configurable maximum pages to show
+- Theme-aware styling with HuxTokens
+- WCAG AA compliant contrast ratios
+- Compact button design with proper spacing
+
+![HuxPagination Component](screenshots/hux-pagination.png)
 
 ### Theme
 - `HuxTheme` - Pre-configured light and dark themes

@@ -1,0 +1,106 @@
+---
+title: Pagination
+description: Navigate through pages with HuxPagination component
+---
+
+import { Callout } from 'mintlify';
+
+## Overview
+
+The HuxPagination component provides an intuitive way to navigate through multiple pages of content. It displays page numbers with intelligent ellipsis handling for large page counts and includes previous/next arrow buttons.
+
+## Basic Usage
+
+```dart
+import 'package:hux/hux.dart';
+
+HuxPagination(
+  currentPage: 5,
+  totalPages: 20,
+  onPageChanged: (page) {
+    print('Selected page: $page');
+  },
+)
+```
+
+## Properties
+
+| Property | Type | Required | Default | Description |
+|----------|------|----------|---------|-------------|
+| `currentPage` | `int` | Yes | - | The currently active page (1-based) |
+| `totalPages` | `int` | Yes | - | The total number of pages |
+| `onPageChanged` | `ValueChanged<int>` | Yes | - | Callback when a page is selected |
+| `maxPagesToShow` | `int` | No | `5` | Maximum page buttons to display |
+
+## Examples
+
+### Basic Pagination
+
+```dart
+HuxPagination(
+  currentPage: 3,
+  totalPages: 10,
+  onPageChanged: (page) {
+    setState(() {
+      currentPage = page;
+    });
+  },
+)
+```
+
+### Large Page Count
+
+When you have many pages, the component automatically shows ellipsis:
+
+```dart
+HuxPagination(
+  currentPage: 15,
+  totalPages: 100,
+  maxPagesToShow: 7,
+  onPageChanged: (page) {
+    // Handle page change
+  },
+)
+```
+
+### Custom Page Range
+
+```dart
+HuxPagination(
+  currentPage: 1,
+  totalPages: 3,
+  maxPagesToShow: 3,
+  onPageChanged: (page) {
+    // Handle page change
+  },
+)
+```
+
+## Accessibility
+
+The HuxPagination component is built with accessibility in mind:
+
+- **WCAG AA Compliant**: Uses proper contrast ratios for all text and backgrounds
+- **Keyboard Navigation**: All buttons are focusable and keyboard accessible
+- **Screen Reader Support**: Proper semantic markup and ARIA labels
+- **Touch Targets**: Meets minimum touch target size requirements
+
+## Styling
+
+The component uses Hux's design tokens for consistent theming:
+
+- **Theme-aware colors**: Automatically adapts to light/dark themes
+- **Consistent spacing**: Uses Hux spacing tokens
+- **Typography**: Follows Hux text style patterns
+- **Interactive states**: Proper hover and focus states
+
+<Callout type="info">
+The pagination component automatically handles edge cases like single page scenarios and ensures the current page is always visible in the page range.
+</Callout>
+
+## Best Practices
+
+1. **Always provide feedback**: Use the `onPageChanged` callback to update your content
+2. **Handle edge cases**: The component handles single pages and large page counts automatically
+3. **Consider mobile**: The compact design works well on mobile devices
+4. **Accessibility**: Ensure your page content changes are announced to screen readers

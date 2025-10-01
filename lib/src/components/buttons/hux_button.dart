@@ -77,7 +77,12 @@ class HuxButton extends StatelessWidget {
       width: _getWidth(),
       child: ElevatedButton(
         onPressed: isDisabled || isLoading ? null : onPressed,
-        style: buttonStyle,
+        style: buttonStyle.copyWith(
+          // Override minimum width constraints for hug behavior
+          minimumSize: (width == null || width == HuxButtonWidth.hug)
+              ? WidgetStateProperty.all(Size.zero)
+              : null,
+        ),
         child: buttonChild,
       ),
     );
