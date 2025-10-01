@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _tooltipKey = GlobalKey();
   final _dialogKey = GlobalKey();
   final _dropdownKey = GlobalKey();
+  final _paginationKey = GlobalKey();
   // final _timePickerKey = GlobalKey();
   // final _timePickerNavKey = GlobalKey();
   // final _timeButtonKey = GlobalKey();
@@ -185,6 +186,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: 'Dropdown',
         icon: FeatherIcons.chevronDown,
         key: _dropdownKey,
+      ),
+      NavigationItem(
+        title: 'Pagination',
+        icon: FeatherIcons.layers,
+        key: _paginationKey,
       ),
       // NavigationItem(
       //   title: 'Time Picker',
@@ -1150,6 +1156,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       const SizedBox(height: 32),
+                      Container(
+                        key: _paginationKey,
+                        child: const PaginationSection(),
+                      ),
+                      const SizedBox(height: 32),
                     ],
                   ),
                 ),
@@ -1845,6 +1856,51 @@ class _ToggleButtonsSectionState extends State<ToggleButtonsSection> {
             ),
           ),
           const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+class PaginationSection extends StatefulWidget {
+  const PaginationSection({
+    super.key,
+  });
+
+  @override
+  State<PaginationSection> createState() => _PaginationSectionState();
+}
+
+class _PaginationSectionState extends State<PaginationSection> {
+  int _currentPage = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      title: 'Pagination',
+      subtitle: 'Navigate through pages with intelligent ellipsis handling.',
+      child: Column(
+        children: [
+          const SizedBox(height: 16),
+
+          HuxPagination(
+            currentPage: _currentPage,
+            totalPages: 20,
+            onPageChanged: (page) {
+              setState(() {
+                _currentPage = page;
+              });
+            },
+          ),
+          const SizedBox(height: 16),
+
+          // Current page indicator
+          Text(
+            'Current Page: $_currentPage',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: HuxTokens.textSecondary(context),
+                ),
+          ),
         ],
       ),
     );

@@ -41,6 +41,7 @@
               "components/dropdown",
               "components/input",
               "components/loading",
+              "components/pagination",
               "components/radio",
               "components/snackbar",
               "components/switch",
