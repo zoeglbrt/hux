@@ -14,9 +14,13 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.10.0
+## Latest Version: 0.10.1
 
-**What's New in v0.10.0:**
+**What's New in v0.10.1:**
+- Fixed deprecated Material APIs in HuxToggle component for Flutter 3.19+ compatibility
+- Updated to use Widget layer APIs for better platform support
+
+**Previous Release (v0.10.0):**
 - **New HuxToggle Component**: Two-state toggle button for formatting controls
   - Multiple variants (primary, secondary, outline, ghost)
   - Three sizes (small, medium, large)

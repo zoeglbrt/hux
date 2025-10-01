@@ -78,9 +78,9 @@ class HuxToggle extends StatelessWidget {
             ? null
             : () => onChanged?.call(!value),
         splashFactory: NoSplash.splashFactory,
-        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.hovered)) {
+        overlayColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+            if (states.contains(WidgetState.hovered)) {
               if (value) {
                 return switch (variant) {
                   HuxButtonVariant.primary =>
