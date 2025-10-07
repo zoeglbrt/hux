@@ -5,6 +5,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.12.0] - 2025-10-08
+
+### Added
+- **HuxCommand**: New command palette component for quick access to actions and navigation
+  - Keyboard shortcuts support (CMD+K on Mac, Ctrl+K on Windows/Linux)
+  - Real-time search and filtering as you type
+  - Keyboard navigation with arrow keys and Enter to execute
+  - Customizable commands with icons, shortcuts, and categories
+  - Modern design with 16px border radius and proper hover states
+  - Global keyboard shortcuts integration with `HuxCommandShortcuts.wrapper`
+  - Apple symbol shortcuts (⌘, ⇧, ⌥, ⌃) without '+' signs
+  - Comprehensive documentation and examples
+- **HuxCommandItem**: Data model for individual commands
+  - Support for icons, shortcuts, descriptions, and categories
+  - Callback-based execution system
+- **HuxCommandShortcuts**: Utility class for global keyboard shortcuts
+  - App-wide wrapper widget for easy integration
+  - Custom key event handler for advanced use cases
+
+### Enhanced
+- **Icon Library Migration**: Complete transition from Feather Icons to Lucide Icons
+  - Updated all components to use `LucideIcons` instead of `FeatherIcons`
+  - Added `lucide_icons: ^0.257.0` dependency
+  - Updated example app and documentation to use new icon library
+  - Maintained backward compatibility with existing icon usage patterns
+- **Design Token Improvements**: Enhanced `HuxTokens` for better visual hierarchy
+  - Updated `surfaceElevated` to be less transparent (100% opaque in dark mode)
+  - Fixed `borderSecondary` to use proper subtle color (`HuxColors.white10` in dark mode)
+  - Improved visual separation between primary and secondary borders
+
+### Fixed
+- **Hot Reload Issues**: Resolved Flutter hot reload problems with new component files
+- **Code Organization**: Separated Command component into modular files for better maintainability
+- **Documentation**: Added comprehensive Command component documentation to Mintlify docs
+
 ## [0.11.0] - 2025-10-02
 
 ### Added

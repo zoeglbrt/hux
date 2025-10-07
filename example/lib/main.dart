@@ -24,17 +24,59 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Hux UI Demo',
-      theme: HuxTheme.lightTheme,
-      darkTheme: HuxTheme.darkTheme,
-      themeMode: _themeMode,
-      home: MyHomePage(
+    return HuxCommandShortcuts.wrapper(
+      commands: _getGlobalCommands(),
+      onCommandSelected: (command) {
+        // Handle global command execution
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Global command executed: ${command.label}'),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      },
+      child: MaterialApp(
+        title: 'Hux UI Demo',
+        theme: HuxTheme.lightTheme,
+        darkTheme: HuxTheme.darkTheme,
         themeMode: _themeMode,
-        onThemeToggle: _toggleTheme,
+        home: MyHomePage(
+          themeMode: _themeMode,
+          onThemeToggle: _toggleTheme,
+        ),
+        debugShowCheckedModeBanner: false,
       ),
-      debugShowCheckedModeBanner: false,
     );
+  }
+
+  List<HuxCommandItem> _getGlobalCommands() {
+    return [
+      HuxCommandItem(
+        id: 'toggle-theme',
+        label: 'Toggle Theme',
+        description: 'Switch between light and dark theme',
+        shortcut: '⌘⇧T',
+        icon: LucideIcons.sun,
+        category: 'View',
+        onExecute: _toggleTheme,
+      ),
+      HuxCommandItem(
+        id: 'help',
+        label: 'Help',
+        description: 'Open help documentation',
+        shortcut: '⌘?',
+        icon: LucideIcons.helpCircle,
+        category: 'Help',
+        onExecute: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Help opened'),
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+        },
+      ),
+    ];
   }
 }
 
@@ -91,6 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _dialogKey = GlobalKey();
   final _dropdownKey = GlobalKey();
   final _paginationKey = GlobalKey();
+  final _commandKey = GlobalKey();
   // final _timePickerKey = GlobalKey();
   // final _timePickerNavKey = GlobalKey();
   // final _timeButtonKey = GlobalKey();
@@ -104,97 +147,102 @@ class _MyHomePageState extends State<MyHomePage> {
     _navigationItems = [
       NavigationItem(
         title: 'Buttons',
-        icon: FeatherIcons.square,
+        icon: LucideIcons.square,
         key: _buttonsKey,
       ),
       NavigationItem(
         title: 'Input',
-        icon: FeatherIcons.edit3,
+        icon: LucideIcons.edit3,
         key: _textFieldsKey,
       ),
       NavigationItem(
         title: 'Cards',
-        icon: FeatherIcons.creditCard,
+        icon: LucideIcons.creditCard,
         key: _cardsKey,
       ),
       NavigationItem(
         title: 'Charts',
-        icon: FeatherIcons.barChart2,
+        icon: LucideIcons.barChart2,
         key: _chartsKey,
       ),
       NavigationItem(
         title: 'Context Menu',
-        icon: FeatherIcons.menu,
+        icon: LucideIcons.menu,
         key: _contextMenuKey,
       ),
       NavigationItem(
         title: 'Checkbox',
-        icon: FeatherIcons.checkSquare,
+        icon: LucideIcons.checkSquare,
         key: _checkboxesKey,
       ),
       NavigationItem(
         title: 'Radio Buttons',
-        icon: FeatherIcons.circle,
+        icon: LucideIcons.circle,
         key: _radioButtonsKey,
       ),
       NavigationItem(
         title: 'Switch',
-        icon: FeatherIcons.toggleLeft,
+        icon: LucideIcons.toggleLeft,
         key: _toggleSwitchesKey,
       ),
       NavigationItem(
         title: 'Toggle',
-        icon: FeatherIcons.edit3,
+        icon: LucideIcons.edit3,
         key: _toggleButtonsKey,
       ),
       NavigationItem(
         title: 'Badges',
-        icon: FeatherIcons.tag,
+        icon: LucideIcons.tag,
         key: _badgesKey,
       ),
       NavigationItem(
         title: 'Snackbar',
-        icon: FeatherIcons.alertCircle,
+        icon: LucideIcons.alertCircle,
         key: _indicatorsKey,
       ),
       NavigationItem(
         title: 'Avatar',
-        icon: FeatherIcons.user,
+        icon: LucideIcons.user,
         key: _displayKey,
       ),
       NavigationItem(
         title: 'Loading',
-        icon: FeatherIcons.loader,
+        icon: LucideIcons.loader,
         key: _loadingKey,
       ),
       NavigationItem(
         title: 'Date Picker',
-        icon: FeatherIcons.calendar,
+        icon: LucideIcons.calendar,
         key: _datePickerNavKey,
       ),
       NavigationItem(
         title: 'Tooltip',
-        icon: FeatherIcons.messageCircle,
+        icon: LucideIcons.messageCircle,
         key: _tooltipKey,
       ),
       NavigationItem(
         title: 'Dialog',
-        icon: FeatherIcons.messageSquare,
+        icon: LucideIcons.messageSquare,
         key: _dialogKey,
       ),
       NavigationItem(
         title: 'Dropdown',
-        icon: FeatherIcons.chevronDown,
+        icon: LucideIcons.chevronDown,
         key: _dropdownKey,
       ),
       NavigationItem(
         title: 'Pagination',
-        icon: FeatherIcons.layers,
+        icon: LucideIcons.layers,
         key: _paginationKey,
+      ),
+      NavigationItem(
+        title: 'Command',
+        icon: LucideIcons.command,
+        key: _commandKey,
       ),
       // NavigationItem(
       //   title: 'Time Picker',
-      //   icon: FeatherIcons.clock,
+      //   icon: LucideIcons.clock,
       //   key: _timePickerKey,
       // ),
     ];
@@ -342,8 +390,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 child: Icon(
                                   widget.themeMode == ThemeMode.light
-                                      ? FeatherIcons.moon
-                                      : FeatherIcons.sun,
+                                      ? LucideIcons.moon
+                                      : LucideIcons.sun,
                                   size: 20,
                                   color: Theme.of(context).brightness ==
                                           Brightness.dark
@@ -420,7 +468,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       : HuxColors.black80,
                                 ),
                             icon: Icon(
-                              FeatherIcons.chevronDown,
+                              LucideIcons.chevronDown,
                               color: Theme.of(context).brightness ==
                                       Brightness.dark
                                   ? HuxColors.white60
@@ -634,7 +682,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         primaryColor:
                                             _currentPrimaryColor(context),
                                         size: _selectedButtonSize,
-                                        icon: FeatherIcons.upload,
+                                        icon: LucideIcons.upload,
                                         child: const Text('With Icon'),
                                       ),
                                       HuxButton(
@@ -642,7 +690,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         primaryColor:
                                             _currentPrimaryColor(context),
                                         size: _selectedButtonSize,
-                                        icon: FeatherIcons.upload,
+                                        icon: LucideIcons.upload,
                                         width: HuxButtonWidth.fixed,
                                         widthValue: _getButtonHeight(
                                             _selectedButtonSize), // Square button
@@ -674,7 +722,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   controller: _emailController,
                                   label: 'Email',
                                   hint: 'Enter your email address',
-                                  prefixIcon: const Icon(FeatherIcons.mail),
+                                  prefixIcon: const Icon(LucideIcons.mail),
                                   keyboardType: TextInputType.emailAddress,
                                   width: 400, // Fixed width of 400px
                                   validator: (value) {
@@ -694,8 +742,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   controller: _passwordController,
                                   label: 'Password',
                                   hint: 'Enter your password',
-                                  prefixIcon: const Icon(FeatherIcons.lock),
-                                  suffixIcon: const Icon(FeatherIcons.eye),
+                                  prefixIcon: const Icon(LucideIcons.lock),
+                                  suffixIcon: const Icon(LucideIcons.eye),
                                   obscureText: true,
                                   width: 400, // Fixed width of 400px
                                   validator: (value) {
@@ -850,13 +898,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                       menuItems: [
                                         HuxContextMenuItem(
                                           text: 'Copy',
-                                          icon: FeatherIcons.copy,
+                                          icon: LucideIcons.copy,
                                           onTap: () => _showSnackBar(
                                               'Copy action triggered'),
                                         ),
                                         HuxContextMenuItem(
                                           text: 'Paste',
-                                          icon: FeatherIcons.clipboard,
+                                          icon: LucideIcons.clipboard,
                                           onTap: () => _showSnackBar(
                                               'Paste action triggered'),
                                           isDisabled: true,
@@ -864,7 +912,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         const HuxContextMenuDivider(),
                                         HuxContextMenuItem(
                                           text: 'Share',
-                                          icon: FeatherIcons.share2,
+                                          icon: LucideIcons.share2,
                                           onTap: () => _showSnackBar(
                                               'Share action triggered'),
                                         ),
@@ -876,7 +924,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           height: 60,
                                           alignment: Alignment.center,
                                           child: Icon(
-                                            FeatherIcons.fileText,
+                                            LucideIcons.fileText,
                                             size: 32,
                                             color:
                                                 Theme.of(context).brightness ==
@@ -894,20 +942,20 @@ class _MyHomePageState extends State<MyHomePage> {
                                       menuItems: [
                                         HuxContextMenuItem(
                                           text: 'Edit',
-                                          icon: FeatherIcons.edit2,
+                                          icon: LucideIcons.edit2,
                                           onTap: () => _showSnackBar(
                                               'Edit action triggered'),
                                         ),
                                         HuxContextMenuItem(
                                           text: 'Duplicate',
-                                          icon: FeatherIcons.copy,
+                                          icon: LucideIcons.copy,
                                           onTap: () => _showSnackBar(
                                               'Duplicate action triggered'),
                                         ),
                                         const HuxContextMenuDivider(),
                                         HuxContextMenuItem(
                                           text: 'Delete',
-                                          icon: FeatherIcons.trash2,
+                                          icon: LucideIcons.trash2,
                                           onTap: () => _showSnackBar(
                                               'Delete action triggered'),
                                           isDestructive: true,
@@ -920,7 +968,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           height: 60,
                                           alignment: Alignment.center,
                                           child: Icon(
-                                            FeatherIcons.folder,
+                                            LucideIcons.folder,
                                             size: 32,
                                             color:
                                                 Theme.of(context).brightness ==
@@ -942,20 +990,20 @@ class _MyHomePageState extends State<MyHomePage> {
                                 menuItems: [
                                   HuxContextMenuItem(
                                     text: 'Save',
-                                    icon: FeatherIcons.save,
+                                    icon: LucideIcons.save,
                                     onTap: () =>
                                         _showSnackBar('Save action triggered'),
                                   ),
                                   HuxContextMenuItem(
                                     text: 'Export',
-                                    icon: FeatherIcons.download,
+                                    icon: LucideIcons.download,
                                     onTap: () => _showSnackBar(
                                         'Export action triggered'),
                                   ),
                                   const HuxContextMenuDivider(),
                                   HuxContextMenuItem(
                                     text: 'Reset',
-                                    icon: FeatherIcons.refreshCw,
+                                    icon: LucideIcons.refreshCw,
                                     onTap: () =>
                                         _showSnackBar('Reset action triggered'),
                                     isDestructive: true,
@@ -965,7 +1013,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onPressed: () =>
                                       _showSnackBar('Button clicked normally'),
                                   primaryColor: _currentPrimaryColor(context),
-                                  icon: FeatherIcons.settings,
+                                  icon: LucideIcons.settings,
                                   child: const Text(
                                       'Right-click for More Options'),
                                 ),
@@ -1089,7 +1137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     });
                                   },
                                   variant: HuxButtonVariant.outline,
-                                  icon: FeatherIcons.calendar,
+                                  icon: LucideIcons.calendar,
                                   placeholder: 'Select Date',
                                 ),
                               ),
@@ -1159,6 +1207,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         key: _paginationKey,
                         child: const PaginationSection(),
+                      ),
+                      const SizedBox(height: 32),
+                      Container(
+                        key: _commandKey,
+                        child: const CommandSection(),
                       ),
                       const SizedBox(height: 32),
                     ],
@@ -1648,7 +1701,7 @@ class _DropdownSectionState extends State<DropdownSection> {
       value: 'Option 1',
       child: Row(
         children: [
-          Icon(FeatherIcons.user, size: 16),
+          Icon(LucideIcons.user, size: 16),
           SizedBox(width: 8),
           Text('Option 1'),
         ],
@@ -1658,7 +1711,7 @@ class _DropdownSectionState extends State<DropdownSection> {
       value: 'Option 2',
       child: Row(
         children: [
-          Icon(FeatherIcons.settings, size: 16),
+          Icon(LucideIcons.settings, size: 16),
           SizedBox(width: 8),
           Text('Option 2'),
         ],
@@ -1668,7 +1721,7 @@ class _DropdownSectionState extends State<DropdownSection> {
       value: 'Option 3',
       child: Row(
         children: [
-          Icon(FeatherIcons.bell, size: 16),
+          Icon(LucideIcons.bell, size: 16),
           SizedBox(width: 8),
           Text('Option 3'),
         ],
@@ -1834,7 +1887,7 @@ class _ToggleButtonsSectionState extends State<ToggleButtonsSection> {
                       _isEditing = value;
                     });
                   },
-                  icon: FeatherIcons.edit2,
+                  icon: LucideIcons.edit2,
                   variant: _selectedVariant,
                   primaryColor: _currentPrimaryColor(context),
                 ),
@@ -1847,7 +1900,7 @@ class _ToggleButtonsSectionState extends State<ToggleButtonsSection> {
                       _isEditing = value;
                     });
                   },
-                  icon: FeatherIcons.edit2,
+                  icon: LucideIcons.edit2,
                   label: 'Edit',
                   variant: _selectedVariant,
                   primaryColor: _currentPrimaryColor(context),
@@ -1901,6 +1954,119 @@ class _PaginationSectionState extends State<PaginationSection> {
                   color: HuxTokens.textSecondary(context),
                 ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class CommandSection extends StatefulWidget {
+  const CommandSection({super.key});
+
+  @override
+  State<CommandSection> createState() => _CommandSectionState();
+}
+
+class _CommandSectionState extends State<CommandSection> {
+  late final List<HuxCommandItem> _commands;
+
+  @override
+  void initState() {
+    super.initState();
+    _commands = [
+      HuxCommandItem(
+        id: 'toggle-theme',
+        label: 'Toggle Theme',
+        description: 'Switch between light and dark mode',
+        shortcut: '⌘⇧T',
+        icon: LucideIcons.sun,
+        category: 'View',
+        onExecute: () => _showSnackBar('Theme toggled'),
+      ),
+      HuxCommandItem(
+        id: 'quick-search',
+        label: 'Quick Search',
+        description: 'Search across all content',
+        shortcut: '⌘K',
+        icon: LucideIcons.search,
+        category: 'Navigation',
+        onExecute: () => _showSnackBar('Quick search opened'),
+      ),
+      HuxCommandItem(
+        id: 'new-project',
+        label: 'New Project',
+        description: 'Create a new project',
+        shortcut: '⌘⇧N',
+        icon: LucideIcons.folderPlus,
+        category: 'Project',
+        onExecute: () => _showSnackBar('New project created'),
+      ),
+      HuxCommandItem(
+        id: 'settings',
+        label: 'Settings',
+        description: 'Open application settings',
+        shortcut: '⌘,',
+        icon: LucideIcons.settings,
+        category: 'Preferences',
+        onExecute: () => _showSnackBar('Settings opened'),
+      ),
+      HuxCommandItem(
+        id: 'help',
+        label: 'Help & Support',
+        description: 'View help documentation',
+        shortcut: '⌘?',
+        icon: LucideIcons.helpCircle,
+        category: 'Help',
+        onExecute: () => _showSnackBar('Help opened'),
+      ),
+    ];
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      title: 'Command Palette',
+      subtitle: 'Quick access to commands via CMD+K or action button',
+      child: Column(
+        children: [
+          const SizedBox(height: 16),
+
+          // Description
+          Text(
+            'Press CMD+K (or Ctrl+K) to open the command palette, or click the button below:',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: HuxTokens.textSecondary(context),
+                ),
+            textAlign: TextAlign.center,
+          ),
+
+          const SizedBox(height: 24),
+
+          // Open Command Palette Button
+          Center(
+            child: HuxButton(
+              onPressed: () => showHuxCommand(
+                context: context,
+                commands: _commands,
+                onCommandSelected: (command) {
+                  _showSnackBar('Command executed: ${command.label}');
+                },
+              ),
+              icon: LucideIcons.command,
+              child: const Text('Open Command Palette'),
+            ),
+          ),
+
+          const SizedBox(height: 24),
         ],
       ),
     );

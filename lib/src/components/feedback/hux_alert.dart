@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import '../../theme/hux_tokens.dart';
 
 /// HuxAlert is a feedback message component that follows the Hux design system
@@ -107,7 +107,7 @@ class HuxAlert extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(4),
                   child: Icon(
-                    FeatherIcons.x,
+                    LucideIcons.x,
                     size: 16,
                     color: _getTextColor(context),
                   ),
@@ -176,13 +176,13 @@ class HuxAlert extends StatelessWidget {
   IconData _getIcon() {
     switch (variant) {
       case HuxAlertVariant.info:
-        return FeatherIcons.info;
+        return LucideIcons.info;
       case HuxAlertVariant.success:
-        return FeatherIcons.checkCircle;
+        return LucideIcons.checkCircle;
       case HuxAlertVariant.warning:
-        return FeatherIcons.alertTriangle;
+        return LucideIcons.alertTriangle;
       case HuxAlertVariant.error:
-        return FeatherIcons.alertCircle;
+        return LucideIcons.alertCircle;
     }
   }
 }

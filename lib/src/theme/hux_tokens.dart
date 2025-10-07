@@ -63,13 +63,13 @@ class HuxTokens {
   /// Elevated surface background color for cards and modals
   static Color surfaceElevated(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return isDark ? HuxColors.black90 : HuxColors.white;
+    return isDark ? HuxColors.black : HuxColors.white;
   }
 
   /// Surface color for hover states
   static Color surfaceHover(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return isDark ? HuxColors.white20 : HuxColors.black5;
+    return isDark ? HuxColors.white10 : HuxColors.black5;
   }
 
   // BORDER TOKENS
@@ -82,7 +82,7 @@ class HuxTokens {
   /// Secondary border color for subtle divisions
   static Color borderSecondary(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return isDark ? HuxColors.white20 : HuxColors.black10;
+    return isDark ? HuxColors.white10 : HuxColors.black10;
   }
 
   // BUTTON TOKENS

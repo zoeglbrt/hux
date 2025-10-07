@@ -1,0 +1,275 @@
+---
+title: Command
+description: A powerful command palette component for quick access to actions and navigation
+---
+
+import { Callout } from '../snippets/callout.mdx'
+
+The Command component provides a searchable command palette that allows users to quickly find and execute actions using keyboard shortcuts or mouse interaction.
+
+## Overview
+
+- **Keyboard Shortcuts**: Open with `CMD+K` (Mac) or `Ctrl+K` (Windows/Linux)
+- **Search & Filter**: Real-time filtering as you type
+- **Keyboard Navigation**: Arrow keys to navigate, Enter to execute
+- **Customizable**: Add your own commands with icons, shortcuts, and categories
+- **Accessible**: Full keyboard and screen reader support
+
+## Basic Usage
+
+```dart
+import 'package:hux/hux.dart';
+
+// Define your commands
+final commands = [
+  HuxCommandItem(
+    id: 'toggle-theme',
+    label: 'Toggle Theme',
+    description: 'Switch between light and dark mode',
+    shortcut: '⌘⇧T',
+    icon: LucideIcons.sun,
+    category: 'View',
+    onExecute: () => print('Theme toggled'),
+  ),
+  HuxCommandItem(
+    id: 'settings',
+    label: 'Settings',
+    description: 'Open application settings',
+    shortcut: '⌘,',
+    icon: LucideIcons.settings,
+    category: 'Preferences',
+    onExecute: () => print('Settings opened'),
+  ),
+];
+
+// Show the command palette
+showHuxCommand(
+  context: context,
+  commands: commands,
+  placeholder: 'Type a command or search...',
+  onCommandSelected: (command) {
+    print('Selected: ${command.label}');
+  },
+);
+```
+
+## Global Keyboard Shortcuts
+
+For app-wide command palette access, wrap your app with `HuxCommandShortcuts.wrapper`:
+
+```dart
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return HuxCommandShortcuts.wrapper(
+      commands: globalCommands,
+      child: MaterialApp(
+        home: MyHomePage(),
+      ),
+    );
+  }
+}
+```
+
+## Command Item Properties
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `id` | `String` | Unique identifier for the command |
+| `label` | `String` | Display name of the command |
+| `description` | `String?` | Optional detailed description |
+| `shortcut` | `String?` | Keyboard shortcut (e.g., '⌘K', '⌘⇧F') |
+| `icon` | `IconData?` | Icon to display next to the command |
+| `category` | `String?` | Category for grouping commands |
+| `onExecute` | `VoidCallback` | Function to execute when command is selected |
+
+## Shortcut Format
+
+Use Apple symbols for shortcuts without '+' signs:
+
+- **Command**: `⌘`
+- **Shift**: `⇧`
+- **Option**: `⌥`
+- **Control**: `⌃`
+
+Examples:
+- `⌘K` - Command + K
+- `⌘⇧F` - Command + Shift + F
+- `⌘⌥T` - Command + Option + T
+
+## Customization
+
+### Custom Placeholder
+
+```dart
+showHuxCommand(
+  context: context,
+  commands: commands,
+  placeholder: 'Search commands...',
+);
+```
+
+### Custom Empty State
+
+```dart
+showHuxCommand(
+  context: context,
+  commands: commands,
+  emptyText: 'No matching commands found',
+);
+```
+
+### Command Categories
+
+Organize commands by category for better user experience:
+
+```dart
+final commands = [
+  // File operations
+  HuxCommandItem(
+    id: 'new-file',
+    label: 'New File',
+    category: 'File',
+    // ...
+  ),
+  
+  // Edit operations
+  HuxCommandItem(
+    id: 'find',
+    label: 'Find',
+    category: 'Edit',
+    // ...
+  ),
+  
+  // View operations
+  HuxCommandItem(
+    id: 'toggle-sidebar',
+    label: 'Toggle Sidebar',
+    category: 'View',
+    // ...
+  ),
+];
+```
+
+## Keyboard Navigation
+
+- **`CMD+K` / `Ctrl+K`**: Open command palette
+- **`↑` / `↓`**: Navigate through commands
+- **`Enter`**: Execute selected command
+- **`Escape`**: Close command palette
+- **Type**: Filter commands by name
+
+## Examples
+
+### File Management Commands
+
+```dart
+final fileCommands = [
+  HuxCommandItem(
+    id: 'new-file',
+    label: 'New File',
+    shortcut: '⌘N',
+    icon: LucideIcons.filePlus,
+    category: 'File',
+    onExecute: () => createNewFile(),
+  ),
+  HuxCommandItem(
+    id: 'open-file',
+    label: 'Open File',
+    shortcut: '⌘O',
+    icon: LucideIcons.folder,
+    category: 'File',
+    onExecute: () => openFileDialog(),
+  ),
+  HuxCommandItem(
+    id: 'save-file',
+    label: 'Save File',
+    shortcut: '⌘S',
+    icon: LucideIcons.save,
+    category: 'File',
+    onExecute: () => saveCurrentFile(),
+  ),
+];
+```
+
+### Navigation Commands
+
+```dart
+final navigationCommands = [
+  HuxCommandItem(
+    id: 'go-to-dashboard',
+    label: 'Go to Dashboard',
+    shortcut: '⌘1',
+    icon: LucideIcons.home,
+    category: 'Navigation',
+    onExecute: () => navigateToDashboard(),
+  ),
+  HuxCommandItem(
+    id: 'go-to-settings',
+    label: 'Go to Settings',
+    shortcut: '⌘,',
+    icon: LucideIcons.settings,
+    category: 'Navigation',
+    onExecute: () => navigateToSettings(),
+  ),
+];
+```
+
+## Best Practices
+
+<Callout type="info">
+**Command Organization**: Group related commands by category and use consistent naming conventions.
+</Callout>
+
+<Callout type="warning">
+**Shortcut Conflicts**: Ensure keyboard shortcuts don't conflict with system shortcuts or other app shortcuts.
+</Callout>
+
+<Callout type="success">
+**Accessibility**: Always provide meaningful labels and descriptions for screen readers.
+</Callout>
+
+## API Reference
+
+### HuxCommand
+
+The main command palette widget.
+
+#### Constructor
+
+```dart
+HuxCommand({
+  required List<HuxCommandItem> commands,
+  String placeholder = 'Type a command or search...',
+  String emptyText = 'No commands found',
+  ValueChanged<HuxCommandItem>? onCommandSelected,
+  VoidCallback? onClose,
+})
+```
+
+### HuxCommandItem
+
+Represents a single command in the palette.
+
+#### Constructor
+
+```dart
+HuxCommandItem({
+  required String id,
+  required String label,
+  required VoidCallback onExecute,
+  String? description,
+  String? shortcut,
+  IconData? icon,
+  String? category,
+})
+```
+
+### HuxCommandShortcuts
+
+Utility class for global keyboard shortcuts.
+
+#### Methods
+
+- `wrapper()` - Wraps your app to provide global shortcuts
+- `handleKeyEvent()` - Returns a key event handler for custom integration

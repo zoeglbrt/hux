@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import '../../theme/hux_tokens.dart';
 
 /// Visual variants for HuxSnackbar.
@@ -167,7 +167,7 @@ class HuxSnackbar {
                 child: Padding(
                   padding: const EdgeInsets.all(4),
                   child: Icon(
-                    FeatherIcons.x,
+                    LucideIcons.x,
                     size: 16,
                     color: textColor ?? _getTextColor(context),
                   ),
@@ -238,13 +238,13 @@ class HuxSnackbar {
   IconData _getIcon() {
     switch (variant) {
       case HuxSnackbarVariant.info:
-        return FeatherIcons.info;
+        return LucideIcons.info;
       case HuxSnackbarVariant.success:
-        return FeatherIcons.checkCircle;
+        return LucideIcons.checkCircle;
       case HuxSnackbarVariant.warning:
-        return FeatherIcons.alertTriangle;
+        return LucideIcons.alertTriangle;
       case HuxSnackbarVariant.error:
-        return FeatherIcons.alertCircle;
+        return LucideIcons.alertCircle;
     }
   }
 }

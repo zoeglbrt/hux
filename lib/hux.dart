@@ -71,16 +71,19 @@ export 'src/components/dialog/hux_dialog.dart';
 export 'src/components/dropdown/hux_dropdown.dart';
 export 'src/components/pagination/hux_pagination.dart';
 export 'src/components/toggle/hux_toggle.dart';
+export 'src/components/command/hux_command.dart';
+export 'src/components/command/hux_command_item.dart';
+export 'src/components/command/hux_command_shortcuts.dart';
 
 // Export external dependencies
-/// FeatherIcons - Beautiful icon set for Flutter applications
+/// LucideIcons - Beautiful icon set for Flutter applications
 ///
-/// Provides access to over 280+ beautiful, customizable SVG icons.
-/// Use FeatherIcons.iconName to access any icon.
+/// Provides access to over 1000+ beautiful, customizable SVG icons.
+/// Use LucideIcons.iconName to access any icon.
 ///
 /// Example:
 /// ```dart
-/// Icon(FeatherIcons.heart)
-/// Icon(FeatherIcons.user)
+/// Icon(LucideIcons.heart)
+/// Icon(LucideIcons.user)
 /// ```
-export 'package:flutter_feather_icons/flutter_feather_icons.dart';
+export 'package:lucide_icons/lucide_icons.dart';

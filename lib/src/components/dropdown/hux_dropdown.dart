@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import '../../theme/hux_tokens.dart';
 import '../buttons/hux_button.dart';
 
@@ -157,7 +157,7 @@ class _HuxDropdownState<T> extends State<HuxDropdown<T>> {
                                 Expanded(child: item.child),
                                 if (isSelected)
                                   Icon(
-                                    FeatherIcons.check,
+                                    LucideIcons.check,
                                     size: 16,
                                     color: HuxTokens.primary(context),
                                   ),
@@ -227,7 +227,7 @@ class _HuxDropdownState<T> extends State<HuxDropdown<T>> {
           ),
           const SizedBox(width: 8),
           Icon(
-            _isOpen ? FeatherIcons.chevronUp : FeatherIcons.chevronDown,
+            _isOpen ? LucideIcons.chevronUp : LucideIcons.chevronDown,
             size: 16,
             color: widget.variant == HuxButtonVariant.primary
                 ? _getContrastingTextColor(

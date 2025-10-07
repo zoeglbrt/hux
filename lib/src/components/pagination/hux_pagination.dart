@@ -1,4 +1,4 @@
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:hux/src/components/buttons/hux_button.dart';
 import 'package:hux/src/theme/hux_tokens.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +59,7 @@ class HuxPagination extends StatelessWidget {
           variant: HuxButtonVariant.outline,
           isDisabled: currentPage == 1,
           size: HuxButtonSize.small,
-          icon: FeatherIcons.chevronLeft,
+          icon: LucideIcons.chevronLeft,
           child: const SizedBox(width: 0), // Icon-only button
         ),
         const SizedBox(width: 8),
@@ -72,7 +72,7 @@ class HuxPagination extends StatelessWidget {
           variant: HuxButtonVariant.outline,
           isDisabled: currentPage == totalPages,
           size: HuxButtonSize.small,
-          icon: FeatherIcons.chevronRight,
+          icon: LucideIcons.chevronRight,
           child: const SizedBox(width: 0), // Icon-only button
         ),
       ],

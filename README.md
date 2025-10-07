@@ -3,7 +3,7 @@
 A modern Flutter UI package with beautiful, customizable components designed for clean and consistent user interfaces.
 
 [![Flutter support](https://img.shields.io/badge/Flutter-3.16%2B-white?style=flat&labelColor=black&logo=flutter&logoColor=WHITE)](https://flutter.dev/)
-[![Figma](https://img.shields.io/badge/Figma%20users-9-white?style=flat&labelColor=black&logo=figma&logoColor=white)](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
+[![Figma](https://img.shields.io/badge/Figma%20users-12-white?style=flat&labelColor=black&logo=figma&logoColor=white)](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsor-Hux%20UI-white?style=flat&labelColor=black&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/zoeglbrt)
 
 [![pub package](https://img.shields.io/pub/v/hux?style=flat&color=white&labelColor=black)](https://pub.dev/packages/hux)
@@ -14,20 +14,25 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.11.0
+## Latest Version: 0.12.0
 
-**What's New in v0.11.0:**
-- **New HuxPagination Component**: Navigate through pages with intelligent ellipsis handling (originally contributed by @Kingsley-EZE)
-  - Previous/next arrow buttons with proper disabled states
-  - Configurable maximum pages to show
-  - Theme-aware styling with HuxTokens
-  - WCAG AA compliant contrast ratios
-  - Compact button design with proper spacing
+**What's New in v0.12.0:**
+- **New HuxCommand Component**: Command palette for quick access to actions and navigation
+  - Keyboard shortcuts support (CMD+K on Mac, Ctrl+K on Windows/Linux)
+  - Real-time search and filtering as you type
+  - Keyboard navigation with arrow keys and Enter to execute
+  - Customizable commands with icons, shortcuts, and categories
+  - Modern design with 16px border radius and proper hover states
+  - Global keyboard shortcuts integration with `HuxCommandShortcuts.wrapper`
+  - Apple symbol shortcuts (⌘, ⇧, ⌥, ⌃)
   - Comprehensive documentation and examples
-- **Enhanced HuxButton**: Fixed `hug` width behavior to properly size to content
-  - Override ElevatedButton's minimum size constraints for true hugging
-  - Improved compact button support across all Hux components
-  - Better consistency with expected button sizing behavior
+- **Icon Library Migration**: Complete transition from Feather Icons to Lucide Icons
+  - Updated all components to use `LucideIcons` instead of `FeatherIcons`
+  - Added `lucide_icons: ^0.257.0` dependency
+  - Maintained backward compatibility with existing icon usage patterns
+- **Design Token Improvements**: Enhanced `HuxTokens` for better visual hierarchy
+  - Updated `surfaceElevated` to be 100% opaque for better accessibility
+  - Fixed `borderSecondary` to use proper subtle color for better visual separation
 
 [![Changelog](https://img.shields.io/badge/Changelog-View-black?style=for-the-badge&labelColor=white&logo=github&logoColor=black)](CHANGELOG.md)
 [![Docs](https://img.shields.io/badge/Docs-Browse-black?style=for-the-badge&labelColor=white&logo=readthedocs&logoColor=black)](https://docs.thehuxdesign.com)
@@ -146,6 +151,14 @@ A modern Flutter UI package with beautiful, customizable components designed for
 - Compact button design with proper spacing
 
 ![HuxPagination Component](screenshots/hux-pagination.png)
+
+### Command
+- `HuxCommand` - Powerful command palette for quick access to actions and navigation
+- Keyboard shortcuts support (CMD+K on Mac, Ctrl+K on Windows/Linux)
+- Real-time search and filtering as you type
+- Keyboard navigation with arrow keys and Enter to execute
+- Customizable commands with icons, shortcuts, and categories
+- Global keyboard shortcuts integration with `HuxCommandShortcuts.wrapper`
 
 ### Theme
 - `HuxTheme` - Pre-configured light and dark themes
@@ -432,6 +445,50 @@ HuxAlert(
   message: 'Operation completed successfully.',
   showIcon: true,
   onDismiss: () => print('Alert dismissed'),
+)
+```
+
+#### Command Palette
+
+```dart
+// Define your commands
+final commands = [
+  HuxCommandItem(
+    id: 'toggle-theme',
+    label: 'Toggle Theme',
+    description: 'Switch between light and dark mode',
+    shortcut: '⌘⇧T',
+    icon: LucideIcons.sun,
+    category: 'View',
+    onExecute: () => print('Theme toggled'),
+  ),
+  HuxCommandItem(
+    id: 'settings',
+    label: 'Settings',
+    description: 'Open application settings',
+    shortcut: '⌘,',
+    icon: LucideIcons.settings,
+    category: 'Preferences',
+    onExecute: () => print('Settings opened'),
+  ),
+];
+
+// Show the command palette
+showHuxCommand(
+  context: context,
+  commands: commands,
+  placeholder: 'Type a command or search...',
+  onCommandSelected: (command) {
+    print('Selected: ${command.label}');
+  },
+);
+
+// Or wrap your app for global shortcuts
+HuxCommandShortcuts.wrapper(
+  commands: commands,
+  child: MaterialApp(
+    home: MyHomePage(),
+  ),
 )
 ```
 
