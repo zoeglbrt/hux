@@ -48,7 +48,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^6.3.0
   cristalyse: ^1.8.0
   universal_html: ^2.2.4
   lucide_icons: ^0.257.0
@@ -68,4 +67,21 @@ platforms:
   web:
   windows:
 
-flutter: 
+flutter:
+  fonts:
+    - family: Manrope
+      fonts:
+        - asset: fonts/Manrope/static/Manrope-Regular.ttf
+          weight: 400
+        - asset: fonts/Manrope/static/Manrope-Medium.ttf
+          weight: 500
+        - asset: fonts/Manrope/static/Manrope-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Manrope/static/Manrope-Bold.ttf
+          weight: 700
+        - asset: fonts/Manrope/static/Manrope-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/Manrope/static/Manrope-Light.ttf
+          weight: 300
+        - asset: fonts/Manrope/static/Manrope-ExtraLight.ttf
+          weight: 200

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'hux_colors.dart';
 
 /// HuxTheme provides the theme configuration for Hux UI components
@@ -13,7 +12,7 @@ class HuxTheme {
       seedColor: HuxColors.primary,
       brightness: Brightness.light,
     ),
-    fontFamily: GoogleFonts.manrope().fontFamily,
+    fontFamily: 'Manrope',
     appBarTheme: const AppBarTheme(
       backgroundColor: HuxColors.white,
       foregroundColor: HuxColors.black90,
@@ -62,7 +61,7 @@ class HuxTheme {
       seedColor: HuxColors.primary,
       brightness: Brightness.dark,
     ),
-    fontFamily: GoogleFonts.manrope().fontFamily,
+    fontFamily: 'Manrope',
     scaffoldBackgroundColor: HuxColors.black90,
     appBarTheme: const AppBarTheme(
       backgroundColor: HuxColors.black90,

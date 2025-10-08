@@ -524,6 +524,13 @@ Your support helps us:
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## Fonts & Third-Party Licenses
+
+### Manrope Font
+Hux UI uses the [Manrope](https://github.com/sharanda/manrope) font family, licensed under the [SIL Open Font License, Version 1.1](fonts/Manrope/OFL.txt).
+
+Copyright 2018 The Manrope Project Authors (https://github.com/sharanda/manrope)
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
