@@ -72,6 +72,12 @@ class HuxTokens {
     return isDark ? HuxColors.white10 : HuxColors.black5;
   }
 
+  /// Overlay surface background color for snackbars and overlays
+  static Color surfaceOverlay(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return isDark ? HuxColors.black80 : HuxColors.white;
+  }
+
   // BORDER TOKENS
   /// Primary border color for components
   static Color borderPrimary(BuildContext context) {

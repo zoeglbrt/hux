@@ -1,0 +1,290 @@
+---
+title: 'Sidebar'
+description: 'Complete sidebar navigation component for app-wide navigation with selection state management'
+---
+
+## Overview
+
+HuxSidebar is a complete navigation component that provides a consistent sidebar layout with header, navigation items, and optional footer. It handles selection state management automatically and provides a clean API for sidebar navigation in your Flutter applications.
+
+## Basic Usage
+
+### Simple Sidebar
+Basic sidebar with navigation items:
+```dart
+HuxSidebar(
+  items: [
+    HuxSidebarItemData(
+      id: 'dashboard',
+      icon: LucideIcons.home,
+      label: 'Dashboard',
+    ),
+    HuxSidebarItemData(
+      id: 'settings',
+      icon: LucideIcons.settings,
+      label: 'Settings',
+    ),
+  ],
+  selectedItemId: 'dashboard',
+  onItemSelected: (itemId) => print('Selected: $itemId'),
+)
+```
+
+### Sidebar with Header
+Sidebar with custom header content:
+```dart
+HuxSidebar(
+  header: Padding(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'My App',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 4),
+        Text(
+          'Navigation',
+          style: TextStyle(fontSize: 14, color: Colors.grey),
+        ),
+      ],
+    ),
+  ),
+  items: navigationItems,
+  selectedItemId: selectedId,
+  onItemSelected: handleItemSelection,
+)
+```
+
+### Sidebar with Footer
+Include footer content like user profile or settings:
+```dart
+HuxSidebar(
+  items: navigationItems,
+  selectedItemId: currentRoute,
+  onItemSelected: navigateToRoute,
+  footer: Padding(
+    padding: const EdgeInsets.all(16),
+    child: Row(
+      children: [
+        HuxAvatar(name: 'John Doe', size: HuxAvatarSize.small),
+        SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('John Doe', style: TextStyle(fontWeight: FontWeight.w500)),
+              Text('john@example.com', style: TextStyle(fontSize: 12)),
+            ],
+          ),
+        ),
+      ],
+    ),
+  ),
+)
+```
+
+## Navigation Items
+
+### HuxSidebarItemData
+Define individual navigation items:
+```dart
+HuxSidebarItemData(
+  id: 'unique-id',           // Required: Unique identifier
+  label: 'Dashboard',        // Required: Display label
+  icon: LucideIcons.home,    // Optional: Leading icon
+)
+```
+
+### Multiple Items
+Create a list of navigation items:
+```dart
+final items = [
+  HuxSidebarItemData(
+    id: 'dashboard',
+    icon: LucideIcons.home,
+    label: 'Dashboard',
+  ),
+  HuxSidebarItemData(
+    id: 'analytics',
+    icon: LucideIcons.barChart,
+    label: 'Analytics',
+  ),
+  HuxSidebarItemData(
+    id: 'settings',
+    icon: LucideIcons.settings,
+    label: 'Settings',
+  ),
+];
+```
+
+## Properties
+
+### HuxSidebar Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `items` | `List<HuxSidebarItemData>` | **required** | List of navigation items |
+| `onItemSelected` | `Function(String)` | **required** | Callback when item is selected |
+| `selectedItemId` | `String?` | `null` | Currently selected item ID |
+| `header` | `Widget?` | `null` | Optional header widget |
+| `footer` | `Widget?` | `null` | Optional footer widget |
+| `width` | `double` | `250` | Width of the sidebar |
+| `padding` | `EdgeInsets` | `vertical: 16` | Padding around items |
+
+### HuxSidebarItemData Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `id` | `String` | **required** | Unique identifier for the item |
+| `label` | `String` | **required** | Display label for the item |
+| `icon` | `IconData?` | `null` | Optional leading icon |
+
+## Styling
+
+### Custom Width
+Adjust sidebar width for your layout:
+```dart
+HuxSidebar(
+  width: 280,  // Custom width
+  items: navigationItems,
+  onItemSelected: handleSelection,
+)
+```
+
+### Custom Padding
+Control spacing around navigation items:
+```dart
+HuxSidebar(
+  padding: EdgeInsets.all(20),
+  items: navigationItems,
+  onItemSelected: handleSelection,
+)
+```
+
+## States
+
+### Selection State
+Items automatically show selected state based on `selectedItemId`:
+- **Selected**: Highlighted with primary color background
+- **Unselected**: Default appearance with hover state
+- **Hovered**: Subtle background change on mouse hover
+
+## Integration Examples
+
+### With Routing
+Integrate with your app's routing system:
+```dart
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String _currentRoute = 'dashboard';
+
+  void _handleNavigation(String itemId) {
+    setState(() {
+      _currentRoute = itemId;
+    });
+    // Navigate to route
+    Navigator.pushNamed(context, '/$itemId');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        HuxSidebar(
+          items: [
+            HuxSidebarItemData(id: 'dashboard', icon: LucideIcons.home, label: 'Dashboard'),
+            HuxSidebarItemData(id: 'users', icon: LucideIcons.users, label: 'Users'),
+            HuxSidebarItemData(id: 'settings', icon: LucideIcons.settings, label: 'Settings'),
+          ],
+          selectedItemId: _currentRoute,
+          onItemSelected: _handleNavigation,
+        ),
+        Expanded(
+          child: ContentArea(route: _currentRoute),
+        ),
+      ],
+    );
+  }
+}
+```
+
+### With Responsive Layout
+Make sidebar responsive to screen size:
+```dart
+LayoutBuilder(
+  builder: (context, constraints) {
+    final bool isWideScreen = constraints.maxWidth > 800;
+    
+    return Row(
+      children: [
+        if (isWideScreen)
+          HuxSidebar(
+            width: 250,
+            items: navigationItems,
+            selectedItemId: currentRoute,
+            onItemSelected: handleNavigation,
+          ),
+        Expanded(child: ContentArea()),
+      ],
+    );
+  },
+)
+```
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Navigation Structure" icon="sitemap">
+    - Keep navigation items between 5-10 for optimal UX
+    - Group related items together
+    - Use clear, concise labels
+    - Include meaningful icons that represent the destination
+  </Accordion>
+  
+  <Accordion title="Selection Management" icon="mouse-pointer">
+    - Always maintain a selected state
+    - Update selected item when route changes
+    - Provide visual feedback for current location
+    - Consider highlighting active section in multi-level navigation
+  </Accordion>
+  
+  <Accordion title="Responsive Design" icon="mobile">
+    - Hide sidebar on small screens and use drawer instead
+    - Adjust sidebar width based on screen size
+    - Consider collapsible sidebar for medium screens
+    - Ensure touch targets are at least 44x44 pixels
+  </Accordion>
+  
+  <Accordion title="Accessibility" icon="universal-access">
+    - Ensure keyboard navigation works smoothly
+    - Provide clear focus indicators
+    - Use semantic labels for screen readers
+    - Maintain sufficient color contrast (WCAG AA)
+  </Accordion>
+</AccordionGroup>
+
+## Theme Integration
+
+HuxSidebar automatically adapts to your app's theme:
+
+- **Light Mode**: Clean white background with subtle borders
+- **Dark Mode**: Dark background with appropriate contrast
+- **Selected State**: Uses theme primary color
+- **Hover State**: Subtle background change based on theme
+
+## Related Components
+
+- [HuxButton](/components/buttons) - Action buttons within sidebar
+- [HuxAvatar](/components/avatar) - User avatars in sidebar footer
+- [HuxBadge](/components/badge) - Notification badges on items
+- [HuxTooltip](/components/tooltip) - Tooltips for collapsed sidebar
+

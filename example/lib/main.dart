@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hux/hux.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,13 +28,8 @@ class _MyAppState extends State<MyApp> {
     return HuxCommandShortcuts.wrapper(
       commands: _getGlobalCommands(),
       onCommandSelected: (command) {
-        // Handle global command execution
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Global command executed: ${command.label}'),
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        // Execute the command's onExecute callback
+        command.onExecute();
       },
       child: MaterialApp(
         title: 'Hux UI Demo',
@@ -55,24 +51,42 @@ class _MyAppState extends State<MyApp> {
         id: 'toggle-theme',
         label: 'Toggle Theme',
         description: 'Switch between light and dark theme',
-        shortcut: '⌘⇧T',
+        shortcut: '⌘⇧D',
         icon: LucideIcons.sun,
         category: 'View',
         onExecute: _toggleTheme,
       ),
       HuxCommandItem(
+        id: 'open-command-palette',
+        label: 'Open Command Palette',
+        description: 'Open the command palette',
+        shortcut: '⌘⇧K',
+        icon: LucideIcons.command,
+        category: 'Navigation',
+        onExecute: () {
+          showHuxCommand(
+            context: context,
+            commands: _getGlobalCommands(),
+            onCommandSelected: (command) {
+              context.showHuxSnackbar(
+                message: 'Command executed: ${command.label}',
+                variant: HuxSnackbarVariant.info,
+              );
+            },
+          );
+        },
+      ),
+      HuxCommandItem(
         id: 'help',
         label: 'Help',
         description: 'Open help documentation',
-        shortcut: '⌘?',
+        shortcut: '⌘H',
         icon: LucideIcons.helpCircle,
         category: 'Help',
         onExecute: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Help opened'),
-              behavior: SnackBarBehavior.floating,
-            ),
+          context.showHuxSnackbar(
+            message: 'Help opened',
+            variant: HuxSnackbarVariant.info,
           );
         },
       ),
@@ -139,112 +153,108 @@ class _MyHomePageState extends State<MyHomePage> {
   // final _timeButtonKey = GlobalKey();
 
   // Navigation items
-  late final List<NavigationItem> _navigationItems;
+  late final List<HuxSidebarItemData> _navigationItems;
+  String? _selectedItemId;
 
   @override
   void initState() {
     super.initState();
     _navigationItems = [
-      NavigationItem(
-        title: 'Buttons',
+      const HuxSidebarItemData(
+        id: 'buttons',
+        label: 'Buttons',
         icon: LucideIcons.square,
-        key: _buttonsKey,
       ),
-      NavigationItem(
-        title: 'Input',
+      const HuxSidebarItemData(
+        id: 'input',
+        label: 'Input',
         icon: LucideIcons.edit3,
-        key: _textFieldsKey,
       ),
-      NavigationItem(
-        title: 'Cards',
+      const HuxSidebarItemData(
+        id: 'cards',
+        label: 'Cards',
         icon: LucideIcons.creditCard,
-        key: _cardsKey,
       ),
-      NavigationItem(
-        title: 'Charts',
+      const HuxSidebarItemData(
+        id: 'charts',
+        label: 'Charts',
         icon: LucideIcons.barChart2,
-        key: _chartsKey,
       ),
-      NavigationItem(
-        title: 'Context Menu',
+      const HuxSidebarItemData(
+        id: 'context-menu',
+        label: 'Context Menu',
         icon: LucideIcons.menu,
-        key: _contextMenuKey,
       ),
-      NavigationItem(
-        title: 'Checkbox',
+      const HuxSidebarItemData(
+        id: 'checkbox',
+        label: 'Checkbox',
         icon: LucideIcons.checkSquare,
-        key: _checkboxesKey,
       ),
-      NavigationItem(
-        title: 'Radio Buttons',
+      const HuxSidebarItemData(
+        id: 'radio-buttons',
+        label: 'Radio Buttons',
         icon: LucideIcons.circle,
-        key: _radioButtonsKey,
       ),
-      NavigationItem(
-        title: 'Switch',
+      const HuxSidebarItemData(
+        id: 'switch',
+        label: 'Switch',
         icon: LucideIcons.toggleLeft,
-        key: _toggleSwitchesKey,
       ),
-      NavigationItem(
-        title: 'Toggle',
+      const HuxSidebarItemData(
+        id: 'toggle',
+        label: 'Toggle',
         icon: LucideIcons.edit3,
-        key: _toggleButtonsKey,
       ),
-      NavigationItem(
-        title: 'Badges',
+      const HuxSidebarItemData(
+        id: 'badges',
+        label: 'Badges',
         icon: LucideIcons.tag,
-        key: _badgesKey,
       ),
-      NavigationItem(
-        title: 'Snackbar',
+      const HuxSidebarItemData(
+        id: 'snackbar',
+        label: 'Snackbar',
         icon: LucideIcons.alertCircle,
-        key: _indicatorsKey,
       ),
-      NavigationItem(
-        title: 'Avatar',
+      const HuxSidebarItemData(
+        id: 'avatar',
+        label: 'Avatar',
         icon: LucideIcons.user,
-        key: _displayKey,
       ),
-      NavigationItem(
-        title: 'Loading',
+      const HuxSidebarItemData(
+        id: 'loading',
+        label: 'Loading',
         icon: LucideIcons.loader,
-        key: _loadingKey,
       ),
-      NavigationItem(
-        title: 'Date Picker',
+      const HuxSidebarItemData(
+        id: 'date-picker',
+        label: 'Date Picker',
         icon: LucideIcons.calendar,
-        key: _datePickerNavKey,
       ),
-      NavigationItem(
-        title: 'Tooltip',
+      const HuxSidebarItemData(
+        id: 'tooltip',
+        label: 'Tooltip',
         icon: LucideIcons.messageCircle,
-        key: _tooltipKey,
       ),
-      NavigationItem(
-        title: 'Dialog',
+      const HuxSidebarItemData(
+        id: 'dialog',
+        label: 'Dialog',
         icon: LucideIcons.messageSquare,
-        key: _dialogKey,
       ),
-      NavigationItem(
-        title: 'Dropdown',
+      const HuxSidebarItemData(
+        id: 'dropdown',
+        label: 'Dropdown',
         icon: LucideIcons.chevronDown,
-        key: _dropdownKey,
       ),
-      NavigationItem(
-        title: 'Pagination',
+      const HuxSidebarItemData(
+        id: 'pagination',
+        label: 'Pagination',
         icon: LucideIcons.layers,
-        key: _paginationKey,
       ),
-      NavigationItem(
-        title: 'Command',
+      const HuxSidebarItemData(
+        id: 'command',
+        label: 'Command',
         icon: LucideIcons.command,
-        key: _commandKey,
       ),
-      // NavigationItem(
-      //   title: 'Time Picker',
-      //   icon: LucideIcons.clock,
-      //   key: _timePickerKey,
-      // ),
     ];
   }
 
@@ -264,6 +274,40 @@ class _MyHomePageState extends State<MyHomePage> {
         duration: const Duration(milliseconds: 800),
         curve: Curves.easeInOut,
       );
+    }
+  }
+
+  void _onSidebarItemSelected(String itemId) {
+    setState(() {
+      _selectedItemId = itemId;
+    });
+
+    // Map item IDs to their corresponding keys
+    final keyMap = {
+      'buttons': _buttonsKey,
+      'input': _textFieldsKey,
+      'cards': _cardsKey,
+      'charts': _chartsKey,
+      'context-menu': _contextMenuKey,
+      'checkbox': _checkboxesKey,
+      'radio-buttons': _radioButtonsKey,
+      'switch': _toggleSwitchesKey,
+      'toggle': _toggleButtonsKey,
+      'badges': _badgesKey,
+      'snackbar': _indicatorsKey,
+      'avatar': _displayKey,
+      'loading': _loadingKey,
+      'date-picker': _datePickerNavKey,
+      'tooltip': _tooltipKey,
+      'dialog': _dialogKey,
+      'dropdown': _dropdownKey,
+      'pagination': _paginationKey,
+      'command': _commandKey,
+    };
+
+    final key = keyMap[itemId];
+    if (key != null) {
+      _scrollToSection(key);
     }
   }
 
@@ -304,34 +348,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Row(
         children: [
           // Left Navigation Sidebar
-          Container(
-            width: 250,
-            decoration: BoxDecoration(
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? HuxColors.black90
-                  : HuxColors.white,
-              border: Border(
-                right: BorderSide(
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? HuxColors.white20
-                      : HuxColors.black20,
-                ),
-              ),
-            ),
-            child: Column(
+          HuxSidebar(
+            items: _navigationItems,
+            selectedItemId: _selectedItemId,
+            onItemSelected: _onSidebarItemSelected,
+            header: Column(
               children: [
                 // Header
                 Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? HuxColors.white20
-                            : HuxColors.black20,
-                      ),
-                    ),
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -342,18 +367,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Hux UI',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineSmall
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? HuxColors.white
-                                            : HuxColors.black,
-                                      ),
+                                SvgPicture.asset(
+                                  Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? 'assets/logo-dark.svg'
+                                      : 'assets/logo-light.svg',
+                                  height: 32,
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
@@ -372,34 +391,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           // Theme Toggle Button
-                          Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(8),
-                              onTap: widget.onThemeToggle,
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: Theme.of(context).brightness ==
-                                            Brightness.dark
-                                        ? HuxColors.white20
-                                        : HuxColors.black20,
-                                  ),
-                                ),
-                                child: Icon(
-                                  widget.themeMode == ThemeMode.light
-                                      ? LucideIcons.moon
-                                      : LucideIcons.sun,
-                                  size: 20,
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? HuxColors.white70
-                                      : HuxColors.black70,
-                                ),
-                              ),
-                            ),
+                          HuxButton(
+                            onPressed: widget.onThemeToggle,
+                            variant: HuxButtonVariant.outline,
+                            size: HuxButtonSize.small,
+                            width: HuxButtonWidth.fixed,
+                            widthValue: 36,
+                            icon: widget.themeMode == ThemeMode.light
+                                ? LucideIcons.moon
+                                : LucideIcons.sun,
+                            child: const SizedBox.shrink(),
                           ),
                         ],
                       ),
@@ -409,16 +410,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 // Theme Selector
                 Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? HuxColors.white20
-                            : HuxColors.black20,
-                      ),
-                    ),
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -434,153 +426,53 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                       ),
                       const SizedBox(height: 8),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? HuxColors.black70
-                              : HuxColors.white10,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? HuxColors.white20
-                                    : HuxColors.black20,
-                          ),
-                        ),
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            value: _selectedTheme,
-                            isExpanded: true,
-                            dropdownColor:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? HuxColors.black80
-                                    : HuxColors.white,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? HuxColors.white80
-                                      : HuxColors.black80,
+                      HuxDropdown<String>(
+                        value: _selectedTheme,
+                        items: HuxColors.availablePresetColors
+                            .map<HuxDropdownItem<String>>((String colorName) {
+                          final color = colorName == 'default'
+                              ? HuxTokens.primary(context)
+                              : HuxColors.getPresetColor(colorName);
+                          return HuxDropdownItem<String>(
+                            value: colorName,
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 16,
+                                  height: 16,
+                                  decoration: BoxDecoration(
+                                    color: color,
+                                    borderRadius: BorderRadius.circular(4),
+                                    border: Border.all(
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? HuxColors.white30
+                                          : HuxColors.black30,
+                                      width: 0.5,
+                                    ),
+                                  ),
                                 ),
-                            icon: Icon(
-                              LucideIcons.chevronDown,
-                              color: Theme.of(context).brightness ==
-                                      Brightness.dark
-                                  ? HuxColors.white60
-                                  : HuxColors.black60,
+                                const SizedBox(width: 8),
+                                Text(
+                                  colorName[0].toUpperCase() +
+                                      colorName.substring(1),
+                                ),
+                              ],
                             ),
-                            onChanged: (String? newValue) {
-                              if (newValue != null) {
-                                setState(() {
-                                  _selectedTheme = newValue;
-                                });
-                              }
-                            },
-                            items: HuxColors.availablePresetColors
-                                .map<DropdownMenuItem<String>>(
-                                    (String colorName) {
-                              final color = colorName == 'default'
-                                  ? HuxTokens.primary(context)
-                                  : HuxColors.getPresetColor(colorName);
-                              return DropdownMenuItem<String>(
-                                value: colorName,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 16,
-                                      height: 16,
-                                      decoration: BoxDecoration(
-                                        color: color,
-                                        borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(
-                                          color: Theme.of(context).brightness ==
-                                                  Brightness.dark
-                                              ? HuxColors.white30
-                                              : HuxColors.black30,
-                                          width: 0.5,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      colorName[0].toUpperCase() +
-                                          colorName.substring(1),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                            color:
-                                                Theme.of(context).brightness ==
-                                                        Brightness.dark
-                                                    ? HuxColors.white80
-                                                    : HuxColors.black80,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          if (newValue != null) {
+                            setState(() {
+                              _selectedTheme = newValue;
+                            });
+                          }
+                        },
+                        placeholder: 'Select theme',
+                        variant: HuxButtonVariant.outline,
+                        size: HuxButtonSize.small,
                       ),
                     ],
-                  ),
-                ),
-
-                // Navigation Items
-                Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    itemCount: _navigationItems.length,
-                    itemBuilder: (context, index) {
-                      final item = _navigationItems[index];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 4),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(8),
-                            onTap: () => _scrollToSection(item.key),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 12),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    item.icon,
-                                    size: 20,
-                                    color: HuxTokens.iconPrimary(context),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Text(
-                                    item.title,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.w500,
-                                          color: Theme.of(context).brightness ==
-                                                  Brightness.dark
-                                              ? HuxColors.white70
-                                              : HuxColors.black70,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
                   ),
                 ),
               ],
@@ -665,8 +557,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
 
-                              const SizedBox(height: 16),
-                              const Divider(),
                               const SizedBox(height: 16),
 
                               // With Icon Example - Fixed Height Container
@@ -1211,7 +1101,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       const SizedBox(height: 32),
                       Container(
                         key: _commandKey,
-                        child: const CommandSection(),
+                        child: CommandSection(
+                          onThemeToggle: widget.onThemeToggle,
+                        ),
                       ),
                       const SizedBox(height: 32),
                     ],
@@ -1256,11 +1148,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        behavior: SnackBarBehavior.floating,
-      ),
+    context.showHuxSnackbar(
+      message: message,
+      variant: HuxSnackbarVariant.info,
     );
   }
 
@@ -1322,18 +1212,6 @@ class _MyHomePageState extends State<MyHomePage> {
         return 48.0; // Square button: 48x48
     }
   }
-}
-
-class NavigationItem {
-  final String title;
-  final IconData icon;
-  final GlobalKey key;
-
-  NavigationItem({
-    required this.title,
-    required this.icon,
-    required this.key,
-  });
 }
 
 // Checkboxes Section
@@ -1573,8 +1451,9 @@ class IndicatorsSection extends StatelessWidget {
               message: 'This is a informational message.',
               showIcon: true,
               onDismiss: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Information alert dismissed')),
+                context.showHuxSnackbar(
+                  message: 'Information alert dismissed',
+                  variant: HuxSnackbarVariant.info,
                 );
               },
             ),
@@ -1590,8 +1469,9 @@ class IndicatorsSection extends StatelessWidget {
               message: 'Your operation completed successfully!',
               showIcon: true,
               onDismiss: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Success alert dismissed')),
+                context.showHuxSnackbar(
+                  message: 'Success alert dismissed',
+                  variant: HuxSnackbarVariant.success,
                 );
               },
             ),
@@ -1608,8 +1488,9 @@ class IndicatorsSection extends StatelessWidget {
                   'This action cannot be undone. Please proceed with caution.',
               showIcon: true,
               onDismiss: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Destructive alert dismissed')),
+                context.showHuxSnackbar(
+                  message: 'Destructive alert dismissed',
+                  variant: HuxSnackbarVariant.error,
                 );
               },
             ),
@@ -1961,7 +1842,9 @@ class _PaginationSectionState extends State<PaginationSection> {
 }
 
 class CommandSection extends StatefulWidget {
-  const CommandSection({super.key});
+  final VoidCallback? onThemeToggle;
+
+  const CommandSection({super.key, this.onThemeToggle});
 
   @override
   State<CommandSection> createState() => _CommandSectionState();
@@ -1978,16 +1861,19 @@ class _CommandSectionState extends State<CommandSection> {
         id: 'toggle-theme',
         label: 'Toggle Theme',
         description: 'Switch between light and dark mode',
-        shortcut: '⌘⇧T',
+        shortcut: '⌘⇧D',
         icon: LucideIcons.sun,
         category: 'View',
-        onExecute: () => _showSnackBar('Theme toggled'),
+        onExecute: () {
+          widget.onThemeToggle?.call();
+          _showSnackBar('Theme toggled');
+        },
       ),
       HuxCommandItem(
         id: 'quick-search',
         label: 'Quick Search',
         description: 'Search across all content',
-        shortcut: '⌘K',
+        shortcut: '⌘⇧K',
         icon: LucideIcons.search,
         category: 'Navigation',
         onExecute: () => _showSnackBar('Quick search opened'),
@@ -2014,20 +1900,38 @@ class _CommandSectionState extends State<CommandSection> {
         id: 'help',
         label: 'Help & Support',
         description: 'View help documentation',
-        shortcut: '⌘?',
+        shortcut: '⌘H',
         icon: LucideIcons.helpCircle,
         category: 'Help',
-        onExecute: () => _showSnackBar('Help opened'),
+        onExecute: () {
+          _showSnackBar('Help documentation would open here');
+          // In a real app, this would open help documentation
+        },
+      ),
+      HuxCommandItem(
+        id: 'open-command-palette',
+        label: 'Open Command Palette',
+        description: 'Open the command palette',
+        shortcut: '⌘⇧K',
+        icon: LucideIcons.command,
+        category: 'Navigation',
+        onExecute: () {
+          showHuxCommand(
+            context: context,
+            commands: _commands,
+            onCommandSelected: (command) {
+              _showSnackBar('Command executed: ${command.label}');
+            },
+          );
+        },
       ),
     ];
   }
 
   void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        behavior: SnackBarBehavior.floating,
-      ),
+    context.showHuxSnackbar(
+      message: message,
+      variant: HuxSnackbarVariant.info,
     );
   }
 

@@ -14,6 +14,7 @@ dependencies:
   hux:
     path: ../
   lucide_icons: ^0.257.0
+  flutter_svg: ^2.0.10
 
 dev_dependencies:
   flutter_test:
@@ -22,7 +23,10 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
 
 flutter:
-  uses-material-design: true 
+  uses-material-design: true
+  assets:
+    - assets/logo-light.svg
+    - assets/logo-dark.svg 
 
 flutter_launcher_icons:
   android: true

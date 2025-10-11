@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../../theme/hux_tokens.dart';
@@ -37,7 +38,7 @@ class HuxSnackbar {
     this.textColor,
     this.actionTextColor,
     this.elevation = 6,
-    this.margin = const EdgeInsets.all(16),
+    this.margin = const EdgeInsets.only(left: 16, bottom: 16),
     this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
     this.shape,
   });
@@ -97,7 +98,7 @@ class HuxSnackbar {
       content: _buildContent(context),
       duration: duration,
       action: action,
-      behavior: behavior,
+      behavior: SnackBarBehavior.floating,
       backgroundColor: Colors.transparent,
       elevation: 0,
       margin: margin,
@@ -107,75 +108,103 @@ class HuxSnackbar {
   }
 
   Widget _buildContent(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      constraints: const BoxConstraints(
-        maxWidth: 500,
-      ),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: backgroundColor ?? _getBackgroundColor(context),
-        border: Border.all(
-          color: _getBorderColor(context),
-          width: 1, // Consistent with Hux border width
-        ),
-        borderRadius: BorderRadius.circular(12), // Consistent with Hux cards
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (showIcon) ...[
-            Icon(
-              _getIcon(),
-              color: _getIconColor(context),
-              size: 20,
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: Container(
+        width: 400,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12), // Consistent with Hux cards
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.black.withValues(alpha: 0.1)
+                  : Colors.white.withValues(alpha: 0.1),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
             ),
-            const SizedBox(width: 12),
           ],
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (title != null) ...[
-                  Text(
-                    title!,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight:
-                              FontWeight.w600, // Consistent with Hux typography
-                          color: textColor ?? _getTextColor(context),
-                        ),
-                  ),
-                  const SizedBox(height: 4),
-                ],
-                Text(
-                  message,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: textColor ?? _getTextColor(context),
-                      ),
-                ),
-              ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(
+              sigmaX: Theme.of(context).brightness == Brightness.dark ? 10 : 5,
+              sigmaY: Theme.of(context).brightness == Brightness.dark ? 10 : 5,
             ),
-          ),
-          if (onDismiss != null) ...[
-            const SizedBox(width: 8),
-            Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: onDismiss,
-                borderRadius: BorderRadius.circular(8),
-                child: Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: Icon(
-                    LucideIcons.x,
-                    size: 16,
-                    color: textColor ?? _getTextColor(context),
-                  ),
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: (backgroundColor ?? _getBackgroundColor(context))
+                    .withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: _getBorderColor(context),
+                  width: 1, // Consistent with Hux border width
                 ),
               ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  if (showIcon) ...[
+                    Icon(
+                      _getIcon(),
+                      color: _getIconColor(context),
+                      size: 20,
+                    ),
+                    const SizedBox(width: 12),
+                  ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (title != null) ...[
+                          Text(
+                            title!,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  fontWeight: FontWeight
+                                      .w600, // Consistent with Hux typography
+                                  color: textColor ?? _getTextColor(context),
+                                ),
+                          ),
+                          const SizedBox(height: 4),
+                        ],
+                        Text(
+                          message,
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: textColor ?? _getTextColor(context),
+                                  ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (onDismiss != null) ...[
+                    const SizedBox(width: 8),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: onDismiss,
+                        borderRadius: BorderRadius.circular(8),
+                        child: Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Icon(
+                            LucideIcons.x,
+                            size: 16,
+                            color: textColor ?? _getTextColor(context),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
             ),
-          ],
-        ],
+          ),
+        ),
       ),
     );
   }
@@ -185,12 +214,11 @@ class HuxSnackbar {
       case HuxSnackbarVariant.info:
         return HuxTokens.surfaceSecondary(context);
       case HuxSnackbarVariant.success:
-        return HuxTokens.surfaceSuccess(context);
+        return HuxTokens.surfaceOverlay(context);
       case HuxSnackbarVariant.warning:
-        return const Color(0xFFF59E0B)
-            .withValues(alpha: 0.1); // Amber background
+        return HuxTokens.surfaceOverlay(context);
       case HuxSnackbarVariant.error:
-        return HuxTokens.surfaceDestructive(context);
+        return HuxTokens.surfaceOverlay(context);
     }
   }
 

@@ -1,5 +1,42 @@
 # Changelog
 
+## [0.13.0] - 2025-10-11
+
+### Added
+- **HuxSidebar**: New complete navigation sidebar component
+  - `HuxSidebar` - Main sidebar container with header and footer support
+  - `HuxSidebarItem` - Individual navigation items with automatic selection state management
+  - Customizable width (default 250px) and padding
+  - Theme-aware styling with hover states
+  - Perfect for dashboard and multi-page applications
+  - Full documentation at [docs.thehuxdesign.com/components/sidebar](https://docs.thehuxdesign.com/components/sidebar)
+- **Design Token**: New `surfaceOverlay` token for consistent overlay and snackbar styling
+  - Theme-adaptive: white in light mode, black80 in dark mode
+  - Used for modern glassmorphism effects
+
+### Enhanced
+- **HuxSnackbar**: Complete redesign with modern glassmorphism aesthetic
+  - Fixed 400px width positioned at bottom-left for consistency
+  - Backdrop blur effects with theme-adaptive intensity (5px light, 10px dark)
+  - Improved visual hierarchy with border, shadow, and semi-transparent background
+  - Better contrast and readability across all variants
+  - Floating behavior with proper margins (16px left, 16px bottom)
+- **Example App**: Major refactor with improved structure and organization
+  - Reduced codebase by 564 lines (-29%) through better organization
+  - Integrated new HuxSidebar for cleaner navigation
+  - Better component demonstrations and layout
+  - Enhanced user experience with improved visual hierarchy
+  - Added SVG logo assets for better branding
+
+### Fixed
+- **HuxCommand**: Made constructor const for better performance and linter compliance
+- **Code Quality**: Resolved all static analysis issues for publication readiness
+
+### Documentation
+- Added comprehensive sidebar component documentation
+- Updated snackbar documentation with glassmorphism design details
+- Added sidebar to Mintlify docs navigation
+
 ## [0.12.0] - 2025-10-08
 
 ### Added

@@ -34,7 +34,7 @@ import 'hux_command_item.dart';
 /// ```
 class HuxCommand extends StatefulWidget {
   /// Creates a HuxCommand widget
-  HuxCommand({
+  const HuxCommand({
     super.key,
     required this.commands,
     this.placeholder = 'Type a command or search...',
