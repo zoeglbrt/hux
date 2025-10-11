@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.14.0] - 2025-10-12
+
+### Added
+- **Material 3 Seed Color Support**: `HuxTokens.primary()` now automatically detects and respects custom seed colors
+  - Use Material 3 best practices with `HuxTheme.lightTheme.copyWith(colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink))`
+  - Backward compatible - existing apps continue to work with default black/white primary colors
+  - Enables full Material 3 theming integration with a single line of code
+  - All Hux components (buttons, charts, toggles, etc.) automatically use the custom primary color
+  - Smart fallback: uses custom seed colors when provided, defaults to HuxTokens black/white otherwise
+
+### Enhanced
+- **HuxTokens**: Improved primary color token with intelligent theme detection
+  - Detects when Material 3 colorScheme has been customized
+  - Seamlessly integrates with Flutter's standard theming patterns
+  - Zero breaking changes to existing code
+
 ## [0.13.0] - 2025-10-11
 
 ### Added

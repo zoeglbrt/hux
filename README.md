@@ -14,7 +14,13 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.13.0
+## Latest Version: 0.14.0
+
+**What's New in v0.14.0:**
+- **Material 3 Seed Color Support**: Customize your entire app's primary color with one line
+  - Use `HuxTheme.lightTheme.copyWith(colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink))`
+  - All Hux components automatically adapt to your custom seed color
+  - 100% backward compatible - no breaking changes
 
 **What's New in v0.13.0:**
 - **New HuxSidebar Component**: Complete navigation sidebar for app-wide navigation
@@ -188,8 +194,9 @@ A modern Flutter UI package with beautiful, customizable components designed for
 - Global keyboard shortcuts integration with `HuxCommandShortcuts.wrapper`
 
 ### Theme
-- `HuxTheme` - Pre-configured light and dark themes
+- `HuxTheme` - Pre-configured light and dark themes with Material 3 seed color support
 - `HuxColors` - Comprehensive color palette
+- `HuxTokens` - Semantic design tokens that adapt to custom themes
 
 ## Documentation
 

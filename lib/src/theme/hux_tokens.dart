@@ -151,8 +151,26 @@ class HuxTokens {
 
   // PRIMARY TOKENS
   /// Primary brand color that adapts to theme
+  ///
+  /// Supports both HuxTokens defaults and Material 3 seed colors:
+  /// - If colorScheme is customized (via copyWith), uses theme.colorScheme.primary
+  /// - Otherwise, uses HuxTokens defaults (black in light mode, white in dark mode)
   static Color primary(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
+    // Check if colorScheme has been customized from Hux default
+    final defaultPrimary = ColorScheme.fromSeed(
+      seedColor: HuxColors.primary,
+      brightness: theme.brightness,
+    ).primary;
+
+    // If custom seed color is used, respect it
+    if (theme.colorScheme.primary != defaultPrimary) {
+      return theme.colorScheme.primary;
+    }
+
+    // Otherwise use HuxTokens default
     return isDark ? HuxColors.white : HuxColors.black;
   }
 
