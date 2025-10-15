@@ -3,7 +3,7 @@
 A modern Flutter UI package with beautiful, customizable components designed for clean and consistent user interfaces.
 
 [![Flutter support](https://img.shields.io/badge/Flutter-3.16%2B-white?style=flat&labelColor=black&logo=flutter&logoColor=WHITE)](https://flutter.dev/)
-[![Figma](https://img.shields.io/badge/Figma%20users-13-white?style=flat&labelColor=black&logo=figma&logoColor=white)](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
+[![Figma](https://img.shields.io/badge/Figma%20users-15-white?style=flat&labelColor=black&logo=figma&logoColor=white)](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsor-Hux%20UI-white?style=flat&labelColor=black&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/zoeglbrt)
 
 [![pub package](https://img.shields.io/pub/v/hux?style=flat&color=white&labelColor=black)](https://pub.dev/packages/hux)
@@ -14,50 +14,12 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.14.0
+## Latest Version: 0.14.1
 
-**What's New in v0.14.0:**
-- **Material 3 Seed Color Support**: Customize your entire app's primary color with one line
-  - Use `HuxTheme.lightTheme.copyWith(colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink))`
-  - All Hux components automatically adapt to your custom seed color
-  - 100% backward compatible - no breaking changes
-
-**What's New in v0.13.0:**
-- **New HuxSidebar Component**: Complete navigation sidebar for app-wide navigation
-  - `HuxSidebar` - Main sidebar container with header and footer support
-  - `HuxSidebarItem` - Individual navigation items with selection state
-  - Automatic selection state management
-  - Customizable width and padding
-  - Theme-aware styling with hover states
-  - Full documentation and integration examples
-- **New HuxCommand Component**: Command palette for quick access to actions and navigation
-  - Keyboard shortcuts support (CMD+K on Mac, Ctrl+K on Windows/Linux)
-  - Real-time search and filtering as you type
-  - Keyboard navigation with arrow keys and Enter to execute
-  - Customizable commands with icons, shortcuts, and categories
-  - Modern design with 16px border radius and proper hover states
-  - Global keyboard shortcuts integration with `HuxCommandShortcuts.wrapper`
-  - Apple symbol shortcuts (⌘, ⇧, ⌥, ⌃)
-  - Comprehensive documentation and examples
-- **Enhanced HuxSnackbar**: Modern glassmorphism design with backdrop blur effects
-  - Fixed 400px width positioned at bottom-left
-  - Theme-adaptive blur intensity (5px light, 10px dark)
-  - Improved visual hierarchy with border and shadow
-  - Better contrast and readability
-  - New `surfaceOverlay` design token for consistent overlay styling
-- **Example App Improvements**: Complete refactor with 564 fewer lines
-  - Cleaner code organization and structure
-  - Better component demonstrations
-  - Improved navigation with new sidebar
-  - Enhanced user experience
-- **Icon Library Migration**: Complete transition from Feather Icons to Lucide Icons
-  - Updated all components to use `LucideIcons` instead of `FeatherIcons`
-  - Added `lucide_icons: ^0.257.0` dependency
-  - Maintained backward compatibility with existing icon usage patterns
-- **Design Token Improvements**: Enhanced `HuxTokens` for better visual hierarchy
-  - New `surfaceOverlay` token for overlays and snackbars
-  - Updated `surfaceElevated` to be 100% opaque for better accessibility
-  - Fixed `borderSecondary` to use proper subtle color for better visual separation
+- **Avatar Image Caching**: Built-in image caching with wireframe loading states
+  - Network images are automatically cached for better performance
+  - Beautiful gradient loading placeholders with theme-aware colors
+  - Support for both network URLs and local asset images
 
 [![Changelog](https://img.shields.io/badge/Changelog-View-black?style=for-the-badge&labelColor=white&logo=github&logoColor=black)](CHANGELOG.md)
 [![Docs](https://img.shields.io/badge/Docs-Browse-black?style=for-the-badge&labelColor=white&logo=readthedocs&logoColor=black)](https://docs.thehuxdesign.com)

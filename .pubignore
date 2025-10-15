@@ -1,0 +1,16 @@
+# Ignore lock files in example
+example/macos/Podfile.lock
+example/pubspec.lock
+
+# Ignore build artifacts
+build/
+.dart_tool/
+.packages
+
+# Ignore IDE files
+.vscode/
+.idea/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db

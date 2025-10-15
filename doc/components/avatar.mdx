@@ -7,8 +7,15 @@ description: 'User profile images and avatar groups with gradient variants'
 
 Hux UI provides avatar components for displaying user profile images:
 
-- **HuxAvatar** - Circular user images with initials fallback
+- **HuxAvatar** - Circular user images with initials fallback and built-in caching
 - **HuxAvatarGroup** - Display multiple avatars with overlapping layouts
+
+### Features
+
+- **Built-in Image Caching** - Network images use Flutter's built-in caching for better performance
+- **Loading States** - Smooth loading indicators while images load
+- **Error Handling** - Graceful fallback to initials when images fail to load
+- **Offline Support** - Cached images work offline
 
 ## Component Variants
 
@@ -24,10 +31,8 @@ HuxAvatar(
 )
 ```
 
-### Avatar with Image
-Avatar with custom profile image:
-
-![Avatar Group](/images/avatar/avatar-image.png)
+### Avatar with Network Image
+Avatar with network profile image (automatically cached):
 
 ```dart
 HuxAvatar(
@@ -36,6 +41,37 @@ HuxAvatar(
   size: HuxAvatarSize.large,
 )
 ```
+
+**Features:**
+- Automatic image caching for better performance
+- Wireframe loading state while downloading
+- Graceful fallback to initials if image fails to load
+
+### Avatar with Local Asset Image
+Avatar with local asset image (instant loading):
+
+```dart
+HuxAvatar(
+  name: 'Local User',
+  assetImage: 'assets/avatar.png',
+  size: HuxAvatarSize.large,
+)
+```
+
+**Features:**
+- Instant loading (no network required)
+- Always available (bundled with app)
+- Perfect for default avatars or placeholder images
+
+### Network vs Asset Images
+
+| Feature | Network Image (`imageUrl`) | Asset Image (`assetImage`) |
+|---------|---------------------------|---------------------------|
+| **Loading** | Shows wireframe placeholder | Instant |
+| **Availability** | Requires internet | Always available |
+| **Updates** | Can be updated remotely | Requires app update |
+| **App Size** | No impact | Increases app size |
+| **Use Case** | User profile photos | Default avatars, placeholders |
 
 ### Gradient Avatar
 Avatar with beautiful gradient background:

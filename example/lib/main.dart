@@ -1525,7 +1525,13 @@ class DisplaySection extends StatelessWidget {
                   name: 'John Doe',
                   size: HuxAvatarSize.small,
                 ),
-                SizedBox(width: 48),
+                SizedBox(width: 16),
+                HuxAvatar(
+                  name: 'Lofi Designer',
+                  assetImage: 'assets/lofidesigner.png', // Your custom image
+                  size: HuxAvatarSize.small,
+                ),
+                SizedBox(width: 16),
                 HuxAvatar(
                   useGradient: true,
                   size: HuxAvatarSize.small,

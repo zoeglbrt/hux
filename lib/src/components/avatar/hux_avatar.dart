@@ -4,7 +4,8 @@ import '../../theme/hux_tokens.dart';
 /// HuxAvatar is a circular user image component with clean styling that
 /// aligns with the Hux design system.
 ///
-/// Supports initials fallback, theme adaptation, and multiple size options.
+/// Supports initials fallback, theme adaptation, multiple size options,
+/// and automatic image caching for better performance.
 /// Perfect for displaying user profile images or placeholders.
 ///
 /// Example:
@@ -14,12 +15,20 @@ import '../../theme/hux_tokens.dart';
 ///   name: 'John Doe',
 ///   size: HuxAvatarSize.large,
 /// )
+///
+/// // Or use a local asset image:
+/// HuxAvatar(
+///   assetImage: 'assets/avatar.png',
+///   name: 'Jane Smith',
+///   size: HuxAvatarSize.medium,
+/// )
 /// ```
 class HuxAvatar extends StatelessWidget {
   /// Creates a HuxAvatar widget.
   const HuxAvatar({
     super.key,
     this.imageUrl,
+    this.assetImage,
     this.name,
     this.size = HuxAvatarSize.medium,
     this.backgroundColor,
@@ -29,6 +38,9 @@ class HuxAvatar extends StatelessWidget {
 
   /// Optional image URL for the avatar
   final String? imageUrl;
+
+  /// Optional asset image path for the avatar (takes precedence over imageUrl)
+  final String? assetImage;
 
   /// Name used to generate initials when no image is provided
   final String? name;
@@ -66,17 +78,7 @@ class HuxAvatar extends StatelessWidget {
       child: useGradient
           ? null // No content for gradient avatars
           : ClipOval(
-              child: imageUrl != null
-                  ? Image.network(
-                      imageUrl!,
-                      width: avatarSize,
-                      height: avatarSize,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return _buildInitialsAvatar(context);
-                      },
-                    )
-                  : _buildInitialsAvatar(context),
+              child: _buildAvatarImage(context, avatarSize),
             ),
     );
   }
@@ -127,6 +129,80 @@ class HuxAvatar extends StatelessWidget {
 
   Color _getTextColor(BuildContext context) {
     return HuxTokens.textPrimary(context);
+  }
+
+  Widget _buildAvatarImage(BuildContext context, double avatarSize) {
+    // Prioritize asset image over network image
+    if (assetImage != null) {
+      return Image.asset(
+        assetImage!,
+        width: avatarSize,
+        height: avatarSize,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return _buildInitialsAvatar(context);
+        },
+      );
+    }
+
+    if (imageUrl != null) {
+      return _buildCachedNetworkImage(avatarSize);
+    }
+
+    return _buildInitialsAvatar(context);
+  }
+
+  Widget _buildCachedNetworkImage(double avatarSize) {
+    return Image.network(
+      imageUrl!,
+      width: avatarSize,
+      height: avatarSize,
+      fit: BoxFit.cover,
+      // Enable built-in caching
+      cacheWidth: avatarSize.toInt(),
+      cacheHeight: avatarSize.toInt(),
+      // Loading placeholder with gradient
+      frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+        if (wasSynchronouslyLoaded || frame != null) {
+          return child;
+        }
+        return _buildLoadingPlaceholder(context);
+      },
+      // Error handling
+      errorBuilder: (context, error, stackTrace) {
+        return _buildInitialsAvatar(context);
+      },
+    );
+  }
+
+  Widget _buildLoadingPlaceholder(BuildContext context) {
+    return Container(
+      width: _getAvatarSize(),
+      height: _getAvatarSize(),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            HuxTokens.surfaceSecondary(context),
+            HuxTokens.surfaceSecondary(context).withValues(alpha: 0.6),
+          ],
+        ),
+      ),
+      child: Center(
+        child: SizedBox(
+          width: _getAvatarSize() * 0.4,
+          height: _getAvatarSize() * 0.4,
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            valueColor: AlwaysStoppedAnimation<Color>(
+              HuxTokens.primary(context),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   LinearGradient _getGradient() {

@@ -1,5 +1,17 @@
 # Changelog
 
+
+## [0.14.1] - 2025-01-16
+
+### Enhanced
+- **Avatar Image Caching**: `HuxAvatar` now supports built-in image caching using Flutter's native caching
+  - Network images are automatically cached for better performance
+  - Loading placeholders with theme-aware colors
+  - Smooth loading indicators while images load
+  - Graceful fallback to initials when images fail to load
+  - Offline support for cached images
+  - Improved user experience in lists and grids with multiple avatars
+
 ## [0.14.0] - 2025-10-12
 
 ### Added
