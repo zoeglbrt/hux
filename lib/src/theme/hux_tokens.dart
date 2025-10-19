@@ -57,7 +57,7 @@ class HuxTokens {
   /// Secondary surface background color
   static Color surfaceSecondary(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return isDark ? HuxColors.white10 : HuxColors.black10;
+    return isDark ? HuxColors.white10 : HuxColors.black5;
   }
 
   /// Elevated surface background color for cards and modals
@@ -234,6 +234,44 @@ class HuxTokens {
 
   /// Focus color for keyboard navigation
   static Color focus(BuildContext context) {
+    return primary(context);
+  }
+
+  // TAB TOKENS
+  /// Background color for active tab
+  static Color tabActiveBackground(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return isDark ? HuxColors.white20 : HuxColors.black5;
+  }
+
+  /// Text color for active tab
+  static Color tabActiveText(BuildContext context) {
+    return primary(context);
+  }
+
+  /// Background color for inactive tab
+  static Color tabInactiveBackground(BuildContext context) {
+    return Colors.transparent;
+  }
+
+  /// Text color for inactive tab
+  static Color tabInactiveText(BuildContext context) {
+    return textSecondary(context);
+  }
+
+  /// Hover background color for tabs
+  static Color tabHoverBackground(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return isDark ? HuxColors.white10 : HuxColors.black5;
+  }
+
+  /// Border color for tab container
+  static Color tabBorder(BuildContext context) {
+    return borderSecondary(context);
+  }
+
+  /// Indicator color for active tab (underline or pill)
+  static Color tabIndicator(BuildContext context) {
     return primary(context);
   }
 }

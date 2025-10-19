@@ -1,0 +1,316 @@
+---
+title: "Tabs"
+description: "Organize content into multiple panels with tab navigation"
+---
+
+import { Callout } from "mintlify";
+
+# HuxTabs
+
+The HuxTabs component provides a clean and modern way to organize content into multiple panels with tab navigation. It supports multiple variants, sizes, and includes built-in theme awareness.
+
+## Basic Usage
+
+```dart
+import 'package:hux/hux.dart';
+
+HuxTabs(
+  tabs: [
+    HuxTabItem(
+      label: 'Overview',
+      content: Text('Overview content goes here'),
+    ),
+    HuxTabItem(
+      label: 'Settings',
+      content: Text('Settings content goes here'),
+    ),
+    HuxTabItem(
+      label: 'Profile',
+      content: Text('Profile content goes here'),
+    ),
+  ],
+  onTabChanged: (index) => print('Tab changed to $index'),
+)
+```
+
+## Variants
+
+### Default
+
+The default variant displays tabs with an underline indicator.
+
+```dart
+HuxTabs(
+  variant: HuxTabVariant.default_,
+  tabs: [
+    HuxTabItem(label: 'Tab 1', content: Text('Content 1')),
+    HuxTabItem(label: 'Tab 2', content: Text('Content 2')),
+  ],
+)
+```
+
+### Pill
+
+The pill variant displays tabs with a background indicator that highlights the active tab.
+
+```dart
+HuxTabs(
+  variant: HuxTabVariant.pill,
+  tabs: [
+    HuxTabItem(label: 'Tab 1', content: Text('Content 1')),
+    HuxTabItem(label: 'Tab 2', content: Text('Content 2')),
+  ],
+)
+```
+
+### Minimal
+
+The minimal variant displays tabs without any indicator, relying on text color changes.
+
+```dart
+HuxTabs(
+  variant: HuxTabVariant.minimal,
+  tabs: [
+    HuxTabItem(label: 'Tab 1', content: Text('Content 1')),
+    HuxTabItem(label: 'Tab 2', content: Text('Content 2')),
+  ],
+)
+```
+
+## Sizes
+
+### Small
+
+```dart
+HuxTabs(
+  size: HuxTabSize.small,
+  tabs: [
+    HuxTabItem(label: 'Tab 1', content: Text('Content 1')),
+    HuxTabItem(label: 'Tab 2', content: Text('Content 2')),
+  ],
+)
+```
+
+### Medium (Default)
+
+```dart
+HuxTabs(
+  size: HuxTabSize.medium,
+  tabs: [
+    HuxTabItem(label: 'Tab 1', content: Text('Content 1')),
+    HuxTabItem(label: 'Tab 2', content: Text('Content 2')),
+  ],
+)
+```
+
+### Large
+
+```dart
+HuxTabs(
+  size: HuxTabSize.large,
+  tabs: [
+    HuxTabItem(label: 'Tab 1', content: Text('Content 1')),
+    HuxTabItem(label: 'Tab 2', content: Text('Content 2')),
+  ],
+)
+```
+
+## With Icons
+
+Add icons to your tabs for better visual hierarchy.
+
+```dart
+HuxTabs(
+  tabs: [
+    HuxTabItem(
+      label: 'Dashboard',
+      icon: Icons.dashboard,
+      content: Text('Dashboard content'),
+    ),
+    HuxTabItem(
+      label: 'Settings',
+      icon: Icons.settings,
+      content: Text('Settings content'),
+    ),
+    HuxTabItem(
+      label: 'Profile',
+      icon: Icons.person,
+      content: Text('Profile content'),
+    ),
+  ],
+)
+```
+
+## With Badges
+
+Add badges to indicate notifications or counts.
+
+```dart
+HuxTabs(
+  tabs: [
+    HuxTabItem(
+      label: 'Messages',
+      icon: Icons.message,
+      badge: HuxBadge(
+        text: '3',
+        variant: HuxBadgeVariant.destructive,
+      ),
+      content: Text('Messages content'),
+    ),
+    HuxTabItem(
+      label: 'Notifications',
+      icon: Icons.notifications,
+      badge: HuxBadge(
+        text: '12',
+        variant: HuxBadgeVariant.primary,
+      ),
+      content: Text('Notifications content'),
+    ),
+  ],
+)
+```
+
+## Scrollable Tabs
+
+Enable horizontal scrolling for tabs that don't fit in the available space.
+
+```dart
+HuxTabs(
+  isScrollable: true,
+  tabs: List.generate(10, (index) => HuxTabItem(
+    label: 'Tab ${index + 1}',
+    content: Text('Content ${index + 1}'),
+  )),
+)
+```
+
+## Tab Alignment
+
+Control how tabs are aligned within the available space.
+
+```dart
+HuxTabs(
+  alignment: TabAlignment.center,
+  tabs: [
+    HuxTabItem(label: 'Tab 1', content: Text('Content 1')),
+    HuxTabItem(label: 'Tab 2', content: Text('Content 2')),
+  ],
+)
+```
+
+## Disabled Tabs
+
+Mark individual tabs as disabled to prevent interaction.
+
+```dart
+HuxTabs(
+  tabs: [
+    HuxTabItem(
+      label: 'Available Tab',
+      content: Text('This tab is available'),
+    ),
+    HuxTabItem(
+      label: 'Disabled Tab',
+      content: Text('This tab is disabled'),
+      isDisabled: true,
+    ),
+  ],
+)
+```
+
+## Controlled Tabs
+
+Control the active tab programmatically.
+
+```dart
+class MyWidget extends StatefulWidget {
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  int _activeTab = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            HuxButton(
+              onPressed: () => setState(() => _activeTab = 0),
+              child: Text('Go to Tab 1'),
+            ),
+            SizedBox(width: 8),
+            HuxButton(
+              onPressed: () => setState(() => _activeTab = 1),
+              child: Text('Go to Tab 2'),
+            ),
+          ],
+        ),
+        SizedBox(height: 16),
+        HuxTabs(
+          initialIndex: _activeTab,
+          onTabChanged: (index) => setState(() => _activeTab = index),
+          tabs: [
+            HuxTabItem(label: 'Tab 1', content: Text('Content 1')),
+            HuxTabItem(label: 'Tab 2', content: Text('Content 2')),
+          ],
+        ),
+      ],
+    );
+  }
+}
+```
+
+## API Reference
+
+### HuxTabs
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `tabs` | `List<HuxTabItem>` | **required** | List of tab items to display |
+| `initialIndex` | `int` | `0` | Initial active tab index |
+| `variant` | `HuxTabVariant` | `HuxTabVariant.default_` | Visual variant of the tabs |
+| `size` | `HuxTabSize` | `HuxTabSize.medium` | Size variant of the tabs |
+| `onTabChanged` | `ValueChanged<int>?` | `null` | Callback when the active tab changes |
+| `isScrollable` | `bool` | `false` | Whether tabs should be scrollable horizontally |
+| `alignment` | `TabAlignment` | `TabAlignment.start` | Alignment of tabs within the available space |
+
+### HuxTabItem
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `label` | `String` | **required** | The text label displayed on the tab |
+| `content` | `Widget` | **required** | The content widget displayed when this tab is active |
+| `icon` | `IconData?` | `null` | Optional icon displayed before the label |
+| `badge` | `Widget?` | `null` | Optional badge widget displayed after the label |
+| `isDisabled` | `bool` | `false` | Whether this tab is disabled |
+
+### HuxTabVariant
+
+- `HuxTabVariant.default_` - Default tabs with underline indicator
+- `HuxTabVariant.pill` - Pill-style tabs with background indicator
+- `HuxTabVariant.minimal` - Minimal tabs with no indicator
+
+### HuxTabSize
+
+- `HuxTabSize.small` - Small tabs for compact layouts
+- `HuxTabSize.medium` - Medium tabs for standard layouts (default)
+- `HuxTabSize.large` - Large tabs for prominent navigation
+
+## Theming
+
+HuxTabs automatically adapts to light and dark themes using HuxTokens. The component uses the following design tokens:
+
+- `HuxTokens.tabActiveBackground` - Background color for active tab
+- `HuxTokens.tabActiveText` - Text color for active tab
+- `HuxTokens.tabInactiveBackground` - Background color for inactive tab
+- `HuxTokens.tabInactiveText` - Text color for inactive tab
+- `HuxTokens.tabHoverBackground` - Hover background color for tabs
+- `HuxTokens.tabBorder` - Border color for tab container
+- `HuxTokens.tabIndicator` - Indicator color for active tab
+
+<Callout type="info">
+The tabs component follows Hux UI design principles with consistent spacing, typography, and color usage. All variants automatically adapt to your theme configuration.
+</Callout>

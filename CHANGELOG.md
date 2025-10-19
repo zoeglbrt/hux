@@ -1,7 +1,29 @@
 # Changelog
 
 
-## [0.14.1] - 2025-01-16
+## [0.15.0] - 2025-10-19
+
+### Added
+- **HuxTabs Component**: New tab navigation component with multiple variants and sizes
+  - Three visual variants: Default (underline indicator), Pill (background indicator), Minimal (no indicator)
+  - Three size options: Small, Medium, Large
+  - Support for icons, badges, and custom content in tabs
+  - Built-in theme integration with HuxTokens
+  - Customizable hover effects and interactions
+  - Scrollable tabs support for better mobile experience
+  - Full accessibility support with proper focus management
+
+### Enhanced
+- **HuxTokens**: Added new tab-specific design tokens
+  - `tabActiveBackground` - Background color for active tab
+  - `tabActiveText` - Text color for active tab
+  - `tabInactiveBackground` - Background color for inactive tab
+  - `tabInactiveText` - Text color for inactive tab
+  - `tabHoverBackground` - Hover background color for tabs
+  - `tabBorder` - Border color for tab container
+  - `tabIndicator` - Indicator color for active tab
+
+## [0.14.1] - 2025-10-15
 
 ### Enhanced
 - **Avatar Image Caching**: `HuxAvatar` now supports built-in image caching using Flutter's native caching

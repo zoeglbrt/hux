@@ -47,6 +47,7 @@
               "components/sidebar",
               "components/snackbar",
               "components/switch",
+              "components/tabs",
               "components/toggle",
               "components/tooltip"
             ]

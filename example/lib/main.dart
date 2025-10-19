@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hux/hux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'tabs.dart';
 
 void main() {
   runApp(const MyApp());
@@ -147,6 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _dialogKey = GlobalKey();
   final _dropdownKey = GlobalKey();
   final _paginationKey = GlobalKey();
+  final _tabsKey = GlobalKey();
   final _commandKey = GlobalKey();
   // final _timePickerKey = GlobalKey();
   // final _timePickerNavKey = GlobalKey();
@@ -251,6 +253,11 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: LucideIcons.layers,
       ),
       const HuxSidebarItemData(
+        id: 'tabs',
+        label: 'Tabs',
+        icon: LucideIcons.layout,
+      ),
+      const HuxSidebarItemData(
         id: 'command',
         label: 'Command',
         icon: LucideIcons.command,
@@ -302,6 +309,7 @@ class _MyHomePageState extends State<MyHomePage> {
       'dialog': _dialogKey,
       'dropdown': _dropdownKey,
       'pagination': _paginationKey,
+      'tabs': _tabsKey,
       'command': _commandKey,
     };
 
@@ -1097,6 +1105,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         key: _paginationKey,
                         child: const PaginationSection(),
+                      ),
+                      const SizedBox(height: 32),
+                      Container(
+                        key: _tabsKey,
+                        child: const TabsSection(),
                       ),
                       const SizedBox(height: 32),
                       Container(
