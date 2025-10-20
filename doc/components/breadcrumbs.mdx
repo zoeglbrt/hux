@@ -1,0 +1,103 @@
+---
+title: 'Breadcrumbs'
+description: 'Hierarchical navigation that shows the current location and path.'
+---
+
+## Overview
+
+`HuxBreadcrumbs` displays the navigation trail for the current page. It adapts to light/dark themes and supports icons, sizes, and overflow.
+
+## Basic Usage
+
+```dart
+HuxBreadcrumbs(
+  items: [
+    HuxBreadcrumbItem(
+      label: 'Home',
+      icon: LucideIcons.home,
+      onTap: () => context.showHuxSnackbar(
+        message: 'Home',
+        variant: HuxSnackbarVariant.info,
+      ),
+    ),
+    HuxBreadcrumbItem(label: 'Products', onTap: () {}),
+    HuxBreadcrumbItem(label: 'Smartphones', onTap: () {}),
+    HuxBreadcrumbItem(label: 'iPhone 15 Pro', onTap: () {}, isActive: true),
+  ],
+)
+```
+
+## Variants
+
+`HuxBreadcrumbVariant` controls the separator style:
+
+### Default
+Uses the `/` text separator.
+
+```dart
+HuxBreadcrumbs(
+  variant: HuxBreadcrumbVariant.default_,
+  items: [...],
+)
+```
+
+### Icon
+Uses a chevron icon separator.
+
+```dart
+HuxBreadcrumbs(
+  variant: HuxBreadcrumbVariant.icon,
+  items: [...],
+)
+```
+
+## Sizes
+
+Control spacing and typography with `HuxBreadcrumbSize`:
+
+```dart
+HuxBreadcrumbs(size: HuxBreadcrumbSize.small, items: [...])
+HuxBreadcrumbs(size: HuxBreadcrumbSize.medium, items: [...]) // default
+HuxBreadcrumbs(size: HuxBreadcrumbSize.large, items: [...])
+```
+
+## Overflow
+
+Collapse long paths with an overflow token.
+
+```dart
+HuxBreadcrumbs(
+  maxItems: 3,
+  overflowIndicator: Text('...'),
+  items: [...],
+)
+```
+
+## API Reference
+
+### HuxBreadcrumbs Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `items` | `List<HuxBreadcrumbItem>` | — | Breadcrumbs to render |
+| `variant` | `HuxBreadcrumbVariant` | `default_` | Visual style |
+| `size` | `HuxBreadcrumbSize` | `medium` | Spacing and typography |
+| `maxItems` | `int?` | `null` | Collapse middle items when exceeded |
+| `overflowIndicator` | `Widget?` | `null` | Custom widget for overflow token |
+
+### HuxBreadcrumbItem
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `label` | `String` | — | Text label |
+| `onTap` | `VoidCallback` | — | Called when item is tapped |
+| `icon` | `IconData?` | `null` | Optional leading icon |
+| `isDisabled` | `bool` | `false` | Non-interactive appearance |
+| `isActive` | `bool` | `false` | Marks the current page |
+
+## Accessibility
+
+- Items are accessible via semantics and keyboard focus
+- Active item is visually distinguished; disabled items announce properly
+
+

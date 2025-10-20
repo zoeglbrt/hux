@@ -14,12 +14,13 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.15.0
+## Latest Version: 0.16.0
 
-- **HuxTabs Component**: New tab navigation component with multiple variants
-  - Three visual variants: Default, Pill, and Minimal styles
-  - Support for icons, badges, and custom content
-  - Built-in theme integration and accessibility support
+- **HuxBreadcrumbs Component**: Hierarchical navigation trail with theme-aware styling
+  - Variants: `default_` (text `/`) and `icon` (chevron)
+  - Sizes: small, medium, large
+  - Optional overflow handling via `maxItems` and `overflowIndicator`
+  - Example app uses `context.showHuxSnackbar(...)` for clicks
 
 [![Changelog](https://img.shields.io/badge/Changelog-View-black?style=for-the-badge&labelColor=white&logo=github&logoColor=black)](CHANGELOG.md)
 [![Docs](https://img.shields.io/badge/Docs-Browse-black?style=for-the-badge&labelColor=white&logo=readthedocs&logoColor=black)](https://docs.thehuxdesign.com)

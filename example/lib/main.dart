@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hux/hux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'tabs.dart';
+import 'breadcrumbs.dart';
 
 void main() {
   runApp(const MyApp());
@@ -149,6 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _dropdownKey = GlobalKey();
   final _paginationKey = GlobalKey();
   final _tabsKey = GlobalKey();
+  final _breadcrumbsKey = GlobalKey();
   final _commandKey = GlobalKey();
   // final _timePickerKey = GlobalKey();
   // final _timePickerNavKey = GlobalKey();
@@ -258,6 +260,11 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: LucideIcons.layout,
       ),
       const HuxSidebarItemData(
+        id: 'breadcrumbs',
+        label: 'Breadcrumbs',
+        icon: LucideIcons.navigation,
+      ),
+      const HuxSidebarItemData(
         id: 'command',
         label: 'Command',
         icon: LucideIcons.command,
@@ -310,6 +317,7 @@ class _MyHomePageState extends State<MyHomePage> {
       'dropdown': _dropdownKey,
       'pagination': _paginationKey,
       'tabs': _tabsKey,
+      'breadcrumbs': _breadcrumbsKey,
       'command': _commandKey,
     };
 
@@ -1110,6 +1118,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         key: _tabsKey,
                         child: const TabsSection(),
+                      ),
+                      const SizedBox(height: 32),
+                      Container(
+                        key: _breadcrumbsKey,
+                        child: const BreadcrumbsSection(),
                       ),
                       const SizedBox(height: 32),
                       Container(

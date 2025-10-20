@@ -1,6 +1,16 @@
 # Changelog
 
 
+## [0.16.0] - 2025-10-20
+
+### Added
+- **HuxBreadcrumbs Component**: Hierarchical navigation with theme-aware styling
+  - Variants: `default_` (text `/`) and `icon` (chevron)
+  - Sizes: small, medium, large
+  - Overflow handling with `maxItems` and custom `overflowIndicator`
+  - Example updated to use `context.showHuxSnackbar(...)`
+  - Mintlify docs page added: `components/breadcrumbs`
+
 ## [0.15.0] - 2025-10-19
 
 ### Added

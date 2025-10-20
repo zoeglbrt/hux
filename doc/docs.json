@@ -31,6 +31,7 @@
               "components/alert",
               "components/avatar",
               "components/badge",
+              "components/breadcrumbs",
               "components/buttons",
               "components/cards",
               "components/charts",

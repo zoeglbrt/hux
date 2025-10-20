@@ -77,6 +77,7 @@ export 'src/components/command/hux_command_item.dart';
 export 'src/components/command/hux_command_shortcuts.dart';
 export 'src/components/navigation/hux_sidebar.dart';
 export 'src/components/navigation/hux_sidebar_item.dart';
+export 'src/components/navigation/hux_breadcrumbs.dart';
 
 // Export external dependencies
 /// LucideIcons - Beautiful icon set for Flutter applications
