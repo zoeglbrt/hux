@@ -1,6 +1,8 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+
 import '../../theme/hux_tokens.dart';
 import '../buttons/hux_button.dart';
 
@@ -22,6 +24,7 @@ class HuxDropdown<T> extends StatefulWidget {
     this.primaryColor,
     this.enabled = true,
     this.maxHeight = 200,
+    this.useItemWidgetAsValue = false,
   });
 
   /// List of dropdown items
@@ -51,6 +54,9 @@ class HuxDropdown<T> extends StatefulWidget {
   /// Maximum height of the dropdown panel
   final double maxHeight;
 
+  /// Whether to use the item widget as the value representation
+  final bool useItemWidgetAsValue;
+
   @override
   State<HuxDropdown<T>> createState() => _HuxDropdownState<T>();
 }
@@ -72,8 +78,7 @@ class _HuxDropdownState<T> extends State<HuxDropdown<T>> {
   Future<void> _openDropdown() async {
     if (!widget.enabled || widget.items.isEmpty) return;
 
-    final RenderBox? button =
-        _buttonKey.currentContext?.findRenderObject() as RenderBox?;
+    final RenderBox? button = _buttonKey.currentContext?.findRenderObject() as RenderBox?;
     if (button == null) return;
 
     final buttonPosition = button.localToGlobal(Offset.zero);
@@ -148,9 +153,7 @@ class _HuxDropdownState<T> extends State<HuxDropdown<T>> {
                             ),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: isSelected
-                                  ? HuxTokens.primary(context).withAlpha(26)
-                                  : null,
+                              color: isSelected ? HuxTokens.primary(context).withAlpha(26) : null,
                             ),
                             child: Row(
                               children: [
@@ -189,14 +192,49 @@ class _HuxDropdownState<T> extends State<HuxDropdown<T>> {
 
     final item = widget.items.firstWhere(
       (item) => item.value == widget.value,
-      orElse: () => HuxDropdownItem(
-          value: widget.value as T, child: Text('${widget.value}')),
+      orElse: () => HuxDropdownItem(value: widget.value as T, child: Text('${widget.value}')),
     );
 
     if (item.child is Text) {
       return (item.child as Text).data ?? '';
     }
     return widget.value.toString();
+  }
+
+  Widget _buildSelectedItem() {
+    if (widget.value == null) {
+      return Text(
+        widget.placeholder,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          color: widget.variant == HuxButtonVariant.primary
+              ? _getContrastingTextColor(widget.primaryColor ?? HuxTokens.primary(context), context)
+              : widget.value == null
+                  ? HuxTokens.textSecondary(context)
+                  : HuxTokens.textPrimary(context),
+        ),
+      );
+    }
+
+    if (widget.useItemWidgetAsValue) {
+      final selectedItem = widget.items.firstWhere(
+        (item) => item.value == widget.value,
+        orElse: () => HuxDropdownItem(value: widget.value as T, child: Text('${widget.value}')),
+      );
+      return selectedItem.child;
+    }
+
+    return Text(
+      _displayText,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+        color: widget.variant == HuxButtonVariant.primary
+            ? _getContrastingTextColor(widget.primaryColor ?? HuxTokens.primary(context), context)
+            : widget.value == null
+                ? HuxTokens.textSecondary(context)
+                : HuxTokens.textPrimary(context),
+      ),
+    );
   }
 
   @override
@@ -210,28 +248,13 @@ class _HuxDropdownState<T> extends State<HuxDropdown<T>> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(
-            child: Text(
-              _displayText,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: widget.variant == HuxButtonVariant.primary
-                    ? _getContrastingTextColor(
-                        widget.primaryColor ?? HuxTokens.primary(context),
-                        context)
-                    : widget.value == null
-                        ? HuxTokens.textSecondary(context)
-                        : HuxTokens.textPrimary(context),
-              ),
-            ),
-          ),
+          Expanded(child: _buildSelectedItem()),
           const SizedBox(width: 8),
           Icon(
             _isOpen ? LucideIcons.chevronUp : LucideIcons.chevronDown,
             size: 16,
             color: widget.variant == HuxButtonVariant.primary
-                ? _getContrastingTextColor(
-                    widget.primaryColor ?? HuxTokens.primary(context), context)
+                ? _getContrastingTextColor(widget.primaryColor ?? HuxTokens.primary(context), context)
                 : HuxTokens.iconSecondary(context),
           ),
         ],
@@ -258,16 +281,12 @@ class HuxDropdownItem<T> {
 /// Determines the appropriate text color based on WCAG AA contrast requirements
 Color _getContrastingTextColor(Color backgroundColor, BuildContext context) {
   // Calculate contrast ratios for both white and black text
-  final whiteContrast =
-      _calculateContrastRatio(backgroundColor, HuxTokens.textInvert(context));
-  final blackContrast =
-      _calculateContrastRatio(backgroundColor, HuxTokens.textPrimary(context));
+  final whiteContrast = _calculateContrastRatio(backgroundColor, HuxTokens.textInvert(context));
+  final blackContrast = _calculateContrastRatio(backgroundColor, HuxTokens.textPrimary(context));
 
   // Choose the text color with better contrast ratio
   // WCAG AA requires minimum 4.5:1 contrast ratio for normal text
-  return whiteContrast > blackContrast
-      ? HuxTokens.textInvert(context)
-      : HuxTokens.textPrimary(context);
+  return whiteContrast > blackContrast ? HuxTokens.textInvert(context) : HuxTokens.textPrimary(context);
 }
 
 /// Calculates the contrast ratio between two colors according to WCAG guidelines
