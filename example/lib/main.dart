@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hux/hux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'tabs.dart';
+import 'package:hux/hux.dart';
+
 import 'breadcrumbs.dart';
+import 'tabs.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +21,7 @@ class _MyAppState extends State<MyApp> {
 
   void _toggleTheme() {
     setState(() {
-      _themeMode =
-          _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+      _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     });
   }
 
@@ -123,9 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // Theme state
   String _selectedTheme = 'default';
   Color _currentPrimaryColor(BuildContext context) =>
-      _selectedTheme == 'default'
-          ? HuxTokens.primary(context)
-          : HuxColors.getPresetColor(_selectedTheme);
+      _selectedTheme == 'default' ? HuxTokens.primary(context) : HuxColors.getPresetColor(_selectedTheme);
 
   // Button size state
   HuxButtonSize _selectedButtonSize = HuxButtonSize.medium;
@@ -384,8 +382,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SvgPicture.asset(
-                                  Theme.of(context).brightness ==
-                                          Brightness.dark
+                                  Theme.of(context).brightness == Brightness.dark
                                       ? 'assets/logo-dark.svg'
                                       : 'assets/logo-light.svg',
                                   height: 32,
@@ -393,12 +390,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 const SizedBox(height: 4),
                                 Text(
                                   'Component Library',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.dark
+                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                        color: Theme.of(context).brightness == Brightness.dark
                                             ? HuxColors.white60
                                             : HuxColors.black60,
                                       ),
@@ -413,9 +406,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             size: HuxButtonSize.small,
                             width: HuxButtonWidth.fixed,
                             widthValue: 36,
-                            icon: widget.themeMode == ThemeMode.light
-                                ? LucideIcons.moon
-                                : LucideIcons.sun,
+                            icon: widget.themeMode == ThemeMode.light ? LucideIcons.moon : LucideIcons.sun,
                             child: const SizedBox.shrink(),
                           ),
                         ],
@@ -432,23 +423,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       Text(
                         'Button Theme',
-                        style:
-                            Theme.of(context).textTheme.labelMedium?.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? HuxColors.white80
-                                      : HuxColors.black80,
-                                ),
+                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context).brightness == Brightness.dark ? HuxColors.white80 : HuxColors.black80,
+                            ),
                       ),
                       const SizedBox(height: 8),
                       HuxDropdown<String>(
                         value: _selectedTheme,
-                        items: HuxColors.availablePresetColors
-                            .map<HuxDropdownItem<String>>((String colorName) {
-                          final color = colorName == 'default'
-                              ? HuxTokens.primary(context)
-                              : HuxColors.getPresetColor(colorName);
+                        items: HuxColors.availablePresetColors.map<HuxDropdownItem<String>>((String colorName) {
+                          final color = colorName == 'default' ? HuxTokens.primary(context) : HuxColors.getPresetColor(colorName);
                           return HuxDropdownItem<String>(
                             value: colorName,
                             child: Row(
@@ -460,18 +444,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                     color: color,
                                     borderRadius: BorderRadius.circular(4),
                                     border: Border.all(
-                                      color: Theme.of(context).brightness ==
-                                              Brightness.dark
-                                          ? HuxColors.white30
-                                          : HuxColors.black30,
+                                      color:
+                                          Theme.of(context).brightness == Brightness.dark ? HuxColors.white30 : HuxColors.black30,
                                       width: 0.5,
                                     ),
                                   ),
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  colorName[0].toUpperCase() +
-                                      colorName.substring(1),
+                                  colorName[0].toUpperCase() + colorName.substring(1),
                                 ),
                               ],
                             ),
@@ -532,38 +513,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
                               // Button Variants - Fixed Height Container
                               SizedBox(
-                                height:
-                                    48, // Fixed height to prevent layout shifts
+                                height: 48, // Fixed height to prevent layout shifts
                                 child: Center(
                                   child: Wrap(
                                     spacing: 12,
                                     runSpacing: 12,
                                     children: [
                                       HuxButton(
-                                        onPressed: () =>
-                                            _showSnackBar('Primary pressed'),
-                                        primaryColor:
-                                            _currentPrimaryColor(context),
+                                        onPressed: () => _showSnackBar('Primary pressed'),
+                                        primaryColor: _currentPrimaryColor(context),
                                         size: _selectedButtonSize,
                                         child: const Text('Primary'),
                                       ),
                                       HuxButton(
-                                        onPressed: () =>
-                                            _showSnackBar('Secondary pressed'),
+                                        onPressed: () => _showSnackBar('Secondary pressed'),
                                         variant: HuxButtonVariant.secondary,
                                         size: _selectedButtonSize,
                                         child: const Text('Secondary'),
                                       ),
                                       HuxButton(
-                                        onPressed: () =>
-                                            _showSnackBar('Outline pressed'),
+                                        onPressed: () => _showSnackBar('Outline pressed'),
                                         variant: HuxButtonVariant.outline,
                                         size: _selectedButtonSize,
                                         child: const Text('Outline'),
                                       ),
                                       HuxButton(
-                                        onPressed: () =>
-                                            _showSnackBar('Ghost pressed'),
+                                        onPressed: () => _showSnackBar('Ghost pressed'),
                                         variant: HuxButtonVariant.ghost,
                                         size: _selectedButtonSize,
                                         child: const Text('Ghost'),
@@ -577,31 +552,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
                               // With Icon Example - Fixed Height Container
                               SizedBox(
-                                height:
-                                    48, // Fixed height to prevent layout shifts
+                                height: 48, // Fixed height to prevent layout shifts
                                 child: Center(
                                   child: Wrap(
                                     spacing: 12,
                                     children: [
                                       HuxButton(
                                         onPressed: _toggleLoading,
-                                        primaryColor:
-                                            _currentPrimaryColor(context),
+                                        primaryColor: _currentPrimaryColor(context),
                                         size: _selectedButtonSize,
                                         icon: LucideIcons.upload,
                                         child: const Text('With Icon'),
                                       ),
                                       HuxButton(
                                         onPressed: _toggleLoading,
-                                        primaryColor:
-                                            _currentPrimaryColor(context),
+                                        primaryColor: _currentPrimaryColor(context),
                                         size: _selectedButtonSize,
                                         icon: LucideIcons.upload,
                                         width: HuxButtonWidth.fixed,
-                                        widthValue: _getButtonHeight(
-                                            _selectedButtonSize), // Square button
-                                        child: const SizedBox(
-                                            width: 0), // Icon only
+                                        widthValue: _getButtonHeight(_selectedButtonSize), // Square button
+                                        child: const SizedBox(width: 0), // Icon only
                                       ),
                                     ],
                                   ),
@@ -670,8 +640,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: HuxDateInput(
                                   label: 'Select Date',
                                   hint: 'MM/DD/YYYY',
-                                  helperText:
-                                      'Click the calendar icon or type the date manually',
+                                  helperText: 'Click the calendar icon or type the date manually',
                                   width: 400, // Fixed width of 200px
                                   onDateChanged: (date) {
                                     // Handle date change
@@ -691,8 +660,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         key: _cardsKey,
                         child: const HuxCard(
                           title: 'Cards',
-                          subtitle:
-                              'Container components for content organization',
+                          subtitle: 'Container components for content organization',
                           child: Column(
                             children: [
                               SizedBox(height: 16),
@@ -701,18 +669,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Expanded(
                                     child: HuxCard(
                                       title: 'Simple Card',
-                                      child: Text(
-                                          'This is a simple card with just a title and content.'),
+                                      child: Text('This is a simple card with just a title and content.'),
                                     ),
                                   ),
                                   SizedBox(width: 16),
                                   Expanded(
                                     child: HuxCard(
                                       title: 'Card with Subtitle',
-                                      subtitle:
-                                          'This card has both title and subtitle',
-                                      child: Text(
-                                          'Cards can have optional subtitles for additional context.'),
+                                      subtitle: 'This card has both title and subtitle',
+                                      child: Text('Cards can have optional subtitles for additional context.'),
                                     ),
                                   ),
                                 ],
@@ -746,8 +711,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       title: 'Daily Calories',
                                       subtitle: 'Calorie tracking over time',
                                       size: HuxChartSize.small,
-                                      primaryColor:
-                                          _currentPrimaryColor(context),
+                                      primaryColor: _currentPrimaryColor(context),
                                     ),
                                   ),
                                   const SizedBox(width: 16),
@@ -760,8 +724,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       title: 'Product Revenue',
                                       subtitle: 'Revenue by product',
                                       size: HuxChartSize.small,
-                                      primaryColor:
-                                          _currentPrimaryColor(context),
+                                      primaryColor: _currentPrimaryColor(context),
                                     ),
                                   ),
                                 ],
@@ -784,14 +747,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               const SizedBox(height: 16),
                               Text(
                                 'Right-click on any of the items below to see the context menu:',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(
-                                      color: Theme.of(context).brightness ==
-                                              Brightness.dark
-                                          ? HuxColors.white70
-                                          : HuxColors.black70,
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                      color:
+                                          Theme.of(context).brightness == Brightness.dark ? HuxColors.white70 : HuxColors.black70,
                                     ),
                               ),
                               const SizedBox(height: 20),
@@ -805,22 +763,19 @@ class _MyHomePageState extends State<MyHomePage> {
                                         HuxContextMenuItem(
                                           text: 'Copy',
                                           icon: LucideIcons.copy,
-                                          onTap: () => _showSnackBar(
-                                              'Copy action triggered'),
+                                          onTap: () => _showSnackBar('Copy action triggered'),
                                         ),
                                         HuxContextMenuItem(
                                           text: 'Paste',
                                           icon: LucideIcons.clipboard,
-                                          onTap: () => _showSnackBar(
-                                              'Paste action triggered'),
+                                          onTap: () => _showSnackBar('Paste action triggered'),
                                           isDisabled: true,
                                         ),
                                         const HuxContextMenuDivider(),
                                         HuxContextMenuItem(
                                           text: 'Share',
                                           icon: LucideIcons.share2,
-                                          onTap: () => _showSnackBar(
-                                              'Share action triggered'),
+                                          onTap: () => _showSnackBar('Share action triggered'),
                                         ),
                                       ],
                                       child: HuxCard(
@@ -832,11 +787,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           child: Icon(
                                             LucideIcons.fileText,
                                             size: 32,
-                                            color:
-                                                Theme.of(context).brightness ==
-                                                        Brightness.dark
-                                                    ? HuxColors.white50
-                                                    : HuxColors.black50,
+                                            color: Theme.of(context).brightness == Brightness.dark
+                                                ? HuxColors.white50
+                                                : HuxColors.black50,
                                           ),
                                         ),
                                       ),
@@ -849,21 +802,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                         HuxContextMenuItem(
                                           text: 'Edit',
                                           icon: LucideIcons.edit2,
-                                          onTap: () => _showSnackBar(
-                                              'Edit action triggered'),
+                                          onTap: () => _showSnackBar('Edit action triggered'),
                                         ),
                                         HuxContextMenuItem(
                                           text: 'Duplicate',
                                           icon: LucideIcons.copy,
-                                          onTap: () => _showSnackBar(
-                                              'Duplicate action triggered'),
+                                          onTap: () => _showSnackBar('Duplicate action triggered'),
                                         ),
                                         const HuxContextMenuDivider(),
                                         HuxContextMenuItem(
                                           text: 'Delete',
                                           icon: LucideIcons.trash2,
-                                          onTap: () => _showSnackBar(
-                                              'Delete action triggered'),
+                                          onTap: () => _showSnackBar('Delete action triggered'),
                                           isDestructive: true,
                                         ),
                                       ],
@@ -876,11 +826,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           child: Icon(
                                             LucideIcons.folder,
                                             size: 32,
-                                            color:
-                                                Theme.of(context).brightness ==
-                                                        Brightness.dark
-                                                    ? HuxColors.white50
-                                                    : HuxColors.black50,
+                                            color: Theme.of(context).brightness == Brightness.dark
+                                                ? HuxColors.white50
+                                                : HuxColors.black50,
                                           ),
                                         ),
                                       ),
@@ -897,31 +845,26 @@ class _MyHomePageState extends State<MyHomePage> {
                                   HuxContextMenuItem(
                                     text: 'Save',
                                     icon: LucideIcons.save,
-                                    onTap: () =>
-                                        _showSnackBar('Save action triggered'),
+                                    onTap: () => _showSnackBar('Save action triggered'),
                                   ),
                                   HuxContextMenuItem(
                                     text: 'Export',
                                     icon: LucideIcons.download,
-                                    onTap: () => _showSnackBar(
-                                        'Export action triggered'),
+                                    onTap: () => _showSnackBar('Export action triggered'),
                                   ),
                                   const HuxContextMenuDivider(),
                                   HuxContextMenuItem(
                                     text: 'Reset',
                                     icon: LucideIcons.refreshCw,
-                                    onTap: () =>
-                                        _showSnackBar('Reset action triggered'),
+                                    onTap: () => _showSnackBar('Reset action triggered'),
                                     isDestructive: true,
                                   ),
                                 ],
                                 child: HuxButton(
-                                  onPressed: () =>
-                                      _showSnackBar('Button clicked normally'),
+                                  onPressed: () => _showSnackBar('Button clicked normally'),
                                   primaryColor: _currentPrimaryColor(context),
                                   icon: LucideIcons.settings,
-                                  child: const Text(
-                                      'Right-click for More Options'),
+                                  child: const Text('Right-click for More Options'),
                                 ),
                               ),
                             ],
@@ -976,8 +919,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: [
                               const SizedBox(height: 16),
                               const Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Column(
                                     children: [
@@ -1002,8 +944,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                   Column(
                                     children: [
-                                      HuxLoading(
-                                          size: HuxLoadingSize.extraLarge),
+                                      HuxLoading(size: HuxLoadingSize.extraLarge),
                                       SizedBox(height: 8),
                                       Text('XL'),
                                     ],
@@ -1014,9 +955,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               HuxButton(
                                 onPressed: _toggleLoading,
                                 variant: HuxButtonVariant.outline,
-                                child: Text(_isLoading
-                                    ? 'Stop Loading'
-                                    : 'Show Loading Overlay'),
+                                child: Text(_isLoading ? 'Stop Loading' : 'Show Loading Overlay'),
                               ),
                             ],
                           ),
@@ -1091,8 +1030,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               // Confirmation dialog example
                               Center(
                                 child: HuxButton(
-                                  onPressed: () =>
-                                      _showConfirmationDialog(context),
+                                  onPressed: () => _showConfirmationDialog(context),
                                   variant: HuxButtonVariant.outline,
                                   child: const Text('Show Confirmation Dialog'),
                                 ),
@@ -1185,8 +1123,7 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       title: 'Confirm Action',
       subtitle: 'Are you sure you want to proceed?',
-      content: const Text(
-          'This action cannot be undone. Please confirm that you want to continue.'),
+      content: const Text('This action cannot be undone. Please confirm that you want to continue.'),
       actions: [
         HuxButton(
           onPressed: () => Navigator.of(context).pop(false),
@@ -1422,30 +1359,12 @@ class BadgesSection extends StatelessWidget {
               spacing: 12,
               runSpacing: 8,
               children: [
-                HuxBadge(
-                    label: 'Primary',
-                    variant: HuxBadgeVariant.primary,
-                    size: HuxBadgeSize.small),
-                HuxBadge(
-                    label: 'Secondary',
-                    variant: HuxBadgeVariant.secondary,
-                    size: HuxBadgeSize.small),
-                HuxBadge(
-                    label: 'Outline',
-                    variant: HuxBadgeVariant.outline,
-                    size: HuxBadgeSize.small),
-                HuxBadge(
-                    label: 'Success',
-                    variant: HuxBadgeVariant.success,
-                    size: HuxBadgeSize.small),
-                HuxBadge(
-                    label: 'Destructive',
-                    variant: HuxBadgeVariant.destructive,
-                    size: HuxBadgeSize.small),
-                HuxBadge(
-                    label: '99+',
-                    variant: HuxBadgeVariant.primary,
-                    size: HuxBadgeSize.small),
+                HuxBadge(label: 'Primary', variant: HuxBadgeVariant.primary, size: HuxBadgeSize.small),
+                HuxBadge(label: 'Secondary', variant: HuxBadgeVariant.secondary, size: HuxBadgeSize.small),
+                HuxBadge(label: 'Outline', variant: HuxBadgeVariant.outline, size: HuxBadgeSize.small),
+                HuxBadge(label: 'Success', variant: HuxBadgeVariant.success, size: HuxBadgeSize.small),
+                HuxBadge(label: 'Destructive', variant: HuxBadgeVariant.destructive, size: HuxBadgeSize.small),
+                HuxBadge(label: '99+', variant: HuxBadgeVariant.primary, size: HuxBadgeSize.small),
               ],
             ),
           ),
@@ -1510,8 +1429,7 @@ class IndicatorsSection extends StatelessWidget {
             child: HuxAlert(
               variant: HuxAlertVariant.error,
               title: 'Destructive',
-              message:
-                  'This action cannot be undone. Please proceed with caution.',
+              message: 'This action cannot be undone. Please proceed with caution.',
               showIcon: true,
               onDismiss: () {
                 context.showHuxSnackbar(
@@ -1608,6 +1526,7 @@ class DropdownSection extends StatefulWidget {
 class _DropdownSectionState extends State<DropdownSection> {
   String? _selectedOption;
   HuxButtonVariant _selectedVariant = HuxButtonVariant.outline;
+  bool _useItemWidgetAsValue = false;
 
   final List<HuxDropdownItem<String>> _options = [
     const HuxDropdownItem(
@@ -1690,6 +1609,38 @@ class _DropdownSectionState extends State<DropdownSection> {
               primaryColor: widget.primaryColor,
             ),
           ),
+          const SizedBox(width: 16),
+          Text(
+            'Use item widget as value:',
+            style: TextStyle(
+              color: HuxTokens.textSecondary(context),
+            ),
+          ),
+          const SizedBox(width: 8),
+          SizedBox(
+            width: 150,
+            child: HuxDropdown<bool>(
+              items: const [
+                HuxDropdownItem(
+                  value: false,
+                  child: Text('False'),
+                ),
+                HuxDropdownItem(
+                  value: true,
+                  child: Text('True'),
+                ),
+              ],
+              value: _useItemWidgetAsValue,
+              onChanged: (value) {
+                setState(() {
+                  _useItemWidgetAsValue = value;
+                });
+              },
+              placeholder: 'Select size',
+              variant: HuxButtonVariant.outline,
+              size: HuxButtonSize.small,
+            ),
+          ),
         ],
       ),
       child: Column(
@@ -1707,6 +1658,7 @@ class _DropdownSectionState extends State<DropdownSection> {
                   });
                 },
                 placeholder: 'Select an option',
+                useItemWidgetAsValue: _useItemWidgetAsValue,
                 variant: _selectedVariant,
                 primaryColor: widget.primaryColor,
               ),
@@ -1733,8 +1685,7 @@ class _ToggleButtonsSectionState extends State<ToggleButtonsSection> {
 
   Color _currentPrimaryColor(BuildContext context) {
     final parentState = context.findAncestorStateOfType<_MyHomePageState>();
-    return parentState?._currentPrimaryColor(context) ??
-        HuxTokens.primary(context);
+    return parentState?._currentPrimaryColor(context) ?? HuxTokens.primary(context);
   }
 
   @override
