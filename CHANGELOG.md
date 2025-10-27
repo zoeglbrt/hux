@@ -1,6 +1,18 @@
 # Changelog
 
 
+## [0.17.0] - 2025-10-27
+
+### Enhanced
+- **HuxDropdown**: Added `useItemWidgetAsValue` parameter to display custom widgets as the selected value
+  - When enabled, the full item widget is displayed instead of extracting text
+  - Enables rich content in dropdown selections (icons, badges, custom layouts)
+  - Maintains all existing functionality with added flexibility
+- **Code Quality**: Refactored dropdown internals for better maintainability
+  - Extracted `_getSelectedItem()` helper method to eliminate code duplication
+  - Improved consistency between selected item display and text extraction
+  - Enhanced code readability and future extensibility
+
 ## [0.16.0] - 2025-10-20
 
 ### Added

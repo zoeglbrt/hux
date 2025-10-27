@@ -85,10 +85,10 @@ packages:
     dependency: transitive
     description:
       name: cristalyse
-      sha256: dc26aa6c3c65b7fbc36bb3fa851a261f490da0870528a8d4fd1355c34b1af73f
+      sha256: c67ddcc0eacba031120dc27e1d2842e5c57fa0c74c53d66b8ad75ad68fc38e98
       url: "https://pub.dev"
     source: hosted
-    version: "1.10.0"
+    version: "1.11.1"
   crypto:
     dependency: transitive
     description:
@@ -185,7 +185,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.16.0"
+    version: "0.17.0"
   image:
     dependency: transitive
     description:

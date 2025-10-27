@@ -23,7 +23,7 @@ HuxDropdown<String>(
   ],
   value: selectedValue,
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
 )
 ```
 
@@ -50,7 +50,7 @@ HuxDropdown(
   ],
   value: selectedValue,
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
   variant: HuxButtonVariant.primary,
 )
 ```
@@ -74,7 +74,7 @@ HuxDropdown(
   ],
   value: selectedValue,
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
   variant: HuxButtonVariant.secondary,
 )
 ```
@@ -98,7 +98,7 @@ HuxDropdown(
   ],
   value: selectedValue,
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
   variant: HuxButtonVariant.outline,
 )
 ```
@@ -122,7 +122,7 @@ HuxDropdown(
   ],
   value: selectedValue,
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
   variant: HuxButtonVariant.ghost,
 )
 ```
@@ -148,7 +148,7 @@ HuxDropdown<String>(
   ],
   value: null,
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
 )
 ```
 
@@ -175,7 +175,7 @@ HuxDropdown<String>(
   ],
   value: selectedValue,
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
 )
 ```
 
@@ -198,7 +198,7 @@ HuxDropdown<String>(
   ],
   value: 'Item 1',
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
 )
 ```
 
@@ -221,7 +221,7 @@ HuxDropdown<String>(
   ],
   value: selectedValue,
   onChanged: null, // or enabled: false
-  placeholder: 'Select',
+  placeholder: 'Select option',
   enabled: false,
 )
 ```
@@ -249,7 +249,7 @@ HuxDropdown<String>(
   ],
   value: selectedValue,
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
   size: HuxButtonSize.small,
 )
 ```
@@ -273,7 +273,7 @@ HuxDropdown<String>(
   ],
   value: selectedValue,
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
   size: HuxButtonSize.medium, // Default
 )
 ```
@@ -297,7 +297,7 @@ HuxDropdown<String>(
   ],
   value: selectedValue,
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
   size: HuxButtonSize.large,
 )
 ```
@@ -334,9 +334,46 @@ HuxDropdown<String>(
   ],
   value: selectedValue,
   onChanged: (value) => setState(() => selectedValue = value),
-  placeholder: 'Select',
+  placeholder: 'Select option',
 )
 ```
+
+## Using Item Widget as Value
+
+By default, HuxDropdown extracts and displays text from the selected item's widget. The `useItemWidgetAsValue` parameter allows you to display the complete item widget (including icons, badges, and complex layouts) as the selected value.
+
+```dart
+HuxDropdown<String>(
+  useItemWidgetAsValue: true, // Display full widget instead of just text
+  items: [
+    HuxDropdownItem(
+      value: 'user',
+      child: Row(
+        children: [
+          Icon(LucideIcons.user, size: 16),
+          SizedBox(width: 8),
+          Text('User'),
+        ],
+      ),
+    ),
+    HuxDropdownItem(
+      value: 'settings',
+      child: Row(
+        children: [
+          Icon(LucideIcons.settings, size: 16),
+          SizedBox(width: 8),
+          Text('Settings'),
+        ],
+      ),
+    ),
+  ],
+  value: selectedValue,
+  onChanged: (value) => setState(() => selectedValue = value),
+  placeholder: 'Select option',
+)
+```
+
+With this feature enabled, the selected value will show the complete widget with all its visual elements (icons, badges, custom layouts), providing a richer visual experience compared to text-only representation.
 
 ## Custom Colors
 
@@ -360,12 +397,13 @@ HuxDropdown(
 | `items` | `List<HuxDropdownItem<T>>` | **required** | List of dropdown items |
 | `value` | `T?` | `null` | Currently selected value |
 | `onChanged` | `ValueChanged<T>?` | `null` | Called when selection changes |
-| `placeholder` | `String` | `'Select'` | Text shown when no value is selected |
+| `placeholder` | `String` | `'Select option'` | Text shown when no value is selected |
 | `variant` | `HuxButtonVariant` | `outline` | Visual style of the dropdown |
 | `size` | `HuxButtonSize` | `medium` | Size of the dropdown |
 | `primaryColor` | `Color?` | `null` | Optional primary color override |
 | `enabled` | `bool` | `true` | Whether the dropdown is enabled |
 | `maxHeight` | `double` | `200` | Maximum height of the dropdown panel |
+| `useItemWidgetAsValue` | `bool` | `false` | Display the complete item widget instead of extracting text |
 
 ### HuxDropdownItem Properties
 
