@@ -32,9 +32,10 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-example/pubspec.lock
-example/ios/Podfile.lock
-example/macos/Podfile.lock
+# Package lock files should not be committed (root only, example/pubspec.lock should be committed)
+/pubspec.lock
+# Podfile.lock files are build artifacts
+**/Podfile.lock
 
 # Symbolication related
 app.*.symbols
