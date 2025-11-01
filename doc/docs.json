@@ -58,6 +58,7 @@
             "pages": [
               "advanced/theming",
               "advanced/customization",
+              "advanced/wcag",
               "advanced/accessibility"
             ]
           }

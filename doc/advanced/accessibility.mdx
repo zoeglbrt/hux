@@ -10,17 +10,27 @@ Hux UI is built with accessibility in mind, featuring WCAG AA compliance and bes
 ## Built-in Accessibility Features
 
 - **WCAG AA Contrast** - Automatic contrast calculation ensures 4.5:1 contrast ratios
+- **HuxWCAG Utilities** - Public API for WCAG 2.1 compliant contrast calculations in custom components
 - **Semantic Roles** - Proper ARIA roles and labels for screen readers
 - **Keyboard Navigation** - Full keyboard support for all interactive components
 - **Focus Management** - Visible focus indicators and logical tab order
+
+## WCAG Utilities
+
+Hux UI provides the `HuxWCAG` utility class for WCAG 2.1 compliant contrast calculations. All Hux components use these utilities internally, but they're also available for your custom components.
+
+<Card
+  title="WCAG Utilities"
+  icon="accessibility"
+  href="/advanced/wcag"
+>
+  Learn how to use HuxWCAG utilities for accessible custom components
+</Card>
 
 ## Best Practices
 
 - Always provide meaningful labels for form inputs
 - Use semantic colors (success, destructive) appropriately
 - Test with screen readers and keyboard navigation
-- Ensure sufficient color contrast ratios
-
-<Note>
-  Complete accessibility documentation is coming soon.
-</Note>
+- Ensure sufficient color contrast ratios using `HuxWCAG` utilities for custom components
+- Use `HuxWCAG.meetsContrastAA()` to validate color combinations before applying them

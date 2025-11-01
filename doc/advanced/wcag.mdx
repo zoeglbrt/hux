@@ -1,0 +1,238 @@
+---
+title: 'WCAG Utilities'
+description: 'WCAG 2.1 compliant contrast calculation utilities for accessibility'
+---
+
+## Overview
+
+`HuxWCAG` provides WCAG (Web Content Accessibility Guidelines) 2.1 compliant utilities for calculating color contrast ratios and determining accessible text colors. These utilities ensure your custom components meet accessibility standards.
+
+Hux UI components automatically use these utilities internally, but they're also available as a public API for your custom components.
+
+## Basic Usage
+
+### Get Contrasting Text Color
+
+The most common use case is determining the appropriate text color for a background:
+
+```dart
+import 'package:hux/hux.dart';
+
+final textColor = HuxWCAG.getContrastingTextColor(
+  backgroundColor: Colors.blue,
+  context: context,
+);
+
+// Use in your custom component
+Text(
+  'Accessible text',
+  style: TextStyle(color: textColor),
+)
+```
+
+This method automatically compares white and black text against your background color and returns the one with better contrast (meeting WCAG AA's 4.5:1 minimum requirement).
+
+## API Reference
+
+### `getContrastingTextColor`
+
+Determines the appropriate text color based on WCAG AA contrast requirements.
+
+**Parameters:**
+- `backgroundColor` (required) - The background color to check against
+- `context` (required) - BuildContext for theme-aware color tokens
+
+**Returns:** `Color` - The text color with better contrast ratio
+
+**Example:**
+```dart
+final buttonColor = Colors.deepPurple;
+final textColor = HuxWCAG.getContrastingTextColor(
+  backgroundColor: buttonColor,
+  context: context,
+);
+
+HuxButton(
+  onPressed: () {},
+  primaryColor: buttonColor,
+  child: Text('Button', style: TextStyle(color: textColor)),
+)
+```
+
+### `calculateContrastRatio`
+
+Calculates the contrast ratio between two colors according to WCAG guidelines.
+
+**Parameters:**
+- `color1` - First color
+- `color2` - Second color
+
+**Returns:** `double` - Contrast ratio between 1 and 21 (higher = better contrast)
+
+**WCAG Requirements:**
+- **Normal text**: Minimum 4.5:1 ratio
+- **Large text** (18pt+ or 14pt+ bold): Minimum 3:1 ratio
+
+**Example:**
+```dart
+final ratio = HuxWCAG.calculateContrastRatio(
+  Colors.blue,
+  Colors.white,
+);
+
+if (ratio >= 4.5) {
+  print('Meets WCAG AA for normal text');
+}
+```
+
+### `getRelativeLuminance`
+
+Calculates the relative luminance of a color according to WCAG guidelines.
+
+**Parameters:**
+- `color` - The color to calculate luminance for
+
+**Returns:** `double` - Luminance value between 0 (black) and 1 (white)
+
+**Implementation Details:**
+- Uses ITU-R BT.709 coefficients for accurate calculation
+- Applies proper gamma correction for sRGB color space
+- Follows WCAG 2.1 specification exactly
+
+**Example:**
+```dart
+final luminance = HuxWCAG.getRelativeLuminance(Colors.blue);
+print('Luminance: $luminance'); // Value between 0 and 1
+```
+
+### `meetsContrastAA`
+
+Checks if two colors meet WCAG AA contrast requirements.
+
+**Parameters:**
+- `foreground` (required) - Text/foreground color
+- `background` (required) - Background color
+- `isLargeText` (optional) - Whether text is large (18pt+ or 14pt+ bold). Default: `false`
+
+**Returns:** `bool` - `true` if contrast meets WCAG AA requirements
+
+**Example:**
+```dart
+// Check normal text
+final accessible = HuxWCAG.meetsContrastAA(
+  foreground: Colors.black,
+  background: Colors.white,
+); // Returns true
+
+// Check large text (lower threshold)
+final largeTextAccessible = HuxWCAG.meetsContrastAA(
+  foreground: Colors.grey.shade700,
+  background: Colors.white,
+  isLargeText: true,
+);
+```
+
+## Use Cases
+
+### Custom Components
+
+Use HuxWCAG utilities in your custom components to ensure accessibility:
+
+```dart
+class MyCustomCard extends StatelessWidget {
+  final Color cardColor;
+  
+  @override
+  Widget build(BuildContext context) {
+    final textColor = HuxWCAG.getContrastingTextColor(
+      backgroundColor: cardColor,
+      context: context,
+    );
+    
+    return Container(
+      color: cardColor,
+      child: Text(
+        'Card content',
+        style: TextStyle(color: textColor),
+      ),
+    );
+  }
+}
+```
+
+### Form Validation
+
+Validate color combinations before applying them:
+
+```dart
+void validateColorScheme(Color foreground, Color background) {
+  if (!HuxWCAG.meetsContrastAA(
+    foreground: foreground,
+    background: background,
+  )) {
+    throw ArgumentError(
+      'Colors do not meet WCAG AA contrast requirements (4.5:1)'
+    );
+  }
+}
+```
+
+### Dynamic Theming
+
+Calculate accessible colors for dynamic themes:
+
+```dart
+Color getAccessibleAccent(Color baseColor, BuildContext context) {
+  // Check if base color provides enough contrast
+  if (HuxWCAG.calculateContrastRatio(
+    baseColor,
+    HuxTokens.surfacePrimary(context),
+  ) < 4.5) {
+    // Adjust color if needed
+    return baseColor.withValues(alpha: 0.8);
+  }
+  return baseColor;
+}
+```
+
+## Technical Details
+
+### WCAG 2.1 Compliance
+
+All calculations follow the official [WCAG 2.1 specification](https://www.w3.org/TR/WCAG21/):
+
+- **Relative Luminance**: Uses ITU-R BT.709 coefficients (0.2126, 0.7152, 0.0722)
+- **Gamma Correction**: Proper sRGB gamma correction applied
+- **Contrast Formula**: `(L1 + 0.05) / (L2 + 0.05)` where L1 is lighter, L2 is darker
+
+### Accuracy
+
+HuxWCAG uses manual calculation rather than Flutter's `computeLuminance()` for:
+- ✅ Exact WCAG 2.1 compliance
+- ✅ Consistent results across all platforms
+- ✅ Proper gamma correction for sRGB
+
+### Performance
+
+All methods are static and optimized for performance:
+- No object instantiation required
+- Pure mathematical calculations
+- Suitable for real-time use in build methods
+
+## Integration with Hux Components
+
+Hux UI components automatically use these utilities internally:
+
+- **HuxButton** - Primary buttons use `getContrastingTextColor()` automatically
+- **HuxDropdown** - Text color adapts to primary color variants
+- **HuxBadge** - Badge text color calculated for all variants
+- **HuxToggle** - Icon and text colors adapt to background
+- **HuxCheckbox** - Checkmark color adapts to primary color
+- **HuxPagination** - Selected page text color calculated
+
+You don't need to use HuxWCAG manually for Hux components - they handle it automatically. Use these utilities when creating custom components or extending Hux UI.
+
+<Note>
+  **Pro Tip**: Hux UI components handle WCAG compliance automatically. Only use HuxWCAG utilities when creating custom components or when you need fine-grained control over accessibility calculations.
+</Note>
+

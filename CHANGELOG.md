@@ -1,6 +1,15 @@
 # Changelog
 
 
+## [0.18.1] - 2025-11-02
+
+### Added
+- **Documentation**: Documentation for HuxWCAG utilities
+  - New documentation page in Advanced section (`/advanced/wcag`)
+  - Comprehensive API reference with examples
+  - Use cases and integration guide
+  - Updated accessibility page with HuxWCAG reference
+
 ## [0.18.0] - 2025-11-01
 
 ### Added

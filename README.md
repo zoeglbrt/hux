@@ -14,7 +14,7 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.18.0
+## Latest Version: 0.18.1
 
 - **HuxWCAG Utility**: New shared WCAG contrast calculation utilities for better accessibility
   - Centralized WCAG 2.1 compliant contrast ratio calculations
