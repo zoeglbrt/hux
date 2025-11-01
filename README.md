@@ -3,7 +3,7 @@
 A modern Flutter UI package with beautiful, customizable components designed for clean and consistent user interfaces.
 
 [![Flutter support](https://img.shields.io/badge/Flutter-3.16%2B-white?style=flat&labelColor=black&logo=flutter&logoColor=WHITE)](https://flutter.dev/)
-[![Figma](https://img.shields.io/badge/Figma%20users-21-white?style=flat&labelColor=black&logo=figma&logoColor=white)](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
+[![Figma](https://img.shields.io/badge/Figma%20users-25-white?style=flat&labelColor=black&logo=figma&logoColor=white)](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsor-Hux%20UI-white?style=flat&labelColor=black&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/zoeglbrt)
 
 [![pub package](https://img.shields.io/pub/v/hux?style=flat&color=white&labelColor=black)](https://pub.dev/packages/hux)
@@ -14,12 +14,16 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.17.0
+## Latest Version: 0.18.0
 
-- **HuxDropdown Enhancement**: Added `useItemWidgetAsValue` parameter for rich content in dropdown selections
-  - Display custom widgets (icons, badges, complex layouts) as selected values
-  - Maintains full backward compatibility with existing dropdown usage
-  - Enhanced code quality with improved internal structure
+- **HuxWCAG Utility**: New shared WCAG contrast calculation utilities for better accessibility
+  - Centralized WCAG 2.1 compliant contrast ratio calculations
+  - Public API for developers to use in custom components
+  - Improved accuracy and consistency across all components
+- **Code Quality**: Major refactoring of WCAG contrast calculations
+  - Extracted ~150+ lines of duplicate code into shared utility
+  - Standardized all components to use proper WCAG 2.1 formula
+  - Enhanced maintainability and single source of truth
 
 [![Changelog](https://img.shields.io/badge/Changelog-View-black?style=for-the-badge&labelColor=white&logo=github&logoColor=black)](CHANGELOG.md)
 [![Docs](https://img.shields.io/badge/Docs-Browse-black?style=for-the-badge&labelColor=white&logo=readthedocs&logoColor=black)](https://docs.thehuxdesign.com)

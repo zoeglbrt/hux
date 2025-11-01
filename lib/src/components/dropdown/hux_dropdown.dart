@@ -1,9 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 import '../../theme/hux_tokens.dart';
+import '../../utils/hux_wcag.dart';
 import '../buttons/hux_button.dart';
 
 /// A dropdown/select component with overlay-based options list.
@@ -218,8 +217,11 @@ class _HuxDropdownState<T> extends State<HuxDropdown<T>> {
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: widget.variant == HuxButtonVariant.primary
-              ? _getContrastingTextColor(
-                  widget.primaryColor ?? HuxTokens.primary(context), context)
+              ? HuxWCAG.getContrastingTextColor(
+                  backgroundColor:
+                      widget.primaryColor ?? HuxTokens.primary(context),
+                  context: context,
+                )
               : HuxTokens.textSecondary(context),
         ),
       );
@@ -239,8 +241,11 @@ class _HuxDropdownState<T> extends State<HuxDropdown<T>> {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         color: widget.variant == HuxButtonVariant.primary
-            ? _getContrastingTextColor(
-                widget.primaryColor ?? HuxTokens.primary(context), context)
+            ? HuxWCAG.getContrastingTextColor(
+                backgroundColor:
+                    widget.primaryColor ?? HuxTokens.primary(context),
+                context: context,
+              )
             : HuxTokens.textPrimary(context),
       ),
     );
@@ -263,8 +268,11 @@ class _HuxDropdownState<T> extends State<HuxDropdown<T>> {
             _isOpen ? LucideIcons.chevronUp : LucideIcons.chevronDown,
             size: 16,
             color: widget.variant == HuxButtonVariant.primary
-                ? _getContrastingTextColor(
-                    widget.primaryColor ?? HuxTokens.primary(context), context)
+                ? HuxWCAG.getContrastingTextColor(
+                    backgroundColor:
+                        widget.primaryColor ?? HuxTokens.primary(context),
+                    context: context,
+                  )
                 : HuxTokens.iconSecondary(context),
           ),
         ],
@@ -286,48 +294,4 @@ class HuxDropdownItem<T> {
 
   /// The widget to display for this item.
   final Widget child;
-}
-
-/// Determines the appropriate text color based on WCAG AA contrast requirements
-Color _getContrastingTextColor(Color backgroundColor, BuildContext context) {
-  // Calculate contrast ratios for both white and black text
-  final whiteContrast =
-      _calculateContrastRatio(backgroundColor, HuxTokens.textInvert(context));
-  final blackContrast =
-      _calculateContrastRatio(backgroundColor, HuxTokens.textPrimary(context));
-
-  // Choose the text color with better contrast ratio
-  // WCAG AA requires minimum 4.5:1 contrast ratio for normal text
-  return whiteContrast > blackContrast
-      ? HuxTokens.textInvert(context)
-      : HuxTokens.textPrimary(context);
-}
-
-/// Calculates the contrast ratio between two colors according to WCAG guidelines
-/// Returns a value between 1 and 21, where higher values indicate better contrast
-double _calculateContrastRatio(Color color1, Color color2) {
-  final luminance1 = _getRelativeLuminance(color1);
-  final luminance2 = _getRelativeLuminance(color2);
-
-  final lighter = luminance1 > luminance2 ? luminance1 : luminance2;
-  final darker = luminance1 > luminance2 ? luminance2 : luminance1;
-
-  return (lighter + 0.05) / (darker + 0.05);
-}
-
-/// Calculates the relative luminance of a color according to WCAG guidelines
-/// Returns a value between 0 and 1
-double _getRelativeLuminance(Color color) {
-  // Convert RGB values to 0-1 range
-  final r = color.r / 255.0;
-  final g = color.g / 255.0;
-  final b = color.b / 255.0;
-
-  // Apply gamma correction
-  final rLinear = r <= 0.03928 ? r / 12.92 : pow((r + 0.055) / 1.055, 2.4);
-  final gLinear = g <= 0.03928 ? g / 12.92 : pow((g + 0.055) / 1.055, 2.4);
-  final bLinear = b <= 0.03928 ? b / 12.92 : pow((b + 0.055) / 1.055, 2.4);
-
-  // Calculate relative luminance using ITU-R BT.709 coefficients
-  return 0.2126 * rLinear + 0.7152 * gLinear + 0.0722 * bLinear;
 }

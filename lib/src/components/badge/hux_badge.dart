@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/hux_tokens.dart';
+import '../../utils/hux_wcag.dart';
 
 /// HuxBadge is a small notification indicator component that displays text or
 /// numbers in a clean, pill-shaped container.
@@ -109,15 +110,19 @@ class HuxBadge extends StatelessWidget {
   Color _getTextColor(BuildContext context) {
     if (customColor != null) {
       // Calculate contrasting color for custom backgrounds
-      final luminance = customColor!.computeLuminance();
-      return luminance > 0.5 ? Colors.black87 : Colors.white;
+      return HuxWCAG.getContrastingTextColor(
+        backgroundColor: customColor!,
+        context: context,
+      );
     }
 
     switch (variant) {
       case HuxBadgeVariant.primary:
         final primaryColor = HuxTokens.primary(context);
-        final luminance = primaryColor.computeLuminance();
-        return luminance > 0.5 ? Colors.black87 : Colors.white;
+        return HuxWCAG.getContrastingTextColor(
+          backgroundColor: primaryColor,
+          context: context,
+        );
       case HuxBadgeVariant.secondary:
         return HuxTokens.textPrimary(context);
       case HuxBadgeVariant.success:

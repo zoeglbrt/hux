@@ -1,6 +1,25 @@
 # Changelog
 
 
+## [0.18.0] - 2025-11-01
+
+### Added
+- **HuxWCAG Utility**: New shared WCAG contrast calculation utilities (`HuxWCAG` class)
+  - Centralized WCAG 2.1 compliant contrast ratio calculations
+  - Public API for developers to use in custom components
+  - Proper gamma correction and ITU-R BT.709 coefficients for accurate calculations
+  - Exported from main library for easy access
+  - Helper methods: `getContrastingTextColor()`, `calculateContrastRatio()`, `getRelativeLuminance()`, `meetsContrastAA()`
+
+### Enhanced
+- **Code Quality**: Major refactoring of WCAG contrast calculations across all components
+  - Extracted duplicate WCAG code (~150+ lines) into shared `HuxWCAG` utility class
+  - Standardized all components to use proper WCAG 2.1 calculation (replaced `computeLuminance()` with manual WCAG formula)
+  - Updated components: HuxButton, HuxDropdown, HuxPagination, HuxToggle, HuxCheckbox, HuxBadge
+  - Improved maintainability with single source of truth for contrast calculations
+  - Enhanced consistency and accuracy of accessibility calculations
+  - No breaking changes - all changes are internal improvements
+
 ## [0.17.0] - 2025-10-27
 
 ### Enhanced

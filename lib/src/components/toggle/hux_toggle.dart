@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/hux_tokens.dart';
+import '../../utils/hux_wcag.dart';
 import '../buttons/hux_button.dart';
 
 /// HuxToggle is a two-state button component that can be toggled on/off.
@@ -206,8 +207,10 @@ class HuxToggle extends StatelessWidget {
     final effectivePrimaryColor =
         primaryColor ?? Theme.of(context).colorScheme.primary;
     return switch (variant) {
-      HuxButtonVariant.primary =>
-        _getContrastingTextColor(effectivePrimaryColor, context),
+      HuxButtonVariant.primary => HuxWCAG.getContrastingTextColor(
+          backgroundColor: effectivePrimaryColor,
+          context: context,
+        ),
       HuxButtonVariant.secondary => HuxTokens.buttonSecondaryText(context),
       HuxButtonVariant.outline ||
       HuxButtonVariant.ghost =>
@@ -227,36 +230,15 @@ class HuxToggle extends StatelessWidget {
     final effectivePrimaryColor =
         primaryColor ?? Theme.of(context).colorScheme.primary;
     return switch (variant) {
-      HuxButtonVariant.primary =>
-        _getContrastingTextColor(effectivePrimaryColor, context),
+      HuxButtonVariant.primary => HuxWCAG.getContrastingTextColor(
+          backgroundColor: effectivePrimaryColor,
+          context: context,
+        ),
       HuxButtonVariant.secondary => HuxTokens.buttonSecondaryText(context),
       HuxButtonVariant.outline ||
       HuxButtonVariant.ghost =>
         effectivePrimaryColor,
     };
-  }
-
-  /// Determines the appropriate text color based on WCAG AA contrast requirements
-  Color _getContrastingTextColor(Color backgroundColor, BuildContext context) {
-    final whiteContrast =
-        _calculateContrastRatio(backgroundColor, HuxTokens.textInvert(context));
-    final blackContrast = _calculateContrastRatio(
-        backgroundColor, HuxTokens.textPrimary(context));
-
-    return whiteContrast > blackContrast
-        ? HuxTokens.textInvert(context)
-        : HuxTokens.textPrimary(context);
-  }
-
-  /// Calculates the contrast ratio between two colors according to WCAG guidelines
-  double _calculateContrastRatio(Color color1, Color color2) {
-    final luminance1 = color1.computeLuminance();
-    final luminance2 = color2.computeLuminance();
-
-    final lighter = luminance1 > luminance2 ? luminance1 : luminance2;
-    final darker = luminance1 > luminance2 ? luminance2 : luminance1;
-
-    return (lighter + 0.05) / (darker + 0.05);
   }
 
   double _getIconSize() {

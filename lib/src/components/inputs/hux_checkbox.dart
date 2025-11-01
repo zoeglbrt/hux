@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/hux_tokens.dart';
+import '../../utils/hux_wcag.dart';
 
 /// HuxCheckbox is a customizable checkbox component with consistent styling
 /// that follows the Hux design system patterns.
@@ -117,8 +118,10 @@ class HuxCheckbox extends StatelessWidget {
   Color _getCheckColor(BuildContext context) {
     if (value) {
       final primaryColor = HuxTokens.primary(context);
-      final luminance = primaryColor.computeLuminance();
-      return luminance > 0.5 ? Colors.black87 : Colors.white;
+      return HuxWCAG.getContrastingTextColor(
+        backgroundColor: primaryColor,
+        context: context,
+      );
     }
     return Colors.transparent;
   }

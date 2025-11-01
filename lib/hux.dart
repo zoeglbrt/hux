@@ -61,6 +61,7 @@ export 'src/components/tooltip/hux_tooltip.dart';
 export 'src/theme/hux_theme.dart';
 export 'src/theme/hux_colors.dart';
 export 'src/theme/hux_tokens.dart';
+export 'src/utils/hux_wcag.dart';
 export 'src/widgets/hux_loading.dart';
 export 'src/widgets/hux_chart.dart';
 export 'src/widgets/hux_context_menu/hux_context_menu.dart';
