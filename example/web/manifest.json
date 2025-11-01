@@ -1,11 +1,11 @@
 {
-    "name": "example",
-    "short_name": "example",
+    "name": "Hux UI - Modern Flutter UI Component Library",
+    "short_name": "Hux UI",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "description": "An open-source state of the art UI library for Flutter 💙",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
