@@ -14,6 +14,9 @@ class _TabsSectionState extends State<TabsSection> {
   @override
   Widget build(BuildContext context) {
     return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Tabs',
       subtitle: 'Organize content into multiple panels with tab navigation',
       action: Row(

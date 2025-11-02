@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import '../../theme/hux_tokens.dart';
 
+/// Size variants for HuxCard
+enum HuxCardSize {
+  /// Default card size with standard padding and text
+  default_,
+
+  /// Large card size with increased padding and larger text
+  large
+}
+
 /// HuxCard is a customizable card component that provides a consistent
 /// container with optional header, title, subtitle, and actions.
 ///
@@ -35,10 +44,14 @@ class HuxCard extends StatelessWidget {
     this.title,
     this.subtitle,
     this.action,
-    this.padding = const EdgeInsets.all(16),
+    this.size,
+    this.padding,
     this.margin = EdgeInsets.zero,
     this.elevation = 0,
-    this.borderRadius = 12,
+    this.borderRadius,
+    this.backgroundColor,
+    this.borderColor,
+    this.borderWidth,
     this.onTap,
   });
 
@@ -54,8 +67,14 @@ class HuxCard extends StatelessWidget {
   /// Optional action widget displayed in the top-right corner of the header
   final Widget? action;
 
-  /// Padding around the main content. Defaults to 16px on all sides
-  final EdgeInsetsGeometry padding;
+  /// Size variant of the card. If null, uses original defaults (16px padding, 12px borderRadius).
+  /// Use [HuxCardSize.default_] for explicit standard size or [HuxCardSize.large] for enhanced styling.
+  final HuxCardSize? size;
+
+  /// Padding around the main content. If null, uses size-based defaults:
+  /// - [HuxCardSize.default_]: 16px on all sides
+  /// - [HuxCardSize.large]: 24px on all sides
+  final EdgeInsetsGeometry? padding;
 
   /// Margin around the entire card. Defaults to zero
   final EdgeInsetsGeometry margin;
@@ -63,29 +82,78 @@ class HuxCard extends StatelessWidget {
   /// Elevation of the card shadow. Defaults to 0 for a flat appearance
   final double elevation;
 
-  /// Border radius of the card corners. Defaults to 12px
-  final double borderRadius;
+  /// Border radius of the card corners. If null, uses size-based defaults:
+  /// - [HuxCardSize.default_]: 12px
+  /// - [HuxCardSize.large]: 20px
+  final double? borderRadius;
+
+  /// Custom background color for the card. If null, uses [HuxTokens.surfaceElevated]
+  final Color? backgroundColor;
+
+  /// Custom border color for the card. If null, uses [HuxTokens.borderPrimary]
+  final Color? borderColor;
+
+  /// Border width for the card. If null, defaults to 1.0
+  final double? borderWidth;
 
   /// Callback triggered when the card is tapped. If null, the card is not interactive
   final VoidCallback? onTap;
 
+  /// Gets the padding value based on size variant
+  EdgeInsetsGeometry _getPadding() {
+    if (padding != null) return padding!;
+    switch (size) {
+      case null:
+      case HuxCardSize.default_:
+        return const EdgeInsets.all(16);
+      case HuxCardSize.large:
+        return const EdgeInsets.all(24);
+    }
+  }
+
+  /// Gets the border radius value based on size variant
+  double _getBorderRadius() {
+    if (borderRadius != null) return borderRadius!;
+    switch (size) {
+      case null:
+      case HuxCardSize.default_:
+        return 12;
+      case HuxCardSize.large:
+        return 20;
+    }
+  }
+
+  /// Gets the header padding value based on size variant
+  EdgeInsetsGeometry _getHeaderPadding() {
+    switch (size) {
+      case null:
+      case HuxCardSize.default_:
+        return const EdgeInsets.fromLTRB(16, 16, 16, 0);
+      case HuxCardSize.large:
+        return const EdgeInsets.fromLTRB(24, 24, 24, 0);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final borderRadiusValue = _getBorderRadius();
+    final paddingValue = _getPadding();
+    
     return Container(
       margin: margin,
       child: Material(
         elevation: elevation,
-        borderRadius: BorderRadius.circular(borderRadius),
-        color: HuxTokens.surfaceElevated(context),
+        borderRadius: BorderRadius.circular(borderRadiusValue),
+        color: backgroundColor ?? HuxTokens.surfaceElevated(context),
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(borderRadiusValue),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(borderRadius),
+              borderRadius: BorderRadius.circular(borderRadiusValue),
               border: Border.all(
-                color: HuxTokens.borderPrimary(context),
-                width: 1,
+                color: borderColor ?? HuxTokens.borderPrimary(context),
+                width: borderWidth ?? 1.0,
               ),
             ),
             child: Column(
@@ -95,7 +163,7 @@ class HuxCard extends StatelessWidget {
                 if (title != null || subtitle != null || action != null)
                   _buildHeader(context),
                 Padding(
-                  padding: padding,
+                  padding: paddingValue,
                   child: child,
                 ),
               ],
@@ -107,8 +175,11 @@ class HuxCard extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context) {
+    final headerPadding = _getHeaderPadding();
+    final isLarge = size == HuxCardSize.large;
+    
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+      padding: headerPadding,
       child: Row(
         children: [
           Expanded(
@@ -118,18 +189,27 @@ class HuxCard extends StatelessWidget {
                 if (title != null)
                   Text(
                     title!,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: HuxTokens.textPrimary(context),
-                        ),
+                    style: isLarge
+                        ? Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: HuxTokens.textPrimary(context),
+                            )
+                        : Theme.of(context).textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: HuxTokens.textPrimary(context),
+                            ),
                   ),
                 if (subtitle != null) ...[
-                  const SizedBox(height: 4),
+                  SizedBox(height: isLarge ? 6 : 4),
                   Text(
                     subtitle!,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: HuxTokens.textTertiary(context),
-                        ),
+                    style: isLarge
+                        ? Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: HuxTokens.textTertiary(context),
+                            )
+                        : Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: HuxTokens.textTertiary(context),
+                            ),
                   ),
                 ],
               ],

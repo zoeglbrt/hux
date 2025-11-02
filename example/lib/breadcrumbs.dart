@@ -15,6 +15,9 @@ class _BreadcrumbsSectionState extends State<BreadcrumbsSection> {
   @override
   Widget build(BuildContext context) {
     return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Breadcrumbs',
       subtitle: 'Show users their current location and provide easy navigation',
       action: Row(

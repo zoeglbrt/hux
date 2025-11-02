@@ -361,7 +361,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
+      backgroundColor: isDark ? HuxColors.black : HuxColors.white,
       body: Row(
         children: [
           // Left Navigation Sidebar
@@ -503,7 +505,7 @@ class _MyHomePageState extends State<MyHomePage> {
               message: 'Processing...',
               child: SingleChildScrollView(
                 controller: _scrollController,
-                padding: const EdgeInsets.all(64),
+                padding: const EdgeInsets.all(32),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -513,6 +515,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         key: _buttonsKey,
                         child: HuxCard(
+                          size: HuxCardSize.large,
+                          backgroundColor: HuxColors.white5,
+                          borderColor: HuxTokens.borderSecondary(context),
                           title: 'Buttons',
                           subtitle: 'Different button variants and sizes',
                           action: Row(
@@ -619,6 +624,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         key: _textFieldsKey,
                         child: HuxCard(
+                          size: HuxCardSize.large,
+                          backgroundColor: HuxColors.white5,
+                          borderColor: HuxTokens.borderSecondary(context),
                           title: 'Input',
                           subtitle: 'Input components with validation',
                           child: Column(
@@ -690,11 +698,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       // Cards Section
                       Container(
                         key: _cardsKey,
-                        child: const HuxCard(
+                        child: HuxCard(
+                          size: HuxCardSize.large,
+                          backgroundColor: HuxColors.white5,
+                          borderColor: HuxTokens.borderSecondary(context),
                           title: 'Cards',
                           subtitle:
                               'Container components for content organization',
-                          child: Column(
+                          child: const Column(
                             children: [
                               SizedBox(height: 16),
                               Row(
@@ -729,6 +740,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         key: _chartsKey,
                         child: HuxCard(
+                          size: HuxCardSize.large,
+                          backgroundColor: HuxColors.white5,
+                          borderColor: HuxTokens.borderSecondary(context),
                           title: 'Charts',
                           subtitle: 'Data visualization with cristalyse',
                           child: Column(
@@ -778,6 +792,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         key: _contextMenuKey,
                         child: HuxCard(
+                          size: HuxCardSize.large,
+                          backgroundColor: HuxColors.white5,
+                          borderColor: HuxTokens.borderSecondary(context),
                           title: 'Context Menu',
                           subtitle: 'Right-click interactive context menus',
                           child: Column(
@@ -971,6 +988,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         key: _loadingKey,
                         child: HuxCard(
+                          size: HuxCardSize.large,
+                          backgroundColor: HuxColors.white5,
+                          borderColor: HuxTokens.borderSecondary(context),
                           title: 'Loading Indicators',
                           subtitle: 'Different loading states and sizes',
                           child: Column(
@@ -1027,6 +1047,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         key: _datePickerNavKey,
                         child: HuxCard(
+                          size: HuxCardSize.large,
+                          backgroundColor: HuxColors.white5,
+                          borderColor: HuxTokens.borderSecondary(context),
                           title: 'Date Picker',
                           subtitle: 'Themed picker for date selection',
                           child: Column(
@@ -1057,6 +1080,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         key: _tooltipKey,
                         child: HuxCard(
+                          size: HuxCardSize.large,
+                          backgroundColor: HuxColors.white5,
+                          borderColor: HuxTokens.borderSecondary(context),
                           title: 'Tooltip',
                           subtitle: 'Contextual help and information',
                           child: Column(
@@ -1084,6 +1110,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         key: _dialogKey,
                         child: HuxCard(
+                          size: HuxCardSize.large,
+                          backgroundColor: HuxColors.white5,
+                          borderColor: HuxTokens.borderSecondary(context),
                           title: 'Dialog',
                           subtitle: 'Modal dialogs with Hux styling',
                           child: Column(
@@ -1256,6 +1285,9 @@ class _CheckboxesSectionState extends State<CheckboxesSection> {
   @override
   Widget build(BuildContext context) {
     return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Checkbox',
       subtitle: 'Interactive checkbox controls',
       child: Column(
@@ -1306,6 +1338,9 @@ class _RadioButtonsSectionState extends State<RadioButtonsSection> {
   @override
   Widget build(BuildContext context) {
     return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Radio Buttons',
       subtitle: 'Interactive radio button controls',
       child: Column(
@@ -1372,6 +1407,9 @@ class _ToggleSwitchesSectionState extends State<ToggleSwitchesSection> {
   @override
   Widget build(BuildContext context) {
     return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Switch',
       subtitle: 'Interactive toggle switch control',
       child: Column(
@@ -1412,10 +1450,13 @@ class BadgesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HuxCard(
+    return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Badge',
       subtitle: 'Status indicators and notification counters',
-      child: Column(
+      child: const Column(
         children: [
           SizedBox(height: 32),
           Center(
@@ -1464,6 +1505,9 @@ class IndicatorsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Snackbar',
       subtitle: 'Temporary notification messages for user actions and status',
       child: Column(
@@ -1536,10 +1580,13 @@ class DisplaySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HuxCard(
+    return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Avatar',
       subtitle: 'User avatars and profile displays',
-      child: Column(
+      child: const Column(
         children: [
           SizedBox(height: 32),
 
@@ -1647,6 +1694,9 @@ class _DropdownSectionState extends State<DropdownSection> {
   @override
   Widget build(BuildContext context) {
     return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Dropdown',
       subtitle: 'Dropdown/select components with various styles',
       action: Row(
@@ -1775,6 +1825,9 @@ class _ToggleButtonsSectionState extends State<ToggleButtonsSection> {
   @override
   Widget build(BuildContext context) {
     return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Toggle',
       subtitle: 'Two-state toggle buttons for formatting controls',
       action: Row(
@@ -1878,6 +1931,9 @@ class _PaginationSectionState extends State<PaginationSection> {
   @override
   Widget build(BuildContext context) {
     return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Pagination',
       subtitle: 'Navigate through pages with intelligent ellipsis handling.',
       child: Column(
@@ -2005,6 +2061,9 @@ class _CommandSectionState extends State<CommandSection> {
   @override
   Widget build(BuildContext context) {
     return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
       title: 'Command Palette',
       subtitle: 'Quick access to commands via CMD+K or action button',
       child: Column(
