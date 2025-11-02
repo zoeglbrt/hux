@@ -1,6 +1,15 @@
 # Changelog
 
 
+## [0.18.2] - 2025-11-03
+
+### Changed
+- **Repository Links**: Updated all GitHub repository and profile links from `zoeglbrt` to `lofidesigner`
+  - Updated repository URLs across documentation and configuration files
+  - Updated GitHub Sponsors links
+  - Updated personal profile links
+  - Updated funding configuration (`.github/FUNDING.yml`)
+
 ## [0.18.1] - 2025-11-02
 
 ### Added

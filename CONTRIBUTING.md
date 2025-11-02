@@ -4,7 +4,7 @@ Thanks for wanting to contribute to Hux UI! Whether you're fixing bugs, adding f
 
 ## Quick Start
 
-1. **Fork the repo** on [GitHub](https://github.com/zoeglbrt/hux)
+1. **Fork the repo** on [GitHub](https://github.com/lofidesigner/hux)
 2. **Clone your fork**: `git clone https://github.com/YOUR_USERNAME/hux.git`
 3. **Install dependencies**: `flutter pub get`
 4. **Run the example**: `cd example && flutter run`
@@ -23,7 +23,7 @@ Thanks for wanting to contribute to Hux UI! Whether you're fixing bugs, adding f
 
 ```bash
 # Clone the repo
-git clone https://github.com/zoeglbrt/hux.git
+git clone https://github.com/lofidesigner/hux.git
 cd hux
 
 # Install dependencies
@@ -195,7 +195,7 @@ style: format code according to flutter_lints
 
 ## Need Help?
 
-- **Issues**: [github.com/zoeglbrt/hux/issues](https://github.com/zoeglbrt/hux/issues)
+- **Issues**: [github.com/lofidesigner/hux/issues](https://github.com/lofidesigner/hux/issues)
 - **Discussions**: Use GitHub discussions for questions
 - **Documentation**: [docs.thehuxdesign.com](https://docs.thehuxdesign.com)
 

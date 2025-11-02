@@ -113,7 +113,7 @@ We follow responsible disclosure practices:
 For security-related questions or concerns:
 
 - **Security reports**: [zoe@thehuxdesign.com](mailto:zoe@thehuxdesign.com)
-- **General questions**: [GitHub Issues](https://github.com/zoeglbrt/hux/issues) (for non-security issues only)
+- **General questions**: [GitHub Issues](https://github.com/lofidesigner/hux/issues) (for non-security issues only)
 
 ---
 
