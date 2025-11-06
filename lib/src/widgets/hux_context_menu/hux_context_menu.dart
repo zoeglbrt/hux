@@ -70,6 +70,9 @@ class HuxContextMenu extends StatelessWidget {
       onSecondaryTapDown: (details) {
         _showContextMenu(context, details.globalPosition);
       },
+      onLongPressStart: (details) {
+        _showContextMenu(context, details.globalPosition);
+      },
       child: child,
     );
 

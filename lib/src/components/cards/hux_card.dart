@@ -177,47 +177,143 @@ class HuxCard extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     final headerPadding = _getHeaderPadding();
     final isLarge = size == HuxCardSize.large;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 768;
     
     return Padding(
       padding: headerPadding,
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
+      child: isMobile && action != null
+          ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (title != null)
-                  Text(
-                    title!,
-                    style: isLarge
-                        ? Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: HuxTokens.textPrimary(context),
-                            )
-                        : Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: HuxTokens.textPrimary(context),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (title != null)
+                            Text(
+                              title!,
+                              style: isLarge
+                                  ? Theme.of(context).textTheme.titleLarge?.copyWith(
+                                        fontWeight: FontWeight.w500,
+                                        color: HuxTokens.textPrimary(context),
+                                      )
+                                  : Theme.of(context).textTheme.titleMedium?.copyWith(
+                                        fontWeight: FontWeight.w500,
+                                        color: HuxTokens.textPrimary(context),
+                                      ),
                             ),
-                  ),
-                if (subtitle != null) ...[
-                  SizedBox(height: isLarge ? 6 : 4),
-                  Text(
-                    subtitle!,
-                    style: isLarge
-                        ? Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: HuxTokens.textTertiary(context),
-                            )
-                        : Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: HuxTokens.textTertiary(context),
+                          if (subtitle != null) ...[
+                            SizedBox(height: isLarge ? 6 : 4),
+                            Text(
+                              subtitle!,
+                              style: isLarge
+                                  ? Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                        color: HuxTokens.textTertiary(context),
+                                      )
+                                  : Theme.of(context).textTheme.bodySmall?.copyWith(
+                                        color: HuxTokens.textTertiary(context),
+                                      ),
                             ),
+                          ],
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    // If action is a Row, extract its children and wrap them
+                    if (action is Row) {
+                      final row = action as Row;
+                      return Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        alignment: WrapAlignment.start,
+                        children: row.children,
+                      );
+                    }
+                    // Otherwise, just show the action as-is (it should handle its own wrapping)
+                    return action!;
+                  },
+                ),
+              ],
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (title != null)
+                        Text(
+                          title!,
+                          style: isLarge
+                              ? Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: HuxTokens.textPrimary(context),
+                                  )
+                              : Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: HuxTokens.textPrimary(context),
+                                  ),
+                        ),
+                      if (subtitle != null) ...[
+                        SizedBox(height: isLarge ? 6 : 4),
+                        Text(
+                          subtitle!,
+                          style: isLarge
+                              ? Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: HuxTokens.textTertiary(context),
+                                  )
+                              : Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: HuxTokens.textTertiary(context),
+                                  ),
+                        ),
+                      ],
+                    ],
                   ),
-                ],
+                ),
+                if (action != null)
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          // If action is a Row and might overflow, wrap it
+                          if (action is Row) {
+                            final row = action as Row;
+                            // Check if we have enough space - if not, wrap
+                            // Use a simple heuristic: if available width is less than 300px, wrap
+                            if (constraints.maxWidth < 300) {
+                              return Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                alignment: WrapAlignment.end,
+                                children: row.children,
+                              );
+                            }
+                            // Otherwise, keep the original Row but ensure it's right-aligned
+                            return Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: row.children,
+                            );
+                          }
+                          return action!;
+                        },
+                      ),
+                    ),
+                  ),
               ],
             ),
-          ),
-          if (action != null) action!,
-        ],
-      ),
     );
   }
 }

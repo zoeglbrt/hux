@@ -14,6 +14,13 @@ class _BreadcrumbsSectionState extends State<BreadcrumbsSection> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 768;
+
+    // Overflow example uses maxItems to demonstrate collapsing
+    // Need at least 3 to show: first item + ellipsis + last item
+    final overflowMaxItems = isMobile ? 3 : 4;
+
     return HuxCard(
       size: HuxCardSize.large,
       backgroundColor: HuxColors.white5,
@@ -97,7 +104,7 @@ class _BreadcrumbsSectionState extends State<BreadcrumbsSection> {
         children: [
           const SizedBox(height: 16),
 
-          // Basic breadcrumbs example
+          // Basic breadcrumbs example - uses fewer items on mobile to fit
           Text(
             'Basic Example',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -109,30 +116,49 @@ class _BreadcrumbsSectionState extends State<BreadcrumbsSection> {
           HuxBreadcrumbs(
             variant: _selectedVariant,
             size: _selectedSize,
-            items: [
-              HuxBreadcrumbItem(
-                label: 'Home',
-                onTap: () => _showSnackbar('Navigated to Home'),
-                icon: LucideIcons.home,
-              ),
-              HuxBreadcrumbItem(
-                label: 'Products',
-                onTap: () => _showSnackbar('Navigated to Products'),
-              ),
-              HuxBreadcrumbItem(
-                label: 'Electronics',
-                onTap: () => _showSnackbar('Navigated to Electronics'),
-              ),
-              HuxBreadcrumbItem(
-                label: 'Smartphones',
-                onTap: () => _showSnackbar('Navigated to Smartphones'),
-              ),
-              HuxBreadcrumbItem(
-                label: 'iPhone 15 Pro',
-                onTap: () {},
-                isActive: true,
-              ),
-            ],
+            items: isMobile
+                ? [
+                    // Mobile: Show only 3 items to fit
+                    HuxBreadcrumbItem(
+                      label: 'Home',
+                      onTap: () => _showSnackbar('Navigated to Home'),
+                      icon: LucideIcons.home,
+                    ),
+                    HuxBreadcrumbItem(
+                      label: 'Products',
+                      onTap: () => _showSnackbar('Navigated to Products'),
+                    ),
+                    HuxBreadcrumbItem(
+                      label: 'iPhone',
+                      onTap: () {},
+                      isActive: true,
+                    ),
+                  ]
+                : [
+                    // Desktop: Show all items
+                    HuxBreadcrumbItem(
+                      label: 'Home',
+                      onTap: () => _showSnackbar('Navigated to Home'),
+                      icon: LucideIcons.home,
+                    ),
+                    HuxBreadcrumbItem(
+                      label: 'Products',
+                      onTap: () => _showSnackbar('Navigated to Products'),
+                    ),
+                    HuxBreadcrumbItem(
+                      label: 'Electronics',
+                      onTap: () => _showSnackbar('Navigated to Electronics'),
+                    ),
+                    HuxBreadcrumbItem(
+                      label: 'Smartphones',
+                      onTap: () => _showSnackbar('Navigated to Smartphones'),
+                    ),
+                    HuxBreadcrumbItem(
+                      label: 'iPhone',
+                      onTap: () {},
+                      isActive: true,
+                    ),
+                  ],
           ),
           const SizedBox(height: 32),
 
@@ -148,7 +174,7 @@ class _BreadcrumbsSectionState extends State<BreadcrumbsSection> {
           HuxBreadcrumbs(
             variant: _selectedVariant,
             size: _selectedSize,
-            maxItems: 3,
+            maxItems: overflowMaxItems,
             overflowIndicator: Container(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
               decoration: BoxDecoration(
@@ -187,7 +213,7 @@ class _BreadcrumbsSectionState extends State<BreadcrumbsSection> {
                 onTap: () => _showSnackbar('Navigated to Apple'),
               ),
               HuxBreadcrumbItem(
-                label: 'iPhone 15 Pro',
+                label: 'iPhone',
                 onTap: () {},
                 isActive: true,
               ),

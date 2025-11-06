@@ -14,16 +14,17 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.18.1
+## Latest Version: 0.19.0
 
-- **HuxWCAG Utility**: New shared WCAG contrast calculation utilities for better accessibility
-  - Centralized WCAG 2.1 compliant contrast ratio calculations
-  - Public API for developers to use in custom components
-  - Improved accuracy and consistency across all components
-- **Code Quality**: Major refactoring of WCAG contrast calculations
-  - Extracted ~150+ lines of duplicate code into shared utility
-  - Standardized all components to use proper WCAG 2.1 formula
-  - Enhanced maintainability and single source of truth
+- **Responsive Design**: Comprehensive mobile support for example app
+  - Mobile sidebar drawer with responsive breakpoints
+  - Adaptive layouts, padding, and spacing
+  - Mobile-optimized components (pagination, breadcrumbs, cards)
+- **Context Menu Mobile Support**: Long press gesture for mobile devices
+  - Right-click on desktop, long-press on mobile
+- **Command Palette**: Enhanced UX with outside-click dismissal
+- **Button Alignment**: Improved left alignment for expanded buttons
+- **Example App**: Resource buttons (GitHub, Docs, Package) in sidebar
 
 [![Changelog](https://img.shields.io/badge/Changelog-View-black?style=for-the-badge&labelColor=white&logo=github&logoColor=black)](CHANGELOG.md)
 [![Docs](https://img.shields.io/badge/Docs-Browse-black?style=for-the-badge&labelColor=white&logo=readthedocs&logoColor=black)](https://docs.thehuxdesign.com)

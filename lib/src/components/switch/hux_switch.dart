@@ -40,9 +40,14 @@ class HuxSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: isDisabled || onChanged == null
           ? null
-          : () => onChanged?.call(!value),
+          : () {
+              if (onChanged != null) {
+                onChanged!(!value);
+              }
+            },
       child: Padding(
         padding: const EdgeInsets.all(4), // Touch target padding
         child: AnimatedContainer(

@@ -190,8 +190,11 @@ class HuxButton extends StatelessWidget {
       }
 
       // Regular icon + text button
+      // If button width is expand, make Row take full width for left alignment
+      final shouldExpand = width == HuxButtonWidth.expand;
       return Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: shouldExpand ? MainAxisSize.max : MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           IconTheme(
             data: IconThemeData(

@@ -15,6 +15,7 @@ dependencies:
     path: ../
   lucide_icons: ^0.257.0
   flutter_svg: ^2.0.10
+  url_launcher: ^6.2.5
 
 dev_dependencies:
   flutter_test:

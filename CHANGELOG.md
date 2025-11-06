@@ -1,6 +1,52 @@
 # Changelog
 
 
+## [0.19.0] - 2025-11-06
+
+### Added
+- **Responsive Design**: Comprehensive mobile support for example app
+  - Mobile sidebar drawer with menu button
+  - Responsive layout with breakpoints (mobile < 768px, tablet 768-1024px, desktop >= 1024px)
+  - Adaptive padding and spacing based on screen size
+  - Stacked content layout on mobile (cards, charts)
+  - Responsive input widths
+  - Mobile-optimized pagination with reduced page count
+  - Responsive breadcrumbs with horizontal scrolling on narrow screens
+- **Context Menu Mobile Support**: Long press gesture support for mobile devices
+  - Added `onLongPressStart` handler to `HuxContextMenu` for mobile compatibility
+  - Right-click on desktop, long-press on mobile
+- **Command Palette Enhancements**: Improved user experience
+  - Command palette now closes when clicking outside (barrier dismissible)
+  - Proper `onClose` callback handling with `PopScope`
+- **Example App Sidebar**: Resource buttons for quick access
+  - GitHub button linking to repository
+  - Documentation button linking to docs site
+  - Package button linking to pub.dev page
+
+### Enhanced
+- **HuxButton**: Improved alignment support for expanded buttons
+  - Added left alignment support when `width: HuxButtonWidth.expand`
+  - Better visual consistency in sidebars and navigation
+- **HuxCard**: Enhanced responsive behavior
+  - Card actions wrap below title on mobile for better space utilization
+  - Improved action alignment (top-right on desktop, wrapped on mobile)
+  - Better handling of parameter dropdowns in card headers
+- **HuxBreadcrumbs**: Mobile-friendly scrolling
+  - Horizontal scrolling on narrow screens to prevent overflow
+  - Better touch interaction support
+- **Example App**: Comprehensive responsive improvements
+  - Mobile-first responsive design throughout
+  - Theme toggle removed from mobile app bar (available in drawer)
+  - Better touch targets and spacing on mobile
+
+### Fixed
+- **HuxSwitch**: Improved touch interaction
+  - Added `HitTestBehavior.opaque` for better touch event handling
+  - Fixed clickability issues in complex layouts
+- **Button Alignment**: Fixed left alignment for expanded buttons
+  - Content now properly aligns left when button width is expanded
+  - Better visual consistency in navigation and sidebar contexts
+
 ## [0.18.2] - 2025-11-03
 
 ### Changed

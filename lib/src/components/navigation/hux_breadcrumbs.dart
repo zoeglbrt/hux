@@ -105,12 +105,28 @@ class HuxBreadcrumbs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final displayItems = _getDisplayItems();
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isNarrow = screenWidth < 768;
 
     return Semantics(
       label: 'Breadcrumb navigation',
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: _buildBreadcrumbList(context, displayItems),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Use scrollable if width is constrained and narrow
+          if (isNarrow || constraints.maxWidth < 500) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: _buildBreadcrumbList(context, displayItems),
+              ),
+            );
+          }
+          return Row(
+            mainAxisSize: MainAxisSize.min,
+            children: _buildBreadcrumbList(context, displayItems),
+          );
+        },
       ),
     );
   }

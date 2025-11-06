@@ -144,46 +144,64 @@ class _HuxCommandState extends State<HuxCommand> {
     return KeyboardListener(
       focusNode: FocusNode(),
       onKeyEvent: _handleKeyEvent,
-      child: Dialog(
-        backgroundColor: Colors.transparent,
-        insetPadding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-        child: Center(
-          child: SizedBox(
-            height:
-                500, // viewport to keep the bar visually centered; grow/shrink from top
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                width: 600,
-                decoration: BoxDecoration(
-                  color: HuxTokens.surfaceElevated(context),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: HuxTokens.borderPrimary(context),
-                    width: 1,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: HuxTokens.shadowColor(context)
-                          .withValues(alpha: 0.15),
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _buildSearchInput(context),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Divider(
-                        height: 1,
-                        color: HuxTokens.borderSecondary(context),
+      child: PopScope(
+        canPop: true,
+        onPopInvokedWithResult: (bool didPop, dynamic result) {
+          if (didPop) {
+            widget.onClose?.call();
+          }
+        },
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+            widget.onClose?.call();
+          },
+          behavior: HitTestBehavior.opaque,
+          child: Dialog(
+            backgroundColor: Colors.transparent,
+            insetPadding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+            child: GestureDetector(
+              onTap: () {}, // Prevent taps inside from closing
+              child: Center(
+                child: SizedBox(
+                  height:
+                      500, // viewport to keep the bar visually centered; grow/shrink from top
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      width: 600,
+                      decoration: BoxDecoration(
+                        color: HuxTokens.surfaceElevated(context),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: HuxTokens.borderPrimary(context),
+                          width: 1,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: HuxTokens.shadowColor(context)
+                                .withValues(alpha: 0.15),
+                            blurRadius: 20,
+                            offset: const Offset(0, 10),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _buildSearchInput(context),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Divider(
+                              height: 1,
+                              color: HuxTokens.borderSecondary(context),
+                            ),
+                          ),
+                          _buildCommandList(context),
+                        ],
                       ),
                     ),
-                    _buildCommandList(context),
-                  ],
+                  ),
                 ),
               ),
             ),
