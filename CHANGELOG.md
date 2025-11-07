@@ -1,6 +1,14 @@
 # Changelog
 
 
+## [0.19.1] - 2025-11-07
+
+### Enhanced
+- **Example App**: Added documentation buttons to component sections
+  - Each section now includes a "Documentation" button in the bottom-left corner
+  - Buttons link directly to component-specific documentation pages
+  - Buttons are integrated into card content for proper layout and spacing
+
 ## [0.19.0] - 2025-11-06
 
 ### Added

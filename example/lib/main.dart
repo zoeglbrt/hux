@@ -98,6 +98,114 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+/// Wrapper widget that adds a documentation button to component sections
+class SectionWithDocumentation extends StatelessWidget {
+  final Widget child;
+  final String componentName;
+
+  const SectionWithDocumentation({
+    super.key,
+    required this.child,
+    required this.componentName,
+  });
+
+  Widget _buildDocumentationButton(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: HuxButton(
+        onPressed: () async {
+          final url = Uri.parse(
+            'https://docs.thehuxdesign.com/components/$componentName',
+          );
+          if (await canLaunchUrl(url)) {
+            await launchUrl(url, mode: LaunchMode.externalApplication);
+          }
+        },
+        variant: HuxButtonVariant.ghost,
+        size: HuxButtonSize.small,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: 18,
+              height: 18,
+              child: Theme.of(context).brightness == Brightness.dark
+                  ? SvgPicture.asset(
+                      'assets/doc.svg',
+                      width: 18,
+                      height: 18,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.white,
+                        BlendMode.srcIn,
+                      ),
+                    )
+                  : SvgPicture.asset(
+                      'assets/doc.svg',
+                      width: 18,
+                      height: 18,
+                      colorFilter: ColorFilter.mode(
+                        HuxTokens.buttonSecondaryText(context),
+                        BlendMode.srcIn,
+                      ),
+                    ),
+            ),
+            const SizedBox(width: 8),
+            const Text('Documentation'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // If child is a HuxCard, modify its child to include the button
+    if (child is HuxCard) {
+      final card = child as HuxCard;
+      return HuxCard(
+        key: card.key,
+        title: card.title,
+        subtitle: card.subtitle,
+        action: card.action,
+        size: card.size,
+        padding: card.padding,
+        margin: card.margin,
+        elevation: card.elevation,
+        borderRadius: card.borderRadius,
+        backgroundColor: card.backgroundColor,
+        borderColor: card.borderColor,
+        borderWidth: card.borderWidth,
+        onTap: card.onTap,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            card.child,
+            const SizedBox(height: 16),
+            _buildDocumentationButton(context),
+          ],
+        ),
+      );
+    }
+    
+    // For other widgets, wrap in a Stack
+    return Stack(
+      clipBehavior: Clip.hardEdge,
+      children: [
+        child,
+        Positioned(
+          bottom: 0,
+          left: 0,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: _buildDocumentationButton(context),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class MyHomePage extends StatefulWidget {
   final ThemeMode themeMode;
   final VoidCallback onThemeToggle;
@@ -626,7 +734,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           // Buttons Section
                           Container(
                             key: _buttonsKey,
-                            child: HuxCard(
+                            child: SectionWithDocumentation(
+                              componentName: 'buttons',
+                              child: HuxCard(
                               size: HuxCardSize.large,
                               backgroundColor: HuxColors.white5,
                               borderColor: HuxTokens.borderSecondary(context),
@@ -796,6 +906,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ],
                               ),
                             ),
+                            ),
                           ),
 
                           const SizedBox(height: 32),
@@ -803,7 +914,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           // Input Section
                           Container(
                             key: _textFieldsKey,
-                            child: HuxCard(
+                            child: SectionWithDocumentation(
+                              componentName: 'input',
+                              child: HuxCard(
                               size: HuxCardSize.large,
                               backgroundColor: HuxColors.white5,
                               borderColor: HuxTokens.borderSecondary(context),
@@ -897,6 +1010,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 },
                               ),
                             ),
+                            ),
                           ),
 
                           const SizedBox(height: 32),
@@ -904,7 +1018,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           // Cards Section
                           Container(
                             key: _cardsKey,
-                            child: HuxCard(
+                            child: SectionWithDocumentation(
+                              componentName: 'cards',
+                              child: HuxCard(
                               size: HuxCardSize.large,
                               backgroundColor: HuxColors.white5,
                               borderColor: HuxTokens.borderSecondary(context),
@@ -964,6 +1080,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 },
                               ),
                             ),
+                            ),
                           ),
 
                           const SizedBox(height: 32),
@@ -971,7 +1088,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           // Charts Section
                           Container(
                             key: _chartsKey,
-                            child: HuxCard(
+                            child: SectionWithDocumentation(
+                              componentName: 'charts',
+                              child: HuxCard(
                               size: HuxCardSize.large,
                               backgroundColor: HuxColors.white5,
                               borderColor: HuxTokens.borderSecondary(context),
@@ -1060,6 +1179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 },
                               ),
                             ),
+                            ),
                           ),
 
                           const SizedBox(height: 32),
@@ -1067,7 +1187,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           // Context Menu Section
                           Container(
                             key: _contextMenuKey,
-                            child: HuxCard(
+                            child: SectionWithDocumentation(
+                              componentName: 'context-menu',
+                              child: HuxCard(
                               size: HuxCardSize.large,
                               backgroundColor: HuxColors.white5,
                               borderColor: HuxTokens.borderSecondary(context),
@@ -1336,49 +1458,73 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ],
                               ),
                             ),
+                            ),
                           ),
 
                           const SizedBox(height: 32),
 
                           // Checkboxes Section
-                          CheckboxesSection(key: _checkboxesKey),
+                          SectionWithDocumentation(
+                            componentName: 'checkbox',
+                            child: CheckboxesSection(key: _checkboxesKey),
+                          ),
 
                           const SizedBox(height: 32),
 
                           // Radio Buttons Section
-                          RadioButtonsSection(key: _radioButtonsKey),
+                          SectionWithDocumentation(
+                            componentName: 'radio',
+                            child: RadioButtonsSection(key: _radioButtonsKey),
+                          ),
 
                           const SizedBox(height: 32),
 
                           // Toggle Switches Section
-                          ToggleSwitchesSection(key: _toggleSwitchesKey),
+                          SectionWithDocumentation(
+                            componentName: 'switch',
+                            child: ToggleSwitchesSection(key: _toggleSwitchesKey),
+                          ),
 
                           const SizedBox(height: 32),
 
                           // Toggle Buttons Section
-                          ToggleButtonsSection(key: _toggleButtonsKey),
+                          SectionWithDocumentation(
+                            componentName: 'toggle',
+                            child: ToggleButtonsSection(key: _toggleButtonsKey),
+                          ),
 
                           const SizedBox(height: 32),
 
                           // Badges Section
-                          BadgesSection(key: _badgesKey),
+                          SectionWithDocumentation(
+                            componentName: 'badge',
+                            child: BadgesSection(key: _badgesKey),
+                          ),
 
                           const SizedBox(height: 32),
 
                           // Alerts Section
-                          IndicatorsSection(key: _indicatorsKey),
+                          SectionWithDocumentation(
+                            componentName: 'snackbar',
+                            child: IndicatorsSection(key: _indicatorsKey),
+                          ),
 
                           const SizedBox(height: 32),
 
                           // Display Section
-                          DisplaySection(key: _displayKey),
+                          SectionWithDocumentation(
+                            componentName: 'avatar',
+                            child: DisplaySection(key: _displayKey),
+                          ),
 
                           const SizedBox(height: 32),
 
                           // Loading Section
                           Container(
                             key: _loadingKey,
-                            child: HuxCard(
+                            child: SectionWithDocumentation(
+                              componentName: 'loading',
+                              child: HuxCard(
                               size: HuxCardSize.large,
                               backgroundColor: HuxColors.white5,
                               borderColor: HuxTokens.borderSecondary(context),
@@ -1436,11 +1582,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ],
                               ),
                             ),
+                            ),
                           ),
                           const SizedBox(height: 32),
                           Container(
                             key: _datePickerNavKey,
-                            child: HuxCard(
+                            child: SectionWithDocumentation(
+                              componentName: 'date-picker',
+                              child: HuxCard(
                               size: HuxCardSize.large,
                               backgroundColor: HuxColors.white5,
                               borderColor: HuxTokens.borderSecondary(context),
@@ -1469,11 +1618,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ],
                               ),
                             ),
+                            ),
                           ),
                           const SizedBox(height: 32),
                           Container(
                             key: _tooltipKey,
-                            child: HuxCard(
+                            child: SectionWithDocumentation(
+                              componentName: 'tooltip',
+                              child: HuxCard(
                               size: HuxCardSize.large,
                               backgroundColor: HuxColors.white5,
                               borderColor: HuxTokens.borderSecondary(context),
@@ -1499,11 +1651,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ],
                               ),
                             ),
+                            ),
                           ),
                           const SizedBox(height: 32),
                           Container(
                             key: _dialogKey,
-                            child: HuxCard(
+                            child: SectionWithDocumentation(
+                              componentName: 'dialog',
+                              child: HuxCard(
                               size: HuxCardSize.large,
                               backgroundColor: HuxColors.white5,
                               borderColor: HuxTokens.borderSecondary(context),
@@ -1526,34 +1681,50 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ],
                               ),
                             ),
+                            ),
                           ),
                           const SizedBox(height: 32),
                           Container(
                             key: _dropdownKey,
-                            child: DropdownSection(
-                              primaryColor: _currentPrimaryColor(context),
+                            child: SectionWithDocumentation(
+                              componentName: 'dropdown',
+                              child: DropdownSection(
+                                primaryColor: _currentPrimaryColor(context),
+                              ),
                             ),
                           ),
                           const SizedBox(height: 32),
                           Container(
                             key: _paginationKey,
-                            child: const PaginationSection(),
+                            child: const SectionWithDocumentation(
+                              componentName: 'pagination',
+                              child: PaginationSection(),
+                            ),
                           ),
                           const SizedBox(height: 32),
                           Container(
                             key: _tabsKey,
-                            child: const TabsSection(),
+                            child: const SectionWithDocumentation(
+                              componentName: 'tabs',
+                              child: TabsSection(),
+                            ),
                           ),
                           const SizedBox(height: 32),
                           Container(
                             key: _breadcrumbsKey,
-                            child: const BreadcrumbsSection(),
+                            child: const SectionWithDocumentation(
+                              componentName: 'breadcrumbs',
+                              child: BreadcrumbsSection(),
+                            ),
                           ),
                           const SizedBox(height: 32),
                           Container(
                             key: _commandKey,
-                            child: CommandSection(
-                              onThemeToggle: widget.onThemeToggle,
+                            child: SectionWithDocumentation(
+                              componentName: 'command',
+                              child: CommandSection(
+                                onThemeToggle: widget.onThemeToggle,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 32),
