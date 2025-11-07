@@ -187,7 +187,7 @@ class SectionWithDocumentation extends StatelessWidget {
         ),
       );
     }
-    
+
     // For other widgets, wrap in a Stack
     return Stack(
       clipBehavior: Clip.hardEdge,
@@ -737,175 +737,193 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: SectionWithDocumentation(
                               componentName: 'buttons',
                               child: HuxCard(
-                              size: HuxCardSize.large,
-                              backgroundColor: HuxColors.white5,
-                              borderColor: HuxTokens.borderSecondary(context),
-                              title: 'Buttons',
-                              subtitle: 'Different button variants and sizes',
-                              action: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  // Size buttons group
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      _buildSizeButton(
-                                          'S', HuxButtonSize.small),
-                                      const SizedBox(width: 8),
-                                      _buildSizeButton(
-                                          'M', HuxButtonSize.medium),
-                                      const SizedBox(width: 8),
-                                      _buildSizeButton(
-                                          'L', HuxButtonSize.large),
-                                    ],
-                                  ),
-                                  const SizedBox(width: 16),
-                                  // Show icons switch group
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        'Show icons:',
-                                        style: TextStyle(
-                                          color:
-                                              HuxTokens.textSecondary(context),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 8),
-                                      HuxSwitch(
-                                        value: _showIconButtons,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            _showIconButtons = value;
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 16),
-
-                                  const SizedBox(height: 20),
-
-                                  // Button Variants - Responsive Height Container
-                                  LayoutBuilder(
-                                    builder: (context, constraints) {
-                                      final screenWidth =
-                                          MediaQuery.of(context).size.width;
-                                      final isMobile = screenWidth < 768;
-                                      // Use flexible height on mobile, fixed on desktop
-                                      final containerHeight =
-                                          isMobile ? null : 48.0;
-
-                                      return SizedBox(
-                                        height: containerHeight,
-                                        child: Center(
-                                          child: Wrap(
-                                            spacing: 12,
-                                            runSpacing: 12,
-                                            children: [
-                                              _showIconButtons
-                                                  ? HuxButton(
-                                                      onPressed: () =>
-                                                          _showSnackBar(
-                                                              'Primary pressed'),
-                                                      primaryColor:
-                                                          _currentPrimaryColor(
-                                                              context),
-                                                      size: _selectedButtonSize,
-                                                      icon: LucideIcons.upload,
-                                                      child:
-                                                          const Text('Primary'),
-                                                    )
-                                                  : HuxButton(
-                                                      onPressed: () =>
-                                                          _showSnackBar(
-                                                              'Primary pressed'),
-                                                      primaryColor:
-                                                          _currentPrimaryColor(
-                                                              context),
-                                                      size: _selectedButtonSize,
-                                                      child:
-                                                          const Text('Primary'),
-                                                    ),
-                                              _showIconButtons
-                                                  ? HuxButton(
-                                                      onPressed: () =>
-                                                          _showSnackBar(
-                                                              'Secondary pressed'),
-                                                      variant: HuxButtonVariant
-                                                          .secondary,
-                                                      size: _selectedButtonSize,
-                                                      icon: LucideIcons.upload,
-                                                      child: const Text(
-                                                          'Secondary'),
-                                                    )
-                                                  : HuxButton(
-                                                      onPressed: () =>
-                                                          _showSnackBar(
-                                                              'Secondary pressed'),
-                                                      variant: HuxButtonVariant
-                                                          .secondary,
-                                                      size: _selectedButtonSize,
-                                                      child: const Text(
-                                                          'Secondary'),
-                                                    ),
-                                              _showIconButtons
-                                                  ? HuxButton(
-                                                      onPressed: () =>
-                                                          _showSnackBar(
-                                                              'Outline pressed'),
-                                                      variant: HuxButtonVariant
-                                                          .outline,
-                                                      size: _selectedButtonSize,
-                                                      icon: LucideIcons.upload,
-                                                      child:
-                                                          const Text('Outline'),
-                                                    )
-                                                  : HuxButton(
-                                                      onPressed: () =>
-                                                          _showSnackBar(
-                                                              'Outline pressed'),
-                                                      variant: HuxButtonVariant
-                                                          .outline,
-                                                      size: _selectedButtonSize,
-                                                      child:
-                                                          const Text('Outline'),
-                                                    ),
-                                              _showIconButtons
-                                                  ? HuxButton(
-                                                      onPressed: () =>
-                                                          _showSnackBar(
-                                                              'Ghost pressed'),
-                                                      variant: HuxButtonVariant
-                                                          .ghost,
-                                                      size: _selectedButtonSize,
-                                                      icon: LucideIcons.upload,
-                                                      child:
-                                                          const Text('Ghost'),
-                                                    )
-                                                  : HuxButton(
-                                                      onPressed: () =>
-                                                          _showSnackBar(
-                                                              'Ghost pressed'),
-                                                      variant: HuxButtonVariant
-                                                          .ghost,
-                                                      size: _selectedButtonSize,
-                                                      child:
-                                                          const Text('Ghost'),
-                                                    ),
-                                            ],
+                                size: HuxCardSize.large,
+                                backgroundColor: HuxColors.white5,
+                                borderColor: HuxTokens.borderSecondary(context),
+                                title: 'Buttons',
+                                subtitle: 'Different button variants and sizes',
+                                action: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    // Size buttons group
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        _buildSizeButton(
+                                            'S', HuxButtonSize.small),
+                                        const SizedBox(width: 8),
+                                        _buildSizeButton(
+                                            'M', HuxButtonSize.medium),
+                                        const SizedBox(width: 8),
+                                        _buildSizeButton(
+                                            'L', HuxButtonSize.large),
+                                      ],
+                                    ),
+                                    const SizedBox(width: 16),
+                                    // Show icons switch group
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          'Show icons:',
+                                          style: TextStyle(
+                                            color: HuxTokens.textSecondary(
+                                                context),
                                           ),
                                         ),
-                                      );
-                                    },
-                                  ),
-                                ],
+                                        const SizedBox(width: 8),
+                                        HuxSwitch(
+                                          value: _showIconButtons,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _showIconButtons = value;
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 16),
+
+                                    const SizedBox(height: 20),
+
+                                    // Button Variants - Responsive Height Container
+                                    LayoutBuilder(
+                                      builder: (context, constraints) {
+                                        final screenWidth =
+                                            MediaQuery.of(context).size.width;
+                                        final isMobile = screenWidth < 768;
+                                        // Use flexible height on mobile, fixed on desktop
+                                        final containerHeight =
+                                            isMobile ? null : 48.0;
+
+                                        return SizedBox(
+                                          height: containerHeight,
+                                          child: Center(
+                                            child: Wrap(
+                                              spacing: 12,
+                                              runSpacing: 12,
+                                              children: [
+                                                _showIconButtons
+                                                    ? HuxButton(
+                                                        onPressed: () =>
+                                                            _showSnackBar(
+                                                                'Primary pressed'),
+                                                        primaryColor:
+                                                            _currentPrimaryColor(
+                                                                context),
+                                                        size:
+                                                            _selectedButtonSize,
+                                                        icon:
+                                                            LucideIcons.upload,
+                                                        child: const Text(
+                                                            'Primary'),
+                                                      )
+                                                    : HuxButton(
+                                                        onPressed: () =>
+                                                            _showSnackBar(
+                                                                'Primary pressed'),
+                                                        primaryColor:
+                                                            _currentPrimaryColor(
+                                                                context),
+                                                        size:
+                                                            _selectedButtonSize,
+                                                        child: const Text(
+                                                            'Primary'),
+                                                      ),
+                                                _showIconButtons
+                                                    ? HuxButton(
+                                                        onPressed: () =>
+                                                            _showSnackBar(
+                                                                'Secondary pressed'),
+                                                        variant:
+                                                            HuxButtonVariant
+                                                                .secondary,
+                                                        size:
+                                                            _selectedButtonSize,
+                                                        icon:
+                                                            LucideIcons.upload,
+                                                        child: const Text(
+                                                            'Secondary'),
+                                                      )
+                                                    : HuxButton(
+                                                        onPressed: () =>
+                                                            _showSnackBar(
+                                                                'Secondary pressed'),
+                                                        variant:
+                                                            HuxButtonVariant
+                                                                .secondary,
+                                                        size:
+                                                            _selectedButtonSize,
+                                                        child: const Text(
+                                                            'Secondary'),
+                                                      ),
+                                                _showIconButtons
+                                                    ? HuxButton(
+                                                        onPressed: () =>
+                                                            _showSnackBar(
+                                                                'Outline pressed'),
+                                                        variant:
+                                                            HuxButtonVariant
+                                                                .outline,
+                                                        size:
+                                                            _selectedButtonSize,
+                                                        icon:
+                                                            LucideIcons.upload,
+                                                        child: const Text(
+                                                            'Outline'),
+                                                      )
+                                                    : HuxButton(
+                                                        onPressed: () =>
+                                                            _showSnackBar(
+                                                                'Outline pressed'),
+                                                        variant:
+                                                            HuxButtonVariant
+                                                                .outline,
+                                                        size:
+                                                            _selectedButtonSize,
+                                                        child: const Text(
+                                                            'Outline'),
+                                                      ),
+                                                _showIconButtons
+                                                    ? HuxButton(
+                                                        onPressed: () =>
+                                                            _showSnackBar(
+                                                                'Ghost pressed'),
+                                                        variant:
+                                                            HuxButtonVariant
+                                                                .ghost,
+                                                        size:
+                                                            _selectedButtonSize,
+                                                        icon:
+                                                            LucideIcons.upload,
+                                                        child:
+                                                            const Text('Ghost'),
+                                                      )
+                                                    : HuxButton(
+                                                        onPressed: () =>
+                                                            _showSnackBar(
+                                                                'Ghost pressed'),
+                                                        variant:
+                                                            HuxButtonVariant
+                                                                .ghost,
+                                                        size:
+                                                            _selectedButtonSize,
+                                                        child:
+                                                            const Text('Ghost'),
+                                                      ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
                             ),
                           ),
 
@@ -917,99 +935,99 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: SectionWithDocumentation(
                               componentName: 'input',
                               child: HuxCard(
-                              size: HuxCardSize.large,
-                              backgroundColor: HuxColors.white5,
-                              borderColor: HuxTokens.borderSecondary(context),
-                              title: 'Input',
-                              subtitle: 'Input components with validation',
-                              child: LayoutBuilder(
-                                builder: (context, constraints) {
-                                  final screenWidth =
-                                      MediaQuery.of(context).size.width;
-                                  final isMobileScreen = screenWidth < 768;
-                                  final isTabletScreen =
-                                      screenWidth >= 768 && screenWidth < 1024;
-                                  final inputWidth = isMobileScreen
-                                      ? constraints.maxWidth
-                                      : isTabletScreen
-                                          ? constraints.maxWidth * 0.7
-                                          : 400.0;
-                                  return Column(
-                                    children: [
-                                      const SizedBox(height: 16),
-                                      Center(
-                                        child: SizedBox(
-                                          width: inputWidth,
-                                          child: HuxInput(
-                                            controller: _emailController,
-                                            label: 'Email',
-                                            hint: 'Enter your email address',
-                                            prefixIcon:
-                                                const Icon(LucideIcons.mail),
-                                            keyboardType:
-                                                TextInputType.emailAddress,
-                                            validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'Please enter your email';
-                                              }
-                                              if (!value.contains('@')) {
-                                                return 'Please enter a valid email';
-                                              }
-                                              return null;
-                                            },
+                                size: HuxCardSize.large,
+                                backgroundColor: HuxColors.white5,
+                                borderColor: HuxTokens.borderSecondary(context),
+                                title: 'Input',
+                                subtitle: 'Input components with validation',
+                                child: LayoutBuilder(
+                                  builder: (context, constraints) {
+                                    final screenWidth =
+                                        MediaQuery.of(context).size.width;
+                                    final isMobileScreen = screenWidth < 768;
+                                    final isTabletScreen = screenWidth >= 768 &&
+                                        screenWidth < 1024;
+                                    final inputWidth = isMobileScreen
+                                        ? constraints.maxWidth
+                                        : isTabletScreen
+                                            ? constraints.maxWidth * 0.7
+                                            : 400.0;
+                                    return Column(
+                                      children: [
+                                        const SizedBox(height: 16),
+                                        Center(
+                                          child: SizedBox(
+                                            width: inputWidth,
+                                            child: HuxInput(
+                                              controller: _emailController,
+                                              label: 'Email',
+                                              hint: 'Enter your email address',
+                                              prefixIcon:
+                                                  const Icon(LucideIcons.mail),
+                                              keyboardType:
+                                                  TextInputType.emailAddress,
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return 'Please enter your email';
+                                                }
+                                                if (!value.contains('@')) {
+                                                  return 'Please enter a valid email';
+                                                }
+                                                return null;
+                                              },
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 16),
-                                      Center(
-                                        child: SizedBox(
-                                          width: inputWidth,
-                                          child: HuxInput(
-                                            controller: _passwordController,
-                                            label: 'Password',
-                                            hint: 'Enter your password',
-                                            prefixIcon:
-                                                const Icon(LucideIcons.lock),
-                                            suffixIcon:
-                                                const Icon(LucideIcons.eye),
-                                            obscureText: true,
-                                            validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'Please enter your password';
-                                              }
-                                              if (value.length < 6) {
-                                                return 'Password must be at least 6 characters';
-                                              }
-                                              return null;
-                                            },
+                                        const SizedBox(height: 16),
+                                        Center(
+                                          child: SizedBox(
+                                            width: inputWidth,
+                                            child: HuxInput(
+                                              controller: _passwordController,
+                                              label: 'Password',
+                                              hint: 'Enter your password',
+                                              prefixIcon:
+                                                  const Icon(LucideIcons.lock),
+                                              suffixIcon:
+                                                  const Icon(LucideIcons.eye),
+                                              obscureText: true,
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return 'Please enter your password';
+                                                }
+                                                if (value.length < 6) {
+                                                  return 'Password must be at least 6 characters';
+                                                }
+                                                return null;
+                                              },
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 16),
+                                        const SizedBox(height: 16),
 
-                                      // Date Input Example
-                                      Center(
-                                        child: SizedBox(
-                                          width: inputWidth,
-                                          child: HuxDateInput(
-                                            label: 'Select Date',
-                                            hint: 'MM/DD/YYYY',
-                                            helperText:
-                                                'Click the calendar icon or type the date manually',
-                                            onDateChanged: (date) {
-                                              // Handle date change
-                                            },
+                                        // Date Input Example
+                                        Center(
+                                          child: SizedBox(
+                                            width: inputWidth,
+                                            child: HuxDateInput(
+                                              label: 'Select Date',
+                                              hint: 'MM/DD/YYYY',
+                                              helperText:
+                                                  'Click the calendar icon or type the date manually',
+                                              onDateChanged: (date) {
+                                                // Handle date change
+                                              },
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 16),
-                                    ],
-                                  );
-                                },
+                                        const SizedBox(height: 16),
+                                      ],
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
                             ),
                           ),
 
@@ -1021,65 +1039,66 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: SectionWithDocumentation(
                               componentName: 'cards',
                               child: HuxCard(
-                              size: HuxCardSize.large,
-                              backgroundColor: HuxColors.white5,
-                              borderColor: HuxTokens.borderSecondary(context),
-                              title: 'Cards',
-                              subtitle:
-                                  'Container components for content organization',
-                              child: LayoutBuilder(
-                                builder: (context, constraints) {
-                                  final screenWidth =
-                                      MediaQuery.of(context).size.width;
-                                  final isMobileScreen = screenWidth < 768;
+                                size: HuxCardSize.large,
+                                backgroundColor: HuxColors.white5,
+                                borderColor: HuxTokens.borderSecondary(context),
+                                title: 'Cards',
+                                subtitle:
+                                    'Container components for content organization',
+                                child: LayoutBuilder(
+                                  builder: (context, constraints) {
+                                    final screenWidth =
+                                        MediaQuery.of(context).size.width;
+                                    final isMobileScreen = screenWidth < 768;
 
-                                  return Column(
-                                    children: [
-                                      const SizedBox(height: 16),
-                                      isMobileScreen
-                                          ? const Column(
-                                              children: [
-                                                HuxCard(
-                                                  title: 'Simple Card',
-                                                  child: Text(
-                                                      'This is a simple card with just a title and content.'),
-                                                ),
-                                                SizedBox(height: 16),
-                                                HuxCard(
-                                                  title: 'Card with Subtitle',
-                                                  subtitle:
-                                                      'This card has both title and subtitle',
-                                                  child: Text(
-                                                      'Cards can have optional subtitles for additional context.'),
-                                                ),
-                                              ],
-                                            )
-                                          : const Row(
-                                              children: [
-                                                Expanded(
-                                                  child: HuxCard(
+                                    return Column(
+                                      children: [
+                                        const SizedBox(height: 16),
+                                        isMobileScreen
+                                            ? const Column(
+                                                children: [
+                                                  HuxCard(
                                                     title: 'Simple Card',
                                                     child: Text(
                                                         'This is a simple card with just a title and content.'),
                                                   ),
-                                                ),
-                                                SizedBox(width: 16),
-                                                Expanded(
-                                                  child: HuxCard(
+                                                  SizedBox(height: 16),
+                                                  HuxCard(
                                                     title: 'Card with Subtitle',
                                                     subtitle:
                                                         'This card has both title and subtitle',
                                                     child: Text(
                                                         'Cards can have optional subtitles for additional context.'),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                    ],
-                                  );
-                                },
+                                                ],
+                                              )
+                                            : const Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: HuxCard(
+                                                      title: 'Simple Card',
+                                                      child: Text(
+                                                          'This is a simple card with just a title and content.'),
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 16),
+                                                  Expanded(
+                                                    child: HuxCard(
+                                                      title:
+                                                          'Card with Subtitle',
+                                                      subtitle:
+                                                          'This card has both title and subtitle',
+                                                      child: Text(
+                                                          'Cards can have optional subtitles for additional context.'),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                      ],
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
                             ),
                           ),
 
@@ -1091,58 +1110,26 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: SectionWithDocumentation(
                               componentName: 'charts',
                               child: HuxCard(
-                              size: HuxCardSize.large,
-                              backgroundColor: HuxColors.white5,
-                              borderColor: HuxTokens.borderSecondary(context),
-                              title: 'Charts',
-                              subtitle: 'Data visualization with Cristalyse',
-                              child: LayoutBuilder(
-                                builder: (context, constraints) {
-                                  final screenWidth =
-                                      MediaQuery.of(context).size.width;
-                                  final isMobileScreen = screenWidth < 768;
+                                size: HuxCardSize.large,
+                                backgroundColor: HuxColors.white5,
+                                borderColor: HuxTokens.borderSecondary(context),
+                                title: 'Charts',
+                                subtitle: 'Data visualization with Cristalyse',
+                                child: LayoutBuilder(
+                                  builder: (context, constraints) {
+                                    final screenWidth =
+                                        MediaQuery.of(context).size.width;
+                                    final isMobileScreen = screenWidth < 768;
 
-                                  return Column(
-                                    children: [
-                                      const SizedBox(height: 16),
+                                    return Column(
+                                      children: [
+                                        const SizedBox(height: 16),
 
-                                      // Sample chart data
-                                      isMobileScreen
-                                          ? Column(
-                                              children: [
-                                                HuxChart(
-                                                  data: _getSampleLineData(),
-                                                  type: HuxChartType.line,
-                                                  xField: 'day',
-                                                  yField: 'calories',
-                                                  title: 'Daily Calories',
-                                                  subtitle:
-                                                      'Calorie tracking over time',
-                                                  size: HuxChartSize.small,
-                                                  primaryColor:
-                                                      _currentPrimaryColor(
-                                                          context),
-                                                ),
-                                                const SizedBox(height: 16),
-                                                HuxChart(
-                                                  data: _getSampleBarData(),
-                                                  type: HuxChartType.bar,
-                                                  xField: 'product',
-                                                  yField: 'revenue',
-                                                  title: 'Product Revenue',
-                                                  subtitle:
-                                                      'Revenue by product',
-                                                  size: HuxChartSize.small,
-                                                  primaryColor:
-                                                      _currentPrimaryColor(
-                                                          context),
-                                                ),
-                                              ],
-                                            )
-                                          : Row(
-                                              children: [
-                                                Expanded(
-                                                  child: HuxChart(
+                                        // Sample chart data
+                                        isMobileScreen
+                                            ? Column(
+                                                children: [
+                                                  HuxChart(
                                                     data: _getSampleLineData(),
                                                     type: HuxChartType.line,
                                                     xField: 'day',
@@ -1155,10 +1142,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         _currentPrimaryColor(
                                                             context),
                                                   ),
-                                                ),
-                                                const SizedBox(width: 16),
-                                                Expanded(
-                                                  child: HuxChart(
+                                                  const SizedBox(height: 16),
+                                                  HuxChart(
                                                     data: _getSampleBarData(),
                                                     type: HuxChartType.bar,
                                                     xField: 'product',
@@ -1171,14 +1156,49 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         _currentPrimaryColor(
                                                             context),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                    ],
-                                  );
-                                },
+                                                ],
+                                              )
+                                            : Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: HuxChart(
+                                                      data:
+                                                          _getSampleLineData(),
+                                                      type: HuxChartType.line,
+                                                      xField: 'day',
+                                                      yField: 'calories',
+                                                      title: 'Daily Calories',
+                                                      subtitle:
+                                                          'Calorie tracking over time',
+                                                      size: HuxChartSize.small,
+                                                      primaryColor:
+                                                          _currentPrimaryColor(
+                                                              context),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 16),
+                                                  Expanded(
+                                                    child: HuxChart(
+                                                      data: _getSampleBarData(),
+                                                      type: HuxChartType.bar,
+                                                      xField: 'product',
+                                                      yField: 'revenue',
+                                                      title: 'Product Revenue',
+                                                      subtitle:
+                                                          'Revenue by product',
+                                                      size: HuxChartSize.small,
+                                                      primaryColor:
+                                                          _currentPrimaryColor(
+                                                              context),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                      ],
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
                             ),
                           ),
 
@@ -1190,132 +1210,42 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: SectionWithDocumentation(
                               componentName: 'context-menu',
                               child: HuxCard(
-                              size: HuxCardSize.large,
-                              backgroundColor: HuxColors.white5,
-                              borderColor: HuxTokens.borderSecondary(context),
-                              title: 'Context Menu',
-                              subtitle: 'Right-click interactive context menus',
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 16),
-                                  Text(
-                                    'Right-click on any of the items below to see the context menu:',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(
-                                          color: Theme.of(context).brightness ==
-                                                  Brightness.dark
-                                              ? HuxColors.white70
-                                              : HuxColors.black70,
-                                        ),
-                                  ),
-                                  const SizedBox(height: 20),
+                                size: HuxCardSize.large,
+                                backgroundColor: HuxColors.white5,
+                                borderColor: HuxTokens.borderSecondary(context),
+                                title: 'Context Menu',
+                                subtitle:
+                                    'Right-click interactive context menus',
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 16),
+                                    Text(
+                                      'Right-click on any of the items below to see the context menu:',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? HuxColors.white70
+                                                    : HuxColors.black70,
+                                          ),
+                                    ),
+                                    const SizedBox(height: 20),
 
-                                  // Context Menu Examples
-                                  LayoutBuilder(
-                                    builder: (context, constraints) {
-                                      final screenWidth =
-                                          MediaQuery.of(context).size.width;
-                                      final isMobileScreen = screenWidth < 768;
+                                    // Context Menu Examples
+                                    LayoutBuilder(
+                                      builder: (context, constraints) {
+                                        final screenWidth =
+                                            MediaQuery.of(context).size.width;
+                                        final isMobileScreen =
+                                            screenWidth < 768;
 
-                                      return isMobileScreen
-                                          ? Column(
-                                              children: [
-                                                HuxContextMenu(
-                                                  menuItems: [
-                                                    HuxContextMenuItem(
-                                                      text: 'Copy',
-                                                      icon: LucideIcons.copy,
-                                                      onTap: () => _showSnackBar(
-                                                          'Copy action triggered'),
-                                                    ),
-                                                    HuxContextMenuItem(
-                                                      text: 'Paste',
-                                                      icon:
-                                                          LucideIcons.clipboard,
-                                                      onTap: () => _showSnackBar(
-                                                          'Paste action triggered'),
-                                                      isDisabled: true,
-                                                    ),
-                                                    const HuxContextMenuDivider(),
-                                                    HuxContextMenuItem(
-                                                      text: 'Share',
-                                                      icon: LucideIcons.share2,
-                                                      onTap: () => _showSnackBar(
-                                                          'Share action triggered'),
-                                                    ),
-                                                  ],
-                                                  child: HuxCard(
-                                                    title: 'Document',
-                                                    subtitle:
-                                                        'Right-click for options',
-                                                    child: Container(
-                                                      height: 60,
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: Icon(
-                                                        LucideIcons.fileText,
-                                                        size: 32,
-                                                        color: Theme.of(context)
-                                                                    .brightness ==
-                                                                Brightness.dark
-                                                            ? HuxColors.white50
-                                                            : HuxColors.black50,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 16),
-                                                HuxContextMenu(
-                                                  menuItems: [
-                                                    HuxContextMenuItem(
-                                                      text: 'Edit',
-                                                      icon: LucideIcons.edit2,
-                                                      onTap: () => _showSnackBar(
-                                                          'Edit action triggered'),
-                                                    ),
-                                                    HuxContextMenuItem(
-                                                      text: 'Duplicate',
-                                                      icon: LucideIcons.copy,
-                                                      onTap: () => _showSnackBar(
-                                                          'Duplicate action triggered'),
-                                                    ),
-                                                    const HuxContextMenuDivider(),
-                                                    HuxContextMenuItem(
-                                                      text: 'Delete',
-                                                      icon: LucideIcons.trash2,
-                                                      onTap: () => _showSnackBar(
-                                                          'Delete action triggered'),
-                                                      isDestructive: true,
-                                                    ),
-                                                  ],
-                                                  child: HuxCard(
-                                                    title: 'Project',
-                                                    subtitle:
-                                                        'Right-click for actions',
-                                                    child: Container(
-                                                      height: 60,
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: Icon(
-                                                        LucideIcons.folder,
-                                                        size: 32,
-                                                        color: Theme.of(context)
-                                                                    .brightness ==
-                                                                Brightness.dark
-                                                            ? HuxColors.white50
-                                                            : HuxColors.black50,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          : Row(
-                                              children: [
-                                                Expanded(
-                                                  child: HuxContextMenu(
+                                        return isMobileScreen
+                                            ? Column(
+                                                children: [
+                                                  HuxContextMenu(
                                                     menuItems: [
                                                       HuxContextMenuItem(
                                                         text: 'Copy',
@@ -1363,10 +1293,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                const SizedBox(width: 16),
-                                                Expanded(
-                                                  child: HuxContextMenu(
+                                                  const SizedBox(height: 16),
+                                                  HuxContextMenu(
                                                     menuItems: [
                                                       HuxContextMenuItem(
                                                         text: 'Edit',
@@ -1413,51 +1341,164 @@ class _MyHomePageState extends State<MyHomePage> {
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            );
-                                    },
-                                  ),
-
-                                  const SizedBox(height: 20),
-
-                                  // Button with Context Menu
-                                  HuxContextMenu(
-                                    menuItems: [
-                                      HuxContextMenuItem(
-                                        text: 'Save',
-                                        icon: LucideIcons.save,
-                                        onTap: () => _showSnackBar(
-                                            'Save action triggered'),
-                                      ),
-                                      HuxContextMenuItem(
-                                        text: 'Export',
-                                        icon: LucideIcons.download,
-                                        onTap: () => _showSnackBar(
-                                            'Export action triggered'),
-                                      ),
-                                      const HuxContextMenuDivider(),
-                                      HuxContextMenuItem(
-                                        text: 'Reset',
-                                        icon: LucideIcons.refreshCw,
-                                        onTap: () => _showSnackBar(
-                                            'Reset action triggered'),
-                                        isDestructive: true,
-                                      ),
-                                    ],
-                                    child: HuxButton(
-                                      onPressed: () => _showSnackBar(
-                                          'Button clicked normally'),
-                                      primaryColor:
-                                          _currentPrimaryColor(context),
-                                      icon: LucideIcons.settings,
-                                      child: const Text(
-                                          'Right-click for More Options'),
+                                                ],
+                                              )
+                                            : Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: HuxContextMenu(
+                                                      menuItems: [
+                                                        HuxContextMenuItem(
+                                                          text: 'Copy',
+                                                          icon:
+                                                              LucideIcons.copy,
+                                                          onTap: () =>
+                                                              _showSnackBar(
+                                                                  'Copy action triggered'),
+                                                        ),
+                                                        HuxContextMenuItem(
+                                                          text: 'Paste',
+                                                          icon: LucideIcons
+                                                              .clipboard,
+                                                          onTap: () =>
+                                                              _showSnackBar(
+                                                                  'Paste action triggered'),
+                                                          isDisabled: true,
+                                                        ),
+                                                        const HuxContextMenuDivider(),
+                                                        HuxContextMenuItem(
+                                                          text: 'Share',
+                                                          icon: LucideIcons
+                                                              .share2,
+                                                          onTap: () =>
+                                                              _showSnackBar(
+                                                                  'Share action triggered'),
+                                                        ),
+                                                      ],
+                                                      child: HuxCard(
+                                                        title: 'Document',
+                                                        subtitle:
+                                                            'Right-click for options',
+                                                        child: Container(
+                                                          height: 60,
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Icon(
+                                                            LucideIcons
+                                                                .fileText,
+                                                            size: 32,
+                                                            color: Theme.of(context)
+                                                                        .brightness ==
+                                                                    Brightness
+                                                                        .dark
+                                                                ? HuxColors
+                                                                    .white50
+                                                                : HuxColors
+                                                                    .black50,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 16),
+                                                  Expanded(
+                                                    child: HuxContextMenu(
+                                                      menuItems: [
+                                                        HuxContextMenuItem(
+                                                          text: 'Edit',
+                                                          icon:
+                                                              LucideIcons.edit2,
+                                                          onTap: () =>
+                                                              _showSnackBar(
+                                                                  'Edit action triggered'),
+                                                        ),
+                                                        HuxContextMenuItem(
+                                                          text: 'Duplicate',
+                                                          icon:
+                                                              LucideIcons.copy,
+                                                          onTap: () =>
+                                                              _showSnackBar(
+                                                                  'Duplicate action triggered'),
+                                                        ),
+                                                        const HuxContextMenuDivider(),
+                                                        HuxContextMenuItem(
+                                                          text: 'Delete',
+                                                          icon: LucideIcons
+                                                              .trash2,
+                                                          onTap: () =>
+                                                              _showSnackBar(
+                                                                  'Delete action triggered'),
+                                                          isDestructive: true,
+                                                        ),
+                                                      ],
+                                                      child: HuxCard(
+                                                        title: 'Project',
+                                                        subtitle:
+                                                            'Right-click for actions',
+                                                        child: Container(
+                                                          height: 60,
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Icon(
+                                                            LucideIcons.folder,
+                                                            size: 32,
+                                                            color: Theme.of(context)
+                                                                        .brightness ==
+                                                                    Brightness
+                                                                        .dark
+                                                                ? HuxColors
+                                                                    .white50
+                                                                : HuxColors
+                                                                    .black50,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                      },
                                     ),
-                                  ),
-                                ],
+
+                                    const SizedBox(height: 20),
+
+                                    // Button with Context Menu
+                                    HuxContextMenu(
+                                      menuItems: [
+                                        HuxContextMenuItem(
+                                          text: 'Save',
+                                          icon: LucideIcons.save,
+                                          onTap: () => _showSnackBar(
+                                              'Save action triggered'),
+                                        ),
+                                        HuxContextMenuItem(
+                                          text: 'Export',
+                                          icon: LucideIcons.download,
+                                          onTap: () => _showSnackBar(
+                                              'Export action triggered'),
+                                        ),
+                                        const HuxContextMenuDivider(),
+                                        HuxContextMenuItem(
+                                          text: 'Reset',
+                                          icon: LucideIcons.refreshCw,
+                                          onTap: () => _showSnackBar(
+                                              'Reset action triggered'),
+                                          isDestructive: true,
+                                        ),
+                                      ],
+                                      child: HuxButton(
+                                        onPressed: () => _showSnackBar(
+                                            'Button clicked normally'),
+                                        primaryColor:
+                                            _currentPrimaryColor(context),
+                                        icon: LucideIcons.settings,
+                                        child: const Text(
+                                            'Right-click for More Options'),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
                             ),
                           ),
 
@@ -1482,7 +1523,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           // Toggle Switches Section
                           SectionWithDocumentation(
                             componentName: 'switch',
-                            child: ToggleSwitchesSection(key: _toggleSwitchesKey),
+                            child:
+                                ToggleSwitchesSection(key: _toggleSwitchesKey),
                           ),
 
                           const SizedBox(height: 32),
@@ -1525,63 +1567,64 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: SectionWithDocumentation(
                               componentName: 'loading',
                               child: HuxCard(
-                              size: HuxCardSize.large,
-                              backgroundColor: HuxColors.white5,
-                              borderColor: HuxTokens.borderSecondary(context),
-                              title: 'Loading Indicators',
-                              subtitle: 'Different loading states and sizes',
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 16),
-                                  const Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          HuxLoading(
-                                              size: HuxLoadingSize.small),
-                                          SizedBox(height: 8),
-                                          Text('Small'),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          HuxLoading(
-                                              size: HuxLoadingSize.medium),
-                                          SizedBox(height: 8),
-                                          Text('Medium'),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          HuxLoading(
-                                              size: HuxLoadingSize.large),
-                                          SizedBox(height: 8),
-                                          Text('Large'),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          HuxLoading(
-                                              size: HuxLoadingSize.extraLarge),
-                                          SizedBox(height: 8),
-                                          Text('XL'),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 16),
-                                  HuxButton(
-                                    onPressed: _toggleLoading,
-                                    variant: HuxButtonVariant.outline,
-                                    child: Text(_isLoading
-                                        ? 'Stop Loading'
-                                        : 'Show Loading Overlay'),
-                                  ),
-                                ],
+                                size: HuxCardSize.large,
+                                backgroundColor: HuxColors.white5,
+                                borderColor: HuxTokens.borderSecondary(context),
+                                title: 'Loading Indicators',
+                                subtitle: 'Different loading states and sizes',
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 16),
+                                    const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Column(
+                                          children: [
+                                            HuxLoading(
+                                                size: HuxLoadingSize.small),
+                                            SizedBox(height: 8),
+                                            Text('Small'),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            HuxLoading(
+                                                size: HuxLoadingSize.medium),
+                                            SizedBox(height: 8),
+                                            Text('Medium'),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            HuxLoading(
+                                                size: HuxLoadingSize.large),
+                                            SizedBox(height: 8),
+                                            Text('Large'),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            HuxLoading(
+                                                size:
+                                                    HuxLoadingSize.extraLarge),
+                                            SizedBox(height: 8),
+                                            Text('XL'),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 16),
+                                    HuxButton(
+                                      onPressed: _toggleLoading,
+                                      variant: HuxButtonVariant.outline,
+                                      child: Text(_isLoading
+                                          ? 'Stop Loading'
+                                          : 'Show Loading Overlay'),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
                             ),
                           ),
                           const SizedBox(height: 32),
@@ -1590,34 +1633,34 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: SectionWithDocumentation(
                               componentName: 'date-picker',
                               child: HuxCard(
-                              size: HuxCardSize.large,
-                              backgroundColor: HuxColors.white5,
-                              borderColor: HuxTokens.borderSecondary(context),
-                              title: 'Date Picker',
-                              subtitle: 'Themed picker for date selection',
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 32),
-                                  // Dropdown-only variant
-                                  Center(
-                                    child: HuxDatePicker(
-                                      initialDate: _selectedDateInline,
-                                      firstDate: DateTime(2000),
-                                      lastDate: DateTime(2101),
-                                      onDateChanged: (date) {
-                                        setState(() {
-                                          _selectedDateInline = date;
-                                        });
-                                      },
-                                      variant: HuxButtonVariant.outline,
-                                      icon: LucideIcons.calendar,
-                                      placeholder: 'Select Date',
+                                size: HuxCardSize.large,
+                                backgroundColor: HuxColors.white5,
+                                borderColor: HuxTokens.borderSecondary(context),
+                                title: 'Date Picker',
+                                subtitle: 'Themed picker for date selection',
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 32),
+                                    // Dropdown-only variant
+                                    Center(
+                                      child: HuxDatePicker(
+                                        initialDate: _selectedDateInline,
+                                        firstDate: DateTime(2000),
+                                        lastDate: DateTime(2101),
+                                        onDateChanged: (date) {
+                                          setState(() {
+                                            _selectedDateInline = date;
+                                          });
+                                        },
+                                        variant: HuxButtonVariant.outline,
+                                        icon: LucideIcons.calendar,
+                                        placeholder: 'Select Date',
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 32),
-                                ],
+                                    const SizedBox(height: 32),
+                                  ],
+                                ),
                               ),
-                            ),
                             ),
                           ),
                           const SizedBox(height: 32),
@@ -1626,31 +1669,31 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: SectionWithDocumentation(
                               componentName: 'tooltip',
                               child: HuxCard(
-                              size: HuxCardSize.large,
-                              backgroundColor: HuxColors.white5,
-                              borderColor: HuxTokens.borderSecondary(context),
-                              title: 'Tooltip',
-                              subtitle: 'Contextual help and information',
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 32),
-                                  // Basic tooltip example
-                                  Center(
-                                    child: HuxTooltip(
-                                      message: 'This is a tooltip message',
-                                      preferBelow: false,
-                                      verticalOffset: 16.0,
-                                      child: HuxButton(
-                                        onPressed: () {},
-                                        variant: HuxButtonVariant.outline,
-                                        child: const Text('Hover'),
+                                size: HuxCardSize.large,
+                                backgroundColor: HuxColors.white5,
+                                borderColor: HuxTokens.borderSecondary(context),
+                                title: 'Tooltip',
+                                subtitle: 'Contextual help and information',
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 32),
+                                    // Basic tooltip example
+                                    Center(
+                                      child: HuxTooltip(
+                                        message: 'This is a tooltip message',
+                                        preferBelow: false,
+                                        verticalOffset: 16.0,
+                                        child: HuxButton(
+                                          onPressed: () {},
+                                          variant: HuxButtonVariant.outline,
+                                          child: const Text('Hover'),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 32),
-                                ],
+                                    const SizedBox(height: 32),
+                                  ],
+                                ),
                               ),
-                            ),
                             ),
                           ),
                           const SizedBox(height: 32),
@@ -1659,28 +1702,28 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: SectionWithDocumentation(
                               componentName: 'dialog',
                               child: HuxCard(
-                              size: HuxCardSize.large,
-                              backgroundColor: HuxColors.white5,
-                              borderColor: HuxTokens.borderSecondary(context),
-                              title: 'Dialog',
-                              subtitle: 'Modal dialogs with Hux styling',
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 32),
-                                  // Confirmation dialog example
-                                  Center(
-                                    child: HuxButton(
-                                      onPressed: () =>
-                                          _showConfirmationDialog(context),
-                                      variant: HuxButtonVariant.outline,
-                                      child: const Text(
-                                          'Show Confirmation Dialog'),
+                                size: HuxCardSize.large,
+                                backgroundColor: HuxColors.white5,
+                                borderColor: HuxTokens.borderSecondary(context),
+                                title: 'Dialog',
+                                subtitle: 'Modal dialogs with Hux styling',
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 32),
+                                    // Confirmation dialog example
+                                    Center(
+                                      child: HuxButton(
+                                        onPressed: () =>
+                                            _showConfirmationDialog(context),
+                                        variant: HuxButtonVariant.outline,
+                                        child: const Text(
+                                            'Show Confirmation Dialog'),
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 32),
-                                ],
+                                    const SizedBox(height: 32),
+                                  ],
+                                ),
                               ),
-                            ),
                             ),
                           ),
                           const SizedBox(height: 32),
