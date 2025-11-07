@@ -138,7 +138,7 @@ class HuxCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final borderRadiusValue = _getBorderRadius();
     final paddingValue = _getPadding();
-    
+
     return Container(
       margin: margin,
       child: Material(
@@ -179,7 +179,7 @@ class HuxCard extends StatelessWidget {
     final isLarge = size == HuxCardSize.large;
     final screenWidth = MediaQuery.of(context).size.width;
     final isMobile = screenWidth < 768;
-    
+
     return Padding(
       padding: headerPadding,
       child: isMobile && action != null
@@ -196,11 +196,17 @@ class HuxCard extends StatelessWidget {
                             Text(
                               title!,
                               style: isLarge
-                                  ? Theme.of(context).textTheme.titleLarge?.copyWith(
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.copyWith(
                                         fontWeight: FontWeight.w500,
                                         color: HuxTokens.textPrimary(context),
                                       )
-                                  : Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(
                                         fontWeight: FontWeight.w500,
                                         color: HuxTokens.textPrimary(context),
                                       ),
@@ -210,10 +216,16 @@ class HuxCard extends StatelessWidget {
                             Text(
                               subtitle!,
                               style: isLarge
-                                  ? Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
                                         color: HuxTokens.textTertiary(context),
                                       )
-                                  : Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
                                         color: HuxTokens.textTertiary(context),
                                       ),
                             ),
@@ -254,11 +266,17 @@ class HuxCard extends StatelessWidget {
                         Text(
                           title!,
                           style: isLarge
-                              ? Theme.of(context).textTheme.titleLarge?.copyWith(
+                              ? Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
                                     fontWeight: FontWeight.w500,
                                     color: HuxTokens.textPrimary(context),
                                   )
-                              : Theme.of(context).textTheme.titleMedium?.copyWith(
+                              : Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
                                     fontWeight: FontWeight.w500,
                                     color: HuxTokens.textPrimary(context),
                                   ),
@@ -268,7 +286,10 @@ class HuxCard extends StatelessWidget {
                         Text(
                           subtitle!,
                           style: isLarge
-                              ? Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              ? Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
                                     color: HuxTokens.textTertiary(context),
                                   )
                               : Theme.of(context).textTheme.bodySmall?.copyWith(

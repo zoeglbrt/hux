@@ -95,7 +95,7 @@ class HuxColors {
   // Dark theme overlays (white on black)
   /// White with 5% opacity for dark theme overlays
   static const Color white5 = Color(0x0DFFFFFF); // 5% white
-  
+
   /// White with 10% opacity for dark theme overlays
   static const Color white10 = Color(0x1AFFFFFF); // 10% white
 
