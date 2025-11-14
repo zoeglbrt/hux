@@ -198,12 +198,14 @@ class _HuxInputState extends State<HuxInput> {
               decoration: InputDecoration(
                 hintText: widget.hint,
                 prefixIcon: widget.prefixIcon != null
-                    ? _buildIcon(widget.prefixIcon!, isPrefix: true, context: context)
+                    ? _buildIcon(widget.prefixIcon!,
+                        isPrefix: true, context: context)
                     : null,
                 suffixIcon: _isPasswordField
                     ? _buildPasswordToggleIcon(context)
                     : (widget.suffixIcon != null
-                        ? _buildIcon(widget.suffixIcon!, isPrefix: false, context: context)
+                        ? _buildIcon(widget.suffixIcon!,
+                            isPrefix: false, context: context)
                         : null),
                 prefixIconConstraints: widget.prefixIcon != null
                     ? BoxConstraints(
@@ -211,12 +213,13 @@ class _HuxInputState extends State<HuxInput> {
                         maxWidth: _getIconConstraintWidth(),
                       )
                     : null,
-                suffixIconConstraints: (_isPasswordField || widget.suffixIcon != null)
-                    ? BoxConstraints(
-                        minWidth: _getIconConstraintWidth(),
-                        maxWidth: _getIconConstraintWidth(),
-                      )
-                    : null,
+                suffixIconConstraints:
+                    (_isPasswordField || widget.suffixIcon != null)
+                        ? BoxConstraints(
+                            minWidth: _getIconConstraintWidth(),
+                            maxWidth: _getIconConstraintWidth(),
+                          )
+                        : null,
                 errorText: widget.errorText,
                 helperText: widget.helperText,
                 contentPadding: EdgeInsets.symmetric(

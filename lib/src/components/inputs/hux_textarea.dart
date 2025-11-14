@@ -231,9 +231,9 @@ class _HuxTextareaState extends State<HuxTextarea> {
 
   String? _buildCharacterCount(BuildContext context) {
     if (!widget.showCharacterCount || widget.maxLength == null) return null;
-    
+
     final currentLength = _internalController.text.length;
-    
+
     return '$currentLength / ${widget.maxLength}';
   }
 
@@ -245,4 +245,3 @@ class _HuxTextareaState extends State<HuxTextarea> {
     return 12; // Single consistent vertical padding for all text fields
   }
 }
-
