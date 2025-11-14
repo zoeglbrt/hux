@@ -6,6 +6,7 @@
 /// - Modern button components with multiple variants and WCAG AA contrast
 /// - Flexible card components with semantic tokens
 /// - Enhanced text input fields with validation support
+/// - Multi-line textarea component with character count support
 /// - Customizable loading indicators with theme awareness
 /// - Beautiful data visualization charts with cristalyse integration
 /// - Right-click context menus with smart positioning
@@ -47,6 +48,7 @@ library;
 export 'src/components/buttons/hux_button.dart';
 export 'src/components/cards/hux_card.dart';
 export 'src/components/inputs/hux_input.dart';
+export 'src/components/inputs/hux_textarea.dart';
 export 'src/components/inputs/hux_date_input.dart';
 export 'src/components/inputs/hux_checkbox.dart';
 export 'src/components/inputs/hux_radio.dart';

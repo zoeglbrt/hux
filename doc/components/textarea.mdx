@@ -1,0 +1,172 @@
+---
+title: 'Textarea'
+description: 'Multi-line text input component optimized for longer content'
+---
+
+## Overview
+
+HuxTextarea is a customizable multi-line text input component with consistent styling and extensive customization options. It provides a clean, modern textarea with support for labels, hints, validation, and character counting while automatically adapting to light and dark themes. Optimized for longer text input with proper height handling.
+
+## Basic Usage
+
+### Simple Textarea
+
+```dart
+HuxTextarea(
+  label: 'Description',
+  hint: 'Enter a description...',
+  minLines: 3,
+  maxLines: 6,
+)
+```
+
+### Textarea with Character Count
+
+```dart
+HuxTextarea(
+  label: 'Comments',
+  hint: 'Enter your comments...',
+  minLines: 4,
+  maxLines: 8,
+  maxLength: 500,
+  showCharacterCount: true,
+)
+```
+
+### Textarea with Validation
+
+```dart
+HuxTextarea(
+  label: 'Description',
+  hint: 'Enter a description...',
+  minLines: 3,
+  maxLines: 6,
+  helperText: 'Provide a detailed description',
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a description';
+    }
+    if (value.length < 10) {
+      return 'Description must be at least 10 characters';
+    }
+    return null;
+  },
+)
+```
+
+### Textarea with Error State
+
+```dart
+HuxTextarea(
+  label: 'Description',
+  hint: 'Enter a description...',
+  minLines: 3,
+  maxLines: 6,
+  errorText: 'Description is required',
+)
+```
+
+## Properties
+
+### Core Properties
+- `label` - Optional field label text displayed above the textarea
+- `hint` - Placeholder text displayed inside the textarea when empty
+- `controller` - TextEditingController for managing input state
+- `onChanged` - Callback triggered when the textarea value changes
+- `onSubmitted` - Callback triggered when the user submits the textarea
+
+### Validation Properties
+- `validator` - Form validation function that returns error text or null
+- `errorText` - Custom error message (overrides validator output)
+- `helperText` - Helper text displayed below the textarea
+
+### Behavior Properties
+- `enabled` - Whether the textarea is interactive (default: true)
+- `minLines` - Minimum number of text lines (default: 3)
+- `maxLines` - Maximum number of text lines (default: 6)
+- `maxLength` - Maximum character length
+- `showCharacterCount` - Whether to show character count when maxLength is set (default: false)
+- `keyboardType` - Type of keyboard to display
+- `textInputAction` - Action button for the keyboard
+
+### Layout Properties
+- `width` - Custom width (default: full width)
+
+## Styling & Dimensions
+
+### Dimensions
+- **Border Radius**: 8px (rounded corners)
+- **Font Size**: 14px with 1.4 line height
+- **Horizontal Padding**: 12px (compact padding for better text density)
+- **Vertical Padding**: 12px
+
+### Theme Support
+- Automatically adapts to light and dark themes
+- Uses HuxTokens for consistent theming
+- Label uses FontWeight.w400 for lighter appearance
+
+## Character Count
+
+When `maxLength` is set and `showCharacterCount` is true, the textarea displays a character counter in the format "X / Y" at the bottom right. The counter updates dynamically as you type.
+
+```dart
+HuxTextarea(
+  label: 'Message',
+  maxLength: 500,
+  showCharacterCount: true,
+)
+```
+
+## Examples
+
+### Basic Form with Textarea
+
+```dart
+Form(
+  key: _formKey,
+  child: Column(
+    children: [
+      HuxInput(
+        label: 'Name',
+        hint: 'Enter your name',
+      ),
+      const SizedBox(height: 16),
+      HuxTextarea(
+        label: 'Message',
+        hint: 'Enter your message...',
+        minLines: 4,
+        maxLines: 8,
+        maxLength: 1000,
+        showCharacterCount: true,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Message is required';
+          }
+          return null;
+        },
+      ),
+    ],
+  ),
+)
+```
+
+### Disabled Textarea
+
+```dart
+HuxTextarea(
+  label: 'Notes',
+  hint: 'This field is disabled',
+  enabled: false,
+  minLines: 3,
+  maxLines: 6,
+)
+```
+
+## Best Practices
+
+- Use `minLines` to set the initial visible height
+- Set `maxLines` to prevent the textarea from growing too large
+- Use `showCharacterCount` when you have a `maxLength` to help users stay within limits
+- Provide helpful `helperText` to guide users on what to enter
+- Use validation to ensure data quality
+

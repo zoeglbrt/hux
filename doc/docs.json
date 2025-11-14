@@ -42,6 +42,7 @@
               "components/dialog",
               "components/dropdown",
               "components/input",
+              "components/textarea",
               "components/loading",
               "components/pagination",
               "components/radio",

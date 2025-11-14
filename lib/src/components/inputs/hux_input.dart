@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import '../../theme/hux_tokens.dart';
 
 /// HuxInput is a customizable text input component with consistent styling
@@ -23,7 +24,7 @@ import '../../theme/hux_tokens.dart';
 ///   onChanged: (value) => print('Email: $value'),
 /// )
 /// ```
-class HuxInput extends StatelessWidget {
+class HuxInput extends StatefulWidget {
   /// Creates a HuxInput widget.
   const HuxInput({
     super.key,
@@ -98,60 +99,129 @@ class HuxInput extends StatelessWidget {
   final double? width;
 
   @override
+  State<HuxInput> createState() => _HuxInputState();
+}
+
+class _HuxInputState extends State<HuxInput> {
+  bool _obscureText = false;
+  bool _isPasswordField = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = widget.obscureText;
+    _isPasswordField = widget.obscureText;
+  }
+
+  @override
+  void didUpdateWidget(HuxInput oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.obscureText != widget.obscureText) {
+      _obscureText = widget.obscureText;
+      _isPasswordField = widget.obscureText;
+    }
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  Widget? _buildPasswordToggleIcon(BuildContext context) {
+    if (!_isPasswordField) return null;
+
+    final effectiveIconSize = widget.iconSize ?? _getDefaultIconSize();
+    final outerPadding = _getIconHorizontalPadding();
+    const innerPadding = 4.0;
+
+    return GestureDetector(
+      onTap: _togglePasswordVisibility,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: innerPadding,
+          right: outerPadding,
+        ),
+        child: SizedBox(
+          width: effectiveIconSize,
+          height: effectiveIconSize,
+          child: Center(
+            child: IconTheme(
+              data: IconThemeData(
+                size: effectiveIconSize,
+                color: HuxTokens.iconSecondary(context),
+              ),
+              child: Icon(
+                _obscureText ? LucideIcons.eye : LucideIcons.eyeOff,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null) ...[
+        if (widget.label != null) ...[
           Text(
-            label!,
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: HuxTokens.textSecondary(context),
-                ),
+            widget.label!,
+            style: TextStyle(
+              fontSize: Theme.of(context).textTheme.labelMedium?.fontSize ?? 12,
+              fontWeight: FontWeight.w300,
+              color: HuxTokens.textSecondary(context),
+            ),
           ),
           const SizedBox(height: 6),
         ],
         SizedBox(
-          width: width,
+          width: widget.width,
           child: SizedBox(
             height: _getHeight(),
             child: TextFormField(
-              controller: controller,
-              obscureText: obscureText,
-              enabled: enabled,
-              maxLines: maxLines,
-              keyboardType: keyboardType,
-              textInputAction: textInputAction,
-              onChanged: onChanged,
-              onFieldSubmitted: onSubmitted,
-              validator: validator,
+              controller: widget.controller,
+              obscureText: _obscureText,
+              enabled: widget.enabled,
+              maxLines: widget.maxLines,
+              keyboardType: widget.keyboardType,
+              textInputAction: widget.textInputAction,
+              onChanged: widget.onChanged,
+              onFieldSubmitted: widget.onSubmitted,
+              validator: widget.validator,
               style: const TextStyle(
                 fontSize: 14, // Small text size for all text fields
                 height: 1.4,
               ),
               decoration: InputDecoration(
-                hintText: hint,
-                prefixIcon: prefixIcon != null
-                    ? _buildIcon(prefixIcon!, isPrefix: true, context: context)
+                hintText: widget.hint,
+                prefixIcon: widget.prefixIcon != null
+                    ? _buildIcon(widget.prefixIcon!,
+                        isPrefix: true, context: context)
                     : null,
-                suffixIcon: suffixIcon != null
-                    ? _buildIcon(suffixIcon!, isPrefix: false, context: context)
-                    : null,
-                prefixIconConstraints: prefixIcon != null
+                suffixIcon: _isPasswordField
+                    ? _buildPasswordToggleIcon(context)
+                    : (widget.suffixIcon != null
+                        ? _buildIcon(widget.suffixIcon!,
+                            isPrefix: false, context: context)
+                        : null),
+                prefixIconConstraints: widget.prefixIcon != null
                     ? BoxConstraints(
                         minWidth: _getIconConstraintWidth(),
                         maxWidth: _getIconConstraintWidth(),
                       )
                     : null,
-                suffixIconConstraints: suffixIcon != null
-                    ? BoxConstraints(
-                        minWidth: _getIconConstraintWidth(),
-                        maxWidth: _getIconConstraintWidth(),
-                      )
-                    : null,
-                errorText: errorText,
-                helperText: helperText,
+                suffixIconConstraints:
+                    (_isPasswordField || widget.suffixIcon != null)
+                        ? BoxConstraints(
+                            minWidth: _getIconConstraintWidth(),
+                            maxWidth: _getIconConstraintWidth(),
+                          )
+                        : null,
+                errorText: widget.errorText,
+                helperText: widget.helperText,
                 contentPadding: EdgeInsets.symmetric(
                   horizontal: _getHorizontalPadding(),
                   vertical: _getVerticalPadding(),
@@ -195,7 +265,7 @@ class HuxInput extends StatelessWidget {
                   ),
                 ),
                 filled: true,
-                fillColor: enabled
+                fillColor: widget.enabled
                     ? HuxTokens.surfacePrimary(context)
                     : HuxTokens.surfaceSecondary(context),
               ),
@@ -212,7 +282,7 @@ class HuxInput extends StatelessWidget {
 
   Widget _buildIcon(Widget icon,
       {required bool isPrefix, required BuildContext context}) {
-    final effectiveIconSize = iconSize ?? _getDefaultIconSize();
+    final effectiveIconSize = widget.iconSize ?? _getDefaultIconSize();
     final outerPadding = _getIconHorizontalPadding();
     const innerPadding = 4.0; // Small gap between icon and text
 
@@ -238,7 +308,7 @@ class HuxInput extends StatelessWidget {
   }
 
   double _getIconConstraintWidth() {
-    final effectiveIconSize = iconSize ?? _getDefaultIconSize();
+    final effectiveIconSize = widget.iconSize ?? _getDefaultIconSize();
     final outerPadding = _getIconHorizontalPadding();
     const innerPadding = 5.0;
     return effectiveIconSize + outerPadding + innerPadding;

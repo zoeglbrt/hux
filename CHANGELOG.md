@@ -1,6 +1,25 @@
 # Changelog
 
 
+## [0.20.0] - 2025-11-15
+
+### Added
+- **HuxTextarea**: New multi-line text input component
+  - Optimized for longer text input with configurable min/max lines
+  - Optional character count display with `showCharacterCount` parameter
+  - Consistent styling with other Hux input components
+  - Theme-aware with automatic light/dark mode adaptation
+  - Full validation support with error states
+  - Added to example app for demonstration
+
+### Enhanced
+- **Input Labels**: Reduced font weight for all input component labels
+  - Changed from `FontWeight.w500` to `FontWeight.w400` for lighter appearance
+  - Applied to `HuxInput`, `HuxTextarea`, and `HuxDateInput`
+- **Input Padding**: Improved padding consistency
+  - Reduced horizontal padding in `HuxTextarea` to 12px for better text density
+  - Reduced horizontal padding in `HuxDateInput` to 12px for consistency
+
 ## [0.19.1] - 2025-11-07
 
 ### Enhanced
