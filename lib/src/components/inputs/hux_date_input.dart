@@ -293,10 +293,11 @@ class _HuxDateInputState extends State<HuxDateInput> {
         if (widget.label != null) ...[
           Text(
             widget.label!,
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: HuxTokens.textSecondary(context),
-                ),
+            style: TextStyle(
+              fontSize: Theme.of(context).textTheme.labelMedium?.fontSize ?? 12,
+              fontWeight: FontWeight.w400,
+              color: HuxTokens.textSecondary(context),
+            ),
           ),
           const SizedBox(height: 6),
         ],
@@ -328,7 +329,7 @@ class _HuxDateInputState extends State<HuxDateInput> {
               suffixIcon:
                   widget.showCalendarIcon ? _buildCalendarIcon(context) : null,
               contentPadding: const EdgeInsets.symmetric(
-                horizontal: 18,
+                horizontal: 12,
                 vertical: 12,
               ),
               border: OutlineInputBorder(

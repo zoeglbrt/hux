@@ -68,6 +68,7 @@ A modern Flutter UI package with beautiful, customizable components designed for
 
 ### Inputs
 - `HuxInput` - Enhanced text input with consistent styling (renamed from HuxTextField)
+- `HuxTextarea` - Multi-line text input optimized for longer content with character count support
 - `HuxDateInput` - Date input with automatic formatting and integrated calendar picker
 
 ![HuxInput Component](screenshots/hux-input.png)
@@ -252,6 +253,25 @@ HuxInput(
   validator: (value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
+    }
+    return null;
+  },
+)
+```
+
+#### Textarea
+
+```dart
+HuxTextarea(
+  label: 'Description',
+  hint: 'Enter a description...',
+  minLines: 3,
+  maxLines: 6,
+  maxLength: 500,
+  showCharacterCount: true,
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a description';
     }
     return null;
   },

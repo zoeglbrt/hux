@@ -224,6 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _textareaController = TextEditingController();
   final _scrollController = ScrollController();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isLoading = false;
@@ -388,6 +389,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _textareaController.dispose();
     _scrollController.dispose();
     super.dispose();
   }
@@ -1018,6 +1020,35 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   'Click the calendar icon or type the date manually',
                                               onDateChanged: (date) {
                                                 // Handle date change
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 16),
+
+                                        // Textarea Example
+                                        Center(
+                                          child: SizedBox(
+                                            width: inputWidth,
+                                            child: HuxTextarea(
+                                              controller: _textareaController,
+                                              label: 'Description',
+                                              hint: 'Enter a description...',
+                                              minLines: 3,
+                                              maxLines: 6,
+                                              maxLength: 500,
+                                              showCharacterCount: true,
+                                              helperText:
+                                                  'Provide a detailed description',
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return 'Please enter a description';
+                                                }
+                                                if (value.length < 10) {
+                                                  return 'Description must be at least 10 characters';
+                                                }
+                                                return null;
                                               },
                                             ),
                                           ),
