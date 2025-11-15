@@ -53,6 +53,7 @@ export 'src/components/inputs/hux_textarea.dart';
 export 'src/components/inputs/hux_date_input.dart';
 export 'src/components/inputs/hux_checkbox.dart';
 export 'src/components/inputs/hux_radio.dart';
+export 'src/components/otp/hux_otp_input.dart';
 export 'src/components/switch/hux_switch.dart';
 export 'src/components/slider/hux_slider.dart';
 export 'src/components/badge/hux_badge.dart';

@@ -1,6 +1,22 @@
 # Changelog
 
 
+## [0.22.0] - 2025-11-15
+
+### Added
+- **HuxOtpInput**: New One-Time Password input component
+  - Customizable digit length (default: 6)
+  - Automatic focus management with sequential input enforcement
+  - Paste support that fills all fields
+  - Arrow key navigation (left/right)
+  - Backspace handling with automatic field navigation
+  - Visual divider for 6-digit OTPs
+  - Optional label, helper text, and error text
+  - Centered alignment for clean presentation
+  - Theme-aware styling with automatic light/dark mode adaptation
+  - Validation support with error states
+  - `onCompleted` callback that fires once when all digits are filled
+
 ## [0.21.0] - 2025-11-15
 
 ### Added

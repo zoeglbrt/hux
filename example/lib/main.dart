@@ -5,6 +5,7 @@ import 'package:hux/hux.dart';
 
 import 'breadcrumbs.dart';
 import 'tabs.dart';
+import 'components/otp_section.dart';
 
 void main() {
   runApp(const MyApp());
@@ -266,6 +267,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _tabsKey = GlobalKey();
   final _breadcrumbsKey = GlobalKey();
   final _commandKey = GlobalKey();
+  final _otpKey = GlobalKey();
   // final _timePickerKey = GlobalKey();
   // final _timePickerNavKey = GlobalKey();
   // final _timeButtonKey = GlobalKey();
@@ -287,6 +289,11 @@ class _MyHomePageState extends State<MyHomePage> {
         id: 'input',
         label: 'Input',
         icon: LucideIcons.edit3,
+      ),
+      const HuxSidebarItemData(
+        id: 'otp',
+        label: 'OTP Input',
+        icon: LucideIcons.keyboard,
       ),
       const HuxSidebarItemData(
         id: 'cards',
@@ -420,6 +427,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final keyMap = {
       'buttons': _buttonsKey,
       'input': _textFieldsKey,
+      'otp': _otpKey,
       'cards': _cardsKey,
       'charts': _chartsKey,
       'context-menu': _contextMenuKey,
@@ -1065,6 +1073,19 @@ class _MyHomePageState extends State<MyHomePage> {
                                     );
                                   },
                                 ),
+                              ),
+                            ),
+                          ),
+
+                          const SizedBox(height: 32),
+
+                          // OTP Input Section
+                          Container(
+                            key: _otpKey,
+                            child: SectionWithDocumentation(
+                              componentName: 'otp',
+                              child: OtpSection(
+                                onShowSnackBar: _showSnackBar,
                               ),
                             ),
                           ),

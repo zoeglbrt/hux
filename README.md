@@ -14,18 +14,24 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.21.0
+## Latest Version: 0.22.0
 
-- **HuxSlider**: New interactive slider component for selecting numeric values
-  - Support for labels and value display
-  - Discrete divisions for step-based selection
-  - Multiple size variants (small, medium, large)
-  - Theme-aware styling with automatic light/dark mode adaptation
-  - Custom active color support and disabled state
-  - Smooth animations and interactions
+- **HuxOtpInput**: New One-Time Password input component
+  - Customizable digit length (default: 6)
+  - Automatic focus management with sequential input enforcement
+  - Paste support that fills all fields
+  - Arrow key navigation and backspace handling
+  - Visual divider for 6-digit OTPs
+  - Theme-aware styling with validation support
 
 [![Changelog](https://img.shields.io/badge/Changelog-View-black?style=for-the-badge&labelColor=white&logo=github&logoColor=black)](CHANGELOG.md)
 [![Docs](https://img.shields.io/badge/Docs-Browse-black?style=for-the-badge&labelColor=white&logo=readthedocs&logoColor=black)](https://docs.thehuxdesign.com)
+
+## Installation
+
+```bash
+flutter pub add hux
+```
 
 ## Features
 
@@ -62,6 +68,7 @@ A modern Flutter UI package with beautiful, customizable components designed for
 - `HuxInput` - Enhanced text input with consistent styling (renamed from HuxTextField)
 - `HuxTextarea` - Multi-line text input optimized for longer content with character count support
 - `HuxDateInput` - Date input with automatic formatting and integrated calendar picker
+- `HuxOtpInput` - One-Time Password input with automatic focus management and paste support
 
 ![HuxInput Component](screenshots/hux-input.png)
 
@@ -191,13 +198,6 @@ A modern Flutter UI package with beautiful, customizable components designed for
 - [Examples](https://docs.thehuxdesign.com/examples/basic-usage)
 - [Figma Library](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
 
-## Installation
-
-```bash
-flutter pub add hux
-```
-
-
 ## Usage
 
 ### Basic Setup
@@ -272,6 +272,18 @@ HuxTextarea(
     }
     return null;
   },
+)
+```
+
+#### OTP Input
+
+```dart
+HuxOtpInput(
+  length: 6,
+  label: 'Verification Code',
+  helperText: 'Enter the 6-digit code sent to your email',
+  onChanged: (value) => print('OTP: $value'),
+  onCompleted: (value) => verifyCode(value),
 )
 ```
 

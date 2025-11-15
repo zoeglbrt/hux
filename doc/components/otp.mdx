@@ -1,0 +1,233 @@
+---
+title: 'OTP Input'
+description: 'One-Time Password input component with automatic focus management and paste support'
+---
+
+## Overview
+
+HuxOtpInput is a customizable OTP (One-Time Password) input component with consistent styling and extensive customization options. It provides a clean, modern OTP input with multiple digit fields, automatic focus management, paste support, and validation while automatically adapting to light and dark themes.
+
+## Basic Usage
+
+### Simple OTP Input
+
+```dart
+HuxOtpInput(
+  length: 6,
+  label: 'Verification Code',
+  onChanged: (value) => print('OTP: $value'),
+  onCompleted: (value) => print('Completed: $value'),
+)
+```
+
+### OTP Input with Helper Text
+
+```dart
+HuxOtpInput(
+  length: 6,
+  label: 'Verification Code',
+  helperText: 'Enter the 6-digit code sent to your email',
+  onCompleted: (value) => verifyCode(value),
+)
+```
+
+### OTP Input with Validation
+
+```dart
+HuxOtpInput(
+  length: 6,
+  label: 'Verification Code',
+  helperText: 'Enter the 6-digit code',
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter the verification code';
+    }
+    if (value.length < 6) {
+      return 'Code must be 6 digits';
+    }
+    return null;
+  },
+)
+```
+
+### OTP Input with Different Length
+
+```dart
+HuxOtpInput(
+  length: 4,
+  label: 'PIN Code',
+  helperText: 'Enter your 4-digit PIN',
+  onCompleted: (value) => authenticate(value),
+)
+```
+
+## Properties
+
+### Core Properties
+- `length` - Number of OTP digits (default: 6)
+- `label` - Optional field label text displayed above the input
+- `helperText` - Helper text displayed below the input
+- `errorText` - Error text displayed below the input, overrides helperText
+- `onChanged` - Callback triggered when the input value changes
+- `onCompleted` - Callback triggered when all OTP digits are filled
+
+### Validation Properties
+- `validator` - Form validation function that returns error text or null
+- `errorText` - Custom error message (overrides validator output)
+
+### Behavior Properties
+- `enabled` - Whether the input is interactive (default: true)
+- `obscureText` - Whether to hide the digits (for security, default: false)
+- `autofocus` - Whether to automatically focus the first field (default: false)
+- `width` - Custom width (optional, defaults to full width)
+
+## Features
+
+### Automatic Focus Management
+The OTP input automatically moves focus to the next field when a digit is entered, providing a smooth user experience.
+
+### Keyboard Navigation
+- **Backspace**: Moves to the previous field when the current field is empty
+- **Arrow Keys**: Navigate between fields using left and right arrow keys
+- **Paste Support**: Paste multi-digit codes to fill all fields at once
+
+### Paste Support
+Users can paste a code from their clipboard, and the component will automatically distribute the digits across all fields.
+
+## Styling & Dimensions
+
+### Fixed Dimensions
+- **Height**: 40px (consistent across all digit fields)
+- **Border Radius**: 8px (rounded corners)
+- **Font Size**: 18px with medium weight (500)
+- **Spacing**: 8px between digit fields
+
+### Padding & Spacing
+- **Vertical Padding**: 12px (top and bottom inside each field)
+- **Label Gap**: 6px (space between label and input)
+- **Helper Text Gap**: 6px (space between input and helper/error text)
+
+## Color System
+
+### Border Colors
+- **Default**: `HuxTokens.borderPrimary(context)`
+- **Focused**: `HuxTokens.primary(context)` with 50% opacity
+- **Error**: `HuxTokens.borderSecondary(context)`
+- **Focused Error**: `HuxTokens.textDestructive(context)` with 2px width
+- **Disabled**: `HuxTokens.borderSecondary(context)`
+
+### Background Colors
+- **Enabled**: `HuxTokens.surfacePrimary(context)`
+- **Disabled**: `HuxTokens.surfaceSecondary(context)`
+
+### Text Colors
+- **Input Text**: `HuxTokens.textPrimary(context)` with 18px font size
+- **Label Text**: `HuxTokens.textSecondary(context)` with medium weight
+- **Helper Text**: `HuxTokens.textSecondary(context)`
+- **Error Text**: `HuxTokens.textDestructive(context)`
+
+## States
+
+### Enabled State
+- Fully interactive with normal styling
+- Responds to user input and focus
+- Automatic focus management between fields
+
+### Focused State
+- Border color changes to primary color with 50% opacity
+- Current field is highlighted
+
+### Error State
+- Error text displayed below the input
+- Border color changes to destructive color when focused
+- Validation errors shown in real-time
+
+### Disabled State
+- Input fields are non-interactive
+- Reduced opacity styling
+- Disabled border and background colors
+
+## Examples
+
+### Complete OTP Verification Flow
+
+```dart
+class OtpVerificationPage extends StatefulWidget {
+  @override
+  State<OtpVerificationPage> createState() => _OtpVerificationPageState();
+}
+
+class _OtpVerificationPageState extends State<OtpVerificationPage> {
+  String? _otpValue;
+  bool _isVerifying = false;
+
+  Future<void> _verifyOtp(String code) async {
+    setState(() => _isVerifying = true);
+    
+    try {
+      final isValid = await verifyOtpCode(code);
+      if (isValid) {
+        // Navigate to success page
+      } else {
+        setState(() {
+          _isVerifying = false;
+          // Show error
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _isVerifying = false;
+        // Show error
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: HuxOtpInput(
+          length: 6,
+          label: 'Enter Verification Code',
+          helperText: 'We sent a code to your email',
+          autofocus: true,
+          enabled: !_isVerifying,
+          onCompleted: _verifyOtp,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter the verification code';
+            }
+            if (value.length < 6) {
+              return 'Code must be 6 digits';
+            }
+            return null;
+          },
+        ),
+      ),
+    );
+  }
+}
+```
+
+### OTP with Obscure Text
+
+```dart
+HuxOtpInput(
+  length: 6,
+  label: 'Security Code',
+  obscureText: true, // Hides digits for security
+  helperText: 'Enter your security code',
+)
+```
+
+### Custom Width OTP Input
+
+```dart
+HuxOtpInput(
+  length: 6,
+  label: 'Verification Code',
+  width: 300, // Custom width
+  onCompleted: (value) => handleOtp(value),
+)
+```
+
