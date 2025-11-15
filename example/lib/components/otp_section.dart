@@ -30,7 +30,7 @@ class OtpSection extends StatelessWidget {
           return Column(
             children: [
               const SizedBox(height: 16),
-              
+
               // Basic OTP Input
               Center(
                 child: SizedBox(
@@ -55,4 +55,3 @@ class OtpSection extends StatelessWidget {
     );
   }
 }
-

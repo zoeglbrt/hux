@@ -178,7 +178,9 @@ class _HuxOtpInputState extends State<HuxOtpInput> {
     if (digits.isEmpty) return;
 
     _isPasting = true;
-    for (int i = 0; i < digits.length && (fieldIndex + i) < widget.length; i++) {
+    for (int i = 0;
+        i < digits.length && (fieldIndex + i) < widget.length;
+        i++) {
       _controllers[fieldIndex + i].text = digits[i];
     }
     _isPasting = false;
@@ -223,7 +225,8 @@ class _HuxOtpInputState extends State<HuxOtpInput> {
             Text(
               widget.label!,
               style: TextStyle(
-                fontSize: Theme.of(context).textTheme.labelMedium?.fontSize ?? 12,
+                fontSize:
+                    Theme.of(context).textTheme.labelMedium?.fontSize ?? 12,
                 fontWeight: FontWeight.w300,
                 color: HuxTokens.textSecondary(context),
               ),
@@ -239,7 +242,8 @@ class _HuxOtpInputState extends State<HuxOtpInput> {
             Text(
               widget.helperText!,
               style: TextStyle(
-                fontSize: Theme.of(context).textTheme.labelSmall?.fontSize ?? 11,
+                fontSize:
+                    Theme.of(context).textTheme.labelSmall?.fontSize ?? 11,
                 color: HuxTokens.textSecondary(context),
               ),
             ),
@@ -249,7 +253,8 @@ class _HuxOtpInputState extends State<HuxOtpInput> {
             Text(
               errorMessage,
               style: TextStyle(
-                fontSize: Theme.of(context).textTheme.labelSmall?.fontSize ?? 11,
+                fontSize:
+                    Theme.of(context).textTheme.labelSmall?.fontSize ?? 11,
                 color: HuxTokens.textDestructive(context),
               ),
             ),
@@ -344,7 +349,8 @@ class _HuxOtpInputState extends State<HuxOtpInput> {
                     ? HuxTokens.textPrimary(context)
                     : HuxTokens.textDisabled(context),
               ),
-              decoration: _buildInputDecoration(context, hasError, isFocused, borderColor),
+              decoration: _buildInputDecoration(
+                  context, hasError, isFocused, borderColor),
             ),
           ),
         ),
@@ -375,7 +381,9 @@ class _HuxOtpInputState extends State<HuxOtpInput> {
       focusedBorder: OutlineInputBorder(
         borderRadius: borderRadius,
         borderSide: BorderSide(
-          color: hasError ? errorColor : HuxTokens.primary(context).withValues(alpha: 0.5),
+          color: hasError
+              ? errorColor
+              : HuxTokens.primary(context).withValues(alpha: 0.5),
           width: focusedErrorWidth,
         ),
       ),

@@ -1,6 +1,11 @@
 # Changelog
 
 
+## [0.22.1] - 2025-11-16
+
+### Changed
+- Code formatting: Applied `dart format` to `HuxOtpInput` component and example code
+
 ## [0.22.0] - 2025-11-15
 
 ### Added
