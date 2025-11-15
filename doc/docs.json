@@ -47,6 +47,7 @@
               "components/pagination",
               "components/radio",
               "components/sidebar",
+              "components/slider",
               "components/snackbar",
               "components/switch",
               "components/tabs",

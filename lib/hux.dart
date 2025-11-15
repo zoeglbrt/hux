@@ -7,6 +7,7 @@
 /// - Flexible card components with semantic tokens
 /// - Enhanced text input fields with validation support
 /// - Multi-line textarea component with character count support
+/// - Customizable slider component with smooth animations
 /// - Customizable loading indicators with theme awareness
 /// - Beautiful data visualization charts with cristalyse integration
 /// - Right-click context menus with smart positioning
@@ -53,6 +54,7 @@ export 'src/components/inputs/hux_date_input.dart';
 export 'src/components/inputs/hux_checkbox.dart';
 export 'src/components/inputs/hux_radio.dart';
 export 'src/components/switch/hux_switch.dart';
+export 'src/components/slider/hux_slider.dart';
 export 'src/components/badge/hux_badge.dart';
 export 'src/components/feedback/hux_alert.dart';
 export 'src/components/feedback/hux_snackbar.dart';

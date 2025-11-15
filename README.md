@@ -3,7 +3,7 @@
 A modern Flutter UI package with beautiful, customizable components designed for clean and consistent user interfaces.
 
 [![Flutter support](https://img.shields.io/badge/Flutter-3.16%2B-white?style=flat&labelColor=black&logo=flutter&logoColor=WHITE)](https://flutter.dev/)
-[![Figma](https://img.shields.io/badge/Figma%20users-29-white?style=flat&labelColor=black&logo=figma&logoColor=white)](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
+[![Figma](https://img.shields.io/badge/Figma%20users-31-white?style=flat&labelColor=black&logo=figma&logoColor=white)](https://www.figma.com/community/file/1541197128732135637/the-hux-ui)
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsor-Hux%20UI-white?style=flat&labelColor=black&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/lofidesigner)
 
 [![pub package](https://img.shields.io/pub/v/hux?style=flat&color=white&labelColor=black)](https://pub.dev/packages/hux)
@@ -14,23 +14,15 @@ A modern Flutter UI package with beautiful, customizable components designed for
 [![License: MIT](https://img.shields.io/badge/License-MIT-white?style=flat&labelColor=black)](https://opensource.org/licenses/MIT)
 
 
-## Latest Version: 0.19.1
+## Latest Version: 0.21.0
 
-- **Example App**: Documentation buttons added to component sections
-  - Quick access to component-specific documentation from each section
-  - Theme-aware SVG icons with proper integration into card layouts
-
-### Previous Version: 0.19.0
-
-- **Responsive Design**: Comprehensive mobile support for example app
-  - Mobile sidebar drawer with responsive breakpoints
-  - Adaptive layouts, padding, and spacing
-  - Mobile-optimized components (pagination, breadcrumbs, cards)
-- **Context Menu Mobile Support**: Long press gesture for mobile devices
-  - Right-click on desktop, long-press on mobile
-- **Command Palette**: Enhanced UX with outside-click dismissal
-- **Button Alignment**: Improved left alignment for expanded buttons
-- **Example App**: Resource buttons (GitHub, Docs, Package) in sidebar
+- **HuxSlider**: New interactive slider component for selecting numeric values
+  - Support for labels and value display
+  - Discrete divisions for step-based selection
+  - Multiple size variants (small, medium, large)
+  - Theme-aware styling with automatic light/dark mode adaptation
+  - Custom active color support and disabled state
+  - Smooth animations and interactions
 
 [![Changelog](https://img.shields.io/badge/Changelog-View-black?style=for-the-badge&labelColor=white&logo=github&logoColor=black)](CHANGELOG.md)
 [![Docs](https://img.shields.io/badge/Docs-Browse-black?style=for-the-badge&labelColor=white&logo=readthedocs&logoColor=black)](https://docs.thehuxdesign.com)
@@ -123,6 +115,11 @@ A modern Flutter UI package with beautiful, customizable components designed for
 - `HuxSwitch` - Toggle switch with smooth animations between on/off states
 
 ![HuxSwitch Component](screenshots/hux-switch.png)
+
+### Slider
+- `HuxSlider` - Interactive slider control for selecting numeric values within a range
+- Support for labels, value display, and discrete divisions
+- Multiple size variants and theme-aware styling
 
 ### Tooltip
 - `HuxTooltip` - Contextual help and information with optional icon support

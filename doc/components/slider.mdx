@@ -1,0 +1,306 @@
+---
+title: 'Slider'
+description: 'Customizable slider component with smooth animations and theme-aware styling'
+---
+
+## Overview
+
+HuxSlider is a customizable slider component with smooth animations, consistent styling, and automatic theme adaptation. It provides a clean, modern interface for selecting numeric values within a range while maintaining accessibility standards.
+
+## Basic Usage
+
+### Basic Slider
+
+```dart
+double sliderValue = 50.0;
+
+HuxSlider(
+  value: sliderValue,
+  onChanged: (value) {
+    setState(() {
+      sliderValue = value;
+    });
+  },
+  min: 0,
+  max: 100,
+)
+```
+
+### Slider with Label
+
+```dart
+double volume = 75.0;
+
+HuxSlider(
+  value: volume,
+  onChanged: (value) {
+    setState(() {
+      volume = value;
+    });
+  },
+  min: 0,
+  max: 100,
+  label: 'Volume',
+)
+```
+
+### Slider with Value Display
+
+```dart
+double brightness = 60.0;
+
+HuxSlider(
+  value: brightness,
+  onChanged: (value) {
+    setState(() {
+      brightness = value;
+    });
+  },
+  min: 0,
+  max: 100,
+  label: 'Brightness',
+  showValue: true,
+)
+```
+
+### Slider with Divisions
+
+```dart
+double rating = 3.0;
+
+HuxSlider(
+  value: rating,
+  onChanged: (value) {
+    setState(() {
+      rating = value;
+    });
+  },
+  min: 1,
+  max: 5,
+  divisions: 4, // Creates 5 discrete values (1, 2, 3, 4, 5)
+  label: 'Rating',
+  showValue: true,
+)
+```
+
+### Disabled Slider
+
+```dart
+HuxSlider(
+  value: 50.0,
+  onChanged: null, // Disables the slider
+  min: 0,
+  max: 100,
+  label: 'Volume',
+)
+```
+
+## Properties
+
+### Core Properties
+- `value` - Current slider value (double)
+- `onChanged` - Callback triggered when value changes (null for disabled)
+- `min` - Minimum value (default: 0.0)
+- `max` - Maximum value (default: 100.0)
+
+### Display Properties
+- `label` - Optional label displayed above the slider
+- `showValue` - Whether to display the current value next to the label
+- `divisions` - Number of discrete divisions (null for continuous)
+
+### Styling Properties
+- `size` - Slider size variant (small, medium, large)
+- `activeColor` - Custom active color (uses primary color by default)
+- `isDisabled` - Whether the slider is disabled
+
+## Size Variants
+
+### Small Slider
+- **Track Height**: 2px
+- **Thumb Size**: 14px × 14px
+- **Overlay Size**: 28px × 28px
+- **Tick Size**: 2px
+
+### Medium Slider ⭐ **Default**
+- **Track Height**: 3px
+- **Thumb Size**: 18px × 18px
+- **Overlay Size**: 36px × 36px
+- **Tick Size**: 3px
+
+### Large Slider
+- **Track Height**: 4px
+- **Thumb Size**: 22px × 22px
+- **Overlay Size**: 44px × 44px
+- **Tick Size**: 4px
+
+## Styling & Colors
+
+### Slider Colors
+- **Active Track**: `HuxTokens.primary(context)` (or custom `activeColor`)
+- **Inactive Track**: `HuxTokens.surfaceSecondary(context)`
+- **Thumb**: `HuxTokens.primary(context)` (or custom `activeColor`)
+- **Overlay**: Primary color with 10% opacity
+- **Tick Marks**: `HuxTokens.primary(context)` (when divisions are used)
+
+### Disabled State Colors
+- **Active Track (Disabled)**: `HuxTokens.borderSecondary(context)`
+- **Inactive Track (Disabled)**: `HuxTokens.surfaceSecondary(context)` with 50% opacity
+- **Thumb (Disabled)**: `HuxTokens.surfaceSecondary(context)`
+- **Text (Disabled)**: `HuxTokens.textDisabled(context)`
+
+## Custom Colors
+
+You can customize the slider's active color:
+
+```dart
+HuxSlider(
+  value: sliderValue,
+  onChanged: (value) => setState(() => sliderValue = value),
+  min: 0,
+  max: 100,
+  activeColor: Colors.blue,
+  label: 'Custom Color',
+)
+```
+
+## Advanced Examples
+
+### Volume Control
+
+```dart
+double volume = 50.0;
+
+HuxSlider(
+  value: volume,
+  onChanged: (value) {
+    setState(() {
+      volume = value;
+    });
+    // Update audio volume
+    audioPlayer.setVolume(value / 100);
+  },
+  min: 0,
+  max: 100,
+  label: 'Volume',
+  showValue: true,
+  divisions: 20, // 5% increments
+)
+```
+
+### Rating Slider
+
+```dart
+double rating = 3.0;
+
+HuxSlider(
+  value: rating,
+  onChanged: (value) {
+    setState(() {
+      rating = value;
+    });
+  },
+  min: 1,
+  max: 5,
+  divisions: 4, // Creates 5 discrete values
+  label: 'Rating',
+  showValue: true,
+)
+```
+
+### Price Range Filter
+
+```dart
+double maxPrice = 500.0;
+
+HuxSlider(
+  value: maxPrice,
+  onChanged: (value) {
+    setState(() {
+      maxPrice = value;
+    });
+    // Filter products
+    filterProducts(maxPrice: value);
+  },
+  min: 0,
+  max: 1000,
+  label: 'Max Price',
+  showValue: true,
+)
+```
+
+### Form Integration
+
+```dart
+final _formKey = GlobalKey<FormState>();
+double satisfaction = 5.0;
+
+Form(
+  key: _formKey,
+  child: Column(
+    children: [
+      HuxSlider(
+        value: satisfaction,
+        onChanged: (value) {
+          setState(() {
+            satisfaction = value;
+          });
+        },
+        min: 1,
+        max: 10,
+        divisions: 9,
+        label: 'Satisfaction Level',
+        showValue: true,
+      ),
+      const SizedBox(height: 20),
+      HuxButton(
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            submitForm(satisfaction: satisfaction);
+          }
+        },
+        child: const Text('Submit'),
+      ),
+    ],
+  ),
+)
+```
+
+## Accessibility
+
+HuxSlider follows Flutter's accessibility guidelines:
+- Supports keyboard navigation
+- Provides semantic labels for screen readers
+- Maintains proper touch target sizes (minimum 44px × 44px)
+- Uses theme-aware colors that meet WCAG contrast requirements
+
+## Best Practices
+
+1. **Use Labels**: Always provide a label to make the slider's purpose clear
+2. **Show Values**: Use `showValue: true` when the exact value is important
+3. **Use Divisions**: Set `divisions` when you need discrete values (e.g., ratings, steps)
+4. **Provide Feedback**: Consider showing additional feedback when the value changes (e.g., updating a preview)
+5. **Range Selection**: For range selection, use two sliders or consider a RangeSlider component
+
+## API Reference
+
+### HuxSlider Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `value` | `double` | — | Current slider value (required) |
+| `onChanged` | `ValueChanged<double>?` | — | Callback when value changes |
+| `min` | `double` | `0.0` | Minimum value |
+| `max` | `double` | `100.0` | Maximum value |
+| `divisions` | `int?` | `null` | Number of discrete divisions |
+| `label` | `String?` | `null` | Label displayed above slider |
+| `showValue` | `bool` | `false` | Whether to show current value |
+| `isDisabled` | `bool` | `false` | Whether slider is disabled |
+| `size` | `HuxSliderSize` | `medium` | Size variant |
+| `activeColor` | `Color?` | `null` | Custom active color |
+
+### HuxSliderSize Enum
+
+- `HuxSliderSize.small` - Small slider for compact layouts
+- `HuxSliderSize.medium` - Medium slider for standard use (default)
+- `HuxSliderSize.large` - Large slider for emphasis
+

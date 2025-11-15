@@ -253,6 +253,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _checkboxesKey = GlobalKey();
   final _radioButtonsKey = GlobalKey();
   final _toggleSwitchesKey = GlobalKey();
+  final _sliderKey = GlobalKey();
   final _toggleButtonsKey = GlobalKey();
   final _badgesKey = GlobalKey();
   final _indicatorsKey = GlobalKey();
@@ -316,6 +317,11 @@ class _MyHomePageState extends State<MyHomePage> {
         id: 'switch',
         label: 'Switch',
         icon: LucideIcons.toggleLeft,
+      ),
+      const HuxSidebarItemData(
+        id: 'slider',
+        label: 'Slider',
+        icon: LucideIcons.slidersHorizontal,
       ),
       const HuxSidebarItemData(
         id: 'toggle',
@@ -420,6 +426,7 @@ class _MyHomePageState extends State<MyHomePage> {
       'checkbox': _checkboxesKey,
       'radio-buttons': _radioButtonsKey,
       'switch': _toggleSwitchesKey,
+      'slider': _sliderKey,
       'toggle': _toggleButtonsKey,
       'badges': _badgesKey,
       'snackbar': _indicatorsKey,
@@ -1560,6 +1567,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
                           const SizedBox(height: 32),
 
+                          // Slider Section
+                          SectionWithDocumentation(
+                            componentName: 'slider',
+                            child: SliderSection(key: _sliderKey),
+                          ),
+
+                          const SizedBox(height: 32),
+
                           // Toggle Buttons Section
                           SectionWithDocumentation(
                             componentName: 'toggle',
@@ -2069,6 +2084,50 @@ class _ToggleSwitchesSectionState extends State<ToggleSwitchesSection> {
             ),
           ),
           const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+// Slider Section
+class SliderSection extends StatefulWidget {
+  const SliderSection({super.key});
+
+  @override
+  State<SliderSection> createState() => _SliderSectionState();
+}
+
+class _SliderSectionState extends State<SliderSection> {
+  double _sliderValue = 50.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return HuxCard(
+      size: HuxCardSize.large,
+      backgroundColor: HuxColors.white5,
+      borderColor: HuxTokens.borderSecondary(context),
+      title: 'Slider',
+      subtitle: 'Interactive slider control for selecting numeric values',
+      child: Column(
+        children: [
+          const SizedBox(height: 32),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: HuxSlider(
+              value: _sliderValue,
+              onChanged: (value) {
+                setState(() {
+                  _sliderValue = value;
+                });
+              },
+              min: 0,
+              max: 100,
+              label: 'Volume',
+              showValue: true,
+            ),
+          ),
+          const SizedBox(height: 48),
         ],
       ),
     );

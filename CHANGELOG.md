@@ -1,6 +1,19 @@
 # Changelog
 
 
+## [0.21.0] - 2025-11-15
+
+### Added
+- **HuxSlider**: New interactive slider component for selecting numeric values
+  - Support for labels and value display
+  - Discrete divisions for step-based selection
+  - Multiple size variants (small, medium, large)
+  - Theme-aware styling with automatic light/dark mode adaptation
+  - Custom active color support
+  - Disabled state support
+  - Smooth animations and interactions
+  - Added to example app for demonstration
+
 ## [0.20.0] - 2025-11-15
 
 ### Added

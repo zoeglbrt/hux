@@ -1,6 +1,6 @@
 name: hux
 description: An open-source state of the art UI library for Flutter
-version: 0.20.0
+version: 0.21.0
 homepage: https://github.com/lofidesigner/hux
 repository: https://github.com/lofidesigner/hux
 issue_tracker: https://github.com/lofidesigner/hux/issues
@@ -48,7 +48,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cristalyse: ^1.14.0
+  cristalyse: ^1.15.0
   universal_html: ^2.2.4
   lucide_icons: ^0.257.0
 
